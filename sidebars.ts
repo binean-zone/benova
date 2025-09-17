@@ -24,7 +24,21 @@ const sidebars: SidebarsConfig = {
       label: 'Nexus',
       description: 'Foundation of Connection',
       items: [
-        'binean_nexus/intro',
+        {
+          type: 'doc',
+          id: 'binean_nexus/infrastructure',
+          label: 'Infrastructure',
+        },
+        {
+          type: 'doc',
+          id: 'binean_nexus/devops',
+          label: 'DevOps & CI/CD',
+        },
+        {
+          type: 'doc',
+          id: 'binean_nexus/vscode_extension',
+          label: 'VS Code Extension',
+        },
       ],
     },
     {
