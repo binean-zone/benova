@@ -1,47 +1,59 @@
 ---
 sidebar_position: 1
 ---
+Binean Nova
+==============
+The journey to modernize the Ingenium insurance core
 
-# Tutorial Intro
+# Vision
+Binean Nova is not just a technical upgrade project, but a journey to build an **advanced, resilient, and future-ready insurance core system**.  
+This foundation is designed to be **flexible**, **scalable**, and **open to unprecedented innovations**, ensuring it evolves alongside the transformation of the insurance industry in the digital era.
 
-Let's discover **Docusaurus in less than 5 minutes**.
+# Slogan
+✨ **“Connecting the past, reaching the future.”**
 
-## Getting Started
+# Project Overview
+Binean Nova represents a complete transformation, evolving the traditional insurance system into a modern, flexible, and open core.
 
-Get started by **creating a new site**.
+Each stage is designed to:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+- Ensure stable operations, preserving the value of the legacy system.  
+- Embrace cutting-edge technology, automation, and intelligent DevOps.  
+- Build a flexible foundation, ready to integrate new applications and unlock growth potential.  
 
-### What you'll need
+# NOVA Roadmap
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## 🌐 Nexus
+**Foundation of Connection**
+- Build a solid digital infrastructure.  
+- Establish seamless, intelligent DevOps.  
+- Ensure security, stability, and long-term scalability.  
 
-## Generate a new site
+## 🪐 Orbit
+**Core in Motion**
+- Modernize and optimize the Ingenium core.  
+- Standardize services and system architecture.  
+- Create a sustainable growth orbit for the entire platform.  
 
-Generate a new Docusaurus site using the **classic template**.
+## 🌄 Vista
+**Vision Unfolded**
+- Redesign user experience to meet modern standards.  
+- Deliver intuitive, seamless, and user-friendly interfaces.  
+- Shape the strategic direction for the next-generation core.  
 
-The classic template will automatically be added to your project after you run the command:
+## 🚀 Apex
+**Summit of Innovation**
+- Restructure data and business logic.  
+- Unlock scalability and flexible integration.  
+- Build a digital ecosystem that continuously evolves and innovates.  
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+# Values & Differentiation
+- **Resilient Core:** a strong, flexible, and long-lasting foundation.  
+- **Advanced DevOps & automation:** rapid deployment, stable operation.  
+- **Legacy & modern in parallel:** supporting both old and new interfaces.  
+- **Scalable & integrable:** easily connects with future applications and solutions.  
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+# Conclusion
+Binean Nova is the journey **from legacy to the future**, where modern technology, optimized DevOps, and a flexible model converge to build an insurance core that is **resilient, scalable, and full of potential**.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Each step forward is not just a technical improvement, but also an **opportunity for innovation**, unlocking breakthrough growth for customers and partners.
