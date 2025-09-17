@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbenova=self.webpackChunkbenova||[]).push([[1903],{1912:e=>{e.exports=JSON.parse('{"blogBasePath":"/benova/blog","blogTitle":"Blog","authorsListPath":"/benova/blog/authors"}')}}]);
