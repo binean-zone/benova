@@ -3,15 +3,14 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Binean',
+  tagline: 'Innovation with resilience',
   favicon: 'img/favicon.ico',
 
   future: {
     v4: true,
   },
 
-  //url: 'https://binean-zone.github.io',
   url: 'https://www.binean.com',
   baseUrl: '/',
   projectName: 'benova',
@@ -20,7 +19,7 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
   trailingSlash: false,
   i18n: {
-    defaultLocale: 'en', // 👈 Đặt tiếng Anh làm mặc định
+    defaultLocale: 'en',
     locales: ['en', 'vi'],
     localeConfigs: {
       en: { label: 'English' },
@@ -59,10 +58,10 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Binean Logo',
+        src: 'img/binean-full.svg',
+        srcDark: 'img/binean-full-dark.svg',
       },
       items: [
         {
