@@ -21,7 +21,7 @@ const sidebars: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'Binean Nexus',
+      label: 'Nexus',
       description: 'Foundation of Connection',
       items: [
         'binean_nexus/intro',
@@ -29,7 +29,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Binean Orbit',
+      label: 'Orbit',
       description: 'Core in Motion',
       items: [
         'binean_orbit/intro',
@@ -37,7 +37,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Binean Vista',
+      label: 'Vista',
       description: 'Vision Unfolded',
       items: [
         'binean_vista/intro',
@@ -45,7 +45,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Binean Apex',
+      label: 'Apex',
       description: 'Summit of Innovation',
       items: [
         'binean_apex/intro',
