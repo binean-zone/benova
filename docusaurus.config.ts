@@ -11,8 +11,9 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://binean-zone.github.io',
-  baseUrl: '/benova/',
+  //url: 'https://binean-zone.github.io',
+  url: 'https://www.binean.com',
+  baseUrl: '/',
   projectName: 'benova',
   organizationName: 'binean-zone',
   onBrokenLinks: 'throw',
