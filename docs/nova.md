@@ -39,6 +39,14 @@ Nova is committed to being a solid platform, accompanying businesses on their jo
 
 Nova's architecture is designed for comprehensive modernization, ensuring scalability, flexible integration, and stable operation throughout the digital transformation process. Nova not only inherits the core values of the traditional Ingenium system but also gradually transitions to a cloud-native model, ready to meet all future development requirements.
 
+Nova is built on the most up-to-date technologies, ensuring high performance, security, and flexibility:
+- **React** for a modern, user-friendly UI.
+- **Rust** for core services, offering outstanding performance and memory safety.
+- **Microservices** for flexibility, scalability, and maintainability.
+- **API Gateway** (e.g., Kong) and **Event Bus** (e.g., Kafka) for secure, asynchronous integration.
+- **YugabyteDB** (or other modern distributed databases) for a cloud-native, scalable data layer.
+- **CI/CD** (Continuous Delivery) for automated packaging and deployment, ready for integration with modern pipelines.
+
 The system is organized into four main layers, corresponding to each modernization phase:
 
 ### 🖥️ Presentation Layer
@@ -49,7 +57,7 @@ The system is organized into four main layers, corresponding to each modernizati
 - **API Gateway (Kong):** Acts as an intermediary, managing, securing, and routing requests from the UI or external systems to the backend.
 - **Event Bus (Kafka):** Provides asynchronous messaging, enabling efficient microservice communication, reducing direct dependencies, and increasing system scalability.
 
-> *Note: The Integration Layer is not a mandatory part of the Nova project and depends on each enterprise's needs and infrastructure. Businesses can use third-party applications or services (such as API Gateway, Event Bus, Kubernetes, etc.) to enhance system value and security. Nova is designed to be open and easily integrated with these solutions to maximize operational and expansion requirements.*
+> *Note: The Integration Layer is not a mandatory part of the Nova project and depends on each enterprise's needs and infrastructure. Businesses can use third-party applications or services (such as API Gateway, Event Bus, Kubernetes, etc.) to enhance system value and security. Nova is designed to be open and easily integrated with these solutions to maximize operational and expansion requirements. Nova always prioritizes the use of the latest, up-to-date technologies to ensure efficiency, security, and outstanding scalability.*
 
 ### ⚙️ Application Layer
 - **Nova App (Rust Microservices):** Core services developed in Rust, renowned for performance and memory safety.
@@ -79,12 +87,15 @@ Currently, Nova focuses on building a Continuous Delivery (CD) system with the g
 
 ## 💡 Key Advantages of Nova
 
+Nova not only inherits but also thoroughly addresses the inherent limitations of the traditional Ingenium system, delivering significant improvements:
+
 - ⚡ **Outstanding performance:** Core services leverage Rust for fast processing and optimal resource usage.
 - 📊 **Flexible scalability:** Microservices architecture and support for distributed databases meet growth needs and allow easy scaling as the business expands.
 - 🔗 **Strong integration:** Open design, easily connects with external systems and services (REST/GraphQL, API Gateway, Event Bus such as Kafka or equivalent solutions). *Note: The Integration Layer is optional and not mandatory in the Nova project. For simplicity, in this project, the Presentation Layer will directly call the Application Layer without implementing the Integration Layer.*
 - 🤖 **Comprehensive automation:** Automated packaging and deployment, ready for CI/CD integration to shorten development cycles and accelerate innovation.
 - 🏛️ **Digital transformation support:** Maintains legacy systems (Db2) while being ready for cloud-native platforms (YugabyteDB) or other modern database management systems.
 - 🛡️ **Safety & stability:** Automated testing, deployment, and rollback processes help minimize risks, ensuring the system is always ready for business operations.
+- 🚀 **Up-to-date technology:** Nova is designed with the latest technologies, always prioritizing up-to-date solutions to ensure efficiency, security, and outstanding scalability, and is ready to integrate with advanced technology solutions in the future.
 
 ---
 
