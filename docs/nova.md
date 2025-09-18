@@ -81,7 +81,7 @@ Currently, Nova focuses on building a Continuous Delivery (CD) system with the g
 
 - ⚡ **Outstanding performance:** Core services leverage Rust for fast processing and optimal resource usage.
 - 📊 **Flexible scalability:** Microservices architecture and support for distributed databases meet growth needs and allow easy scaling as the business expands.
-- 🔗 **Strong integration:** Open design, easily connects with external systems and services (REST/GraphQL, API Gateway, Event Bus such as Kafka or equivalent solutions).
+- 🔗 **Strong integration:** Open design, easily connects with external systems and services (REST/GraphQL, API Gateway, Event Bus such as Kafka or equivalent solutions). *Note: The Integration Layer is optional and not mandatory in the Nova project. For simplicity, in this project, the Presentation Layer will directly call the Application Layer without implementing the Integration Layer.*
 - 🤖 **Comprehensive automation:** Automated packaging and deployment, ready for CI/CD integration to shorten development cycles and accelerate innovation.
 - 🏛️ **Digital transformation support:** Maintains legacy systems (Db2) while being ready for cloud-native platforms (YugabyteDB) or other modern database management systems.
 - 🛡️ **Safety & stability:** Automated testing, deployment, and rollback processes help minimize risks, ensuring the system is always ready for business operations.
