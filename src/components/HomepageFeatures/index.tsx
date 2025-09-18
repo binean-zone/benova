@@ -9,40 +9,40 @@ type FeatureItem = {
   description: ReactNode;
 };
 
-const FeatureList: FeatureItem[] = [
+const features: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Cloud-Native & Scalable',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Nova is built on a microservices foundation, enabling dynamic scaling and
+        seamless integration with both legacy and modern systems.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Automated Delivery',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Streamlined deployment and delivery processes help minimize downtime and
+        ensure rapid, reliable releases for your business.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Flexible Integration',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Easily connect with third-party applications and services. Nova adapts to
+        your enterprise needs, supporting both current and future platforms.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function FeatureCard({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -61,8 +61,8 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {features.map((item, idx) => (
+            <FeatureCard key={idx} {...item} />
           ))}
         </div>
       </div>
