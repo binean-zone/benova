@@ -60,8 +60,8 @@ const config: Config = {
     navbar: {
       logo: {
         alt: 'Binean Logo',
-        src: 'img/binean-full.svg',
-        srcDark: 'img/binean-full-dark.svg',
+        src: 'img/binean-full.png',
+        srcDark: 'img/binean-full-dark.png',
       },
       items: [
         {
