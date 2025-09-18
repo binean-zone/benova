@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.env.windows": {
+        "JAVA_HOME": "C:\\Installed\\jdk-21",
+        "PATH": "${env:JAVA_HOME}\\bin;${env:PATH};M:\\ingenium\\icomp",
+        "JAVA_OPTS": "-Djavax.net.ssl.keyStore=${env:JAVA_HOME}\\lib\\security\\cacerts -Djavax.net.ssl.keyStorePassword=changeit",
+        "NODE_EXTRA_CA_CERTS": "${env:JAVA_HOME}\\lib\\security\\certadmin.crt",
+        "CARGO_HTTP_CHECK_REVOKE": "false"
+    }
+}

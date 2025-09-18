@@ -1,59 +1,76 @@
 ---
 sidebar_position: 1
 ---
-Binean Nova
-==============
-The journey to modernize the Ingenium insurance core
 
-# Vision
-Binean Nova is not just a technical upgrade project, but a journey to build an **advanced, resilient, and future-ready insurance core system**.  
-This foundation is designed to be **flexible**, **scalable**, and **open to unprecedented innovations**, ensuring it evolves alongside the transformation of the insurance industry in the digital era.
+# Binean Nova  
+**The Journey to Modernize the Ingenium Insurance Core**
 
-# Slogan
+---
+
+## Vision
+
+**Binean Nova** is more than a technical upgrade—it is a strategic journey to build an **advanced, resilient, and future-ready insurance core system**.  
+This platform is engineered to be **flexible**, **scalable**, and **open to innovation**, ensuring it evolves in step with the digital transformation of the insurance industry.
+
+---
+
+## Slogan
+
 ✨ **“Connecting the past, reaching the future.”**
 
-# Project Overview
-Binean Nova represents a complete transformation, evolving the traditional insurance system into a modern, flexible, and open core.
+---
 
-Each stage is designed to:
+## Project Overview
 
-- Ensure stable operations, preserving the value of the legacy system.  
-- Embrace cutting-edge technology, automation, and intelligent DevOps.  
-- Build a flexible foundation, ready to integrate new applications and unlock growth potential.  
+Binean Nova represents a comprehensive transformation, evolving the traditional insurance system into a modern, adaptable, and open core.
 
-# NOVA Roadmap
+Key objectives at every stage:
 
-## 🌐 Nexus
-**Foundation of Connection**
-- Build a solid digital infrastructure.  
-- Establish seamless, intelligent DevOps.  
-- Ensure security, stability, and long-term scalability.  
+- Ensure stable operations while preserving the value of legacy systems  
+- Embrace cutting-edge technology, automation, and intelligent DevOps  
+- Build a flexible foundation, ready for new integrations and future growth  
 
-## 🪐 Orbit
-**Core in Motion**
-- Modernize and optimize the Ingenium core.  
-- Standardize services and system architecture.  
-- Create a sustainable growth orbit for the entire platform.  
+---
 
-## 🌄 Vista
-**Vision Unfolded**
-- Redesign user experience to meet modern standards.  
-- Deliver intuitive, seamless, and user-friendly interfaces.  
-- Shape the strategic direction for the next-generation core.  
+## NOVA Roadmap
 
-## 🚀 Apex
-**Summit of Innovation**
-- Restructure data and business logic.  
-- Unlock scalability and flexible integration.  
-- Build a digital ecosystem that continuously evolves and innovates.  
+### 🌐 Nexus  
+**Foundation of Connection**  
+- Establish a robust digital infrastructure  
+- Implement seamless, intelligent DevOps  
+- Ensure security, stability, and long-term scalability  
 
-# Values & Differentiation
-- **Resilient Core:** a strong, flexible, and long-lasting foundation.  
-- **Advanced DevOps & automation:** rapid deployment, stable operation.  
-- **Legacy & modern in parallel:** supporting both old and new interfaces.  
-- **Scalable & integrable:** easily connects with future applications and solutions.  
+### 🪐 Orbit  
+**Core in Motion**  
+- Modernize and optimize the Ingenium core  
+- Standardize services and system architecture  
+- Create a sustainable growth trajectory for the platform  
 
-# Conclusion
-Binean Nova is the journey **from legacy to the future**, where modern technology, optimized DevOps, and a flexible model converge to build an insurance core that is **resilient, scalable, and full of potential**.
+### 🌄 Vista  
+**Vision Unfolded**  
+- Redesign user experience to meet modern standards  
+- Deliver intuitive, seamless, and user-friendly interfaces  
+- Shape the strategic direction for the next-generation core  
 
-Each step forward is not just a technical improvement, but also an **opportunity for innovation**, unlocking breakthrough growth for customers and partners.
+### 🚀 Apex  
+**Summit of Innovation**  
+- Restructure data and business logic  
+- Unlock scalability and flexible integration  
+- Build a digital ecosystem that continuously evolves and innovates  
+
+---
+
+## Values & Differentiators
+
+- **Resilient Core:** Robust, flexible, and enduring foundation  
+- **Advanced DevOps & Automation:** Rapid deployment and stable operations  
+- **Legacy & Modern in Parallel:** Supporting both existing and new interfaces  
+- **Scalable & Integrable:** Easily connects with future applications and solutions  
+
+---
+
+## Conclusion
+
+**Binean Nova** is a journey from legacy to the future, where modern technology, optimized DevOps, and a flexible architecture converge to create an insurance core that is **resilient, scalable, and full of potential**.
+
+Every step forward is not just a technical enhancement, but an **opportunity for innovation**—unlocking breakthrough growth for customers and partners.

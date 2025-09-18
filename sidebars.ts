@@ -20,6 +20,16 @@ const sidebars: SidebarsConfig = {
   benovaSidebar: [
     'intro',
     {
+          type: 'doc',
+          id: 'ingenium',
+          label: 'Ingenium',
+    },
+    {
+          type: 'doc',
+          id: 'nova',
+          label: 'Nova',
+    },
+    {
       type: 'category',
       label: 'Nexus',
       description: 'Foundation of Connection',
