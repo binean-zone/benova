@@ -97,7 +97,6 @@ Các hệ thống ngoài tích hợp với Ingenium qua PathFinder (SOAP TxLife)
 * Xem xét lộ trình chuyển đổi dần sang nền tảng cloud/hybrid để tăng khả năng mở rộng, giảm chi phí vận hành.
 * Từng bước hiện đại hóa, bổ sung các API/REST, tăng khả năng tích hợp với hệ sinh thái số.
 * Đầu tư tự động hóa (DevOps, CI/CD), tăng hiệu quả quản lý version, rollback, triển khai.
-* Đào tạo, chuyển giao công nghệ mới cho đội ngũ vận hành, giảm phụ thuộc vào nguồn lực COBOL/AIX.
 
 ---
 

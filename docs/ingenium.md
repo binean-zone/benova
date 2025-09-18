@@ -89,7 +89,6 @@ External systems integrate with Ingenium via PathFinder (SOAP TxLife), enabling 
 * Consider a roadmap for gradual migration to cloud/hybrid platforms to increase scalability and reduce operational costs.
 * Gradually modernize, add API/REST support, and enhance integration with the digital ecosystem.
 * Invest in automation (DevOps, CI/CD) to improve version management, rollback, and deployment efficiency.
-* Train and transfer new technologies to the operations team, reducing dependence on COBOL/AIX resources.
 
 ---
 
