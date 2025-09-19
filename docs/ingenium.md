@@ -4,16 +4,6 @@
 
 ![Ingenium Architecture Diagram](/img/ingenium.png)
 
-**Legend for diagram symbols:**
-
-| Symbol | Meaning |
-|:-------:|:--------|
-| ![](/img/rx.png) | External systems send/receive requests to PathFinder (PF) via **SOAP TxLife** |
-| ![](/img/p1.png) | PF converts requests to binary **MIR** before sending to MQ, receives **MIR** results |
-| ![](/img/p2.png) | Queue Worker in Ingenium automatically fetches messages from MQ, processes, and returns results as **MIR** |
-| ![](/img/d1.png) | Ingenium has a middleware layer to interact with Db2 via **Embedded SQL** |
-| ![](/img/d2.png) | PathFinder (PF) can directly access the Ingenium database when needed |
-
 ---
 
 ## 🗺️ Architecture Overview

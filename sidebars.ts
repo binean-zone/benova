@@ -36,8 +36,8 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
-          id: 'binean_nexus/infrastructure',
-          label: 'Infrastructure',
+          id: 'binean_nexus/ing_on_cloud',
+          label: 'ING on Cloud',
         },
         {
           type: 'doc',

@@ -7,17 +7,6 @@
 ![Sơ đồ kiến trúc Ingenium](/img/ingenium.png)
 
 
-**Chú thích ký hiệu trên sơ đồ:**
-
-| Ký hiệu | Ý nghĩa |
-|:-------:|:--------|
-| ![](/img/rx.png) | Hệ thống ngoài gửi/nhận yêu cầu tới PathFinder (PF) qua **SOAP TxLife** |
-| ![](/img/p1.png) | PF chuyển đổi yêu cầu sang nhị phân **MIR** trước khi gửi vào MQ, nhận lại kết quả **MIR** |
-| ![](/img/p2.png) | Queue Worker trên Ingenium tự động lấy message từ MQ, xử lý và trả kết quả về dưới dạng **MIR** |
-| ![](/img/d1.png) | Ingenium có lớp trung gian giao tiếp với Db2 qua **Embedded SQL** |
-| ![](/img/d2.png) | PathFinder (PF) có thể truy cập trực tiếp vào database Ingenium khi cần |
-
-
 ---
 
 ## 🗺️ Tổng quan kiến trúc
