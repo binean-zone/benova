@@ -1,4 +1,3 @@
-
 # 🏢 Ingenium – Hệ thống lõi bảo hiểm doanh nghiệp
 
 **Ingenium** là hệ thống lõi (core system) dành cho ngành bảo hiểm, hỗ trợ quản lý toàn diện các quy trình nghiệp vụ: tiếp nhận yêu cầu, xử lý hợp đồng, quản lý dữ liệu khách hàng, thanh toán quyền lợi và các tác vụ hậu mãi. Được thiết kế để đáp ứng các nghiệp vụ phức tạp, Ingenium đảm bảo tính ổn định, bảo mật, khả năng mở rộng và tuân thủ các tiêu chuẩn ngành tài chính – bảo hiểm.
@@ -86,6 +85,17 @@ Các hệ thống ngoài tích hợp với Ingenium qua PathFinder (SOAP TxLife)
 * Xem xét lộ trình chuyển đổi dần sang nền tảng cloud/hybrid để tăng khả năng mở rộng, giảm chi phí vận hành.
 * Từng bước hiện đại hóa, bổ sung các API/REST, tăng khả năng tích hợp với hệ sinh thái số.
 * Đầu tư tự động hóa (DevOps, CI/CD), tăng hiệu quả quản lý version, rollback, triển khai.
+
+---
+
+## 📄 Điều khoản pháp lý
+
+Tài liệu này chỉ phục vụ mục đích tham khảo và tư vấn giải pháp tích hợp, chuyển đổi hệ thống.  
+Mọi nhãn hiệu, tên sản phẩm, tên công ty được đề cập đều thuộc quyền sở hữu của các bên liên quan.  
+Tài liệu này không liên kết, không được bảo trợ hoặc xác nhận bởi DXC Technology, Sun Life hay bất kỳ bên thứ ba nào được nhắc đến.  
+Không có mã nguồn, license hoặc thông tin độc quyền nào của hệ thống Ingenium hay bất kỳ hệ thống bên thứ ba nào được cung cấp hoặc phân phối dưới bất kỳ hình thức nào thông qua tài liệu hoặc dịch vụ liên quan này.
+
+Bằng việc sử dụng hoặc tham khảo tài liệu này, bạn xác nhận và đồng ý tuân thủ mọi quy định pháp luật về sở hữu trí tuệ cũng như các điều khoản đã nêu ở trên.
 
 ---
 

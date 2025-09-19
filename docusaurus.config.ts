@@ -55,6 +55,19 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tao',
+        path: 'tao',
+        routeBasePath: 'tao',
+        sidebarPath: require.resolve('./taoSidebar.ts'),
+        editUrl: 'https://github.com/binean-zone/benova/tree/main/apps/srce/Binean/tao/',
+      },
+    ],
+  ],
+
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
@@ -78,15 +91,22 @@ const config: Config = {
           label: 'Benova',
         },
         {
-          type: 'localeDropdown',
-          position: 'right',
+          type: 'docSidebar',
+          sidebarId: 'taoSidebar',
+          position: 'left',
+          label: 'Tao',
+          docsPluginId: 'tao'
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/binean-zone/benova',
-          label: 'GitHub',
+          type: 'localeDropdown',
           position: 'right',
         },
+        // {
+        //   href: 'https://github.com/binean-zone/benova',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {

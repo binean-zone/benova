@@ -82,6 +82,17 @@ External systems integrate with Ingenium via PathFinder (SOAP TxLife), enabling 
 
 ---
 
+## 📄 Legal Disclaimer
+
+This document is provided for reference and consulting purposes only.  
+All trademarks, product names, and company names mentioned herein are the property of their respective owners.  
+This document is not affiliated with, endorsed by, or sponsored by DXC Technology, Sun Life, or any other third party mentioned.  
+No source code, license, or proprietary information of Ingenium or any third-party system is provided or distributed as part of this documentation or related services.
+
+By using or referencing this document, you acknowledge and agree to comply with all applicable intellectual property laws and the terms stated above.
+
+---
+
 > **Glossary:**
 > - **On-premise**: System deployed on the enterprise's physical server infrastructure, not cloud-based.
 > - **COBOL**: A long-standing programming language, popular in finance – banking, insurance.
