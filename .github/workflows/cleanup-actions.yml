@@ -11,6 +11,10 @@ jobs:
       contents: read # Quyền mặc định để checkout code (nếu cần)
     runs-on: ubuntu-latest
     steps:
+      - name: Check network connectivity
+        run: |
+          echo "Pinging github.com..."
+          ping -c 4 github.com
       - name: Delete old workflow runs
         uses: actions/delete-workflow-runs@v4
         with:
