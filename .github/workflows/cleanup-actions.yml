@@ -14,7 +14,6 @@ jobs:
       - name: Delete old workflow runs
         uses: actions/delete-workflow-runs@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }} # Bắt buộc và nên dùng GITHUB_TOKEN
           retain_days: 7
           keep_minimum_runs: 5
