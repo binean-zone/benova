@@ -20,14 +20,14 @@ const sidebars: SidebarsConfig = {
   benovaSidebar: [
     'intro',
     {
-          type: 'doc',
-          id: 'ingenium',
-          label: 'Ingenium',
+      type: 'doc',
+      id: 'ingenium',
+      label: 'Ingenium',
     },
     {
-          type: 'doc',
-          id: 'nova',
-          label: 'Nova',
+      type: 'doc',
+      id: 'nova',
+      label: 'Nova',
     },
     {
       type: 'category',
@@ -41,13 +41,13 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'binean_nexus/devops',
-          label: 'DevOps & CI/CD',
+          id: 'binean_nexus/cd',
+          label: 'Continuous Delivery',
         },
         {
           type: 'doc',
-          id: 'binean_nexus/vscode_extension',
-          label: 'VS Code Extension',
+          id: 'binean_nexus/extension',
+          label: 'Nexus Extension',
         },
       ],
     },
@@ -75,25 +75,25 @@ const sidebars: SidebarsConfig = {
         'binean_apex/intro',
       ],
     },
-    {
-      type: 'category',
-      label: 'Tutorial - Basics',
-      items: [
-        'tutorial-basics/create-a-page',
-        'tutorial-basics/create-a-document',
-        'tutorial-basics/create-a-blog-post',
-        'tutorial-basics/deploy-your-site',
-        'tutorial-basics/congratulations',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorial - Extras',
-      items: [
-        'tutorial-extras/manage-docs-versions',
-        'tutorial-extras/translate-your-site',
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'Tutorial - Basics',
+    //   items: [
+    //     'tutorial-basics/create-a-page',
+    //     'tutorial-basics/create-a-document',
+    //     'tutorial-basics/create-a-blog-post',
+    //     'tutorial-basics/deploy-your-site',
+    //     'tutorial-basics/congratulations',
+    //   ],
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Tutorial - Extras',
+    //   items: [
+    //     'tutorial-extras/manage-docs-versions',
+    //     'tutorial-extras/translate-your-site',
+    //   ],
+    // },
   ],
 };
 

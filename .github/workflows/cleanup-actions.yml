@@ -1,0 +1,17 @@
+name: Delete old workflow runs
+on:
+  workflow_dispatch: # Cho phép chạy thủ công
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old workflow runs
+        uses: matt-ball/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 7
+          keep_minimum_runs: 5
