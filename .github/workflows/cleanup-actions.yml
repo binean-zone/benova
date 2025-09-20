@@ -1,23 +1,16 @@
-name: Delete old workflow runs
+name: Cleanup workflow runs
+
 on:
-  workflow_dispatch: # Cho phép chạy thủ công
-  schedule:
-    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
-  delete-runs:
-    permissions:
-      actions: write # Cấp quyền để xóa các workflow runs
-      contents: read # Quyền mặc định để checkout code (nếu cần)
+  cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Check network connectivity
-        run: |
-          echo "Pinging github.com..."
-          ping -c 4 github.com
-      - name: Delete old workflow runs
-        uses: actions/delete-workflow-runs@v4
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # Bắt buộc và nên dùng GITHUB_TOKEN
-          retain_days: 7
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 0
           keep_minimum_runs: 5
