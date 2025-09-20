@@ -6,6 +6,9 @@ on:
 
 jobs:
   delete-runs:
+    permissions:
+      actions: write # Cấp quyền để xóa các workflow runs
+      contents: read # Quyền mặc định để checkout code (nếu cần)
     runs-on: ubuntu-latest
     steps:
       - name: Delete old workflow runs
