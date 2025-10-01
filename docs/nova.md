@@ -1,6 +1,6 @@
 # 🏢 Nova
 
-**Nova – Modern Application Ecosystem**
+**Nova – Modern Insurance Application Platform**
 
 ![Nova Architecture Diagram](/img/nova.png)
 
@@ -8,7 +8,7 @@
 
 ## 🎯 Objectives
 
-Nova aims to comprehensively modernize the Ingenium insurance core system, ensuring continuous, stable, and secure operations throughout the digital transformation process. The transformation roadmap is clearly defined in phases, with each phase representing a solid step forward to minimize risks and optimize resources:
+Nova aims to comprehensively modernize the Ingenium insurance core system, ensuring continuous, stable, and secure operations throughout the digital transformation process. The roadmap is planned in clear phases, with each phase representing a solid step forward to minimize risks and optimize resources:
 
 - **Nexus:** Establish a robust, modern infrastructure foundation and fully automate development, testing, and deployment processes. This crucial preparation ensures subsequent phases can be implemented smoothly and the system remains stable.
 - **Orbit:** Modernize communication with Ingenium, migrate some functions to Rust, transform Ingenium into a REST service, add the MIR protocol for direct PathFinder connection, and eliminate MQ. The goal is modernization while maintaining uninterrupted operations. After this phase, Ingenium will approach a modern application model, ready to integrate middleware layers such as API Gateway and load balancing.
@@ -19,7 +19,7 @@ Through this roadmap, Nova aims to create a modern, flexible, extensible, and in
 
 ---
 
-## 🌟 Vision & Orientation
+## 🌟 Vision & Direction
 
 Nova is designed as a modern application platform, harmoniously combining the strengths of traditional technology and advanced cloud-native architecture. Beyond modernizing the Ingenium insurance core system, Nova aims to build an open, flexible technology ecosystem, ready to meet all digital transformation requirements of insurance enterprises in the future.
 
@@ -57,7 +57,7 @@ The system is organized into four main layers, corresponding to each modernizati
 - **API Gateway (Kong):** Acts as an intermediary, managing, securing, and routing requests from the UI or external systems to the backend.
 - **Event Bus (Kafka):** Provides asynchronous messaging, enabling efficient microservice communication, reducing direct dependencies, and increasing system scalability.
 
-> *Note: The Integration Layer is not a mandatory part of the Nova project and depends on each enterprise's needs and infrastructure. Businesses can use third-party applications or services (such as API Gateway, Event Bus, Kubernetes, etc.) to enhance system value and security. Nova is designed to be open and easily integrated with these solutions to maximize operational and expansion requirements. Nova always prioritizes the use of the latest, up-to-date technologies to ensure efficiency, security, and outstanding scalability.*
+> *Note: The Integration Layer is not a mandatory component of the Nova project; its implementation depends on the needs and infrastructure of each enterprise. Businesses can use third-party applications and services (like API Gateway, Event Bus, Kubernetes, etc.) to add value and security to the system. Nova is designed to be open and ready for easy integration with these solutions to fully meet operational and future expansion requirements.*
 
 ### ⚙️ Application Layer
 - **Nova App (Rust Microservices):** Core services developed in Rust, renowned for performance and memory safety.
@@ -69,7 +69,7 @@ The system is organized into four main layers, corresponding to each modernizati
 - Ensures data is always secure, consistent, and ready to serve modernization services in the future.
 - The Data Layer is redesigned to enable flexible migration to other database management systems, not dependent on Db2 Embedded SQL.
 
-This architecture allows Nova to operate stably throughout the transition, gradually replacing old components with new technology without disrupting business operations.
+This architecture allows Nova to operate stably throughout the transformation, gradually replacing old components with new technology without disrupting business operations.
 
 ---
 
@@ -81,7 +81,7 @@ Currently, Nova focuses on building a Continuous Delivery (CD) system with the g
 - The automated packaging and deployment process helps minimize release risks, increasing system stability and consistency.
 - Supports quick rollback in case of incidents, ensuring the system always operates safely.
 
-> *Note: Nova does not yet integrate auto testing or a complete CI/CD pipeline, but is ready for expansion when enterprises require.*
+> *Note: Nova does not yet include auto-testing or a complete CI/CD pipeline, but it is ready for expansion when an enterprise requires it.*
 
 ---
 
@@ -91,7 +91,7 @@ Nova not only inherits but also thoroughly addresses the inherent limitations of
 
 - ⚡ **Outstanding performance:** Core services leverage Rust for fast processing and optimal resource usage.
 - 📊 **Flexible scalability:** Microservices architecture and support for distributed databases meet growth needs and allow easy scaling as the business expands.
-- 🔗 **Strong integration:** Open design, easily connects with external systems and services (REST/GraphQL, API Gateway, Event Bus such as Kafka or equivalent solutions). *Note: The Integration Layer is optional and not mandatory in the Nova project. For simplicity, in this project, the Presentation Layer will directly call the Application Layer without implementing the Integration Layer.*
+- 🔗 **Strong integration:** Open design, easily connects with external systems and services (REST/GraphQL, API Gateway, Event Bus). *Note: The Integration Layer is optional, not mandatory. For simplicity, in this project, the Presentation Layer will call the Application Layer directly.*
 - 🤖 **Comprehensive automation:** Automated packaging and deployment, ready for CI/CD integration to shorten development cycles and accelerate innovation.
 - 🏛️ **Digital transformation support:** Maintains legacy systems (Db2) while being ready for cloud-native platforms (YugabyteDB) or other modern database management systems.
 - 🛡️ **Safety & stability:** Automated testing, deployment, and rollback processes help minimize risks, ensuring the system is always ready for business operations.
@@ -102,5 +102,4 @@ Nova not only inherits but also thoroughly addresses the inherent limitations of
 ## 🏁 Conclusion
 
 Nova is not just a technology solution, but a platform that drives comprehensive digital transformation for insurance enterprises.  
-With the combination of modern technologies such as React, Rust, Kong, and support for distributed databases and automated CI/CD systems, Nova delivers a flexible, secure, and sustainable ecosystem—ready to adapt and grow with every market change, accompanying businesses on their journey of innovation and sustainable development.
-
+With the combination of modern technologies like React, Rust, and an automated CI/CD system, Nova delivers a flexible, secure, and sustainable ecosystem—ready to adapt and grow with every market change, accompanying businesses on their journey of innovation and sustainable development.

@@ -1,13 +1,13 @@
-# 🏢 Ingenium – Enterprise Insurance Core System
+# 🏢 Ingenium – The Specialized Insurance Core System
 
-**Ingenium** is a core system designed for the insurance industry, supporting comprehensive management of business processes: request intake, contract processing, customer data management, benefit payments, and after-sales operations. Built to handle complex business requirements, Ingenium ensures stability, security, scalability, and compliance with financial and insurance industry standards.
+**Ingenium** is the core system for the insurance industry, designed to comprehensively manage complex business processes—from request intake and policy processing to claims payment. For years, Ingenium has been a solid foundation, ensuring stability, security, and compliance with the stringent standards of the finance and insurance sectors.
 
 ![Ingenium Architecture Diagram](/img/ingenium.png)
 
 ---
 
 ## 🗺️ Architecture Overview
-Ingenium is deployed on-premise on the AIX platform, using a Db2 database. The layered architecture separates functions, optimizing maintenance and scalability:
+Ingenium is deployed on-premise on the AIX platform with a Db2 database. Its architecture is clearly separated into functional layers, optimizing system maintenance and scalability:
 
 - **Presentation & Integration Layer**: User interface, external system integration.
 - **Network Layer**: Coordination and communication between components.
@@ -21,7 +21,7 @@ Ingenium is deployed on-premise on the AIX platform, using a Db2 database. The l
 ## 🌐 PathFinder
 * Presentation & Integration Layer: UI Server and integration gateway.
 * Developed in Java, deployed on WebSphere HTTP Server (AIX On-premise).
-* Highly customizable, easily extended to meet each business's requirements.
+* Supports flexible customization to meet the business requirements of each enterprise.
 
 ## 📦 MQ Server
 * Network Layer: Central coordinator and communication hub between components.
@@ -31,8 +31,7 @@ Ingenium is deployed on-premise on the AIX platform, using a Db2 database. The l
 ## ⚙️ Ingenium
 * Application Layer: The "business core" – the center for insurance business logic processing.
 * Multiple COBOL modules running on AIX, ensuring high performance and stability.
-* Spawns multiple independent queue workers, each actively fetching requests from MQ, processing, and returning results.
-* Example modules: XSBUQWK_01, XSBUQWK_D2, XSBUQWK_XX.
+* Initializes multiple independent "queue workers" (e.g., XSBUQWK) to proactively fetch requests from MQ, process them, and return results via the MIR format.
 
 ## 🗄️ Ingenium Database
 * Data Layer: Db2 AIX (On-premise) stores all business data.
@@ -40,53 +39,45 @@ Ingenium is deployed on-premise on the AIX platform, using a Db2 database. The l
 * External systems (including PathFinder) can access the database directly when needed.
 
 ## 🔗 External Systems
-External systems integrate with Ingenium via PathFinder (SOAP TxLife), enabling business data exchange while ensuring safety and industry compliance.
+External systems integrate with Ingenium via PathFinder (SOAP TxLife) to exchange insurance business information, ensuring security and industry standard compliance.
 
 ---
 
-## ✨ Key Features
-* On-premise deployment: maximum data control and security.
-* Layered architecture: easy management, maintenance, and scalability.
-* Heavy reliance on IBM ecosystem (WebSphere, MQ, Db2, JDK1.8, Orexx) – many platforms are outdated and unsupported.
-* Business core in COBOL: stable and reliable, but limited in extensibility and integration with new technologies.
+## ✅ A Solid Legacy Foundation
+Ingenium delivers time-tested core values, serving as the bedrock for the operations of many insurance enterprises.
+* **Stable and Reliable:** Built on proven technologies in the financial industry, ensuring the system operates with enduring stability.
+* **Handles Complex Business Logic:** Capable of meeting diverse and in-depth insurance business requirements.
+* **Maximum Security:** The on-premise model and centralized data allow for the highest level of security control.
+* **High-Volume Performance:** The parallel queue/worker architecture efficiently handles large volumes of transactions.
+* **Compliance and Auditing:** Facilitates easy transaction tracing, meeting the strict audit requirements of the industry.
 
 ---
 
-## ✅ Advantages
-* Clear layered architecture, easy to control, maintain, and scale even with large business logic.
-* High stability and reliability thanks to proven technologies in the financial – insurance sector.
-* Effectively handles complex insurance business, supports flexible customization.
-* On-premise operation: maximum data security.
-* Parallel queue/worker system optimizes performance, handles large transaction volumes.
-* Centralized data, easy access control, strict security policies.
-* Easy auditing and transaction tracing, meeting internal/industry audit requirements.
-* Can integrate with other legacy systems in the enterprise.
+## ⚠️ The Challenges of a Legacy System
+However, as technology evolves, Ingenium reveals inherent limitations that have become barriers to digital transformation.
+* **Outdated Technology:** The COBOL and AIX platform, along with components of the IBM ecosystem (MQ, WebSphere), are obsolete, face a shortage of skilled personnel, and are no longer fully supported.
+* **Difficult to Scale & High Costs:** The rigid on-premise model is expensive to operate and difficult to scale quickly in response to market demands.
+* **Limited Integration:** A lack of modern protocols like API/REST makes it difficult to connect with digital services and partner ecosystems.
+* **Manual Processes:** Deployment, version management, and rollbacks are performed manually, lacking automation (DevOps), which slows down the pace of innovation.
+* **Barrier to Digital Transformation:** Struggles to meet demands for multi-channel integration, big data analytics, and the deployment of new digital services.
 
 ---
 
-## ⚠️ Limitations
-* On-premise model: difficult to scale quickly, high operational costs.
-* Outdated technologies (COBOL, AIX, MQ, JDK1.8, Orexx): scarce human resources, hard to train new staff.
-* Limited integration: mainly uses MQ, XML, lacks modern API/REST support.
-* Version management, rollback, and automation are still manual, lacking DevOps tools.
-* Heavy vendor and IBM ecosystem dependency, hard to proactively upgrade/modernize.
-* Difficult to meet digital transformation, multi-channel integration, or new digital service deployment requirements.
-* Long-term maintenance is challenging as technology continues to age.
+## 🚀 The Inevitable Path to Transformation
+These challenges demand a strategic and comprehensive transformation roadmap. This is no longer an option but a mandatory requirement for businesses to survive and thrive in the digital age.
+* **Technology Modernization:** Migrating from COBOL to modern languages and upgrading the platform to enhance integration capabilities.
+* **Cloud/Hybrid Transition:** Adopting a flexible model to optimize costs, increase scalability, and leverage the power of cloud computing.
+* **Comprehensive Automation (DevOps):** Building CI/CD pipelines to accelerate development, deployment, and reduce risks.
 
----
-
-## 🚀 Development Directions & Recommendations
-* Consider a roadmap for gradual migration to cloud/hybrid platforms to increase scalability and reduce operational costs.
-* Gradually modernize, add API/REST support, and enhance integration with the digital ecosystem.
-* Invest in automation (DevOps, CI/CD) to improve version management, rollback, and deployment efficiency.
+**This is precisely the mission that the Binean Nova project was created to address.**
 
 ---
 
 ## 📄 Legal Disclaimer
 
-This document is provided for reference and consulting purposes only.  
+This document is provided for reference and consulting purposes regarding system integration and transformation solutions.  
 All trademarks, product names, and company names mentioned herein are the property of their respective owners.  
-This document is not affiliated with, endorsed by, or sponsored by DXC Technology, Sun Life, or any other third party mentioned.  
+This project is not affiliated with, sponsored by, or endorsed by DXC Technology, Sun Life, or any other third party mentioned.  
 No source code, license, or proprietary information of Ingenium or any third-party system is provided or distributed as part of this documentation or related services.
 
 By using or referencing this document, you acknowledge and agree to comply with all applicable intellectual property laws and the terms stated above.
@@ -99,3 +90,4 @@ By using or referencing this document, you acknowledge and agree to comply with 
 > - **MQ (IBM MQ)**: Middleware message queue system, facilitates communication between components.
 > - **SOAP TxLife**: Insurance data exchange standard over SOAP protocol.
 > - **AIX**: IBM's UNIX operating system for enterprise servers.
+> - **MIR**: A binary message format based on COBOL Copybook, used for communication between Ingenium components.
