@@ -8,6 +8,8 @@ The **Binean Nova Extension** is a powerful toolset integrated into **Visual Stu
 
 Working with a legacy system like Ingenium often involves manual, complex, and error-prone processes. The **Binean Nova Extension** was created as a comprehensive solution to break down these barriers, delivering a modern, seamless, and efficient development experience directly within the familiar VS Code environment.
 
+While Nova's official production environment is Linux, the common development environment is Windows. To ensure consistency and minimize environment-specific bugs, we recommend using Windows Subsystem for Linux (WSL) as the standard development setup. However, recognizing that many enterprises have policies restricting WSL, the **Binean Nova Extension** is designed to flexibly support both: native Windows support is prioritized and delivered first, while ensuring full compatibility with WSL.
+
 ---
 
 ## 📋 Prerequisites
@@ -37,10 +39,16 @@ The **Binean Nova Extension** is composed of several specialized tools, each des
 - **`igo` (For DevOps - To Be Developed):** An extension of `icomp`, designed to fully automate the compilation and packaging process on server environments. `igo` will be the key component for seamless integration into future CI/CD pipelines.
 
 ### 3. `iman` Manager
-- **Efficient Worker Management:** Ingenium's queue workers are single-threaded COBOL programs, typically launched as multiple processes to handle tasks in parallel. `iman` (Ingenium Manager) was created to effectively monitor and manage these processes on both Windows and Linux.
-- **Rapid Debugging:** On Windows, `iman` offers a debug mode that can automatically attach to a worker process and trigger a debugging session in VS Code, dramatically simplifying the process of finding and fixing complex bugs.
+- **The Foundation for Nova App:** In its current stage, `iman` (Ingenium Manager) is a tool for managing Ingenium's COBOL workers. However, it is more than just a utility; it is the foundational platform that will evolve into **Nova App**—the next-generation insurance core written in Rust. The long-term roadmap is to gradually integrate business logic into `iman` itself, step-by-step transforming it into a complete insurance core.
+- **Cross-Platform Worker Management:**
+  - **On Windows (Dev):** Supports running a single worker process in debug mode, allowing it to automatically attach and call back to the `Rocket COBOL` extension for debugging.
+  - **On Linux (Server):** Supports launching multiple worker processes in parallel, with a configurable number of instances to improve processing throughput.
 - **Security:** Includes a feature to encrypt database connection passwords, enhancing system security.
-- **Future Direction:** Advanced features like autoscaling based on workload will be researched and developed in subsequent project phases.
+- **Development Roadmap (Orbit Phase):** In the **Orbit** phase, `iman` will be significantly upgraded to become a central service with breakthrough features:
+  - **Run as a MIR API:** Provides a dedicated API interface that allows PathFinder to call Ingenium directly using the MIR format, completely bypassing the MQ layer (ActiveMQ/IBM MQ). This reduces latency and simplifies the architecture for legacy systems.
+  - **Run as a REST API:** In parallel with the MIR API, `iman` will also be deployed as a RESTful service, allowing modern applications to integrate easily.
+  - **24/7 Availability:** Provides the ability to query certain contract information even while the system is running batch jobs, ensuring high availability.
+  - **Autoscaling:** Automatically adjusts the number of processing instances based on the actual workload.
 
 ### 4. `ibatch` Batch Runner
 - **Cross-Platform Batch Job Execution:** `ibatch` is a dedicated tool for executing Ingenium batch jobs.

@@ -8,6 +8,8 @@
 
 Làm việc với một hệ thống kế thừa (legacy) như Ingenium thường đi kèm với các quy trình thủ công, phức tạp và dễ xảy ra lỗi. **Binean Nova Extension** ra đời như một giải pháp toàn diện, phá vỡ những rào cản này và mang lại trải nghiệm phát triển hiện đại, liền mạch và hiệu quả ngay trên môi trường VS Code quen thuộc.
 
+Mặc dù môi trường triển khai chính thức (Production) của Nova là Linux, môi trường phát triển phổ biến lại là Windows. Để đảm bảo sự đồng nhất và giảm thiểu lỗi, chúng tôi khuyến khích sử dụng Windows Subsystem for Linux (WSL) làm môi trường phát triển chuẩn. Tuy nhiên, do nhiều doanh nghiệp có chính sách hạn chế WSL, **Binean Nova Extension** được thiết kế để hỗ trợ linh hoạt cả hai: ưu tiên hỗ trợ trực tiếp trên Windows trước, đồng thời đảm bảo tương thích hoàn toàn với WSL.
+
 ---
 
 ## 📋 Yêu cầu cài đặt
@@ -37,10 +39,16 @@ Làm việc với một hệ thống kế thừa (legacy) như Ingenium thườn
 - **`igo` (Cho DevOps - Sẽ phát triển sau):** Là phiên bản mở rộng của `icomp`, được thiết kế để tự động hóa hoàn toàn quy trình biên dịch và đóng gói trên môi trường máy chủ. `igo` sẽ là nhân tố chính để tích hợp liền mạch vào các pipeline CI/CD trong tương lai.
 
 ### 3. Trình quản lý `iman`
-- **Quản lý Worker hiệu quả:** Các queue worker của Ingenium vốn là các chương trình COBOL đơn luồng (single-thread), thường được khởi chạy thành nhiều tiến trình (multi-process) để xử lý song song. `iman` (Ingenium Manager) ra đời để giám sát và quản lý các tiến trình này một cách hiệu quả trên cả Windows và Linux.
-- **Gỡ lỗi siêu tốc (Debug):** Trên Windows, `iman` cung cấp chế độ debug, cho phép tự động "attach" vào một tiến trình worker và kích hoạt phiên gỡ lỗi trên VS Code, đơn giản hóa đáng kể quá trình tìm và sửa lỗi phức tạp.
+- **Nền tảng cho Nova App:** Ở giai đoạn hiện tại, `iman` (Ingenium Manager) là công cụ quản lý các worker COBOL của Ingenium. Tuy nhiên, đây không chỉ là một tiện ích, mà còn là nền tảng ban đầu sẽ được phát triển để trở thành **Nova App** – core bảo hiểm thế hệ mới viết bằng Rust. Lộ trình dài hạn là dần tích hợp logic nghiệp vụ vào chính `iman`, từng bước biến nó thành một core bảo hiểm hoàn chỉnh.
+- **Quản lý Worker đa nền tảng:**
+  - **Trên Windows (Dev):** Hỗ trợ chạy một tiến trình (worker) duy nhất ở chế độ debug, cho phép tự động "attach" và gọi lại extension `Rocket COBOL` để gỡ lỗi chương trình.
+  - **Trên Linux (Server):** Hỗ trợ khởi chạy nhiều tiến trình worker song song, với số lượng được cấu hình sẵn, giúp tăng hiệu suất xử lý.
 - **Bảo mật:** Tích hợp tính năng mã hóa mật khẩu kết nối cơ sở dữ liệu, tăng cường an toàn cho hệ thống.
-- **Định hướng tương lai:** Các tính năng nâng cao như tự động co giãn (autoscaling) dựa trên tải công việc sẽ được nghiên cứu và phát triển trong các giai đoạn tiếp theo của dự án.
+- **Lộ trình phát triển (Giai đoạn Orbit):** Trong giai đoạn **Orbit**, `iman` sẽ được nâng cấp mạnh mẽ, trở thành một dịch vụ trung tâm với các tính năng đột phá:
+  - **Chạy như một MIR API:** Cung cấp một giao diện API chuyên dụng cho phép PathFinder gọi trực tiếp Ingenium bằng định dạng MIR, bỏ qua hoàn toàn lớp MQ (ActiveMQ/IBM MQ). Điều này giúp giảm độ trễ và đơn giản hóa kiến trúc cho các hệ thống cũ.
+  - **Chạy như một REST API:** Song song với MIR API, `iman` cũng sẽ được triển khai như một dịch vụ RESTful, cho phép các ứng dụng hiện đại dễ dàng tích hợp.
+  - **Hỗ trợ 24/7:** Cung cấp khả năng truy vấn một số thông tin hợp đồng ngay cả khi hệ thống đang chạy các batch job, đảm bảo tính sẵn sàng cao.
+  - **Tự động co giãn (Autoscaling):** Tự động điều chỉnh số lượng tiến trình xử lý dựa trên tải công việc thực tế.
 
 ### 4. Trình chạy batch `ibatch`
 - **Chạy Batch Job đa nền tảng:** `ibatch` là công cụ chuyên dụng để thực thi các Ingenium batch job.
