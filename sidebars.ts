@@ -41,13 +41,8 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'binean_nexus/cd',
-          label: 'Continuous Delivery',
-        },
-        {
-          type: 'doc',
           id: 'binean_nexus/extension',
-          label: 'Nexus Extension',
+          label: 'Binean Nova VsCode Extension',
         },
       ],
     },
@@ -75,25 +70,6 @@ const sidebars: SidebarsConfig = {
         'binean_apex/intro',
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Tutorial - Basics',
-    //   items: [
-    //     'tutorial-basics/create-a-page',
-    //     'tutorial-basics/create-a-document',
-    //     'tutorial-basics/create-a-blog-post',
-    //     'tutorial-basics/deploy-your-site',
-    //     'tutorial-basics/congratulations',
-    //   ],
-    // },
-    // {
-    //   type: 'category',
-    //   label: 'Tutorial - Extras',
-    //   items: [
-    //     'tutorial-extras/manage-docs-versions',
-    //     'tutorial-extras/translate-your-site',
-    //   ],
-    // },
   ],
 };
 
