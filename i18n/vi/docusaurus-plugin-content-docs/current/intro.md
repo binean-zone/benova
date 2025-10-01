@@ -1,58 +1,49 @@
 ---
 sidebar_position: 1
 ---
-Binean Nova
-==============
-Hành trình hiện đại hóa core bảo hiểm Ingenium
+# ✨ Binean Nova: Tái Sinh Core Bảo Hiểm Ingenium
 
-# Tầm nhìn
-Binean Nova không chỉ là một dự án nâng cấp kỹ thuật, mà là một hành trình kiến tạo một hệ thống bảo hiểm cốt lõi **hiện đại, vững bền và sẵn sàng cho tương lai**. Nền tảng này được thiết kế để **thích ứng linh hoạt**, **phát triển mở rộng** và **đón nhận những sáng kiến chưa từng có**, đảm bảo đồng hành cùng sự chuyển mình của ngành bảo hiểm trong kỷ nguyên số.
+**Binean Nova** là hành trình chiến lược nhằm tái sinh toàn diện hệ thống core bảo hiểm Ingenium, chuyển đổi từ một nền tảng truyền thống thành một hệ sinh thái số **hiện đại, linh hoạt và sẵn sàng cho tương lai**.
 
-# Slogan
-✨ **“Nối quá khứ, chạm tương lai.”**
+> ✨ **Slogan: “Nối quá khứ, chạm tương lai.”**
 
-# Tổng quan dự án
-Binean Nova là hành trình tái sinh toàn diện, đưa hệ thống bảo hiểm truyền thống tiến hóa thành một core hiện đại, linh hoạt và mở.
+Chúng tôi không chỉ nâng cấp công nghệ, mà kiến tạo một nền tảng vững bền, có khả năng thích ứng, mở rộng và đón nhận những sáng kiến đột phá. Mỗi giai đoạn trong lộ trình Nova được thiết kế tỉ mỉ để:
 
-Mỗi giai đoạn đều được định hình để:
+- **Bảo toàn di sản:** Đảm bảo hệ thống vận hành ổn định, giữ trọn giá trị nghiệp vụ cốt lõi.
+- **Hiện đại hóa thông minh:** Tích hợp công nghệ tiên tiến, tự động hóa quy trình với DevOps.
+- **Khai mở tương lai:** Xây dựng một nền tảng mở, sẵn sàng cho mọi kết nối và tăng trưởng không giới hạn.
 
-- Bảo đảm vận hành ổn định, giữ trọn giá trị của di sản.  
-- Đón nhận công nghệ tiên tiến, tự động hóa và DevOps thông minh.  
-- Kiến tạo nền tảng linh hoạt, sẵn sàng tích hợp ứng dụng mới và khai mở tiềm năng tăng trưởng.  
+---
 
-# Lộ trình NOVA
+## 🚀 Lộ Trình Chuyển Đổi Nova
 
-## 🌐 Nexus
-**Nền tảng Kết nối**
-- Xây dựng hạ tầng kỹ thuật số vững chắc.  
-- Thiết lập DevOps thông minh, liền mạch.  
-- Đảm bảo an toàn, ổn định và khả năng mở rộng lâu dài.  
+Hành trình Nova được chia thành bốn giai đoạn chiến lược, mỗi giai đoạn là một bước tiến vững chắc đến tương lai.
 
-## 🪐 Orbit
-**Trọng tâm Chuyển động**
-- Hiện đại hóa và tối ưu core Ingenium.  
-- Chuẩn hóa dịch vụ và kiến trúc hệ thống.  
-- Tạo quỹ đạo tăng trưởng bền vững cho toàn bộ nền tảng.  
+### 1. 🌐 Nexus – Nền Tảng Vững Chắc
+**Mục tiêu:** Xây dựng hạ tầng kỹ thuật số vững chắc và thiết lập quy trình DevOps thông minh. Đây là bước đi nền móng, đảm bảo sự ổn định, an toàn và khả năng mở rộng cho toàn bộ hệ thống trong dài hạn.
 
-## 🌄 Vista
-**Tầm nhìn Mở rộng**
-- Thiết kế lại trải nghiệm người dùng theo chuẩn hiện đại.  
-- Mang đến giao diện trực quan, thân thiện và liền mạch.  
-- Định hình hướng đi chiến lược cho thế hệ core mới.  
+### 2. 🪐 Orbit – Trọng Tâm Hiện Đại Hóa
+**Mục tiêu:** Hiện đại hóa và tối ưu hóa core Ingenium, chuẩn hóa kiến trúc và dịch vụ. Giai đoạn này tạo ra một "quỹ đạo" tăng trưởng bền vững, đưa hệ thống truyền thống tiến vào kỷ nguyên số.
 
-## 🚀 Apex
-**Đỉnh cao Đổi mới**
-- Tái cấu trúc dữ liệu và logic nghiệp vụ.  
-- Mở khóa khả năng mở rộng và tích hợp linh hoạt.  
-- Hình thành hệ sinh thái số, liên tục đổi mới và phát triển.  
+### 3. 🌄 Vista – Tầm Nhìn Trải Nghiệm
+**Mục tiêu:** Mở rộng tầm nhìn bằng cách thiết kế lại toàn bộ trải nghiệm người dùng. Chúng tôi mang đến giao diện trực quan, hiện đại và liền mạch, định hình chiến lược cho thế hệ sản phẩm mới.
 
-# Giá trị & khác biệt
-- **Core vững bền:** một nền tảng mạnh mẽ, linh hoạt, có khả năng tồn tại lâu dài.  
-- **DevOps & tự động hóa tiên tiến:** triển khai nhanh, vận hành ổn định.  
-- **Song song legacy & hiện đại:** hỗ trợ cả hệ thống cũ và giao diện mới.  
-- **Khả năng mở rộng & tích hợp:** dễ dàng kết nối với ứng dụng và giải pháp tương lai.  
+### 4. 🚀 Apex – Đỉnh Cao Đổi Mới
+**Mục tiêu:** Chạm đến đỉnh cao của sự đổi mới bằng việc tái cấu trúc toàn diện logic nghiệp vụ và dữ liệu. Giai đoạn này mở khóa tiềm năng tích hợp không giới hạn, hình thành một hệ sinh thái số năng động, liên tục phát triển.
 
-# Kết luận
-Binean Nova là hành trình **từ di sản đến tương lai**, nơi công nghệ hiện đại, DevOps tối ưu và mô hình linh hoạt kết hợp để kiến tạo một core bảo hiểm **vững bền, mở rộng và giàu tiềm năng**.
+---
 
-Mỗi bước tiến không chỉ là cải tiến kỹ thuật, mà còn là **cơ hội đổi mới**, mở ra khả năng tăng trưởng đột phá cho khách hàng và đối tác.
+## 💎 Giá Trị Cốt Lõi
+
+- **Nền tảng bền vững:** Xây dựng một core bảo hiểm mạnh mẽ, linh hoạt, sẵn sàng cho tương lai.
+- **Vận hành tối ưu:** Triển khai nhanh chóng, vận hành ổn định nhờ tự động hóa và DevOps tiên tiến.
+- **Chuyển đổi liền mạch:** Hỗ trợ song song hệ thống cũ và giao diện mới, đảm bảo hoạt động không gián đoạn.
+- **Tích hợp không giới hạn:** Dễ dàng kết nối với mọi ứng dụng và giải pháp của tương lai.
+
+---
+
+## 🏁 Hướng Tới Tương Lai
+
+**Binean Nova** không chỉ là một dự án công nghệ, mà là một cam kết cho tương lai. Chúng tôi kết hợp sức mạnh của di sản với tiềm năng của công nghệ hiện đại để kiến tạo một core bảo hiểm **vững bền, mở rộng và giàu tiềm năng**.
+
+Mỗi bước tiến trong hành trình này là một cơ hội đổi mới, mở ra cánh cửa tăng trưởng đột phá cho khách hàng và đối tác.

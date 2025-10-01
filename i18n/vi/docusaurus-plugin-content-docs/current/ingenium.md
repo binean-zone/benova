@@ -1,21 +1,19 @@
-# 🏢 Ingenium – Hệ thống lõi bảo hiểm doanh nghiệp
+# 🏢 Ingenium – Hệ Thống Core Bảo Hiểm Chuyên Dụng
 
-**Ingenium** là hệ thống lõi (core system) dành cho ngành bảo hiểm, hỗ trợ quản lý toàn diện các quy trình nghiệp vụ: tiếp nhận yêu cầu, xử lý hợp đồng, quản lý dữ liệu khách hàng, thanh toán quyền lợi và các tác vụ hậu mãi. Được thiết kế để đáp ứng các nghiệp vụ phức tạp, Ingenium đảm bảo tính ổn định, bảo mật, khả năng mở rộng và tuân thủ các tiêu chuẩn ngành tài chính – bảo hiểm.
-
+**Ingenium** là hệ thống lõi (core system) dành cho ngành bảo hiểm, được thiết kế để quản lý toàn diện các quy trình nghiệp vụ phức tạp. Từ tiếp nhận yêu cầu, xử lý hợp đồng, đến thanh toán quyền lợi. Trong nhiều năm, Ingenium đã là nền tảng vững chắc, đảm bảo sự ổn định, bảo mật và tuân thủ các tiêu chuẩn khắt khe của ngành tài chính – bảo hiểm.
 
 ![Sơ đồ kiến trúc Ingenium](/img/ingenium.png)
-
 
 ---
 
 ## 🗺️ Tổng quan kiến trúc
-Hệ thống Ingenium triển khai theo mô hình on-premise trên nền tảng AIX, sử dụng cơ sở dữ liệu Db2. Kiến trúc phân lớp giúp tách biệt chức năng, tối ưu bảo trì và mở rộng:
+
+Ingenium được triển khai theo mô hình on-premise trên nền tảng AIX và cơ sở dữ liệu Db2. Kiến trúc được phân tách thành các lớp chức năng rõ ràng, giúp tối ưu hóa việc bảo trì và mở rộng hệ thống:
 
 - **Presentation & Integration Layer**: Giao diện người dùng, tích hợp hệ thống ngoài.
 - **Network Layer**: Điều phối, truyền thông giữa các thành phần.
 - **Application Layer**: Xử lý nghiệp vụ bảo hiểm.
 - **Data Layer**: Lưu trữ, quản lý dữ liệu nghiệp vụ.
-
 
 ---
 
@@ -24,7 +22,7 @@ Hệ thống Ingenium triển khai theo mô hình on-premise trên nền tảng 
 ## 🌐 PathFinder
 * Presentation & Integration Layer: UI Server kiêm cổng tích hợp (integration gateway).
 * Phát triển bằng Java, triển khai trên WebSphere HTTP Server (AIX On-premise).
-* Hỗ trợ tùy biến linh hoạt, dễ mở rộng theo yêu cầu nghiệp vụ từng doanh nghiệp.
+* Hỗ trợ tùy biến linh hoạt để đáp ứng yêu cầu nghiệp vụ của từng doanh nghiệp.
 
 ## 📦 MQ Server
 * Network Layer: Trung tâm điều phối, truyền thông giữa các thành phần.
@@ -34,8 +32,7 @@ Hệ thống Ingenium triển khai theo mô hình on-premise trên nền tảng 
 ## ⚙️ Ingenium
 * Application Layer: "Business core" – trung tâm xử lý nghiệp vụ bảo hiểm.
 * Nhiều module COBOL chạy trên AIX, đảm bảo hiệu năng, ổn định.
-* Khởi tạo nhiều queue worker độc lập, chủ động lấy yêu cầu từ MQ, xử lý và trả kết quả.
-* Module tiêu biểu: XSBUQWK_01, XSBUQWK_D2, XSBUQWK_XX.
+* Khởi tạo nhiều "queue worker" độc lập (ví dụ: XSBUQWK) để chủ động lấy yêu cầu từ MQ, xử lý và trả kết quả qua định dạng MIR.
 
 ## 🗄️ Ingenium Database
 * Data Layer: Db2 AIX (On-premise) lưu trữ toàn bộ dữ liệu nghiệp vụ.
@@ -45,46 +42,35 @@ Hệ thống Ingenium triển khai theo mô hình on-premise trên nền tảng 
 ## 🔗 External Systems
 Các hệ thống ngoài tích hợp với Ingenium qua PathFinder (SOAP TxLife), phục vụ trao đổi thông tin nghiệp vụ bảo hiểm, đảm bảo an toàn và tuân thủ chuẩn ngành.
 
+---
+
+## ✅ Di Sản Nền Tảng Vững Chắc
+Ingenium mang lại những giá trị cốt lõi đã được kiểm chứng qua thời gian, là nền móng cho hoạt động của nhiều doanh nghiệp bảo hiểm.
+* **Ổn định và đáng tin cậy:** Xây dựng trên các công nghệ đã được kiểm chứng trong ngành tài chính, đảm bảo hệ thống vận hành bền bỉ.
+* **Xử lý nghiệp vụ phức tạp:** Khả năng đáp ứng các yêu cầu nghiệp vụ bảo hiểm đa dạng và chuyên sâu.
+* **Bảo mật tối đa:** Mô hình on-premise và dữ liệu tập trung cho phép kiểm soát an ninh ở mức cao nhất.
+* **Hiệu suất xử lý lớn:** Kiến trúc queue/worker song song giúp xử lý hiệu quả khối lượng giao dịch lớn.
+* **Tuân thủ và kiểm toán:** Dễ dàng truy vết giao dịch, đáp ứng các yêu cầu kiểm toán nghiêm ngặt của ngành.
 
 ---
 
-## ✨ Đặc điểm nổi bật
-* Triển khai on-premise: kiểm soát, bảo mật dữ liệu tối đa.
-* Kiến trúc phân lớp: dễ quản lý, bảo trì, mở rộng.
-* Phụ thuộc hệ sinh thái IBM (WebSphere, MQ, Db2, JDK1.8, Orexx) – nhiều nền tảng đã cũ, hết hỗ trợ.
-* Business core bằng COBOL: ổn định, tin cậy nhưng hạn chế mở rộng, tích hợp công nghệ mới.
-
-
----
-
-## ✅ Ưu điểm
-* Kiến trúc phân lớp rõ ràng, dễ kiểm soát, bảo trì, mở rộng dù logic nghiệp vụ lớn.
-* Ổn định, tin cậy nhờ công nghệ kiểm chứng ngành tài chính – bảo hiểm.
-* Đáp ứng tốt nghiệp vụ phức tạp, hỗ trợ tùy biến linh hoạt.
-* Vận hành on-premise: bảo mật dữ liệu tối đa.
-* Queue/worker song song tối ưu hiệu suất, xử lý khối lượng lớn.
-* Dữ liệu tập trung, kiểm soát truy cập, bảo mật nghiêm ngặt.
-* Dễ audit, truy vết giao dịch, đáp ứng yêu cầu kiểm toán nội bộ/ngành.
-* Có thể tích hợp với các hệ thống legacy khác trong doanh nghiệp.
-
+## ⚠️ Thách Thức Của Hệ Thống Di Sản
+Tuy nhiên, cùng với sự phát triển của công nghệ, Ingenium bộc lộ những hạn chế cố hữu, trở thành rào cản cho quá trình chuyển đổi số.
+* **Công nghệ lỗi thời:** Nền tảng COBOL, AIX, và các thành phần trong hệ sinh thái IBM (MQ, WebSphere) đã cũ, khan hiếm nhân lực và không còn được hỗ trợ đầy đủ.
+* **Khó mở rộng và chi phí cao:** Mô hình on-premise cứng nhắc, tốn kém chi phí vận hành và khó mở rộng nhanh chóng theo nhu cầu thị trường.
+* **Tích hợp hạn chế:** Thiếu các giao thức hiện đại như API/REST, gây khó khăn khi kết nối với các dịch vụ số và hệ sinh thái đối tác.
+* **Quy trình thủ công:** Việc triển khai, quản lý phiên bản và rollback đều thực hiện thủ công, thiếu tự động hóa (DevOps), làm chậm tốc độ đổi mới.
+* **Rào cản chuyển đổi số:** Khó đáp ứng các yêu cầu về tích hợp đa kênh, phân tích dữ liệu lớn và triển khai các dịch vụ số hóa mới.
 
 ---
 
-## ⚠️ Hạn chế
-* Mô hình on-premise: khó mở rộng nhanh, chi phí vận hành lớn.
-* Công nghệ cũ (COBOL, AIX, MQ, JDK1.8, Orexx): khan hiếm nhân lực, khó đào tạo mới.
-* Tích hợp hạn chế: chủ yếu dùng MQ, XML, thiếu API/REST hiện đại.
-* Quản lý version, rollback, automation còn thủ công, thiếu DevOps.
-* Phụ thuộc vendor, hệ sinh thái IBM, khó chủ động nâng cấp/chuyển đổi.
-* Khó đáp ứng chuyển đổi số, tích hợp đa kênh, dịch vụ số hóa mới.
-* Bảo trì lâu dài gặp thách thức khi công nghệ tiếp tục lỗi thời.
+## 🚀 Con Đường Chuyển Đổi Bắt Buộc
+Những thách thức trên đòi hỏi một lộ trình chuyển đổi chiến lược và toàn diện. Đây không còn là một lựa chọn, mà là yêu cầu bắt buộc để doanh nghiệp tồn tại và phát triển trong kỷ nguyên số.
+* **Hiện đại hóa công nghệ:** Chuyển đổi từ COBOL sang các ngôn ngữ hiện đại, nâng cấp nền tảng để tăng khả năng tích hợp.
+* **Chuyển đổi lên Cloud/Hybrid:** Áp dụng mô hình linh hoạt để tối ưu chi phí, tăng khả năng mở rộng và tận dụng sức mạnh của điện toán đám mây.
+* **Tự động hóa toàn diện (DevOps):** Xây dựng quy trình CI/CD để tăng tốc độ phát triển, triển khai và giảm thiểu rủi ro.
 
----
-
-## 🚀 Định hướng phát triển & khuyến nghị
-* Xem xét lộ trình chuyển đổi dần sang nền tảng cloud/hybrid để tăng khả năng mở rộng, giảm chi phí vận hành.
-* Từng bước hiện đại hóa, bổ sung các API/REST, tăng khả năng tích hợp với hệ sinh thái số.
-* Đầu tư tự động hóa (DevOps, CI/CD), tăng hiệu quả quản lý version, rollback, triển khai.
+**Đây chính là sứ mệnh mà dự án Binean Nova ra đời để giải quyết.**
 
 ---
 
@@ -92,7 +78,7 @@ Các hệ thống ngoài tích hợp với Ingenium qua PathFinder (SOAP TxLife)
 
 Tài liệu này chỉ phục vụ mục đích tham khảo và tư vấn giải pháp tích hợp, chuyển đổi hệ thống.  
 Mọi nhãn hiệu, tên sản phẩm, tên công ty được đề cập đều thuộc quyền sở hữu của các bên liên quan.  
-Tài liệu này không liên kết, không được bảo trợ hoặc xác nhận bởi DXC Technology, Sun Life hay bất kỳ bên thứ ba nào được nhắc đến.  
+Dự án này không liên kết, không được bảo trợ hoặc xác nhận bởi DXC Technology, Sun Life hay bất kỳ bên thứ ba nào được nhắc đến.  
 Không có mã nguồn, license hoặc thông tin độc quyền nào của hệ thống Ingenium hay bất kỳ hệ thống bên thứ ba nào được cung cấp hoặc phân phối dưới bất kỳ hình thức nào thông qua tài liệu hoặc dịch vụ liên quan này.
 
 Bằng việc sử dụng hoặc tham khảo tài liệu này, bạn xác nhận và đồng ý tuân thủ mọi quy định pháp luật về sở hữu trí tuệ cũng như các điều khoản đã nêu ở trên.
