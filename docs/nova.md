@@ -11,9 +11,9 @@
 Nova aims to comprehensively modernize the Ingenium insurance core system, ensuring continuous, stable, and secure operations throughout the digital transformation process. The roadmap is planned in clear phases, with each phase representing a solid step forward to minimize risks and optimize resources:
 
 - **Nexus – A Solid Foundation:** Build a robust digital infrastructure and establish intelligent DevOps processes. This foundational step ensures stability, security, and long-term scalability for the entire system.
-- **Orbit – The Core of Modernization:** Modernize and optimize the Ingenium core by standardizing its architecture and services. This phase creates a sustainable growth "orbit," propelling the traditional system into the digital age by transforming Ingenium into a REST service, eliminating legacy middleware (like MQ), and beginning the migration of key functions to Rust.
+- **Orbit – The Core of Modernization:** Modernize and optimize the Ingenium core by standardizing its architecture and services. This phase creates a sustainable growth "orbit," propelling the traditional system into the digital age. Specifically, Orbit will transform Ingenium into a REST service, eliminate legacy middleware (like MQ), and begin migrating key functions to Rust.
 - **Vista – A Vision for Experience:** Expand our vision by redesigning the entire user experience and external services (SOAP → REST). We are delivering an intuitive, modern, and seamless interface that shapes the strategy for the next generation of products.
-- **Apex – The Summit of Innovation:** Reach the pinnacle of innovation by completely re-architecting business logic and data. This phase unlocks limitless integration potential, progressively migrating the entire insurance core from COBOL to Rust and fostering a dynamic, continuously evolving digital ecosystem.
+- **Apex – The Summit of Innovation:** Reach the pinnacle of innovation by completely re-architecting business logic and data. This phase unlocks limitless integration potential, progressively migrating the entire insurance core from COBOL to Rust, and fostering a dynamic, continuously evolving digital ecosystem.
 
 Through this roadmap, Nova creates a modern, flexible, extensible, and integration-ready insurance application platform, meeting all the digital transformation requirements of the enterprise.
 
@@ -21,9 +21,9 @@ Through this roadmap, Nova creates a modern, flexible, extensible, and integrati
 
 ## 🌟 Vision & Direction
 
-Nova is designed as a modern application platform, harmoniously combining the strengths of traditional technology and advanced cloud-native architecture. Beyond modernizing the Ingenium insurance core system, Nova aims to build an open, flexible technology ecosystem, ready to meet all digital transformation requirements of insurance enterprises in the future.
+Nova is envisioned as a modern application platform that harmoniously combines the power of traditional technology with advanced cloud-native architecture. Beyond just modernizing the Ingenium insurance core system, Nova aims to build an open, flexible technology ecosystem ready to meet all future digital transformation requirements of insurance enterprises.
 
-Core values Nova targets:
+**Core values that Nova aims for:**
 
 - 📈 Flexible scalability to meet unlimited growth needs
 - 🔗 Easy integration with external systems and services
@@ -37,7 +37,7 @@ Nova is committed to being a solid platform, accompanying businesses on their jo
 
 ## 🏗️ Architecture Overview
 
-Nova's architecture is designed for comprehensive modernization, ensuring scalability, flexible integration, and stable operation throughout the digital transformation process. Nova not only inherits the core values of the traditional Ingenium system but also gradually transitions to a cloud-native model, ready to meet all future development requirements.
+Nova's architecture is designed for comprehensive modernization, ensuring scalability, flexible integration, and stable operation. Nova not only inherits the core values of the traditional Ingenium system but also gradually transitions to a cloud-native model, ready to meet all future development requirements.
 
 Nova is built on the latest technologies to ensure performance, security, and flexibility:
 - **React** for a modern, user-friendly UI.
@@ -45,7 +45,7 @@ Nova is built on the latest technologies to ensure performance, security, and fl
 - **Microservices** for flexibility, scalability, and maintainability.
 - **API Gateway** (e.g., Kong) and **Event Bus** (e.g., Kafka) for secure, asynchronous integration.
 - **YugabyteDB** (or other modern distributed databases) for a cloud-native, scalable data layer.
-- **CI/CD** (Continuous Delivery) for automated packaging and deployment, ready for integration with modern pipelines.
+- **Continuous Delivery (CD)** for automated packaging and deployment, ready for integration with modern CI/CD pipelines.
 
 The system is organized into four main layers, corresponding to each modernization phase:
 
@@ -77,7 +77,7 @@ This architecture allows Nova to operate stably throughout the transformation, g
 
 Currently, Nova focuses on building a **Continuous Delivery (CD)** system to maximize automation in software packaging and deployment, preparing for future integration into CI/CD pipelines. Due to resource constraints, automated testing and a full CI/CD process are not yet implemented; the actual CI/CD deployment will depend on each enterprise.
 
-- **Nova CD (Continuous Delivery):** All commands, scripts, and packaging procedures are fully prepared, enabling businesses to easily configure and integrate with their own CI/CD systems when needed.
+- **Ready for Integration:** Nova CD has all the necessary commands, scripts, and packaging procedures prepared, enabling businesses to easily configure and integrate it into their own CI/CD systems as needed.
 - The automated packaging and deployment process helps minimize release risks, increasing system stability and consistency.
 - Supports quick rollback in case of incidents, ensuring the system always operates safely.
 
@@ -101,5 +101,5 @@ Nova not only inherits but also thoroughly addresses the inherent limitations of
 
 ## 🏁 Conclusion
 
-Nova is not just a technology solution, but a platform that drives comprehensive digital transformation for insurance enterprises.  
+Nova is not just a technology solution, but a platform that drives comprehensive digital transformation for insurance enterprises.
 With the combination of modern technologies like React, Rust, and an automated CI/CD system, Nova delivers a flexible, secure, and sustainable ecosystem—ready to adapt and grow with every market change, accompanying businesses on their journey of innovation and sustainable development.

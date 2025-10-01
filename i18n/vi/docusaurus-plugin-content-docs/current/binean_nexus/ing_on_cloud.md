@@ -2,7 +2,7 @@
 
 ---
 
-## 🎯 Giới thiệu
+## 📝 Giới thiệu
 
 Dự án **Ingenium Modernization** tại Sun Life Việt Nam là một hành trình chuyển đổi số đầy thử thách nhưng cũng rất thành công, đưa hệ thống Ingenium lên nền tảng cloud chỉ trong vòng chưa đầy một năm (bao gồm cả giai đoạn POC). Quá trình này đòi hỏi sự phối hợp chặt chẽ, tinh thần đổi mới và quyết tâm cao của toàn đội dự án.
 
@@ -58,9 +58,9 @@ Việc triển khai Ingenium trên nền tảng cloud mang lại nhiều lợi �
 
 ---
 
-## ⚠️ Hạn chế & Định hướng phát triển
+## ⚠️ Hạn chế và Lưu ý
 
-Mặc dù việc chuyển đổi Ingenium lên cloud mang lại nhiều lợi ích, mô hình hiện tại vẫn còn một số hạn chế và đặt ra các định hướng phát triển tiếp theo:
+Mặc dù việc chuyển đổi Ingenium lên cloud mang lại nhiều lợi ích, mô hình hiện tại vẫn có một số hạn chế và các điểm cần lưu ý:
 
 - **Yêu cầu chuyển đổi sang Linux:** Nova sẽ không hỗ trợ hệ điều hành AIX mà chỉ hỗ trợ Linux cho các môi trường server như ST, AT, PRD và Windows cho môi trường phát triển (Dev). Việc chuyển đổi toàn bộ hệ thống từ AIX sang Linux là điều kiện bắt buộc nếu doanh nghiệp muốn áp dụng Nova cho các môi trường vận hành chính thức.
 
@@ -72,13 +72,15 @@ Mặc dù việc chuyển đổi Ingenium lên cloud mang lại nhiều lợi í
 
 - **Đảm bảo an toàn, bảo mật và tuân thủ:** Việc chuyển đổi lên cloud đòi hỏi doanh nghiệp phải chú trọng đến các vấn đề bảo mật, tuân thủ quy định pháp lý và bảo vệ dữ liệu khách hàng, đặc biệt trong lĩnh vực tài chính – bảo hiểm.
 
-### Định hướng phát triển
+---
 
-- **Hạn chế về công nghệ web:** Sau khi chuyển đổi PathFinder (PF) sang JSP, đã xuất hiện một số vấn đề về hiệu năng, đặc biệt là việc phải render lại toàn bộ trang khi cập nhật. Công nghệ JSP cũ cũng gây khó khăn cho việc bảo trì và mở rộng. Việc khắc phục các hạn chế này sẽ là trọng tâm nâng cấp trong **giai đoạn Vista** của Nova, hướng tới giao diện React hiện đại.
+## 🧭 Định hướng phát triển
 
-- **Hạn chế về công cụ DevOps:** Hiện tại chưa có công cụ quản lý DevOps chuyên biệt cho Ingenium; các quy trình vẫn còn thủ công. Đây chính là động lực cho **giai đoạn Nexus** của dự án, với mục tiêu phát triển một extension tích hợp vào VS Code, hỗ trợ toàn diện quy trình Continuous Delivery cho Ingenium.
+Các hạn chế của mô hình hiện tại chính là động lực cho các giai đoạn phát triển tiếp theo của Nova:
 
-- **Lộ trình chuyển đổi từng bước:** Để giảm thiểu rủi ro, doanh nghiệp nên xây dựng lộ trình chuyển đổi từng bước, kiểm thử kỹ lưỡng ở từng giai đoạn trước khi triển khai trên môi trường Production.
+- **Giai đoạn Vista (Hiện đại hóa giao diện):** Công nghệ JSP của PathFinder đã lỗi thời, gây ra các vấn đề về hiệu năng và khó bảo trì. Giai đoạn **Vista** sẽ giải quyết triệt để vấn đề này bằng cách thay thế toàn bộ giao diện bằng **React**, mang lại trải nghiệm người dùng hiện đại và hiệu quả hơn.
+
+- **Giai đoạn Nexus (Tự động hóa DevOps):** Quy trình DevOps cho Ingenium hiện còn thủ công. Giai đoạn **Nexus** sẽ khắc phục hạn chế này bằng cách phát triển một extension cho VS Code, tự động hóa toàn diện quy trình Continuous Delivery, giúp triển khai nhanh chóng và an toàn.
 
 ---
 

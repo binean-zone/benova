@@ -2,7 +2,7 @@
 
 ---
 
-## 📝 Introduction
+## 🎯 Introduction
 
 The **Ingenium Modernization** project at Sun Life Vietnam is a challenging yet highly successful digital transformation journey, migrating the Ingenium system to the cloud in less than a year (including the POC phase). This process required close collaboration, an innovative mindset, and strong determination from the entire project team.
 
@@ -10,10 +10,10 @@ The **Ingenium Modernization** project at Sun Life Vietnam is a challenging yet 
 
 **Key migration tasks:**
 - Building a new connection layer between Ingenium and ActiveMQ (replacing the unsupported IBM MQ/CICS)
-- Migrating Ingenium from NetExpress to Visual Cobol
+- Converting Ingenium from NetExpress to Visual Cobol
 - Migrating Ingenium and related applications from AIX to Linux, then to the cloud
 - Migrating PathFinder from WebSphere to JBoss (as WebSphere is no longer updated)
-- Migrating PathFinder from HTTP to JSP
+- Converting the PathFinder interface to JSP technology
 
 Throughout the migration process, the team faced many technological, operational, and integration challenges. However, with a proactive, creative spirit and relentless effort, the project achieved the goal of "moving Ingenium to the cloud" in a record time of just over 9 months, laying a solid foundation for the company's next development steps.
 
@@ -58,15 +58,13 @@ Migrating Ingenium to the cloud brings many outstanding advantages compared to t
 
 ---
 
-## ⚠️ Limitations & Development Directions
+## ⚠️ Limitations and Considerations
 
-While migrating Ingenium to the cloud brings many benefits, there are also some limitations and requirements to consider:
+While migrating Ingenium to the cloud brings many benefits, the current model has some limitations and points to consider:
 
 - **Requirement to migrate to Linux:** Nova will not support the AIX operating system and will only support Linux for server environments such as ST, AT, PRD, and Windows for development (Dev) environments. Therefore, migrating the entire system from AIX to Linux is a mandatory condition if organizations want to apply Nova in official operating environments.
 
 - **Development environment requirement:** The project requires the use of **Visual Studio Code (VS Code)** as the primary development environment, offering a more modern and efficient experience compared to Eclipse. At this stage, other IDEs are not supported.
-
-- **DevOps tool limitation:** Currently, there is no dedicated DevOps management tool for Ingenium; all DevOps processes must be performed manually or semi-manually. This limitation is the main motivation for the **Nexus phase** of the project, which aims to deliver a comprehensive VS Code extension that fully supports Continuous Delivery for Ingenium, streamlining and automating the DevOps workflow.
 
 - **Cloud is an option, not mandatory:** While cloud migration brings significant value, it is not a strict requirement. Organizations can fully deploy the Nova model on on-premise infrastructure if it aligns with their strategy and actual conditions. Nova is designed to flexibly support both cloud and on-premise models.
 
@@ -74,9 +72,15 @@ While migrating Ingenium to the cloud brings many benefits, there are also some 
 
 - **Ensuring safety, security, and compliance:** Migrating to the cloud requires organizations to pay close attention to security, legal compliance, and customer data protection, especially in the financial and insurance sectors.
 
-- **Step-by-step migration roadmap:** To minimize risks, organizations should develop a phased migration roadmap, thoroughly testing each stage before full-scale production deployment.
+---
 
-- **Web technology limitation:** After migrating PathFinder (PF) to JSP as part of the Ingenium on Cloud project, some performance issues have been observed—specifically, the need to re-render entire elements during updates, which can impact responsiveness and efficiency. Additionally, the continued reliance on legacy JSP technology presents challenges for long-term maintainability and scalability. Addressing these limitations will be a key focus for future enhancement phases.
+## 🧭 Development Directions
+
+The limitations of the current model are the driving force behind the next development phases of Nova:
+
+- **Vista Phase (UI Modernization):** The JSP technology used for PathFinder is outdated, causing performance issues and making maintenance difficult. The **Vista** phase will resolve this by replacing the entire interface with **React**, delivering a modern and efficient user experience.
+
+- **Nexus Phase (DevOps Automation):** The current DevOps process for Ingenium is still manual. The **Nexus** phase will address this limitation by developing a VS Code extension to fully automate the Continuous Delivery workflow, enabling faster and safer deployments.
 
 ---
 
@@ -100,5 +104,3 @@ No source code, license, or proprietary information of Ingenium or any third-par
 By using or referencing this document, you acknowledge and agree to comply with all applicable intellectual property laws and the terms stated above.
 
 ---
-
-
