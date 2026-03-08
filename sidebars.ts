@@ -36,6 +36,26 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
+          id: 'binean_nexus/intro',
+          label: 'Overview',
+        },
+        {
+          type: 'doc',
+          id: 'binean_nexus/architecture',
+          label: 'Architecture',
+        },
+        {
+          type: 'doc',
+          id: 'binean_nexus/toolchain',
+          label: 'Toolchain',
+        },
+        {
+          type: 'doc',
+          id: 'binean_nexus/security',
+          label: 'Security & Reliability',
+        },
+        {
+          type: 'doc',
           id: 'binean_nexus/ing_on_cloud',
           label: 'ING on Cloud',
         },
