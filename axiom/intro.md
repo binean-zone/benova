@@ -1,6 +1,6 @@
 ---
 id: intro
-title: Information Tao
+title: Information Axiom
 sidebar_position: 1
 ---
 

@@ -16,7 +16,11 @@ const config: Config = {
   projectName: 'benova',
   organizationName: 'binean-zone',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  } as any,
   trailingSlash: false,
   i18n: {
     defaultLocale: 'en',
@@ -26,7 +30,6 @@ const config: Config = {
       vi: { label: 'Tiếng Việt' },
     },
   },
-
   presets: [
     [
       'classic',
@@ -59,11 +62,11 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'tao',
-        path: 'tao',
-        routeBasePath: 'tao',
-        sidebarPath: require.resolve('./taoSidebar.ts'),
-        editUrl: 'https://github.com/binean-zone/benova/tree/main/apps/srce/Binean/tao/',
+        id: 'axiom',
+        path: 'axiom',
+        routeBasePath: 'axiom',
+        sidebarPath: require.resolve('./axiomSidebar.ts'),
+        editUrl: 'https://github.com/binean-zone/benova/tree/main/apps/srce/Binean/axiom/',
       },
     ],
   ],
@@ -85,10 +88,10 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'taoSidebar',
+          sidebarId: 'axiomSidebar',
           position: 'left',
-          label: 'Tao',
-          docsPluginId: 'tao'
+          label: 'Axiom',
+          docsPluginId: 'axiom'
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {

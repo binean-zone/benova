@@ -1,7 +1,7 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
-  taoSidebar: [
+  axiomSidebar: [
     'intro',
     // Thêm các mục khác nếu có
   ],
