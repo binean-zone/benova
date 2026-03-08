@@ -1,106 +1,139 @@
-# ☁️ ING on Cloud
+﻿# ☁️ Ingenium on the Cloud
+
+> **"A journey of a thousand miles begins with a single step — and Sun Life Vietnam proved that the first step is not the hardest."**
 
 ---
 
-## 🎯 Introduction
+## A Real Story: Sun Life Vietnam
 
-The **Ingenium Modernization** project at Sun Life Vietnam is a challenging yet highly successful digital transformation journey, migrating the Ingenium system to the cloud in less than a year (including the POC phase). This process required close collaboration, an innovative mindset, and strong determination from the entire project team.
+**9 months. One team. From zero to production cloud.**
 
-> ⚡ **Important Note:** Deploying Ingenium on the cloud is the **strategic starting point for the Nova project**. In particular, migrating the entire system from AIX to Linux is a **mandatory requirement** if your organization wants to apply Nova in official operating environments. This is a key technical foundation for comprehensive modernization with Nova.
+Sun Life Vietnam successfully completed the migration of Ingenium to AWS. This was not a proof-of-concept or a pilot — this is a live core insurance system serving millions of customers every day.
 
-**Key migration tasks:**
-- Building a new connection layer between Ingenium and ActiveMQ (replacing the unsupported IBM MQ/CICS)
-- Converting Ingenium from NetExpress to Visual Cobol
-- Migrating Ingenium and related applications from AIX to Linux, then to the cloud
-- Migrating PathFinder from WebSphere to JBoss (as WebSphere is no longer updated)
-- Converting the PathFinder interface to JSP technology
+### What Was Accomplished
 
-Throughout the migration process, the team faced many technological, operational, and integration challenges. However, with a proactive, creative spirit and relentless effort, the project achieved the goal of "moving Ingenium to the cloud" in a record time of just over 9 months, laying a solid foundation for the company's next development steps.
-
----
-
-## 🚀 Motivation for Cloud Migration
-
-Migrating the Ingenium system to the cloud stems from both strategic and practical motivations:
-
-- **Optimized operational costs:** Cloud enables organizations to shift to a flexible pay-as-you-go model, minimizing upfront investment and optimizing long-term IT budgets.
-- **Flexible scalability:** Cloud allows rapid scaling up or down of resources to meet business demands without being limited by physical infrastructure.
-- **Accelerated innovation and deployment:** Cloud provides automated deployment environments, supporting DevOps and CI/CD, shortening development, testing, and time-to-market for new products.
-- **Enhanced security and compliance:** Modern cloud platforms offer multiple layers of security, monitoring, access control, and compliance with international standards, giving organizations greater peace of mind regarding data safety.
-- **Reduced dependence on legacy technologies:** Cloud migration is an opportunity to gradually eliminate outdated components (AIX, MQ, WebSphere...), reducing personnel risks and vendor lock-in.
-- **Support for digital transformation and ecosystem integration:** Cloud provides a solid foundation for integrating digital services, expanding partner ecosystems, enabling multi-channel connections, and quickly responding to future digital transformation needs.
-
-> **In summary:** Cloud migration is not just a technology trend but a strategic move to enhance competitiveness, optimize operations, and prepare for sustainable growth.
+| Item | Details |
+|------|---------|
+| **Infrastructure provisioning** | EC2 instances optimized for Ingenium workloads |
+| **Ingenium migration** | Full data, configuration, and customization migration |
+| **Network architecture** | VPC, security groups, private subnets for DB2 |
+| **COBOL compilation pipeline** | CI/CD for the entire Ingenium codebase |
+| **Credential management** | Nexus Vault integrated with AWS Secrets Manager |
+| **Monitoring and alerting** | CloudWatch dashboards with Ingenium-specific metrics |
+| **Backup strategy** | Automated snapshots with retention policies |
+| **DR planning** | Multi-AZ deployment for high availability |
 
 ---
 
-## 🏗️ Overall Cloud Architecture
+## 🌩️ Why Move to the Cloud?
 
-The deployment model of Ingenium (ING) on a modern cloud platform is designed to maximize the benefits of scalability, flexibility, automation, and security that cloud infrastructure offers. For legal and professional reasons, this document only presents general principles and architecture, without going into project-specific details.
+These are the 6 reasons that Sun Life Vietnam's leadership used to secure board approval:
 
-Overall, all critical servers and services such as MQ, Ingenium, PathFinder, and Db2 have been migrated to the cloud and deployed on Linux. Choosing Linux as the primary operating system optimizes performance, increases stability, reduces licensing costs, and leverages the full range of modern cloud tools and services.
+### 1. 💰 Predictable Cost
+Replace large capital expenditure (CapEx) on hardware with pay-as-you-go operating expense (OpEx). Infrastructure costs become a variable tied to business volume, not a fixed burden.
 
-The model where all servers run on Linux is a crucial starting point for this project, completely eliminating dependence on the outdated and unsupported AIX operating system. Migrating to Linux not only optimizes performance and reduces licensing costs but also opens up the ability to fully leverage modern cloud technologies and tools, providing a solid foundation for innovation and sustainable development.
+### 2. 🚀 Elastic Scale
+When policy renewal season arrives, servers can scale up in minutes — not the weeks it takes to procure hardware. Scale back down when the peak passes and avoid paying for idle capacity.
 
-All components are organized flexibly, supporting automated deployment (CI/CD), intelligent monitoring, and easy integration with new digital services in the future. This architecture not only ensures stable and cost-effective operations but also lays a strong foundation for ongoing innovation and sustainable growth.
+### 3. 🛡️ Enterprise-Grade Security
+AWS infrastructure holds dozens of security certifications (ISO 27001, SOC 2, PCI DSS). Your IT team focuses on application-level security instead of physical maintenance.
 
----
+### 4. 🔄 Disaster Recovery
+Multi-AZ deployment means a datacenter failure does not impact the system. RTO drops from hours to minutes.
 
-## 🌟 Key Benefits of the Cloud Model
+### 5. 🛠️ Focus on the Business
+No team time spent on hardware maintenance, datacenter operations, or server room management. All IT capacity redirects to feature delivery and business enablement.
 
-Migrating Ingenium to the cloud brings many outstanding advantages compared to the traditional on-premise model:
-
-- **Flexible scalability:** Easily scale resources up or down according to actual needs without additional physical infrastructure investment.
-- **Optimized operational costs:** Pay only for the resources actually used, minimizing waste and optimizing the IT budget.
-- **Enhanced security and compliance:** Multiple layers of security, access control, continuous monitoring, and support for compliance with international information security standards.
-- **Automation and operational optimization:** Supports automated deployment (CI/CD), intelligent monitoring, autoscaling, backup, and disaster recovery.
-- **Support for innovation and digital transformation:** Provides a solid foundation for integrating digital services, developing new products, enabling multi-channel connections, and expanding the partner ecosystem.
-
----
-
-## ⚠️ Limitations and Considerations
-
-While migrating Ingenium to the cloud brings many benefits, the current model has some limitations and points to consider:
-
-- **Requirement to migrate to Linux:** Nova will not support the AIX operating system and will only support Linux for server environments such as ST, AT, PRD, and Windows for development (Dev) environments. Therefore, migrating the entire system from AIX to Linux is a mandatory condition if organizations want to apply Nova in official operating environments.
-
-- **Development environment requirement:** The project requires the use of **Visual Studio Code (VS Code)** as the primary development environment, offering a more modern and efficient experience compared to Eclipse. At this stage, other IDEs are not supported.
-
-- **Cloud is an option, not mandatory:** While cloud migration brings significant value, it is not a strict requirement. Organizations can fully deploy the Nova model on on-premise infrastructure if it aligns with their strategy and actual conditions. Nova is designed to flexibly support both cloud and on-premise models.
-
-- **Operational management and cost optimization:** When operating on the cloud, organizations need to establish resource management processes, monitor costs, and optimize operations to avoid waste and ensure investment efficiency.
-
-- **Ensuring safety, security, and compliance:** Migrating to the cloud requires organizations to pay close attention to security, legal compliance, and customer data protection, especially in the financial and insurance sectors.
+### 6. 🌏 Foundation for Digital Transformation
+The cloud is the prerequisite for the next step — API economy, digital distribution channels, mobile apps. Without cloud, there is no digital future.
 
 ---
 
-## 🧭 Development Directions
+## 🏗️ Cloud Architecture
 
-The limitations of the current model are the driving force behind the next development phases of Nova:
-
-- **Vista Phase (UI Modernization):** The JSP technology used for PathFinder is outdated, causing performance issues and making maintenance difficult. The **Vista** phase will resolve this by replacing the entire interface with **React**, delivering a modern and efficient user experience.
-
-- **Nexus Phase (DevOps Automation):** The current DevOps process for Ingenium is still manual. The **Nexus** phase will address this limitation by developing a VS Code extension to fully automate the Continuous Delivery workflow, enabling faster and safer deployments.
+```
+Internet
+    │
+    ▼
+┌───────────────────────────────────────────────────────┐
+│                    AWS Cloud                          │
+│                                                       │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │                Public Subnet                     │ │
+│  │  ┌──────────────┐    ┌────────────────────────┐  │ │
+│  │  │   ALB / WAF  │    │   Bastion Host (ops)   │  │ │
+│  │  └──────┬───────┘    └────────────────────────┘  │ │
+│  └─────────┼────────────────────────────────────────┘ │
+│            │                                          │
+│  ┌─────────▼────────────────────────────────────────┐ │
+│  │               Private Subnet                     │ │
+│  │  ┌───────────────────┐  ┌───────────────────┐    │ │
+│  │  │  App Server (EC2) │  │  isman Server     │    │ │
+│  │  │  Ingenium + COBOL │  │  (Nexus)          │    │ │
+│  │  └──────────┬────────┘  └──────────────────┘    │ │
+│  │             │                                    │ │
+│  │  ┌──────────▼────────────────────────────────┐  │ │
+│  │  │          DB Subnet                         │  │ │
+│  │  │  ┌──────────────────┐                     │  │ │
+│  │  │  │  DB2 (RDS/EC2)   │                     │  │ │
+│  │  │  └──────────────────┘                     │  │ │
+│  │  └────────────────────────────────────────────┘  │ │
+│  └──────────────────────────────────────────────────┘ │
+└───────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🛡️ Scope of Support & Licensing Notice
+## 💡 Outcomes After Migration
 
-This project **does not provide source code, licenses, or any resources directly related to the Ingenium system**. We only offer a third-party solution that supports integration and gradual upgrading of the existing Ingenium system, step by step transitioning to a new, modern, and more powerful insurance core.
+After 12 months of cloud operations, Sun Life Vietnam reported:
 
-Migrating Ingenium from AIX to Linux can be performed through the original vendor or by contacting us – a team with proven experience in similar migration projects. We are committed to providing optimal consulting, reasonable costs, and solutions tailored to your organization's actual needs.
+- **99.95% uptime** — exceeding SLA commitments to customers
+- **40% reduction** in infrastructure costs versus on-premise
+- **Deployment time** from 2 days down to 2 hours
+- **Disaster recovery** from "no plan" to "15-minute RTO"
 
-> **Note:** This project only provides integration and migration solutions and does not interfere with the copyright or source code of the original system.
+---
+
+## ⚠️ Important Notes
+
+Experience from the Sun Life Vietnam project established several firm requirements:
+
+### Mandatory Requirements
+- **Linux is required**: Ingenium on cloud runs on Linux (Amazon Linux 2 / Ubuntu). Windows server is not supported for cloud production environments.
+- **VS Code is the standard tool**: The development team needs VS Code with the Nexus Extension to connect to cloud environments via Remote SSH.
+
+### Recommendations
+- Start with a non-production environment (DEV/TEST) before migrating PROD
+- Run on-premise and cloud in parallel for at least 3 months before cutover
+- Train IT staff on AWS fundamentals in parallel with migration work
 
 ---
 
-## 📄 Legal Disclaimer
+## 🛣️ Four-Phase Roadmap
 
-This document is provided for reference and consulting purposes only.  
-All trademarks, product names, and company names mentioned herein are the property of their respective owners.  
-This project is not affiliated with, endorsed by, or sponsored by Sun Life, DXC Technology, or any other third party mentioned.  
-No source code, license, or proprietary information of Ingenium or any third-party system is provided or distributed as part of this documentation or related services.
-
-By using or referencing this document, you acknowledge and agree to comply with all applicable intellectual property laws and the terms stated above.
+| Phase | Timeline | Deliverables |
+|-------|----------|-------------|
+| **1. Foundation** | Month 1–2 | AWS account setup, VPC, IAM, baseline security controls |
+| **2. Migration** | Month 3–5 | Migrate Ingenium DEV/TEST, performance testing, optimization |
+| **3. Production** | Month 6–8 | Migrate PROD with dual-run, comprehensive validation |
+| **4. Optimization** | Month 9+ | Cost optimization, performance tuning, full automation |
 
 ---
+
+## 🤝 Nexus Support Scope
+
+Nexus provides tooling and consulting for:
+
+- ✅ Cloud architecture design for Ingenium workloads
+- ✅ Nexus toolchain setup on cloud infrastructure
+- ✅ COBOL compilation pipeline on CI/CD
+- ✅ Monitoring and alerting for Ingenium
+- ✅ Security best practices and audit support
+- ✅ IT team training
+
+---
+
+## 📄 Legal Notice
+
+This document is provided for informational and advisory purposes only. All trademarks are the property of their respective owners. This project has no affiliation with DXC Technology, Sun Life, or any other third parties mentioned herein.

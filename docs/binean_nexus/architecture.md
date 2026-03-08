@@ -1,35 +1,37 @@
-# 🏗️ Nexus Architecture
+﻿# 🏗️ Nexus Architecture
+
+> **"A solid foundation does not merely bear today's load — it is ready for tomorrow's demands."**
 
 ---
 
 ## 🎯 Design Philosophy
 
-Nexus's architecture follows three guiding principles that set it apart from traditional DevOps tooling:
+Nexus architecture is built on **three core principles**:
 
-1. **Modular independence** — Each tool operates standalone, yet integrates seamlessly
-2. **Zero-dependency deployment** — Single binary executables, no runtime environment needed
-3. **Cross-platform by design** — Native support for both Windows (Dev) and Linux (Production)
-
-This ensures that Nexus delivers value immediately upon deployment, with no complex setup or infrastructure changes required.
+| Principle | Practical Meaning |
+|-----------|------------------|
+| **Module Independence** | Each tool operates standalone — deploy incrementally, no all-or-nothing commitment |
+| **Deployment Simplicity** | Single binary per tool, no runtime dependencies, no complex installation |
+| **Cross-Platform Native** | Windows (Dev) and Linux (Production) — identical behavior, no surprises |
 
 ---
 
 ## 🧬 System Architecture
 
-Nexus is structured as a **Rust workspace** — a unified codebase of 11 specialized crates (packages) that share a common core library while maintaining clear separation of concerns.
+Nexus is a **Rust workspace** of 11 specialized crates sharing a common core library while maintaining clear separation of responsibility.
 
 ```mermaid
 graph TB
     subgraph "Developer Environment"
-        VSCODE["VS Code Extension<br/>(TypeScript + React)"]
-        NEXUS_CLI["Nexus CLI<br/>(Environment Orchestrator)"]
-        ICOMP["icomp<br/>(Intelligent Compiler)"]
+        VSCODE["VS Code Extension"]
+        NEXUS_CLI["nexus CLI"]
+        ICOMP["icomp — Compiler"]
     end
 
-    subgraph "Management Server (isman)"
+    subgraph "Management Server — isman"
         AXUM["Axum HTTP Server"]
-        IPOL_SVC["Policy Service<br/>(ipol)"]
-        ING_SVC["Ingenium Service<br/>(ing)"]
+        IPOL_SVC["Policy Service (ipol)"]
+        ING_SVC["Ingenium Service (ing)"]
         JOBS["Job Scheduler"]
         HEALTH["Health Monitor"]
     end
@@ -52,19 +54,16 @@ graph TB
     VSCODE --> NEXUS_CLI
     VSCODE --> ICOMP
     VSCODE --> AXUM
-
     NEXUS_CLI --> TERMINAL
     ICOMP --> TERMINAL
     AXUM --> IPOL_SVC
     AXUM --> ING_SVC
     AXUM --> JOBS
     AXUM --> HEALTH
-
     IPOL_SVC --> TERMINAL
     IPOL_SVC --> DB2
     ING_SVC --> TERMINAL
     JOBS --> TERMINAL
-
     TERMINAL --> LOCAL
     TERMINAL --> REMOTE
     DB2 --> DB2_SERVER
@@ -74,143 +73,115 @@ graph TB
 
 ---
 
-## 📦 Crate Dependency Map
+## 📦 Dependency Map
 
-Every component in Nexus builds upon the **Core Library**, ensuring consistent behavior across all tools:
+Every component builds on the **Core Library** — ensuring consistent behavior system-wide:
 
-| Crate | Type | Purpose | Key Dependencies |
-|-------|------|---------|------------------|
-| **core** | Library | Foundation: terminal, DB2, crypto, parallel execution | aes-gcm, tokio, serde |
-| **ssh** | Library | SSH connection management and pooling | ssh2, core |
-| **policy** | Library | Policy data models and business logic | core |
-| **nexus** | Binary | Environment orchestrator CLI | core, ssh |
-| **icomp** | Binary | Intelligent COBOL compiler | core |
-| **iman** | Binary | Ingenium manager (CLI) | core |
-| **ipol** | Binary | Policy manager (CLI) | core, policy |
-| **isman** | Binary | Management HTTP server | core, ssh, policy, axum, tokio |
-| **benova** | Binary | Developer utilities CLI | core |
-| **vscext** | Extension | VS Code integration | TypeScript, webpack |
+| Crate | Type | Function |
+|-------|------|----------|
+| **core** | Library | Foundation: terminal, DB2, crypto, parallel execution |
+| **ssh** | Library | SSH connection management and pooling |
+| **policy** | Library | Policy data models and business logic |
+| **nexus** | Binary | CLI for environment orchestration |
+| **icomp** | Binary | Intelligent COBOL compiler |
+| **iman** | Binary | Ingenium management (CLI) |
+| **ipol** | Binary | Policy management (CLI) |
+| **isman** | Binary | Central HTTP management server |
+| **benova** | Binary | Developer utilities |
+| **vscext** | Extension | VS Code integration |
 
 ---
 
 ## 🔌 Terminal Abstraction Layer
 
-One of Nexus's most powerful architectural decisions is the **unified Terminal trait** — an abstraction that allows every operation to run identically on local machines or remote servers via SSH.
+This is **the most important architectural decision** in Nexus — a unified abstraction allowing every operation to run identically on a local machine or remote server via SSH.
 
 ```
-               ┌────────────────────┐
-               │   Terminal Trait    │
-               │  execute()         │
-               │  read_all()        │
-               │  change_directory()│
-               │  get_variable()    │
-               └──┬──────────────┬──┘
-                  │              │
-          ┌───────▼───┐   ┌─────▼────────┐
-          │   Local    │   │     SSH       │
-          │ Terminal   │   │   Terminal    │
-          └───────────┘   └──────────────┘
+               ┌──────────────────────┐
+               │    Terminal Trait     │
+               │  execute()           │
+               │  read_all()          │
+               │  change_directory()  │
+               │  get_variable()      │
+               └──┬───────────────┬───┘
+                  │               │
+          ┌───────▼────┐   ┌──────▼──────────┐
+          │   Local    │   │  SSH Terminal    │
+          │ Terminal   │   │  (Remote)        │
+          └────────────┘   └─────────────────┘
 ```
 
-**Why this matters for enterprises:**
+**Practical Benefits:**
 
-- **Write once, run anywhere** — The same code manages both local dev and remote production
-- **Terminal pooling** — Reuses connections efficiently, preventing resource exhaustion
-- **Configurable timeouts** — Operations automatically adapt from quick queries (seconds) to long-running batch jobs (minutes)
-- **Automatic health checks** — Dead connections are detected and replaced transparently
+- **Write once, run anywhere** — code managing a local dev machine and a production server is identical
+- **Terminal Pooling** — efficient connection reuse, preventing resource exhaustion
+- **Configurable timeouts** — from quick queries (seconds) to long-running batch jobs (minutes)
+- **Automatic health checks** — dead connections are transparently detected and replaced, zero disruption
 
 ---
 
 ## 🌐 Management Server Architecture
 
-The **isman** management server is built on [Axum](https://github.com/tokio-rs/axum) — one of the fastest and most reliable Rust web frameworks — running on the [Tokio](https://tokio.rs/) async runtime.
-
-### Request Flow
+**isman** is built on Axum + Tokio — a high-performance async Rust stack handling thousands of concurrent requests with minimal resources.
 
 ```
 Client Request
       │
       ▼
-┌───────────┐     ┌──────────────┐     ┌───────────────┐
-│  Router   │────▶│  Validation  │────▶│ spawn_blocking │
-│  (Axum)   │     │  (IpolParam) │     │   (Tokio)      │
-└───────────┘     └──────────────┘     └───────┬───────┘
+┌───────────┐     ┌──────────────┐     ┌────────────────┐
+│  Router   │────▶│  Validation  │────▶│ spawn_blocking  │
+│  (Axum)   │     │  (Params)    │     │   (Tokio)       │
+└───────────┘     └──────────────┘     └───────┬────────┘
                                                 │
-                                         ┌──────▼──────┐
-                                         │  Terminal    │
-                                         │  Pool        │
-                                         └──────┬──────┘
+                                       ┌────────▼───────┐
+                                       │  Terminal Pool  │
+                                       └────────┬───────┘
                                                 │
-                                         ┌──────▼──────┐
-                                         │  DB2 / SSH   │
-                                         │  Operations  │
-                                         └─────────────┘
+                                       ┌────────▼───────┐
+                                       │  DB2 / SSH Ops  │
+                                       └────────────────┘
 ```
-
-### Key Design Features
-
-- **Non-blocking architecture** — Blocking I/O operations (DB2 queries, file access, SSH commands) are offloaded to dedicated thread pools via `spawn_blocking`, ensuring the async event loop remains responsive
-- **Input validation** — All incoming parameters are validated before processing, preventing injection attacks and path traversal
-- **Graceful shutdown** — Broadcast-based shutdown mechanism ensures all in-flight operations complete cleanly
-- **Job scheduling** — Background scheduler manages recurring tasks with configurable thread pools
-- **Health monitoring** — Built-in `/status` endpoint provides real-time uptime and system health
 
 ### API Endpoints
 
 | Endpoint | Method | Function |
 |----------|--------|----------|
-| `/ping` | GET | Connectivity check |
-| `/status` | GET | System health & uptime |
+| `/ping` | GET | Fast connectivity check |
+| `/status` | GET | System health and uptime |
 | `/ipol/tasks` | GET | List policy tasks |
 | `/ipol/copy` | POST | Copy policy between environments |
 | `/ipol/export` | POST | Export policy artifacts |
 | `/ipol/import` | POST | Import policy artifacts |
-| `/ipol/download` | GET | Download policy archive |
-| `/ipol/upload` | POST | Upload policy archive |
-| `/shutdown` | POST | Graceful server shutdown |
+| `/ipol/upload` | POST | Upload archive via HTTP |
+| `/ipol/download` | GET | Download archive via HTTP |
+| `/shutdown` | POST | Controlled server shutdown |
 
 ---
 
 ## 🗄️ DB2 Integration
 
-Nexus provides a **type-safe, injection-resistant** DB2 integration layer that works seamlessly across local and remote environments:
-
-- **Automatic connection management** — Connect once, reuse across operations, auto-disconnect on cleanup
-- **Secure credential handling** — Passwords are decrypted in memory, set as environment variables briefly for authentication, then immediately cleared with verification
-- **SQL injection prevention** — Built-in `sql_escape()` function and parameterized queries
-- **Atomic operations** — Support for atomic multi-statement transactions via `BEGIN ATOMIC ... END`
-- **Error detection** — Intelligent SQLSTATE and SQL code parsing to detect and report database errors
-
----
-
-## 🔄 Parallel Execution Engine
-
-For operations that must run across multiple servers or environments simultaneously, Nexus provides a **parallel execution framework**:
-
-- Execute the same operation across N targets concurrently
-- Configurable concurrency limits to prevent resource saturation
-- Aggregated results with per-target error reporting
-- Thread-safe terminal pool management
+- ✅ **Automatic connection management** — connect once, reuse, auto-close on cleanup
+- ✅ **Secure credential handling** — decrypted in memory, zeroed immediately after use, never logged
+- ✅ **SQL injection prevention** — built-in `sql_escape()` function and parameterized queries
+- ✅ **Atomic operations** — supports `BEGIN ATOMIC ... END` for multi-statement transactions
+- ✅ **Intelligent error detection** — SQLSTATE and SQL code analysis for precise error reporting
 
 ---
 
 ## 📐 Technology Stack
 
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **Language** | Rust 2021 | Performance, safety, zero-cost abstractions |
-| **Async Runtime** | Tokio | Industry-standard async runtime for Rust |
-| **HTTP Framework** | Axum 0.7 | Type-safe, ergonomic, high-performance |
-| **Encryption** | AES-256-GCM | Military-grade authenticated encryption |
-| **SSH** | libssh2 | Battle-tested SSH protocol implementation |
-| **Serialization** | Serde + TOML | Human-readable configuration, type-safe parsing |
-| **CLI** | Clap | Robust argument parsing with auto-generated help |
-| **Extension** | TypeScript + Webpack | Modern VS Code extension development |
+| Layer | Technology | Reason |
+|-------|-----------|--------|
+| Core language | Rust | High performance + memory safety + single binary |
+| Async runtime | Tokio | Thousands of concurrent connections, zero overhead |
+| HTTP framework | Axum | Fastest in Rust, type-safe routing |
+| Encryption | AES-256-GCM | Military-grade, authentication built-in |
+| SSH | libssh2 | Battle-tested, production-proven SSH library |
+| Serialization | serde + serde_json | Zero-copy, maximum throughput |
+| Compression | zstd | Best compression ratio available today |
 
 ---
 
-## 📄 Legal Disclaimer
+## 📄 Legal Notice
 
-This document is provided for reference and consulting purposes regarding system integration and transformation solutions.  
-All trademarks, product names, and company names mentioned herein are the property of their respective owners.  
-This project is not affiliated with, sponsored by, or endorsed by DXC Technology, Sun Life, or any other third party mentioned.
+This document is provided for informational and advisory purposes only. All trademarks are the property of their respective owners. This project has no affiliation with DXC Technology, Sun Life, or any other third parties mentioned herein.

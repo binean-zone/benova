@@ -1,188 +1,162 @@
-# 🛠️ Nexus Toolchain
+﻿# 🛠️ The Nexus Toolchain
+
+> **"Every hour spent waiting on compilation is an hour delivering zero value to your customers."**
 
 ---
 
-## 🎯 A Complete DevOps Ecosystem
+## Problems Nexus Was Built to Solve
 
-The Nexus Toolchain is a suite of purpose-built tools that together form a **complete DevOps ecosystem** for Ingenium insurance systems. Each tool solves a specific operational challenge, and all share a common foundation — the Nexus Core Library.
+Before Nexus, IT teams at Ingenium-based insurers faced the same daily grind:
 
-> **One platform. Every workflow. From code to production.**
+- ⏳ Manual COBOL compilation consuming **hours** per change
+- 🔁 Copy-pasting commands between dev machine and server — the root of every "works on my machine" incident
+- 🔒 DB2 and SSH passwords spread across config files — a compliance violation waiting to be discovered
+- 📦 Manual policy migration between environments — error-prone, undocumented, high-stakes
+- 🌩️ No reliable tool for automated overnight batch processing
+- 👁️ No insight into what is actually running in production
+
+Nexus solves **all of these** with a suite of purpose-built tools.
 
 ---
 
-## ⚙️ icomp — Intelligent Compiler
+## ⚡ `icomp` — The Intelligent Compiler
 
-### The Problem
-Compiling an Ingenium system is one of the most time-consuming and error-prone tasks in the development lifecycle. A typical full build involves hundreds of COBOL programs with complex interdependencies. Traditional approaches require developers to manually identify which programs need recompilation — a process that is slow, unreliable, and dependent on tribal knowledge.
+A next-generation COBOL compilation system for Ingenium — from hours to **minutes**, from risky manual commands to **zero human error**.
 
-### The Solution
-**icomp** is a Git-aware intelligent compilation engine that **automatically analyzes code changes** between branches to determine exactly which programs need to be rebuilt.
+### Why Is icomp So Fast?
 
-### How It Works
+| Old Problem | icomp Solution | Result |
+|-------------|----------------|--------|
+| Sequential, file-by-file compilation | **Dependency graph analysis** — maximum parallel compilation | 5–10x faster |
+| No knowledge of what needs recompiling | **Intelligent change detection** — only recompile what was affected | No wasted work |
+| Long manual commands, easy to mistype | **Simple single-command API** | Zero user error |
+
+### Key Features
+
+- 🔍 **COBOL dependency analysis** — automatically determines compilation order and scope
+- 🚀 **Parallel compilation** — takes full advantage of all available CPU cores
+- 📊 **Detailed reporting** — timing, results, and error list with full context
+- 🔄 **Incremental builds** — only rebuild what has genuinely changed
+
+---
+
+## 🖥️ `iman` — Ingenium Manager
+
+A unified CLI for all Ingenium operations, **working identically** on Windows and Linux — no differences, no surprises.
+
+| Feature | Windows | Linux (Production) |
+|---------|---------|---------------------|
+| Ingenium process management | ✅ | ✅ |
+| File system operations | ✅ | ✅ |
+| DB2 interaction | ✅ | ✅ |
+| COBOL artifact management | ✅ | ✅ |
+| Remote server management | ✅ via SSH | ✅ native |
+
+---
+
+## 🌐 `isman` — Management Server
+
+The central management server enabling **automation, monitoring, and external integration** without manual server logins.
+
+### isman Architecture
 
 ```
-  Git Repository
+Dashboard / CI/CD
        │
+       │ REST API
        ▼
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Diff Analysis│────▶│  Dependency  │────▶│  Incremental │
-│  (Git Branch) │     │   Graph      │     │    Build     │
-└──────────────┘     └──────────────┘     └──────────────┘
+┌─────────────────┐
+│   isman server  │
+│   (Axum/Tokio)  │
+├─────────────────┤
+│  Policy Service │──────▶ Ingenium Environments
+│  Batch Scheduler│──────▶ Overnight Jobs
+│  Health Monitor │──────▶ Alerts & Notifications
+└─────────────────┘
 ```
 
-1. **Change Detection** — Compares the current branch against a target (e.g., `main`) to identify modified files
-2. **Dependency Resolution** — Traverses the COBOL program dependency graph to find all impacted programs
-3. **Incremental Build** — Compiles only the affected programs and their dependents
+### Key Features
 
-### Key Benefits
-
-| Metric | Traditional | With icomp |
-|--------|------------|------------|
-| Build scope | Full rebuild (100%) | Only changed + dependents (~5-15%) |
-| Build time | Hours | Minutes |
-| Human error risk | High (manual selection) | Zero (automated analysis) |
-| Git integration | None | Native branch comparison |
-
-### Developer Experience
-- Runs directly from VS Code or command line
-- Clear progress reporting with error/warning counts
-- Outputs compatible with VS Code's Problem panel for instant error navigation
+| Feature | Description |
+|---------|-------------|
+| **REST API** | Every operation has an API endpoint — easy CI/CD and dashboard integration |
+| **Built-in scheduler** | Schedule batch jobs without a separate cron system |
+| **Health monitoring** | Tracks Ingenium server uptime, alerts on anomalies |
+| **Zero-downtime config reload** | Hot-reload configuration without restart |
+| **Connection pooling** | Efficient SSH and DB2 connection reuse for maximum throughput |
 
 ---
 
-## 🏢 iman — Ingenium Manager
+## 📋 `ipol` — Policy Manager
 
-### The Problem
-Managing Ingenium's COBOL worker processes across development and production environments requires deep platform-specific knowledge. On Windows, developers need debug-mode workers that integrate with IDE debuggers. On Linux, operations teams need multiple parallel workers with configurable instance counts.
+A specialized wrapper over `isman` for **safely copying policies between environments** with full control and validation.
 
-### The Solution
-**iman** provides unified worker management across all platforms, with environment-appropriate behavior.
-
-### Capabilities
-
-#### Development (Windows)
-- **Single debug worker** — Launches one worker process in debug mode
-- **Debugger integration** — Automatically attaches to the Rocket COBOL extension for step-through debugging
-- **Instant feedback** — See COBOL execution in real-time within VS Code
-
-#### Production (Linux)
-- **Parallel workers** — Launch N worker processes simultaneously (configurable)
-- **Process management** — Start, stop, and monitor all workers from a single command
-- **Graceful shutdown** — Ensures all in-flight transactions complete before stopping
-
-### Future: The Nova App Foundation
-iman is strategically positioned as the foundation for **Nova App** — the next-generation insurance core. The Orbit phase roadmap includes:
-
-- **MIR API** — Direct communication with PathFinder, bypassing MQ entirely
-- **REST API** — Modern HTTP interface for new application integration  
-- **24/7 Availability** — Query contract data even during batch processing
-- **Autoscaling** — Automatically adjust worker count based on transaction volume
-
----
-
-## 🌐 isman — Management Server
-
-### The Problem
-Operating an Ingenium system across multiple environments (Dev, ST, AT, Production) involves coordinating dozens of manual tasks: deploying policy updates, transferring artifacts between servers, scheduling jobs, and monitoring system health. There is no centralized control plane.
-
-### The Solution
-**isman** (Ingenium Management System) is a high-performance HTTP server that serves as the **central operations hub** for all Ingenium management tasks.
-
-### Architecture Highlights
-
-- **Built on Axum + Tokio** — Rust's premier async web stack, handling thousands of concurrent requests with minimal resource usage
-- **Non-blocking I/O** — All database and file operations run on dedicated thread pools, never blocking the event loop
-- **Terminal pool management** — Efficient reuse of local and SSH connections
-- **Validated inputs** — Every request parameter is validated for safety and correctness
-
-### Service Modules
-
-#### 📦 Policy Management (ipol)
-The policy module handles the complete lifecycle of insurance policy artifacts:
-
-| Operation | Description |
-|-----------|-------------|
-| **Copy** | Transfer policy configuration between environments |
-| **Export** | Package policy artifacts into compressed archives (.zst) |
-| **Import** | Deploy policy archives to target environments |
-| **Upload/Download** | Artifact transfer via HTTP for cross-network deployment |
-| **Task Tracking** | Full audit trail of all policy operations |
-
-#### 🔄 Ingenium Operations (ing)
-Direct management of Ingenium service operations across remote servers.
-
-#### ⏰ Job Scheduler
-Automated recurring task execution:
-- Configurable thread pool size
-- Broadcast-based coordination
-- Graceful shutdown support
-
-#### 💓 System Health
-- `/ping` — Simple connectivity check
-- `/status` — Real-time health: uptime, system status
-
----
-
-## 📦 ipol — Policy Manager (CLI)
-
-For scenarios where a full management server isn't needed, **ipol** provides direct command-line access to policy operations:
+### Example Workflow
 
 ```bash
-# Copy policy from DEV to ST
-ipol copy DEV ST POLICY_001
+# Copy a policy from TEST to PROD
+ipol copy --from test --to prod --id POL-2024-001
 
-# Copy with a specific tag
-ipol copy DEV ST POLICY_001 --tag v2.1
+# Export all policy artifacts for backup
+ipol export --env test --out ./exports/daily-backup.tar.zst
+
+# Import policies into a new environment
+ipol import --env prod --file ./exports/daily-backup.tar.zst
 ```
 
-Ideal for:
-- Quick one-off operations
-- Scripted automation in CI/CD pipelines
-- Environments where running a server is impractical
-
 ---
 
-## 🖥️ nexus — Environment Orchestrator
+## 🧩 `nexus` CLI — Environment Orchestrator
 
-The **nexus** CLI is the command-center that ties everything together:
+The core tool for initializing and managing the entire Nexus environment configuration — **one command to start everything**.
 
-- **Environment management** — Switch between Dev, ST, AT, Production configurations
-- **Tool coordination** — Launch and configure other Nexus tools
-- **Configuration generation** — Auto-generate environment-specific settings
-- **License management** — Handle tool licensing and activation
+```bash
+# Initialize a new workspace
+nexus init
 
----
+# Check the status of all connections
+nexus status
 
-## 🔌 benova — Developer Utilities
-
-The **benova** CLI provides developer-facing utilities:
-
-- **Development environment setup** — Configure local development dependencies
-- **Configuration management** — Manage developer-specific settings and profiles
-- **Environment variable management** — Simplified setup for complex build environments
-
----
-
-## 🔗 How They Work Together
-
-```
-Developer's Daily Workflow:
-
-1. Open VS Code → Extension initializes workspace
-2. Write code → Git tracks changes automatically
-3. Build → icomp compiles only what changed
-4. Test locally → iman runs debug worker
-5. Deploy to ST → isman/ipol copies policy to staging
-6. Monitor → /status endpoint confirms system health
-7. Promote to PROD → Same toolchain, different target
+# Manage connection credentials (AES-256-GCM encrypted)
+nexus credentials add
+nexus credentials list
 ```
 
-The power of the Nexus Toolchain lies not just in individual tools, but in how they **compose into a seamless workflow** — from the first line of code to production deployment, every step is automated, validated, and auditable.
+---
+
+## 🔄 A Typical Day With Nexus
+
+```
+     Morning
+         │
+         ▼
+┌──────────────────┐
+│  nexus status    │ ← Verify all servers are online
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Code → icomp    │ ← Compile changes (10x faster)
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  iman test       │ ← Run tests against dev environment
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  ipol copy       │ ← Promote policies to staging/prod
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  isman monitor   │ ← Watch production health
+└──────────────────┘
+```
 
 ---
 
-## 📄 Legal Disclaimer
+## 📄 Legal Notice
 
-This document is provided for reference and consulting purposes regarding system integration and transformation solutions.  
-All trademarks, product names, and company names mentioned herein are the property of their respective owners.  
-This project is not affiliated with, sponsored by, or endorsed by DXC Technology, Sun Life, or any other third party mentioned.
+This document is provided for informational and advisory purposes only. All trademarks are the property of their respective owners. This project has no affiliation with DXC Technology, Sun Life, or any other third parties mentioned herein.

@@ -7,6 +7,8 @@
         "CARGO_HTTP_CHECK_REVOKE": "false"
     },
     "chat.tools.terminal.autoApprove": {
-        "Set-Content": true
+        "Set-Content": true,
+        "Get-Item": true,
+        "ForEach-Object": true
     }
 }
