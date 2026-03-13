@@ -1,0 +1,8 @@
+- 2026-03-13: Idea: Add pricing page for Nova
+- 2026-03-13: Intent: Launch marketing campaign after roadmap finalized
+- 2026-03-13: Backlog: Improve mobile UX for homepage
+- 2026-03-13: Backlog: Add demo booking CTA
+- 2026-03-13: Idea: Integrate analytics for conversion tracking
+- 2026-03-13: Intent: Translate all docs to Vietnamese
+- 2026-03-13: Backlog: Review all links for broken references
+- 2026-03-13: Idea: Create FAQ page for insurance transformation

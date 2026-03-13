@@ -1,0 +1,7 @@
+- 2026-03-13: Started organizing project memory for AI and team
+- 2026-03-13: Decided to switch website to marketing-first
+- 2026-03-13: Disabled blog for focus
+- 2026-03-13: Created OpenSpecs and synced to Copilot memory
+- 2026-03-13: Noted need for backlog and journal files
+- 2026-03-13: Team discussion: roadmap needs clearer KPI per phase
+- 2026-03-13: Personal note: Copilot memory helps reduce repeat context
