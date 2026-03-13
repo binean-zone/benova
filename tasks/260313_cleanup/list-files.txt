@@ -1,0 +1,38 @@
+Danh sách file/folder chưa được link hoặc sử dụng (chưa xác nhận):
+
+# Docs
+- docs/tutorial-basics/create-a-page.md
+- docs/tutorial-basics/create-a-document.md
+- docs/tutorial-basics/create-a-blog-post.md
+- docs/tutorial-basics/congratulations.md
+- docs/tutorial-basics/markdown-features.mdx
+- docs/tutorial-basics/deploy-your-site.md
+- docs/tutorial-extras/translate-your-site.md
+- docs/tutorial-extras/manage-docs-versions.md
+- docs/tutorial-extras/_category_.json
+- docs/tutorial-basics/_category_.json
+- docs/tutorial-extras/img/docsVersionDropdown.png
+- docs/tutorial-extras/img/localeDropdown.png
+- docs/tutorial-extras/_category_.json
+- docs/binean_orbit/_category_.json
+- docs/binean_vista/_category_.json
+
+# Blog
+- blog/2019-05-28-first-blog-post.md
+- blog/2019-05-29-long-blog-post.md
+- blog/2021-08-01-mdx-blog-post.mdx
+- blog/2021-08-26-welcome/index.md
+- blog/2021-08-26-welcome/docusaurus-plushie-banner.jpeg
+- blog/tags.yml
+- blog/authors.yml
+
+# Images
+- static/img/undraw_docusaurus_tree.svg
+- static/img/undraw_docusaurus_react.svg
+- static/img/undraw_docusaurus_mountain.svg
+- static/img/docusaurus.png
+
+# Pages
+- src/pages/markdown-page.md
+
+Bạn hãy review và xác nhận file/folder nào cần giữ lại, còn lại sẽ được xóa.
