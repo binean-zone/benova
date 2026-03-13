@@ -1,23 +1,330 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
+/* ===== HERO SECTION ===== */
+.heroSection {
+  padding: 5rem 0 4rem;
+  background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2b4c7e 100%);
+  color: #fff;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.buttons {
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.heroAccent {
+  background: linear-gradient(90deg, #78a9ff, #a6c8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #c8d6e5;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroCta {
   display: flex;
-  align-items: center;
+  gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  background: #3578e5 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+  padding: 0.75rem 2rem !important;
+  transition: all 0.2s;
+}
+
+.ctaPrimary:hover {
+  background: #2563c7 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(53, 120, 229, 0.4);
+}
+
+.ctaSecondary {
+  background: transparent !important;
+  color: #fff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+  padding: 0.75rem 2rem !important;
+  transition: all 0.2s;
+}
+
+.ctaSecondary:hover {
+  border-color: #fff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ===== SECTION COMMON ===== */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.15rem;
+  color: var(--ifm-color-emphasis-600);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== PAIN POINTS SECTION ===== */
+.painSection {
+  padding: 5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.painGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.painCard {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-color);
+  transition: all 0.2s;
+}
+
+.painCard:hover {
+  border-color: #e74c3c;
+  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.08);
+}
+
+.painIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.painTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== SOLUTION SECTION ===== */
+.solutionSection {
+  padding: 5rem 0;
+  background: var(--ifm-background-color);
+}
+
+.solutionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.solutionCard {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-surface-color);
+  transition: all 0.2s;
+}
+
+.solutionCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 20px rgba(53, 120, 229, 0.1);
+  transform: translateY(-2px);
+}
+
+.solutionIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.solutionCardTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== METRICS SECTION ===== */
+.metricsSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
+  color: #fff;
+}
+
+.metricsSection .sectionTitle {
+  color: #fff;
+}
+
+.metricsSection .sectionSubtitle {
+  color: #c8d6e5;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.metricCard {
+  padding: 2rem 1rem;
+}
+
+.metricValue {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #78a9ff, #a6c8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.metricUnit {
+  font-size: 1.5rem;
+  margin-left: 0.25rem;
+}
+
+.metricLabel {
+  font-size: 1rem;
+  color: #c8d6e5;
+}
+
+/* ===== ROADMAP SECTION ===== */
+.roadmapSection {
+  padding: 5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.roadmapTimeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.roadmapCard {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-color);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.roadmapCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 20px rgba(53, 120, 229, 0.1);
+}
+
+.roadmapIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.roadmapBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.roadmapName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.roadmapTagline {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.roadmapDesc {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-600);
+  line-height: 1.6;
+}
+
+/* ===== CTA SECTION ===== */
+.ctaSection {
+  padding: 5rem 0;
+  background: var(--ifm-background-color);
+  text-align: center;
+}
+
+.ctaContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ctaSubtitle {
+  font-size: 1.15rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 996px) {
+  .heroSection {
+    padding: 3rem 1rem;
+  }
+  .heroTitle {
+    font-size: 2rem;
+  }
+  .heroSubtitle {
+    font-size: 1.05rem;
+  }
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  .metricValue {
+    font-size: 2.5rem;
+  }
 }

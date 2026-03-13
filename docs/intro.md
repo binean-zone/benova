@@ -2,49 +2,70 @@
 sidebar_position: 1
 ---
 
-# ✨ Binean Nova: Reimagining the Ingenium Insurance Core
+# Why Nova?
 
-**Binean Nova** is a strategic journey to completely reimagine the Ingenium insurance core system, transforming it from a traditional platform into a **modern, agile, and future-ready** digital ecosystem.
+**Every day your legacy insurance core stays unchanged, your competitors gain ground.**
 
-> ✨ **Slogan: “Connecting the past, reaching the future.”**
+The insurance industry is undergoing a once-in-a-generation digital transformation. Customers expect instant digital experiences. Regulators demand stronger compliance. Your business needs agility to launch new products faster than ever.
 
-We are not just upgrading technology; we are building a resilient foundation capable of adapting, scaling, and embracing groundbreaking innovations. Each phase of the Nova roadmap is meticulously designed to:
-
-- **Preserve Legacy:** Ensure stable operations and protect core business value.
-- **Modernize Intelligently:** Integrate advanced technology and automate processes with DevOps.
-- **Unlock the Future:** Build an open platform ready for any connection and limitless growth.
+But your core system — the backbone of your entire operation — was built for a different era.
 
 ---
 
-## 🚀 The Nova Transformation Roadmap
+## The Cost of Standing Still
 
-The Nova journey is divided into four strategic phases, each representing a solid step toward the future.
+Organizations running legacy insurance core systems face mounting pressure:
 
-### 1. 🌐 Nexus – A Solid Foundation
-**Objective:** To build a robust digital infrastructure and establish intelligent DevOps processes. This foundational step ensures stability, security, and long-term scalability for the entire system.
+| Challenge | Business Impact |
+|-----------|----------------|
+| **Manual deployments** | Hours of downtime per release, high failure risk |
+| **Aging technology (COBOL/AIX)** | Shrinking talent pool, rising maintenance costs |
+| **No modern APIs** | Cannot connect to digital channels, partners, or ecosystems |
+| **Manual operations** | Compliance gaps, audit failures, security exposure |
+| **Rigid infrastructure** | Cannot scale to meet peak demand or new market opportunities |
 
-### 2. 🪐 Orbit – The Core of Modernization
-**Objective:** To modernize and optimize the Ingenium core by standardizing its architecture and services. This phase creates a sustainable growth "orbit," propelling the traditional system into the digital age.
-
-### 3. 🌄 Vista – A Vision for Experience
-**Objective:** To expand our vision by redesigning the entire user experience. We are delivering an intuitive, modern, and seamless interface that shapes the strategy for the next generation of products.
-
-### 4. 🚀 Apex – The Summit of Innovation
-**Objective:** To reach the pinnacle of innovation by completely re-architecting business logic and data structures. This phase unlocks limitless integration potential, fostering a dynamic and continuously evolving digital ecosystem.
+These are not IT problems — they are **business-critical risks** that directly affect revenue, customer satisfaction, and competitive position.
 
 ---
 
-## 💎 Core Values
+## Nova: A Smarter Path Forward
 
-- **Sustainable Platform:** Building a powerful, flexible, and future-ready insurance core.
-- **Optimized Operations:** Achieving rapid deployment and stable operations through advanced automation and DevOps.
-- **Seamless Transition:** Supporting legacy and modern systems in parallel to ensure uninterrupted business.
-- **Limitless Integration:** Easily connecting with any future application and solution.
+**Binean Nova** is a proven platform that modernizes your insurance core system **without disrupting your current operations**. Instead of a risky "big bang" replacement, Nova takes a phased approach — each phase delivers measurable business value while building toward a fully modern platform.
+
+### What Makes Nova Different
+
+- **Preserve Your Investment** — Nova works alongside your existing system, protecting years of business logic and data
+- **Deliver Value Immediately** — Start with Nexus and see results in weeks: faster deployments, automated operations, reduced costs
+- **Scale at Your Pace** — Adopt each phase when your organization is ready, with no forced timelines
+- **Proven in Production** — Successfully deployed at a leading insurance enterprise, completing a full cloud migration in 9 months
 
 ---
 
-## 🏁 Forging the Future
+## Real Results
 
-**Binean Nova** is more than a technology project; it is a commitment to the future. We combine the strength of our legacy with the potential of modern technology to create an insurance core that is **resilient, scalable, and full of potential**.
+| Metric | Before Nova | After Nova |
+|--------|-------------|------------|
+| Deployment time | Hours | **Minutes** |
+| COBOL compilation | Hours | **Minutes** |
+| Infrastructure uptime | Variable | **99.95%** |
+| Infrastructure cost | Baseline | **-40%** |
+| Disaster recovery | Unknown | **< 1 minute** |
 
-Every step on this journey is an opportunity for innovation, opening the door to breakthrough growth for our customers and partners.
+---
+
+## The Nova Transformation Roadmap
+
+Nova's four-phase roadmap ensures a smooth, low-risk transformation:
+
+| Phase | Focus | Business Value |
+|-------|-------|---------------|
+| **[Nexus](/docs/binean_nexus/intro)** — Available Now | DevOps automation, intelligent toolchain | Immediate productivity gains, cost reduction |
+| **[Orbit](/docs/binean_orbit/intro)** — Coming Soon | Core modernization, REST APIs | Eliminate middleware, enable integrations |
+| **[Vista](/docs/binean_vista/intro)** — Planned | UI/UX transformation | Modern customer and agent experiences |
+| **[Apex](/docs/binean_apex/intro)** — Planned | Full re-architecture | Limitless innovation, complete modernization |
+
+---
+
+## Start Your Transformation
+
+The journey to a modern insurance platform starts with a single step. [Explore the Nova platform →](/docs/nova)

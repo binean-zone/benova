@@ -3,8 +3,8 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Binean',
-  tagline: 'Innovation with resilience',
+  title: 'Binean Nova',
+  tagline: 'Modernize your insurance core — without disrupting your business',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -39,18 +39,7 @@ const config: Config = {
           editUrl:
             'https://github.com/binean-zone/benova/tree/main/apps/srce/Binean/benova/',
         },
-        // blog: {
-        //   showReadingTime: true,
-        //   feedOptions: {
-        //     type: ['rss', 'atom'],
-        //     xslt: true,
-        //   },
-        //   editUrl:
-        //     'https://github.com/binean-zone/benova/tree/main/apps/srce/Binean/benova/',
-        //   onInlineTags: 'warn',
-        //   onInlineAuthors: 'warn',
-        //   onUntruncatedBlogPosts: 'warn',
-        // },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -84,16 +73,21 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'benovaSidebar',
           position: 'left',
-          label: 'Benova',
+          label: 'Platform',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'axiomSidebar',
+          type: 'doc',
+          docId: 'binean_nexus/intro',
           position: 'left',
-          label: 'Axiom',
-          docsPluginId: 'axiom'
+          label: 'Solutions',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          type: 'doc',
+          docId: 'ing_on_cloud',
+          position: 'left',
+          label: 'Success Story',
+        },
+        // { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'localeDropdown',
           position: 'right',
@@ -109,11 +103,36 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Platform',
           items: [
             {
-              label: 'Benova',
+              label: 'Why Nova?',
               to: '/docs/intro',
+            },
+            {
+              label: 'The Platform',
+              to: '/docs/nova',
+            },
+            {
+              label: 'Success Story',
+              to: '/docs/ing_on_cloud',
+            },
+          ],
+        },
+        {
+          title: 'Solutions',
+          items: [
+            {
+              label: 'Nexus — DevOps Foundation',
+              to: '/docs/binean_nexus/intro',
+            },
+            {
+              label: 'Architecture',
+              to: '/docs/binean_nexus/architecture',
+            },
+            {
+              label: 'Security & Compliance',
+              to: '/docs/binean_nexus/security',
             },
           ],
         },

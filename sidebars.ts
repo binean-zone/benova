@@ -18,36 +18,40 @@ const sidebars: SidebarsConfig = {
 
   // But you can create a sidebar manually
   benovaSidebar: [
-    "intro",
+    {
+      type: "doc",
+      id: "intro",
+      label: "Why Nova?",
+    },
     {
       type: "doc",
       id: "ingenium",
-      label: "Ingenium",
+      label: "The Challenge",
     },
     {
       type: "doc",
       id: "ing_on_cloud",
-      label: "ING on Cloud",
+      label: "Success Story",
     },
     {
       type: "doc",
       id: "nova",
-      label: "Nova",
+      label: "The Platform",
     },
     {
       type: "category",
-      label: "Nexus",
-      description: "Foundation of Connection",
+      label: "Nexus — DevOps Foundation",
+      description: "Automated toolchain for Ingenium modernization",
       items: [
         {
           type: "doc",
           id: "binean_nexus/intro",
-          label: "Overview",
+          label: "Overview & Results",
         },
         {
           type: "doc",
           id: "binean_nexus/extension",
-          label: "Binean Nova VsCode Extension",
+          label: "VS Code Extension",
         },
         {
           type: "doc",
@@ -62,26 +66,26 @@ const sidebars: SidebarsConfig = {
         {
           type: "doc",
           id: "binean_nexus/security",
-          label: "Security & Reliability",
+          label: "Security & Compliance",
         },
       ],
     },
     {
       type: "category",
-      label: "Orbit",
-      description: "Core in Motion",
+      label: "Orbit — Core Modernization",
+      description: "Transform your insurance core",
       items: ["binean_orbit/intro"],
     },
     {
       type: "category",
-      label: "Vista",
-      description: "Vision Unfolded",
+      label: "Vista — Experience Design",
+      description: "Next-generation user interfaces",
       items: ["binean_vista/intro"],
     },
     {
       type: "category",
-      label: "Apex",
-      description: "Summit of Innovation",
+      label: "Apex — Full Innovation",
+      description: "Complete platform re-architecture",
       items: ["binean_apex/intro"],
     },
   ],
