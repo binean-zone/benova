@@ -6,6 +6,8 @@ sidebar_position: 1
 
 > **"Every day you spend on manual processes is a day your competitors are pulling further ahead."**
 
+![Ingenium Architecture Diagram](/img/Nexus.png)
+
 ---
 
 ## The Problem You Face Every Day
@@ -38,16 +40,16 @@ Nexus is a **purpose-built DevOps toolchain** for organizations running Ingenium
 
 ---
 
-## 📈 Real Results — Not Promises
+## 📈 Real Results
 
 **Sun Life Vietnam** completed a full Ingenium cloud migration in **9 months** using Nexus — on time, within budget, zero data loss.
 
 | Metric | Before Nexus | After Nexus |
 |--------|-------------|-------------|
 | COBOL compilation time | Hours | Minutes |
-| Deployment time | 2 days | 2 hours |
+| Deployment time | 1 hours | 1 minutes |
 | Infrastructure uptime | Variable | 99.95% |
-| Disaster recovery time | Unknown | 15 minutes RTO |
+| Disaster recovery time | Unknown | 1 minutes |
 | Infrastructure cost | Baseline | -40% |
 
 ---
@@ -56,33 +58,38 @@ Nexus is a **purpose-built DevOps toolchain** for organizations running Ingenium
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│              Developer Environment                   │
-│                                                     │
-│   VS Code Extension ──▶ nexus CLI                   │
-│         │                    │                      │
-│         ▼                    ▼                      │
-│      icomp                 iman                     │
-│  (COBOL Compiler)     (Ingenium Manager)            │
-└──────────────────┬──────────────────────────────────┘
-                   │
-                   │ REST API
-                   ▼
-┌─────────────────────────────────────────────────────┐
-│              isman — Management Server               │
-│                                                     │
-│   Policy Service ──▶ Policy Environments            │
-│   Job Scheduler  ──▶ Batch Jobs                     │
-│   Health Monitor ──▶ Alerts & Notifications         │
-└──────────────┬──────────────────────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────────────────────┐
-│              Target Systems                          │
-│                                                     │
-│   Ingenium Server     DB2 Database                  │
-│   (Linux / AIX)       (On-premise / Cloud)          │
-└─────────────────────────────────────────────────────┘
+│              VS Code Extension                       │
+│         (Developer Command Center)                   │
+└────────┬──────────────────────────────────┬─────────┘
+         │                                  │
+    ┌────▼────┐                       ┌─────▼─────┐
+    │  nexus  │                       │   icomp   │
+    │  (CLI)  │                       │(Compiler) │
+    └────┬────┘                       └───────────┘
+         │
+    ┌────▼──────────────────────────────────────────┐
+    │           isman (Management Server)            │
+    │  ┌──────┐  ┌──────┐  ┌────────┐  ┌────────┐  │
+    │  │ ipol │  │  ing │  │  jobs  │  │ health │  │
+    └──┴──────┴──┴──────┴──┴────────┴──┴────────┘  │
+                     │
+    ┌────────────────▼────────────────────────────┐
+    │           Core Library (Rust)                │
+    │  Terminal | DB2 | AES-256 | SSH | Pool       │
+    └─────────────────────────────────────────────┘
 ```
+
+**Component Descriptions:**
+- **VS Code Extension:** Developer Command Center for Ingenium projects
+- **nexus (CLI):** Environment orchestration, workspace initialization, configuration, connection
+- **icomp (Compiler):** Smart COBOL compiler, parallel and dependency-aware
+- **isman (Management Server):** Central management, REST API, scheduling, monitoring
+    - **ipol:** Policy lifecycle management (export, import, copy, deploy)
+    - **ing:** Ingenium integration and orchestration
+    - **jobs:** Batch job scheduling and automation
+    - **health:** Real-time health monitoring and alerting
+- **Core Library (Rust):** Terminal abstraction, DB2 integration, AES-256 encryption, SSH, resource pooling
+
 
 ---
 
