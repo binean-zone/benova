@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbenova=self.webpackChunkbenova||[]).push([[1640],{1574:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"axiom"}')}}]);

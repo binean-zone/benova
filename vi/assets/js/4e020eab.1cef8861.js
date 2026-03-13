@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbenova=self.webpackChunkbenova||[]).push([[7908],{6410:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/vi/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
