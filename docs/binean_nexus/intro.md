@@ -111,14 +111,6 @@ Nexus is implemented in Rust to provide:
 
 ## Getting Started
 
-```bash
-# Initialize workspace
-nexus init
-
-# Validate environment and connections
-nexus status
-```
-
 Then open VS Code and run Nexus workflows directly from the extension.
 
 **[View Full Installation Guide ->](/docs/binean_nexus/guides/intro)**

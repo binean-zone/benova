@@ -6,6 +6,7 @@
         "NODE_EXTRA_CA_CERTS": "${env:JAVA_HOME}\\lib\\security\\certadmin.crt",
         "CARGO_HTTP_CHECK_REVOKE": "false"
     },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "chat.tools.terminal.autoApprove": {
         "Set-Content": true,
         "Get-Item": true,

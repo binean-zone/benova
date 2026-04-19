@@ -31,7 +31,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "doc",
       id: "nova",
-      label: "The Platform",
+      label: "The Nova Platform",
     },
     {
       type: "category",
@@ -48,68 +48,68 @@ const sidebars: SidebarsConfig = {
           id: "binean_nexus/extension",
           label: "VS Code Extension",
         },
-        {
-          type: "doc",
-          id: "binean_nexus/toolchain",
-          label: "Toolchain",
-        },
-        {
-          type: "doc",
-          id: "binean_nexus/security",
-          label: "Security & Compliance",
-        },
-        {
-          type: "category",
-          label: "User Guides",
-          description: "Step-by-step guides for each Nexus tool",
-          items: [
-            {
-              type: "doc",
-              id: "binean_nexus/guides/intro",
-              label: "Getting Started",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/benova",
-              label: "benova — Environment Setup",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/icomp",
-              label: "icomp — COBOL Compiler",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/iman",
-              label: "iman — Server Manager",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/isman",
-              label: "isman — Management Server",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/ipol",
-              label: "ipol — Policy Manager",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/nexus",
-              label: "nexus — Utilities",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/itun",
-              label: "itun — SSH Tunnel",
-            },
-            {
-              type: "doc",
-              id: "binean_nexus/guides/extension",
-              label: "VS Code Extension Guide",
-            },
-          ],
-        },
+        // {
+        //   type: "doc",
+        //   id: "binean_nexus/security",
+        //   label: "Security & Compliance",
+        // },
+        // {
+        //   type: "doc",
+        //   id: "binean_nexus/toolchain",
+        //   label: "Toolchain",
+        // },
+        // {
+        //   type: "category",
+        //   label: "User Guides",
+        //   description: "Step-by-step guides for each Nexus tool",
+        //   items: [
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/intro",
+        //       label: "Getting Started",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/benova",
+        //       label: "benova — Environment Setup",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/icomp",
+        //       label: "icomp — COBOL Compiler",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/iman",
+        //       label: "iman — Server Manager",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/isman",
+        //       label: "isman — Management Server",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/ipol",
+        //       label: "ipol — Policy Manager",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/nexus",
+        //       label: "nexus — Utilities",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/itun",
+        //       label: "itun — SSH Tunnel",
+        //     },
+        //     {
+        //       type: "doc",
+        //       id: "binean_nexus/guides/extension",
+        //       label: "VS Code Extension Guide",
+        //     },
+        //   ],
+        // },
       ],
     },
     {

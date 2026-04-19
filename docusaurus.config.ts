@@ -69,20 +69,20 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'benovaSidebar',
           position: 'left',
-          label: 'Platform',
+          label: 'Nova',
         },
-        {
-          type: 'doc',
-          docId: 'binean_nexus/intro',
-          position: 'left',
-          label: 'Solutions',
-        },
-        {
-          type: 'doc',
-          docId: 'ing_on_cloud',
-          position: 'left',
-          label: 'ING on Cloud',
-        },
+        // {
+        //   type: 'doc',
+        //   docId: 'binean_nexus/intro',
+        //   position: 'left',
+        //   label: 'Solutions',
+        // },
+        // {
+        //   type: 'doc',
+        //   docId: 'ing_on_cloud',
+        //   position: 'left',
+        //   label: 'ING on Cloud',
+        // },
         // { to: '/blog', label: 'Blog', position: 'left' },
         // {
         //   href: 'https://github.com/binean-zone/benova',
@@ -95,14 +95,14 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Platform',
+          title: 'Nova',
           items: [
             {
               label: 'Why Nova?',
               to: '/docs/intro',
             },
             {
-              label: 'The Platform',
+              label: 'The Nova Platform',
               to: '/docs/nova',
             },
             {
