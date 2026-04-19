@@ -25,9 +25,9 @@ function HeroSection() {
             <Link className={clsx('button button--lg', styles.ctaPrimary)} to="/docs/intro">
               Discover Nova
             </Link>
-            <Link className={clsx('button button--lg', styles.ctaSecondary)} to="/docs/ing_on_cloud">
+            {/* <Link className={clsx('button button--lg', styles.ctaSecondary)} to="/docs/ing_on_cloud">
               See Success Story
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

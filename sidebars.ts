@@ -3,11 +3,6 @@ import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /**
- * Creating a sidebar enables you to:
- - create an ordered group of docs
- - render a sidebar for each doc of that group
- - provide next/previous navigation
-
  The sidebars can be generated from the filesystem, or explicitly defined here.
 
  Create as many sidebars as you want.
@@ -31,7 +26,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "doc",
       id: "ing_on_cloud",
-      label: "Success Story",
+      label: "ING on Cloud",
     },
     {
       type: "doc",
@@ -55,11 +50,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "binean_nexus/architecture",
-          label: "Architecture",
-        },
-        {
-          type: "doc",
           id: "binean_nexus/toolchain",
           label: "Toolchain",
         },
@@ -67,6 +57,58 @@ const sidebars: SidebarsConfig = {
           type: "doc",
           id: "binean_nexus/security",
           label: "Security & Compliance",
+        },
+        {
+          type: "category",
+          label: "User Guides",
+          description: "Step-by-step guides for each Nexus tool",
+          items: [
+            {
+              type: "doc",
+              id: "binean_nexus/guides/intro",
+              label: "Getting Started",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/benova",
+              label: "benova — Environment Setup",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/icomp",
+              label: "icomp — COBOL Compiler",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/iman",
+              label: "iman — Server Manager",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/isman",
+              label: "isman — Management Server",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/ipol",
+              label: "ipol — Policy Manager",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/nexus",
+              label: "nexus — Utilities",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/itun",
+              label: "itun — SSH Tunnel",
+            },
+            {
+              type: "doc",
+              id: "binean_nexus/guides/extension",
+              label: "VS Code Extension Guide",
+            },
+          ],
         },
       ],
     },

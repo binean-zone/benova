@@ -24,11 +24,7 @@ const config: Config = {
   trailingSlash: false,
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'vi'],
-    localeConfigs: {
-      en: { label: 'English' },
-      vi: { label: 'Tiếng Việt' },
-    },
+    locales: ['en'],
   },
   presets: [
     [
@@ -85,13 +81,9 @@ const config: Config = {
           type: 'doc',
           docId: 'ing_on_cloud',
           position: 'left',
-          label: 'Success Story',
+          label: 'ING on Cloud',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
         // {
         //   href: 'https://github.com/binean-zone/benova',
         //   label: 'GitHub',
@@ -114,7 +106,7 @@ const config: Config = {
               to: '/docs/nova',
             },
             {
-              label: 'Success Story',
+              label: 'ING on Cloud',
               to: '/docs/ing_on_cloud',
             },
           ],
@@ -127,12 +119,12 @@ const config: Config = {
               to: '/docs/binean_nexus/intro',
             },
             {
-              label: 'Architecture',
-              to: '/docs/binean_nexus/architecture',
-            },
-            {
               label: 'Security & Compliance',
               to: '/docs/binean_nexus/security',
+            },
+            {
+              label: 'User Guides',
+              to: '/docs/binean_nexus/guides/intro',
             },
           ],
         },

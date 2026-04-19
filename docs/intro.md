@@ -6,9 +6,9 @@ sidebar_position: 1
 
 **Every day your legacy insurance core stays unchanged, your competitors gain ground.**
 
-The insurance industry is undergoing a once-in-a-generation digital transformation. Customers expect instant digital experiences. Regulators demand stronger compliance. Your business needs agility to launch new products faster than ever.
+The insurance industry demands instant digital experiences, stronger compliance, and faster product launches. But your core system was built for a different era.
 
-But your core system — the backbone of your entire operation — was built for a different era.
+**Nova enables AI-powered COBOL development** — by bringing COBOL into VS Code, developers can leverage AI tools for code analysis, bug detection, and test generation.
 
 ---
 
@@ -30,14 +30,14 @@ These are not IT problems — they are **business-critical risks** that directly
 
 ## Nova: A Smarter Path Forward
 
-**Binean Nova** is a proven platform that modernizes your insurance core system **without disrupting your current operations**. Instead of a risky "big bang" replacement, Nova takes a phased approach — each phase delivers measurable business value while building toward a fully modern platform.
+**Binean Nova** is the next evolution of a battle-tested cloud migration — now packaged as a platform that modernizes your insurance core system **without disrupting your current operations**. Instead of a risky "big bang" replacement, Nova takes a phased approach — each phase delivers measurable business value while building toward a fully modern platform.
 
 ### What Makes Nova Different
 
+- **Built on Real Experience** — Nova was born from the hands-on journey of migrating Ingenium to the cloud, turning hard-won lessons into a reusable, scalable modernization platform
 - **Preserve Your Investment** — Nova works alongside your existing system, protecting years of business logic and data
 - **Deliver Value Immediately** — Start with Nexus and see results in weeks: faster deployments, automated operations, reduced costs
 - **Scale at Your Pace** — Adopt each phase when your organization is ready, with no forced timelines
-- **Proven in Production** — Successfully deployed at a leading insurance enterprise, completing a full cloud migration in 9 months
 
 ---
 

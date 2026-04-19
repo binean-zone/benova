@@ -2,152 +2,129 @@
 sidebar_position: 1
 ---
 
-# Nexus — The Digital Foundation for Insurance Transformation
+# Nexus — The Digital Foundation for Ingenium Modernization
 
-> **"Every day you spend on manual processes is a day your competitors are pulling further ahead."**
+> **"When environments are managed manually, delivery slows down and test confidence drops."**
 
 ![Ingenium Architecture Diagram](/img/Nexus.png)
 
 ---
 
-## The Problem You Face Every Day
+## The Daily Reality in Ingenium Teams
 
-If your organization runs Ingenium, you already know what it feels like:
+If your organization runs Ingenium, these pain points are likely familiar:
 
-- ⏳ COBOL compilation taking **hours** — for a single change
-- 🔁 Copy-pasting commands between dev machine and server — the root cause of "works on my machine" incidents
-- 🔒 DB2 and SSH passwords scattered across config files — a compliance nightmare waiting to happen
-- 📦 Manual policy migration between environments — error-prone, undocumented, high-stakes
-- 🌩️ No reliable toolchain for overnight batch processing automation
-- 👁️ Zero visibility into what is actually running in production right now
+- COBOL compilation can take hours for small changes
+- Engineers copy commands between local machines and servers, causing "works on my machine" issues
+- DB2 and SSH credentials are scattered across scripts and config files
+- Policy migration between environments is manual and high-risk
+- Environment setup is inconsistent, making test runs hard to reproduce
+- Low environments drift over time because there is no reliable reset/update baseline process
+- Schema and baseline data gradually diverge across DEV, SIT/UAT, and PRD
+- Batch and overnight operations are fragile and difficult to monitor
+- Teams have limited real-time visibility into production status
 
-These are not small inconveniences. They are strategic blockers preventing your IT team from delivering the speed the business demands.
-
----
-
-## 🚀 Nexus — The Solution Built for Ingenium
-
-Nexus is a **purpose-built DevOps toolchain** for organizations running Ingenium insurance core systems. Unlike generic DevOps tools that have to be bent and configured to fit Ingenium's quirks, Nexus was designed from day one to speak Ingenium's language.
-
-| Your Current Challenge | Nexus Solution |
-|------------------------|----------------|
-| COBOL compilation takes hours | Smart parallel compiler with dependency analysis — **minutes, not hours** |
-| Manual server operations | Unified CLI + VS Code extension with identical behavior on Windows and Linux |
-| Credentials exposed in config files | AES-256-GCM military-grade encryption, stored securely, never logged |
-| Policy migration is risky and manual | Automated policy copy/export/import with full validation |
-| Batch scheduling is fragile | Built-in scheduler with monitoring and alerting |
-| No visibility into production | Central management server (isman) with REST API and health monitoring |
+These are not minor inconveniences. They reduce release confidence, test reliability, and delivery speed.
 
 ---
 
-## 📈 Real Results
+## Why This Directly Impacts Test Quality
 
-**Sun Life Vietnam** completed a full Ingenium cloud migration in **9 months** using Nexus — on time, within budget, zero data loss.
+When lower environments are not regularly aligned with production-like baselines:
 
-| Metric | Before Nexus | After Nexus |
-|--------|-------------|-------------|
-| COBOL compilation time | Hours | Minutes |
-| Deployment time | 1 hours | 1 minutes |
-| Infrastructure uptime | Variable | 99.95% |
-| Disaster recovery time | Unknown | 1 minutes |
-| Infrastructure cost | Baseline | -40% |
+- The same test can pass in one environment and fail in another
+- Regression defects appear late because non-PRD environments no longer represent real behavior
+- Root-cause analysis takes longer due to schema/data mismatch between environments
+- Teams spend time fixing environment issues instead of delivering business features
 
----
-
-## 🏗️ System Architecture Overview
-
-```
-┌─────────────────────────────────────────────────────┐
-│              VS Code Extension                       │
-│         (Developer Command Center)                   │
-└────────┬──────────────────────────────────┬─────────┘
-         │                                  │
-    ┌────▼────┐                       ┌─────▼─────┐
-    │  nexus  │                       │   icomp   │
-    │  (CLI)  │                       │(Compiler) │
-    └────┬────┘                       └───────────┘
-         │
-    ┌────▼──────────────────────────────────────────┐
-    │           isman (Management Server)            │
-    │  ┌──────┐  ┌──────┐  ┌────────┐  ┌────────┐  │
-    │  │ ipol │  │  ing │  │  jobs  │  │ health │  │
-    └──┴──────┴──┴──────┴──┴────────┴──┴────────┘  │
-                     │
-    ┌────────────────▼────────────────────────────┐
-    │           Core Library (Rust)                │
-    │  Terminal | DB2 | AES-256 | SSH | Pool       │
-    └─────────────────────────────────────────────┘
-```
-
-**Component Descriptions:**
-- **VS Code Extension:** Developer Command Center for Ingenium projects
-- **nexus (CLI):** Environment orchestration, workspace initialization, configuration, connection
-- **icomp (Compiler):** Smart COBOL compiler, parallel and dependency-aware
-- **isman (Management Server):** Central management, REST API, scheduling, monitoring
-    - **ipol:** Policy lifecycle management (export, import, copy, deploy)
-    - **ing:** Ingenium integration and orchestration
-    - **jobs:** Batch job scheduling and automation
-    - **health:** Real-time health monitoring and alerting
-- **Core Library (Rust):** Terminal abstraction, DB2 integration, AES-256 encryption, SSH, resource pooling
-
+Nexus treats environment consistency as a first-class DevOps requirement, not a side task.
 
 ---
 
-## 🧩 Core Components
+## Nexus — Built Specifically for Ingenium
 
-| Component | What It Does |
-|-----------|-------------|
-| **icomp** | Intelligent COBOL compiler — parallel, dependency-aware, fast |
-| **iman** | Ingenium management CLI — works identically on Windows and Linux |
-| **isman** | Central management server with REST API and scheduler |
-| **ipol** | Policy lifecycle management — copy, export, import |
-| **nexus CLI** | Environment orchestration — initialize, configure, connect |
-| **VS Code Extension** | All of the above, integrated directly into your IDE |
+Nexus is a purpose-built DevOps toolchain for Ingenium insurance core systems. Instead of forcing generic tooling to fit Ingenium constraints, Nexus standardizes compilation, deployment, migration, and operations across environments.
 
----
-
-## ⚡ Why Rust?
-
-Nexus is built entirely in Rust — a deliberate choice that directly benefits you:
-
-| Rust Advantage | Business Impact |
-|----------------|-----------------|
-| No runtime required | Single binary, zero installation complexity |
-| Memory safe by design | No buffer overflow exploits, no CVEs from memory bugs |
-| Native performance | Compilation speed equivalent to hand-optimized C |
-| Cross-platform with identical behavior | Code developed on Windows runs identically on Linux production |
-| Zero-cost abstractions | Low-level performance without unsafe code |
+| Current Challenge | Nexus Approach |
+|------------------|----------------|
+| COBOL compilation takes hours | Dependency-aware parallel compilation to reduce turnaround from hours to minutes |
+| Manual server operations | Unified CLI + VS Code extension with consistent behavior on Windows and Linux |
+| Credentials exposed in config files | Encrypted credential handling (AES-256-GCM), never logged in plaintext |
+| Policy migration is risky and manual | Controlled policy export/import/copy with validation checks |
+| Environment setup is inconsistent | Standardized environment orchestration for reproducible DEV/SIT/UAT/PRD setup |
+| No reliable env reset/update baseline | Versioned schema and baseline-data workflow with comparison and controlled rollout |
+| Batch scheduling is fragile | Built-in scheduling, monitoring, and alerting |
+| No production visibility | Central management server (`isman`) with health checks and operational APIs |
 
 ---
 
-## 🛣️ Transformation Roadmap
+## What Nexus Delivers
 
-| Phase | Timeline | Deliverable |
-|-------|----------|-------------|
-| **Assessment** | Week 1–2 | Audit current Ingenium setup, identify quick wins |
-| **Foundation** | Week 3–6 | Deploy Nexus toolchain, train core team |
-| **Acceleration** | Month 2–3 | Full CI/CD pipeline, automated batch scheduling |
-| **Optimization** | Month 4+ | Performance tuning, cloud migration planning |
+- More reliable and reproducible testing across environments
+- Faster and safer release cycles
+- Lower operational risk caused by environment drift
+- Better compliance posture through standardized and auditable processes
 
 ---
 
-## 🚀 Getting Started
+## Scope Clarification
+
+The 9-month Ingenium-to-cloud migration is documented separately in [ING on Cloud](/docs/ing_on_cloud).
+
+That project is the practical foundation that informed Nexus design, but it is not presented here as direct product results of Nexus.
+
+---
+
+## Core Components
+
+| Component | Purpose |
+|-----------|---------|
+| **`icomp`** | Intelligent COBOL compilation (parallel, dependency-aware) |
+| **`nexus` CLI** | Ingenium environment orchestration, configuration, and operations |
+| **`isman`** | Central management server with API, scheduling, and health monitoring |
+| **`ipol`** | Policy lifecycle operations (copy, export, import) |
+| VS Code Extension | Unified developer control plane inside the IDE |
+
+---
+
+## Why Rust
+
+Nexus is implemented in Rust to provide:
+
+- Native performance for tooling-intensive workflows
+- Memory-safe implementation for long-running operational tools
+- Single-binary distribution with minimal installation overhead
+- Consistent cross-platform behavior between Windows and Linux
+
+---
+
+## Adoption Roadmap
+
+| Phase | Timeline | Primary Outcome |
+|------|----------|-----------------|
+| Assessment | Week 1-2 | Baseline audit of environments, toolchain, and drift risk |
+| Foundation | Week 3-6 | Deploy Nexus core tooling and train the platform team |
+| Stabilization | Month 2-3 | Standardize environment lifecycle and improve test reproducibility |
+| Acceleration | Month 4+ | Expand CI/CD automation, monitoring, and operational optimization |
+
+---
+
+## Getting Started
 
 ```bash
-# Download and install Nexus CLI
-# (follow platform-specific instructions in the Installation Guide)
-
-# Initialize your workspace
+# Initialize workspace
 nexus init
 
-# Verify all connections
+# Validate environment and connections
 nexus status
-
-# You're ready — open VS Code and start building
 ```
+
+Then open VS Code and run Nexus workflows directly from the extension.
+
+**[View Full Installation Guide ->](/docs/binean_nexus/guides/intro)**
 
 ---
 
-## 📄 Legal Notice
+## Legal Notice
 
 This document is provided for informational and advisory purposes only. All trademarks are the property of their respective owners. This project has no affiliation with DXC Technology, Sun Life, or any other third parties mentioned herein.
