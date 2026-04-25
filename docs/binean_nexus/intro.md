@@ -52,6 +52,7 @@ Nexus is a purpose-built DevOps toolchain for Ingenium insurance core systems. I
 | Credentials exposed in config files | Encrypted credential handling (AES-256-GCM), never logged in plaintext |
 | Policy migration is risky and manual | Controlled policy export/import/copy with validation checks |
 | Environment setup is inconsistent | Standardized environment orchestration for reproducible DEV/SIT/UAT/PRD setup |
+| Developers need isolated local setups | Support for one or multiple independent Ingenium instances on a single machine |
 | No reliable env reset/update baseline | Versioned schema and baseline-data workflow with comparison and controlled rollout |
 | Batch scheduling is fragile | Built-in scheduling, monitoring, and alerting |
 | No production visibility | Central management server (`isman`) with health checks and operational APIs |
@@ -63,6 +64,7 @@ Nexus is a purpose-built DevOps toolchain for Ingenium insurance core systems. I
 - More reliable and reproducible testing across environments
 - Faster and safer release cycles
 - Lower operational risk caused by environment drift
+- Flexible local development by allowing each developer laptop to run one or more independent Ingenium instances
 - Better compliance posture through standardized and auditable processes
 
 ---

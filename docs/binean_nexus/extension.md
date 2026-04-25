@@ -1,5 +1,7 @@
 # Binean Nova VS Code Extension
 
+**VS Code Marketplace**: [Binean Nova Extension](https://marketplace.visualstudio.com/items?itemName=Binean.binean-nova)
+
 ---
 
 ## Introduction
@@ -68,7 +70,6 @@ Detailed behavior, command list, and setup steps are maintained in extension doc
 
 Prerequisites are maintained in the extension documentation and do not need to be duplicated in this page.
 
-- VS Code Marketplace: [Binean Nova Extension](https://marketplace.visualstudio.com/items?itemName=Binean.binean-nova)
 - User guide entry: [Extension Guide](/docs/binean_nexus/guides/extension)
 
 ---
