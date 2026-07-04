@@ -2,70 +2,67 @@
 sidebar_position: 1
 ---
 
-# Why Nova?
+# What is Nova?
 
-**Every day your legacy insurance core stays unchanged, your competitors gain ground.**
+**Nova modernizes the Ingenium life-insurance core — the legacy COBOL platform running on AIX, IBM MQ and WebSphere that still powers policy administration at many insurers.**
 
-The insurance industry demands instant digital experiences, stronger compliance, and faster product launches. But your core system was built for a different era.
+Instead of a risky "rip and replace", Nova wraps around your existing Ingenium system and upgrades it in stages. You keep your business logic and data; Nova modernizes the technology around it.
 
-**Nova enables AI-powered COBOL development** — by bringing COBOL into VS Code, developers can leverage AI tools for code analysis, bug detection, and test generation.
+> Nova is a third-party solution. It integrates with and modernizes Ingenium — it does **not** replace your Ingenium licence or modify its source. You retain full ownership.
 
----
+## The problem Nova solves
 
-## The Cost of Standing Still
+If you run Ingenium today, you likely face:
 
-Organizations running legacy insurance core systems face mounting pressure:
+- **Slow releases** — COBOL builds and deployments take hours and are done manually.
+- **High, rising cost** — proprietary AIX, IBM MQ and WebSphere are expensive, and COBOL specialists are increasingly hard to hire.
+- **A closed core** — no REST APIs, so every digital channel or partner integration needs fragile middleware.
+- **Operational risk** — manual environment setup drifts over time, causing "works here, fails there" incidents and audit gaps.
 
-| Challenge | Business Impact |
-|-----------|----------------|
-| **Manual deployments** | Hours of downtime per release, high failure risk |
-| **Aging technology (COBOL/AIX)** | Shrinking talent pool, rising maintenance costs |
-| **No modern APIs** | Cannot connect to digital channels, partners, or ecosystems |
-| **Manual operations** | Compliance gaps, audit failures, security exposure |
-| **Rigid infrastructure** | Cannot scale to meet peak demand or new market opportunities |
+These are not just IT issues — they slow product launches, raise cost-to-serve, and limit growth.
 
-These are not IT problems — they are **business-critical risks** that directly affect revenue, customer satisfaction, and competitive position.
+## How Nova works: a phased roadmap
 
----
+Each phase delivers value on its own. You start small, see results, then decide how far to go.
 
-## Nova: A Smarter Path Forward
+```mermaid
+flowchart LR
+    F[Foundation: AIX to Linux] --> N[Nexus: automate DevOps]
+    N --> O[Orbit: open core with REST APIs]
+    O --> V[Vista: modern React UI]
+    V --> A[Apex: full re-architecture]
+```
 
-**Binean Nova** is the next evolution of a battle-tested cloud migration — now packaged as a platform that modernizes your insurance core system **without disrupting your current operations**. Instead of a risky "big bang" replacement, Nova takes a phased approach — each phase delivers measurable business value while building toward a fully modern platform.
+| Phase | Status | What it delivers |
+|---|---|---|
+| **Foundation** | Prerequisite (proven, ~9 months) | Move Ingenium from AIX to Linux (cloud or on-prem). The base for everything else. |
+| **Nexus** | Available now | VS Code toolchain that automates COBOL builds, deployments and environments. Hours become minutes; COBOL becomes AI-assisted. |
+| **Orbit** | In development | Expose Ingenium as REST APIs, remove MQ middleware, and migrate critical logic to high-performance Rust. |
+| **Vista** | Planned | Replace legacy JSP screens with modern React interfaces for customers and agents. |
+| **Apex** | Planned | Full re-architecture of business logic and data into a cloud-native platform. |
 
-### What Makes Nova Different
+## Why it is credible
 
-- **Built on Real Experience** — Nova was born from the hands-on journey of migrating Ingenium to the cloud, turning hard-won lessons into a reusable, scalable modernization platform
-- **Preserve Your Investment** — Nova works alongside your existing system, protecting years of business logic and data
-- **Deliver Value Immediately** — Start with Nexus and see results in weeks: faster deployments, automated operations, reduced costs
-- **Scale at Your Pace** — Adopt each phase when your organization is ready, with no forced timelines
+Nova is proven in production from a **real AIX-to-Linux migration completed in ~9 months**, where deployment time for a representative change moved from around **3 hours to about 20 minutes** with an expected **~5-minute planned downtime window** per deployment. The roadmap above is the same sequence used in that programme.
 
----
+## Where to start
 
-## Real Results
+### Information map
 
-| Metric | Before Nova | After Nova |
-|--------|-------------|------------|
-| Deployment time | Hours | **Minutes** |
-| COBOL compilation | Hours | **Minutes** |
-| Infrastructure uptime | Variable | **99.95%** |
-| Infrastructure cost | Baseline | **-40%** |
-| Disaster recovery | Unknown | **< 1 minute** |
+```mermaid
+flowchart LR
+    A[What is Nova] --> B[Executive Operating Model]
+    B --> C[Investment Case]
+    C --> D[6-Week Windows-First POC Plan]
+    D --> E[Executive FAQ]
+    E --> F[Next Steps]
+```
 
----
+1. [Executive Operating Model](/docs/operating_model) — pain points, solution mapping, and decision gates
+2. [Investment Case](/docs/investment_case) — the business justification and numbers
+3. [6-Week Windows-First POC Plan](/docs/poc_plan) — fast executive visibility, low-risk proof, and 6-month trial continuation
+4. [Executive FAQ](/docs/executive_faq) — direct answers to common leadership questions
+5. [Next Steps](/docs/next_steps) — book a 30-minute, no-obligation discovery call
 
-## The Nova Transformation Roadmap
+📧 Questions? [ingenium.modernization@gmail.com](mailto:ingenium.modernization@gmail.com?subject=Nova%20Inquiry)
 
-Nova's four-phase roadmap ensures a smooth, low-risk transformation:
-
-| Phase | Focus | Business Value |
-|-------|-------|---------------|
-| **[Nexus](/docs/binean_nexus/intro)** — Available Now | DevOps automation, intelligent toolchain | Immediate productivity gains, cost reduction |
-| **[Orbit](/docs/binean_orbit/intro)** — Coming Soon | Core modernization, REST APIs | Eliminate middleware, enable integrations |
-| **[Vista](/docs/binean_vista/intro)** — Planned | UI/UX transformation | Modern customer and agent experiences |
-| **[Apex](/docs/binean_apex/intro)** — Planned | Full re-architecture | Limitless innovation, complete modernization |
-
----
-
-## Start Your Transformation
-
-The journey to a modern insurance platform starts with a single step. [Explore the Nova platform →](/docs/nova)

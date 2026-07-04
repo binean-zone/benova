@@ -1,330 +1,319 @@
-/* ===== HERO SECTION ===== */
-.heroSection {
-  padding: 5rem 0 4rem;
-  background: linear-gradient(135deg, #0a1628 0%, #1a365d 50%, #2b4c7e 100%);
-  color: #fff;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 0 5rem;
+  color: #fef6e4;
+  background: radial-gradient(circle at 20% 20%, #f58220 0%, #f58220 20%, transparent 35%),
+    radial-gradient(circle at 80% 40%, #47b39c 0%, #47b39c 16%, transparent 32%),
+    linear-gradient(125deg, #0f172a 0%, #1f2937 45%, #0b3b43 100%);
 }
 
-.heroContent {
-  max-width: 800px;
-  margin: 0 auto;
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+}
+
+.kicker {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  color: #102a43;
+  background: #fef6e4;
 }
 
 .heroTitle {
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
+  max-width: 860px;
+  margin-bottom: 1.25rem;
   color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.2vw, 3.7rem);
+  line-height: 1.08;
 }
 
-.heroAccent {
-  background: linear-gradient(90deg, #78a9ff, #a6c8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.heroSubtitle {
-  font-size: 1.25rem;
+.heroText {
+  max-width: 760px;
+  margin-bottom: 2rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.2rem;
   line-height: 1.7;
-  color: #c8d6e5;
-  margin-bottom: 2.5rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  color: #d1f2eb;
 }
 
-.heroCta {
+.heroActions {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  gap: 0.9rem;
   flex-wrap: wrap;
 }
 
-.ctaPrimary {
-  background: #3578e5 !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600;
-  padding: 0.75rem 2rem !important;
-  transition: all 0.2s;
+.heroFootnote {
+  margin-top: 1rem;
+  color: #d5e7df;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.95rem;
 }
 
-.ctaPrimary:hover {
-  background: #2563c7 !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(53, 120, 229, 0.4);
-}
-
-.ctaSecondary {
-  background: transparent !important;
-  color: #fff !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 8px !important;
-  font-weight: 600;
-  padding: 0.75rem 2rem !important;
-  transition: all 0.2s;
-}
-
-.ctaSecondary:hover {
-  border-color: #fff !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* ===== SECTION COMMON ===== */
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.sectionTitle {
-  font-size: 2.25rem;
+.primaryButton {
+  border: 0 !important;
+  color: #0f172a !important;
   font-weight: 700;
-  margin-bottom: 1rem;
+  background: #fef6e4 !important;
 }
 
-.sectionSubtitle {
-  font-size: 1.15rem;
-  color: var(--ifm-color-emphasis-600);
-  max-width: 600px;
-  margin: 0 auto;
+.secondaryButton {
+  border: 1px solid #fef6e4 !important;
+  color: #fef6e4 !important;
+  background: transparent !important;
+}
+
+.sectionLight,
+.sectionDark,
+.sectionSand,
+.sectionIntro,
+.sectionProof,
+.ctaSection {
+  padding: 5rem 0;
+}
+
+.sectionIntro {
+  background: linear-gradient(180deg, #f8fbff 0%, #fdfcf8 100%);
+}
+
+.sectionProof {
+  background: #fdfcf8;
+  border-top: 2px solid #e0e7ee;
+  border-bottom: 2px solid #e0e7ee;
+}
+
+.sectionLight {
+  background: #fdfcf8;
+}
+
+.sectionDark {
+  background: #102a43;
+  color: #f1f5f9;
+}
+
+.sectionSand {
+  background: #f6efe6;
+}
+
+.sectionHead {
+  margin-bottom: 2.1rem;
+  max-width: 760px;
+}
+
+.sectionHead h2 {
+  margin-bottom: 0.7rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+}
+
+.sectionHead p {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.cardGrid4,
+.metricGrid,
+.roadmapGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card,
+.cardStrong,
+.metricCard,
+.roadmapCard,
+.ctaBox,
+.valueListWrap {
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(16, 42, 67, 0.07);
+}
+
+.card {
+  padding: 1.25rem;
+}
+
+.cardStrong {
+  padding: 1.25rem;
+  background: linear-gradient(155deg, #ffffff 0%, #f6fbff 100%);
+  border-color: rgba(28, 107, 103, 0.22);
+}
+
+.cardTitle {
+  margin-bottom: 0.35rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+}
+
+.valueListWrap {
+  padding: 1.3rem 1.5rem;
+  background: linear-gradient(165deg, #fffcf6 0%, #f4f9f8 100%);
+}
+
+.valueList {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.valueList li {
+  margin-bottom: 0.9rem;
   line-height: 1.6;
 }
 
-/* ===== PAIN POINTS SECTION ===== */
-.painSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-surface-color);
-}
-
-.painGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.painCard {
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  background: var(--ifm-background-color);
-  transition: all 0.2s;
-}
-
-.painCard:hover {
-  border-color: #e74c3c;
-  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.08);
-}
-
-.painIcon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.painTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-/* ===== SOLUTION SECTION ===== */
-.solutionSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-color);
-}
-
-.solutionGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.solutionCard {
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  background: var(--ifm-background-surface-color);
-  transition: all 0.2s;
-}
-
-.solutionCard:hover {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 20px rgba(53, 120, 229, 0.1);
-  transform: translateY(-2px);
-}
-
-.solutionIcon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.solutionCardTitle {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-/* ===== METRICS SECTION ===== */
-.metricsSection {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
-  color: #fff;
-}
-
-.metricsSection .sectionTitle {
-  color: #fff;
-}
-
-.metricsSection .sectionSubtitle {
-  color: #c8d6e5;
-}
-
-.metricsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  text-align: center;
+.valueList li:last-child {
+  margin-bottom: 0;
 }
 
 .metricCard {
-  padding: 2rem 1rem;
+  padding: 1.35rem 1.2rem;
 }
 
 .metricValue {
-  font-size: 3.5rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #78a9ff, #a6c8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-
-.metricUnit {
-  font-size: 1.5rem;
-  margin-left: 0.25rem;
+  margin: 0 0 0.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  color: #d9480f;
 }
 
 .metricLabel {
-  font-size: 1rem;
-  color: #c8d6e5;
-}
-
-/* ===== ROADMAP SECTION ===== */
-.roadmapSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-surface-color);
-}
-
-.roadmapTimeline {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.45;
 }
 
 .roadmapCard {
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  background: var(--ifm-background-color);
-  text-align: center;
-  transition: all 0.2s;
+  padding: 1.3rem;
 }
 
-.roadmapCard:hover {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 20px rgba(53, 120, 229, 0.1);
-}
-
-.roadmapIcon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.roadmapBadge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
+.roadmapStatus {
+  margin: 0;
+  color: #0f766e;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  background: var(--ifm-color-primary);
-  color: #fff;
-  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
 }
 
 .roadmapName {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin: 0.45rem 0 0.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
 }
 
-.roadmapTagline {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ifm-color-primary);
-  margin-bottom: 0.75rem;
-}
-
-.roadmapDesc {
-  font-size: 0.95rem;
-  color: var(--ifm-color-emphasis-600);
-  line-height: 1.6;
-}
-
-/* ===== CTA SECTION ===== */
 .ctaSection {
-  padding: 5rem 0;
-  background: var(--ifm-background-color);
-  text-align: center;
+  background: linear-gradient(115deg, #112a46 0%, #1c6b67 100%);
 }
 
-.ctaContent {
-  max-width: 600px;
-  margin: 0 auto;
+.ctaBox {
+  padding: 2rem;
+  max-width: 920px;
+  color: #f8fafc;
+  background: rgba(7, 19, 35, 0.55);
+  border: 1px solid rgba(254, 246, 228, 0.4);
 }
 
 .ctaTitle {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
 }
 
-.ctaSubtitle {
-  font-size: 1.15rem;
-  color: var(--ifm-color-emphasis-600);
-  margin-bottom: 2rem;
+.ctaText {
+  margin-bottom: 1.2rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #e2e8f0;
 }
 
-.ctaButtons {
-  display: flex;
+.ctaFooter {
+  margin-top: 1.5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+  color: #fef6e4;
+  font-weight: 500;
+}
+
+.comparisonGrid {
+  display: grid;
   gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 1.5rem;
 }
 
-/* ===== RESPONSIVE ===== */
+.comparisonCard {
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.comparisonWinner {
+  background: linear-gradient(155deg, #ecfdf5 0%, #d1fae5 100%);
+  border-color: #10b981;
+  border-width: 3px;
+  transform: scale(1.02);
+}
+
+.comparisonTitle {
+  margin-bottom: 0.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  color: #0f172a;
+}
+
+.comparisonCon {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.comparisonPro {
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #065f46;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 @media screen and (max-width: 996px) {
-  .heroSection {
-    padding: 3rem 1rem;
+  .hero {
+    padding: 5.4rem 0 3.7rem;
   }
-  .heroTitle {
-    font-size: 2rem;
-  }
-  .heroSubtitle {
+
+  .heroText {
     font-size: 1.05rem;
   }
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
-  .metricValue {
-    font-size: 2.5rem;
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
   }
 }
