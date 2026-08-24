@@ -483,7 +483,7 @@ ol {
 }
 
 .orbit-ring.ring-2 {
-  inset: 18%;
+  inset: 13%;
   border-style: dashed;
   border-color: color-mix(in srgb, var(--accent) 26%, transparent);
   animation: spin 44s linear infinite reverse;
@@ -492,11 +492,15 @@ ol {
 .orbit-core {
   position: relative;
   z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 42%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 46%;
   aspect-ratio: 1;
   border-radius: 50%;
+  padding: 0 6%;
   background: radial-gradient(circle at 32% 28%, var(--bg-raise), var(--bg-alt));
   border: 1px solid var(--border-strong);
   box-shadow: 0 0 0 8px var(--accent-soft), var(--shadow);
@@ -505,17 +509,18 @@ ol {
 
 .core-name {
   font-weight: 800;
-  font-size: clamp(0.95rem, 0.7rem + 0.8vw, 1.3rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.15rem, 0.85rem + 1vw, 1.65rem);
+  letter-spacing: 0.1em;
   color: var(--text-strong);
 }
 
 .core-sub {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.55rem, 0.45rem + 0.25vw, 0.66rem);
+  letter-spacing: 0.06em;
   color: var(--muted);
-  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .orbit-sats {
@@ -530,7 +535,7 @@ ol {
   left: 50%;
   width: 0;
   height: 0;
-  transform: rotate(calc(var(--i) * 72deg)) translate(var(--r)) rotate(calc(var(--i) * -72deg));
+  transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)));
 }
 
 .sat-chip {

@@ -103,11 +103,10 @@ const header = () => `  <a class="skip-link" href="#main">Bỏ qua điều hư�
           <svg viewBox="0 0 32 32" width="28" height="28" focusable="false">
             <circle cx="16" cy="16" r="14" class="mark-ring" />
             <circle cx="16" cy="16" r="5" class="mark-core" />
-            <circle cx="16" cy="2" r="2.6" class="mark-dot" />
-            <circle cx="29.3" cy="11.3" r="2.2" class="mark-dot" />
-            <circle cx="24.2" cy="27" r="2.2" class="mark-dot" />
-            <circle cx="7.8" cy="27" r="2.2" class="mark-dot" />
-            <circle cx="2.7" cy="11.3" r="2.2" class="mark-dot" />
+            <circle cx="16" cy="2.4" r="2.4" class="mark-dot" />
+            <circle cx="29.6" cy="16" r="2.4" class="mark-dot" />
+            <circle cx="16" cy="29.6" r="2.4" class="mark-dot" />
+            <circle cx="2.4" cy="16" r="2.4" class="mark-dot" />
           </svg>
         </span>
         <span class="brand-name">${esc(site.brand.name)}</span>
@@ -154,9 +153,10 @@ ${list(site.nav, (item) => `          <li><a href="${esc(item.href)}">${esc(item
 
 const hero = () => {
   const { hero } = site;
+  const step = 360 / hero.satellites.length;
   const orbit = list(
     hero.satellites,
-    (sat, i) => `          <li class="sat sat-${i + 1}" style="--i:${i}">
+    (sat, i) => `          <li class="sat" style="--a:${(i * step).toFixed(2)}deg">
             <span class="sat-chip">
               <span class="sat-key">${esc(sat.key)}</span>
               <span class="sat-meta"><b>${esc(sat.name)}</b><i>${esc(sat.desc)}</i></span>
@@ -187,8 +187,8 @@ const hero = () => {
             <div class="orbit-ring ring-1"></div>
             <div class="orbit-ring ring-2"></div>
             <div class="orbit-core">
-              <span class="core-name">${esc(site.brand.name)}</span>
-              <span class="core-sub">core platform</span>
+              <span class="core-name">${esc(hero.core.key)}</span>
+              <span class="core-sub">${esc(hero.core.name)}</span>
             </div>
             <ul class="orbit-sats">
 ${orbit}
