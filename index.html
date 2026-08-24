@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BENOVA — Hiện đại hóa Ingenium. Tiếp sức bởi AI và Rust.</title>
+  <meta name="description" content="BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành." />
+  <meta name="keywords" content="BENOVA, Ingenium modernization, core bảo hiểm, COBOL modernization, Strangler Fig, Rust, AI Agent, insurance core, cloud-native, Binean" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://www.binean.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="BENOVA — Hiện đại hóa Ingenium. Tiếp sức bởi AI và Rust." />
+  <meta property="og:description" content="BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành." />
+  <meta property="og:url" content="https://www.binean.com/" />
+  <meta property="og:image" content="https://www.binean.com/assets/images/og-benova.png" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BENOVA — Hiện đại hóa Ingenium. Tiếp sức bởi AI và Rust." />
+  <meta name="twitter:description" content="BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành." />
+  <meta name="twitter:image" content="https://www.binean.com/assets/images/og-benova.png" />
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+  />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BENOVA","applicationCategory":"BusinessApplication","description":"BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành.","url":"https://www.binean.com/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"ingenium.modernization@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body data-contact-email="ingenium.modernization@gmail.com">
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="BENOVA — về đầu trang">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28" focusable="false">
+            <circle cx="16" cy="16" r="14" class="mark-ring" />
+            <circle cx="16" cy="16" r="5" class="mark-core" />
+            <circle cx="16" cy="2" r="2.6" class="mark-dot" />
+            <circle cx="29.3" cy="11.3" r="2.2" class="mark-dot" />
+            <circle cx="24.2" cy="27" r="2.2" class="mark-dot" />
+            <circle cx="7.8" cy="27" r="2.2" class="mark-dot" />
+            <circle cx="2.7" cy="11.3" r="2.2" class="mark-dot" />
+          </svg>
+        </span>
+        <span class="brand-name">BENOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#gioi-thieu">Giới thiệu</a></li>
+          <li><a href="#kien-truc">Kiến trúc</a></li>
+          <li><a href="#loi-ich">Lợi ích</a></li>
+          <li><a href="#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#lien-he">Liên hệ ngay</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Dành cho doanh nghiệp bảo hiểm đang vận hành Ingenium · COBOL · AIX · IBM MQ</p>
+          <h1 class="hero-title reveal">
+            <span>Hiện đại hóa Ingenium.</span>
+            <span class="grad">Tiếp sức bởi AI và Rust.</span>
+          </h1>
+          <p class="hero-sub reveal">BENOVA – Hệ sinh thái core bảo hiểm thế hệ mới, cho phép bạn di cư từ hệ thống cũ sang nền tảng Cloud-native hiện đại mà không ngừng vận hành.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#kien-truc">Khám phá kiến trúc</a>
+            <a class="btn btn-ghost" href="#lien-he">Liên hệ tư vấn</a>
+          </div>
+          <p class="hero-note reveal">Giữ nguyên logic nghiệp vụ · Không đụng tới giấy phép Ingenium · Triển khai cloud, on-prem hoặc hybrid</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="orbit-stage">
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
+            <div class="orbit-core">
+              <span class="core-name">BENOVA</span>
+              <span class="core-sub">core platform</span>
+            </div>
+            <ul class="orbit-sats">
+          <li class="sat sat-1" style="--i:0">
+            <span class="sat-chip">
+              <span class="sat-key">BE</span>
+              <span class="sat-meta"><b>Binean Engine</b><i>Framework điều phối Agent lai</i></span>
+            </span>
+          </li>
+          <li class="sat sat-2" style="--i:1">
+            <span class="sat-chip">
+              <span class="sat-key">N</span>
+              <span class="sat-meta"><b>Nexus</b><i>DevOps cho Ingenium</i></span>
+            </span>
+          </li>
+          <li class="sat sat-3" style="--i:2">
+            <span class="sat-chip">
+              <span class="sat-key">O</span>
+              <span class="sat-meta"><b>Orbit</b><i>Hybrid Service Host</i></span>
+            </span>
+          </li>
+          <li class="sat sat-4" style="--i:3">
+            <span class="sat-chip">
+              <span class="sat-key">V</span>
+              <span class="sat-meta"><b>Vista</b><i>Flow &amp; Task Management</i></span>
+            </span>
+          </li>
+          <li class="sat sat-5" style="--i:4">
+            <span class="sat-chip">
+              <span class="sat-key">A</span>
+              <span class="sat-meta"><b>AI Agent</b><i>Autonomous Control Plane</i></span>
+            </span>
+          </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="shell">
+        <p class="proof-title reveal">Được chứng minh trên một chương trình di cư thật</p>
+        <dl class="proof-grid">
+          <div class="proof-item reveal">
+            <dt>3 giờ → 20 phút</dt>
+            <dd>Thời gian triển khai một thay đổi tiêu biểu</dd>
+          </div>
+          <div class="proof-item reveal">
+            <dt>~9 tháng</dt>
+            <dd>Hoàn tất di cư Ingenium từ AIX sang Linux</dd>
+          </div>
+          <div class="proof-item reveal">
+            <dt>~5 phút</dt>
+            <dd>Cửa sổ downtime có kế hoạch mỗi lần deploy</dd>
+          </div>
+          <div class="proof-item reveal">
+            <dt>5–10x</dt>
+            <dd>Tăng tốc biên dịch COBOL nhờ phân tích phụ thuộc</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section section-problem" id="gioi-thieu">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Vấn đề &amp; Giải pháp</p>
+          <h2>Core cũ không sai. Chỉ là nó đang ngày càng đắt hơn giá trị nó tạo ra.</h2>
+          <p class="lead">Ingenium vẫn chạy đúng nghiệp vụ sau hàng chục năm. Nhưng chi phí vận hành, tốc độ ra tính năng và nguồn nhân lực xung quanh nó thì không còn bền vững.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">💸</span>
+            <h3>Chi phí nền tảng leo thang</h3>
+            <p>AIX, IBM MQ và WebSphere là giấy phép độc quyền, chi phí bảo trì tăng đều mỗi năm trong khi năng lực không đổi.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">👤</span>
+            <h3>Thiếu nhân sự COBOL</h3>
+            <p>Lớp kỹ sư am hiểu COBOL đang nghỉ hưu dần. Tuyển mới gần như bất khả thi, đào tạo lại thì tốn nhiều năm.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">🐢</span>
+            <h3>Không theo kịp tốc độ số hóa</h3>
+            <p>Biên dịch hàng giờ, triển khai thủ công, không có REST API — mỗi kênh số hay đối tác mới đều cần middleware chắp vá.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">⚠️</span>
+            <h3>Rủi ro vận hành tích tụ</h3>
+            <p>Môi trường DEV/SIT/UAT trôi dạt khỏi PRD theo thời gian, sinh ra lỗi &quot;chạy ở đây, hỏng ở kia&quot; và lỗ hổng kiểm toán.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="shell" id="strangler">
+        <div class="strangler">
+          <div class="strangler-copy reveal">
+            <p class="eyebrow">Chiến lược</p>
+            <h2>Strangler Fig — thay thế dần, không thay thế một lần</h2>
+            <p class="lead">Thay vì &quot;rip and replace&quot; nhiều năm với rủi ro rất cao, BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng.</p>
+            <a class="btn btn-ghost" href="#kien-truc">Xem cách hệ sinh thái thực thi điều này</a>
+          </div>
+          <ol class="strangler-steps">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Bao quanh</h3>
+                <p>Orbit đứng trước Ingenium, phơi bày core dưới dạng REST API mà không sửa một dòng COBOL nào.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Chuyển hướng</h3>
+                <p>Basal định tuyến từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Thay thế</h3>
+                <p>Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Ngưng hệ cũ</h3>
+                <p>Khi mọi luồng đã đi qua nền tảng mới, phần COBOL tương ứng được cho nghỉ. Không có ngày &quot;big bang&quot;.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="diagram reveal">
+          <img
+            src="assets/images/strangler-fig.svg"
+            alt="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian."
+            width="1120"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-ecosystem" id="kien-truc">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Hệ sinh thái lõi</p>
+          <h2>Năm thành phần, một nền tảng</h2>
+          <p class="lead">BENOVA = BE + N + O + V + A. Mỗi thành phần giải quyết một tầng của bài toán hiện đại hóa và có thể triển khai độc lập, theo thứ tự phù hợp với bạn.</p>
+        </div>
+        <div class="agent-grid">
+          <article class="card engine-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">BE</span>
+              <div>
+                <h3>Binean Engine</h3>
+                <p class="agent-role">Framework điều phối</p>
+              </div>
+              <span class="status status-core">Nền tảng</span>
+            </header>
+            <p class="agent-desc">Bộ khung điều phối của toàn hệ sinh thái. Binean Engine mô hình hóa mọi việc cần làm thành Skill và Task, rồi phân phối cho Agent phù hợp — dù Agent đó là con người, máy, hay AI.</p>
+            <ul class="tag-row">
+              <li>Agent lai: Human + Machine + AI</li>
+              <li>Event-driven</li>
+              <li>Độ trễ cực thấp (Rust)</li>
+            </ul>
+            <div class="sub-grid">
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">🦴</span>
+                <h4>Spine — Orchestrator chính</h4>
+                <p>Trái tim điều phối. Thiết kế để hỗ trợ Agent lai (Human + Machine + AI), quản lý vòng đời Skill và Task, đảm bảo mỗi việc đến đúng người thực thi với đúng ngữ cảnh.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">🔀</span>
+                <h4>Basal — Event Machine Agent</h4>
+                <p>Bộ định tuyến sự kiện. Nhận sự kiện từ process, quyết định bước kế tiếp và điều hướng giữa các Agent — đây cũng là nơi chiến lược Strangler Fig được thực thi trong thực tế.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">⚡</span>
+                <h4>Reflex — Machine Agent nội bộ</h4>
+                <p>Agent máy nằm sát Spine, thực thi Task với độ trễ cực thấp. Dành cho các tác vụ tính toán, kiểm tra và biến đổi dữ liệu cần phản hồi tức thì.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">⏱️</span>
+                <h4>Scheduler &amp; Timeout</h4>
+                <p>Agent chuyên trách lịch trình và giám sát timeout. Không Task nào bị treo im lặng: quá hạn là có sự kiện, có đền bù, có cảnh báo — giúp Spine vận hành bền vững dài hạn.</p>
+              </div>
+            </div>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">N</span>
+              <div>
+                <h3>Nexus</h3>
+                <p class="agent-role">DevOps cho Ingenium</p>
+              </div>
+              <span class="status">Sẵn sàng</span>
+            </header>
+            <p class="agent-desc">Bộ công cụ DevOps được xây riêng cho Ingenium, hoạt động ngay trong VS Code. Biến các thao tác thủ công đầy rủi ro thành pipeline chuẩn hóa và lặp lại được.</p>
+            <ul class="feature-list">
+              <li>Biên dịch COBOL song song theo đồ thị phụ thuộc</li>
+              <li>Backup / restore database có kiểm chứng</li>
+              <li>Policy management: export, import, copy giữa các môi trường</li>
+              <li>Start/stop region và tự động hóa vận hành</li>
+              <li>Thông tin đăng nhập mã hóa AES-256-GCM, không ghi log thô</li>
+            </ul>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">O</span>
+              <div>
+                <h3>Orbit</h3>
+                <p class="agent-role">Hybrid Service Host</p>
+              </div>
+              <span class="status">Đang phát triển</span>
+            </header>
+            <p class="agent-desc">Nơi hệ cũ và hệ mới cùng sống. Orbit chạy song song service Rust mới và Ingenium cũ sau một mặt tiền API duy nhất — nền tảng kỹ thuật cho chiến lược Strangler Fig.</p>
+            <ul class="feature-list">
+              <li>Chạy song song service Rust và Ingenium trong cùng một host</li>
+              <li>Phơi bày core dưới dạng REST API, bỏ middleware MQ</li>
+              <li>Triển khai tính năng mới mà không ngưng hệ cũ</li>
+              <li>Truy vấn hợp đồng 24/7, kể cả trong cửa sổ batch</li>
+              <li>Chuyển đổi từng luồng, có đường lùi ở mọi bước</li>
+            </ul>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p class="agent-role">Flow &amp; Task Management</p>
+              </div>
+              <span class="status">Theo lộ trình</span>
+            </header>
+            <p class="agent-desc">Giao diện người dùng thiết kế theo flow chứ không theo màn hình. Người dùng kích hoạt flow, hệ thống sinh process, process sinh Task và phân cho Machine, Human hoặc AI.</p>
+            <ul class="feature-list">
+              <li>Kích hoạt flow từ menu → tạo process mới</li>
+              <li>Process sinh Task, phân cho Machine / Human / AI</li>
+              <li>Human task thực hiện qua form, kết quả trả về process</li>
+              <li>Basal nhận kết quả và điều hướng bước tiếp theo</li>
+              <li>Trang admin: quản lý user, flow, task và giám sát process</li>
+            </ul>
+          </article>
+          <article class="card agent-card agent-card-wide reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">A</span>
+              <div>
+                <h3>AI Agent</h3>
+                <p class="agent-role">Trí tuệ nhân tạo</p>
+              </div>
+              <span class="status">Theo lộ trình</span>
+            </header>
+            <p class="agent-desc">AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.</p>
+            <ul class="feature-list">
+              <li>Hỗ trợ ACP — Autonomous Control Plane</li>
+              <li>Tự động đảm nhận Task theo mức độ tin cậy</li>
+              <li>Học từ dữ liệu vận hành và lịch sử xử lý</li>
+              <li>Đề xuất tối ưu quy trình và phát hiện bất thường</li>
+              <li>Luôn có human-in-the-loop cho quyết định rủi ro cao</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-benefits" id="loi-ich">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Lợi ích</p>
+          <h2>Điều thay đổi trong vận hành hằng ngày</h2>
+          <p class="lead">Mỗi lợi ích dưới đây gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🚀</span>
+            <h3>Tốc độ</h3>
+            <p>Các luồng nghiệp vụ nóng được viết lại bằng Rust — nhanh hơn tới 10x so với cài đặt COBOL tương ứng, đồng thời an toàn bộ nhớ theo thiết kế.</p>
+            <p class="benefit-stat"><b>10x</b><span>nhanh hơn ở luồng đã chuyển sang Rust</span></p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🛡️</span>
+            <h3>An toàn</h3>
+            <p>Di cư từng bước theo Strangler Fig. Hệ thống đang chạy không bị phá vỡ, mỗi bước đều có cổng go/no-go và đường lùi rõ ràng.</p>
+            <p class="benefit-stat"><b>0</b><span>ngày &quot;big bang&quot; trong lộ trình</span></p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🤖</span>
+            <h3>Thông minh</h3>
+            <p>AI Agent đảm nhận các Task lặp lại và kiểm tra chéo kết quả, giảm sai sót thủ công và giải phóng đội ngũ cho phần việc cần phán đoán.</p>
+            <p class="benefit-stat"><b>24/7</b><span>xử lý không phụ thuộc ca trực</span></p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">☁️</span>
+            <h3>Sẵn sàng Cloud-native</h3>
+            <p>Đóng gói container, điều phối bằng Kubernetes, quan sát bằng công cụ chuẩn ngành. Chạy trên cloud, on-premise hay hybrid đều cùng một cách vận hành.</p>
+            <p class="benefit-stat"><b>K8s</b><span>triển khai cloud, on-prem hoặc hybrid</span></p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🔓</span>
+            <h3>Không khóa nhà cung cấp</h3>
+            <p>Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.</p>
+            <p class="benefit-stat"><b>100%</b><span>quyền sở hữu nghiệp vụ thuộc về bạn</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Sẵn sàng chuyển đổi core bảo hiểm?</h2>
+          <p class="lead">Bắt đầu bằng một POC có phạm vi rõ ràng trên chính một luồng nghiệp vụ Ingenium của bạn. Chứng minh cải thiện build-and-deploy trước, rồi mới quyết định đi xa tới đâu.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#">Đăng ký Demo</a>
+            <a class="btn btn-ghost btn-lg" href="#">Tải Whitepaper</a>
+          </div>
+          <p class="hero-note">Tư vấn 30 phút, không ràng buộc. Phản hồi trong vòng 2 ngày làm việc.</p>
+          <p class="cta-contact">
+            <a href="mailto:ingenium.modernization@gmail.com?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">ingenium.modernization@gmail.com</a>
+            <span aria-hidden="true">·</span>
+            <a href="tel:+842873000000">+84 28 7300 0000</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>BENOVA là hệ sinh thái hiện đại hóa core bảo hiểm Ingenium: điều phối bằng Binean Engine, vận hành bằng Nexus, mở core bằng Orbit, trải nghiệm bằng Vista và tăng tốc bằng AI Agent.</p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="#kien-truc">Binean Engine</a></li>
+          <li><a href="#kien-truc">Nexus</a></li>
+          <li><a href="#kien-truc">Orbit</a></li>
+          <li><a href="#kien-truc">Vista</a></li>
+          <li><a href="#kien-truc">AI Agent</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="#gioi-thieu">Vấn đề &amp; Giải pháp</a></li>
+          <li><a href="#strangler">Chiến lược Strangler Fig</a></li>
+          <li><a href="#loi-ich">Lợi ích</a></li>
+          <li><a href="#lien-he">Đăng ký Demo</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:ingenium.modernization@gmail.com">ingenium.modernization@gmail.com</a></li>
+          <li><a href="tel:+842873000000">+84 28 7300 0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+      <ul>
+        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="#">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
