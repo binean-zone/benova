@@ -159,6 +159,10 @@ const hero = () => {
   const R_INNER = 0.24;
   const R_OUTER = 0.46;
 
+  // Hành tinh to nhỏ chênh nhau rõ rệt cho đỡ đều tăm tắp; Engine là bộ khung
+  // nên to nhất. Dãy cố định nên build luôn tái lập được.
+  const SCALES = [1.24, 0.88, 1.12, 0.8, 1];
+
   const orbits = sats.map((sat, i) => {
     const t = sats.length > 1 ? i / (sats.length - 1) : 0;
     const radius = R_INNER + (R_OUTER - R_INNER) * t;
@@ -169,7 +173,7 @@ const hero = () => {
     const angle = (i * 137.508) % 360;
     // Animation ghi đè transform nên lệch pha bằng delay âm thay vì rotate tĩnh.
     const delay = -(angle / 360) * duration;
-    return { sat, radius, duration, delay, angle };
+    return { sat, radius, duration, delay, angle, scale: SCALES[i % SCALES.length] };
   });
 
   const rings = list(
@@ -181,9 +185,11 @@ const hero = () => {
     orbits,
     (o) => `            <li
               class="sat"
-              style="--rf:${o.radius.toFixed(4)}; --dur:${o.duration}s; --delay:${o.delay.toFixed(2)}s; --static-a:${o.angle.toFixed(2)}deg"
+              style="--rf:${o.radius.toFixed(4)}; --dur:${o.duration}s; --delay:${o.delay.toFixed(
+      2
+    )}s; --static-a:${o.angle.toFixed(2)}deg; --c:${esc(o.sat.color)}; --ps:${o.scale}"
             >
-              <span class="sat-pos">
+              <span class="sat-pos${o.sat.ring ? ' sat-ringed' : ''}">
                 <span class="sat-chip">
                   <span class="sat-key">${esc(o.sat.key)}</span>
                 </span>
@@ -232,6 +238,7 @@ ${stars}
             </div>
 ${rings}
             <div class="orbit-corona"></div>
+            <div class="orbit-flare"></div>
             <div class="orbit-core">
               <span class="core-name">${esc(hero.core.key)}</span>
             </div>

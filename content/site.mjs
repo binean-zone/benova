@@ -4,13 +4,14 @@
  * Toàn bộ chữ hiển thị trên trang được khai báo tại đây.
  * Sửa file này rồi chạy `npm run build` để sinh lại index.html.
  */
-const mail = 'mailto:ingenium.modernization@gmail.com';
+const emails = ['binean.enova@gmail.com', 'ingenium.modernization@gmail.com'];
+const mail = `mailto:${emails[0]}`;
 
 export default {
   brand: {
     name: 'BENOVA',
     tagline: 'Hệ sinh thái hiện đại hóa core bảo hiểm Ingenium',
-    emails: ['ingenium.modernization@gmail.com', 'binean.enova@gmail.com'],
+    emails,
   },
 
   notice: {
@@ -47,11 +48,11 @@ export default {
     note: 'Giữ nguyên logic nghiệp vụ · Không đụng tới giấy phép Ingenium · Triển khai cloud, on-prem hoặc hybrid',
     core: { key: 'B', name: 'Binean' },
     satellites: [
-      { key: 'E', name: 'Engine', desc: 'Framework điều phối' },
-      { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium' },
-      { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host' },
-      { key: 'V', name: 'Vista', desc: 'Flow & Task Management' },
-      { key: 'A', name: 'AI Agent', desc: 'Autonomous Control Plane' },
+      { key: 'E', name: 'Engine', desc: 'Framework điều phối', color: '#5eead4' },
+      { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium', color: '#fbbf24' },
+      { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host', color: '#a78bfa', ring: true },
+      { key: 'V', name: 'Vista', desc: 'Flow & Task Management', color: '#fb7185' },
+      { key: 'A', name: 'AI Agent', desc: 'Autonomous Control Plane', color: '#a3e635' },
     ],
   },
 
@@ -234,9 +235,9 @@ export default {
       },
       {
         icon: '👤',
-        title: 'Giảm phụ thuộc vào nhân sự COBOL',
+        title: 'Giảm lượng việc cần tới chuyên gia hiếm',
         answers: 'Thiếu nhân sự COBOL',
-        desc: 'Nexus đưa COBOL vào VS Code với pipeline chuẩn hóa nên người mới tiếp cận được. Luồng đã chuyển sang Rust thì tuyển dụng và đào tạo nằm trong mặt bằng thị trường hiện tại.',
+        desc: 'Rust cũng không dồi dào — điểm khác là đội ngũ Rust còn đang lớn lên, còn COBOL thì chỉ teo dần. Quan trọng hơn: Nexus chuẩn hóa build và triển khai nên phần việc bắt buộc phải có chuyên gia core ít đi, và bạn không cần tự viết Rust mới dùng được Nexus hay Orbit.',
       },
       {
         icon: '🚀',
@@ -270,7 +271,7 @@ export default {
   },
 
   footer: {
-    blurb: 'BENOVA = B + ENOVA. B là Binean; ENOVA là năm thành tố hiện đại hóa core bảo hiểm Ingenium: Engine, Nexus, Orbit, Vista và AI Agent.',
+    blurb: 'Hiện đại hóa core bảo hiểm Ingenium theo từng bước, không ngừng vận hành.',
     columns: [
       {
         title: 'Sản phẩm',
