@@ -21,8 +21,8 @@
   <meta name="twitter:description" content="BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành." />
   <meta name="twitter:image" content="https://binean.com/assets/images/og-benova.png" />
 
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="assets/images/favicon.svg" />
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/images/binean.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -56,18 +56,17 @@
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="BENOVA — về đầu trang">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 60 60" width="30" height="30" focusable="false">
-            <circle cx="30" cy="30" r="30" fill="#3481E5" />
-            <text x="11" y="50" class="mark-b">B</text>
-          </svg>
+          <img class="logo-dark" src="assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="assets/images/binean.svg" alt="" width="60" height="60" />
         </span>
         <span class="brand-name">BENOVA</span>
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
         <ul>
-          <li><a href="#gioi-thieu">Giới thiệu</a></li>
-          <li><a href="#kien-truc">Kiến trúc</a></li>
+          <li><a href="#van-de">Vấn đề</a></li>
+          <li><a href="#kien-truc">Hệ sinh thái</a></li>
+          <li><a href="#trien-khai">Triển khai</a></li>
           <li><a href="#loi-ich">Lợi ích</a></li>
           <li><a href="#lien-he">Liên hệ</a></li>
         </ul>
@@ -169,20 +168,19 @@
             <i style="--x:78.99%; --y:68.54%; --s:2.23px; --tw:6.53s; --td:4.86s"></i>
             <i style="--x:6.31%; --y:37.43%; --s:1.09px; --tw:6.40s; --td:2.23s"></i>
             </div>
-            <div class="orbit-ring" style="--rf:0.2700"></div>
-            <div class="orbit-ring" style="--rf:0.3150"></div>
-            <div class="orbit-ring" style="--rf:0.3600"></div>
+            <div class="orbit-ring" style="--rf:0.2400"></div>
+            <div class="orbit-ring" style="--rf:0.2950"></div>
+            <div class="orbit-ring" style="--rf:0.3500"></div>
             <div class="orbit-ring" style="--rf:0.4050"></div>
-            <div class="orbit-ring" style="--rf:0.4500"></div>
+            <div class="orbit-ring" style="--rf:0.4600"></div>
             <div class="orbit-corona"></div>
             <div class="orbit-core">
               <span class="core-name">B</span>
-              <span class="core-sub">Binean</span>
             </div>
             <ul class="orbit-sats">
             <li
               class="sat"
-              style="--rf:0.2700; --dur:26s; --delay:0.00s; --static-a:0.00deg"
+              style="--rf:0.2400; --dur:11s; --delay:0.00s; --static-a:0.00deg"
             >
               <span class="sat-pos">
                 <span class="sat-chip">
@@ -192,7 +190,7 @@
             </li>
             <li
               class="sat"
-              style="--rf:0.3150; --dur:35s; --delay:-13.37s; --static-a:137.51deg"
+              style="--rf:0.2950; --dur:15s; --delay:-5.73s; --static-a:137.51deg"
             >
               <span class="sat-pos">
                 <span class="sat-chip">
@@ -202,7 +200,7 @@
             </li>
             <li
               class="sat"
-              style="--rf:0.3600; --dur:44s; --delay:-33.61s; --static-a:275.02deg"
+              style="--rf:0.3500; --dur:19s; --delay:-14.51s; --static-a:275.02deg"
             >
               <span class="sat-pos">
                 <span class="sat-chip">
@@ -212,7 +210,7 @@
             </li>
             <li
               class="sat"
-              style="--rf:0.4050; --dur:53s; --delay:-7.73s; --static-a:52.52deg"
+              style="--rf:0.4050; --dur:23s; --delay:-3.36s; --static-a:52.52deg"
             >
               <span class="sat-pos">
                 <span class="sat-chip">
@@ -222,7 +220,7 @@
             </li>
             <li
               class="sat"
-              style="--rf:0.4500; --dur:62s; --delay:-32.73s; --static-a:190.03deg"
+              style="--rf:0.4600; --dur:27s; --delay:-14.25s; --static-a:190.03deg"
             >
               <span class="sat-pos">
                 <span class="sat-chip">
@@ -236,10 +234,10 @@
       </div>
     </section>
 
-    <section class="section section-problem" id="gioi-thieu">
+    <section class="section section-problem" id="van-de">
       <div class="shell">
         <div class="section-head reveal">
-          <p class="eyebrow">Vấn đề &amp; Giải pháp</p>
+          <p class="eyebrow">Vấn đề</p>
           <h2>Core cũ không sai. Chỉ là nó đang ngày càng đắt hơn giá trị nó tạo ra.</h2>
           <p class="lead">Ingenium vẫn chạy đúng nghiệp vụ sau hàng chục năm. Nhưng chi phí vận hành, tốc độ ra tính năng và nguồn nhân lực xung quanh nó thì không còn bền vững.</p>
         </div>
@@ -265,60 +263,7 @@
             <p>Môi trường DEV/SIT/UAT trôi dạt khỏi PRD theo thời gian, sinh ra lỗi &quot;chạy ở đây, hỏng ở kia&quot; và lỗ hổng kiểm toán.</p>
           </article>
         </div>
-      </div>
-
-      <div class="shell" id="strangler">
-        <div class="strangler">
-          <div class="strangler-copy reveal">
-            <p class="eyebrow">Chiến lược</p>
-            <h2>Strangler Fig — thay thế dần, không thay thế một lần</h2>
-            <p class="lead">Thay vì &quot;rip and replace&quot; nhiều năm với rủi ro rất cao, BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng.</p>
-            <a class="btn btn-ghost" href="#kien-truc">Xem cách hệ sinh thái thực thi điều này</a>
-          </div>
-          <ol class="strangler-steps">
-            <li class="reveal">
-              <span class="step-num">01</span>
-              <div>
-                <h3>Bao quanh</h3>
-                <p>Orbit đứng trước Ingenium, phơi bày core dưới dạng REST API mà không sửa một dòng COBOL nào.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="step-num">02</span>
-              <div>
-                <h3>Chuyển hướng</h3>
-                <p>Basal điều hướng từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="step-num">03</span>
-              <div>
-                <h3>Thay thế</h3>
-                <p>Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.</p>
-              </div>
-            </li>
-            <li class="reveal">
-              <span class="step-num">04</span>
-              <div>
-                <h3>Ngưng hệ cũ</h3>
-                <p>Khi mọi luồng đã đi qua nền tảng mới, phần COBOL tương ứng được cho nghỉ. Không có ngày &quot;big bang&quot;.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-        <figure class="diagram reveal">
-          <img
-            src="assets/images/strangler-fig.svg"
-            alt="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian."
-            width="1120"
-            height="420"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>
-            Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.
-          </figcaption>
-        </figure>
+        <p class="section-bridge reveal">Thay thế toàn bộ core là chương trình nhiều năm với rủi ro rất cao. BENOVA đi đường khác.</p>
       </div>
     </section>
 
@@ -444,45 +389,93 @@
       </div>
     </section>
 
+    <section class="section section-strategy" id="trien-khai">
+      <div class="shell">
+        <div class="strangler">
+          <div class="strangler-copy reveal">
+            <p class="eyebrow">Cách triển khai</p>
+            <h2>Strangler Fig — thay thế dần, không thay thế một lần</h2>
+            <p class="lead">BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày &quot;big bang&quot;.</p>
+          </div>
+          <ol class="strangler-steps">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Bao quanh</h3>
+                <p>Orbit đứng trước Ingenium, phơi bày core dưới dạng REST API mà không sửa một dòng COBOL nào.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Chuyển hướng</h3>
+                <p>Basal điều hướng từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Thay thế</h3>
+                <p>Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Ngưng hệ cũ</h3>
+                <p>Khi mọi luồng đã đi qua nền tảng mới, phần COBOL tương ứng được cho nghỉ, theo tiến độ bạn chọn.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="diagram reveal">
+          <img
+            src="assets/images/strangler-fig.svg"
+            alt="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian."
+            width="1120"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="section section-benefits" id="loi-ich">
       <div class="shell">
         <div class="section-head reveal">
           <p class="eyebrow">Lợi ích</p>
-          <h2>Điều thay đổi trong vận hành hằng ngày</h2>
-          <p class="lead">Mỗi lợi ích dưới đây gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.</p>
+          <h2>Bốn vấn đề ở trên, bốn kết quả ở đây</h2>
+          <p class="lead">Mỗi lợi ích gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.</p>
         </div>
         <div class="benefit-grid">
           <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">💸</span>
+            <p class="benefit-answers">Trả lời: Chi phí nền tảng leo thang</p>
+            <h3>Thoát dần khỏi giấy phép độc quyền</h3>
+            <p>Orbit bỏ middleware MQ, service mới đóng gói container và điều phối bằng Kubernetes. Càng nhiều luồng chuyển sang, phần hạ tầng phải trả tiền giấy phép càng nhỏ lại.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">👤</span>
+            <p class="benefit-answers">Trả lời: Thiếu nhân sự COBOL</p>
+            <h3>Giảm phụ thuộc vào nhân sự COBOL</h3>
+            <p>Nexus đưa COBOL vào VS Code với pipeline chuẩn hóa nên người mới tiếp cận được. Luồng đã chuyển sang Rust thì tuyển dụng và đào tạo nằm trong mặt bằng thị trường hiện tại.</p>
+          </article>
+          <article class="card benefit-card reveal">
             <span class="card-icon" aria-hidden="true">🚀</span>
-            <h3>Tốc độ</h3>
-            <p>Các luồng nghiệp vụ nóng được viết lại bằng Rust: an toàn bộ nhớ theo thiết kế và nhanh hơn nhiều lần so với cài đặt COBOL tương ứng. Con số cụ thể phụ thuộc từng luồng và sẽ đo trên chính hệ thống của bạn trong POC.</p>
-            <p class="benefit-stat"><b>Rust</b><span>mục tiêu 10x ở luồng đã chuyển đổi, đo trong POC</span></p>
+            <p class="benefit-answers">Trả lời: Không theo kịp tốc độ số hóa</p>
+            <h3>Rút ngắn thời gian ra tính năng</h3>
+            <p>Biên dịch song song và triển khai tự động thay cho thao tác thủ công. REST API sẵn có nên kênh số và đối tác mới không phải chờ một lớp middleware riêng.</p>
           </article>
           <article class="card benefit-card reveal">
             <span class="card-icon" aria-hidden="true">🛡️</span>
-            <h3>An toàn</h3>
-            <p>Di cư từng bước theo Strangler Fig. Hệ thống đang chạy không bị phá vỡ, mỗi bước đều có cổng go/no-go và đường lùi rõ ràng.</p>
-            <p class="benefit-stat"><b>0</b><span>ngày &quot;big bang&quot; trong lộ trình</span></p>
-          </article>
-          <article class="card benefit-card reveal">
-            <span class="card-icon" aria-hidden="true">🤖</span>
-            <h3>Thông minh</h3>
-            <p>AI Agent đảm nhận các Task lặp lại và kiểm tra chéo kết quả, giảm sai sót thủ công và giải phóng đội ngũ cho phần việc cần phán đoán.</p>
-            <p class="benefit-stat"><b>24/7</b><span>xử lý không phụ thuộc ca trực</span></p>
-          </article>
-          <article class="card benefit-card reveal">
-            <span class="card-icon" aria-hidden="true">☁️</span>
-            <h3>Sẵn sàng Cloud-native</h3>
-            <p>Đóng gói container, điều phối bằng Kubernetes, quan sát bằng công cụ chuẩn ngành. Chạy trên cloud, on-premise hay hybrid đều cùng một cách vận hành.</p>
-            <p class="benefit-stat"><b>K8s</b><span>triển khai cloud, on-prem hoặc hybrid</span></p>
-          </article>
-          <article class="card benefit-card reveal">
-            <span class="card-icon" aria-hidden="true">🔓</span>
-            <h3>Không khóa nhà cung cấp</h3>
-            <p>Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.</p>
-            <p class="benefit-stat"><b>100%</b><span>quyền sở hữu nghiệp vụ thuộc về bạn</span></p>
+            <p class="benefit-answers">Trả lời: Rủi ro vận hành tích tụ</p>
+            <h3>Giảm rủi ro thay vì tích tụ thêm</h3>
+            <p>Môi trường dựng lại được từ baseline có version nên hết trôi dạt. Mỗi bước di cư có cổng go/no-go và đường lùi, hệ thống đang chạy không bị đụng tới.</p>
           </article>
         </div>
+        <p class="section-bridge reveal">Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.</p>
       </div>
     </section>
 
@@ -528,8 +521,8 @@
       <nav class="footer-col" aria-label="Tìm hiểu">
         <h2>Tìm hiểu</h2>
         <ul>
-          <li><a href="#gioi-thieu">Vấn đề &amp; Giải pháp</a></li>
-          <li><a href="#strangler">Chiến lược Strangler Fig</a></li>
+          <li><a href="#van-de">Vấn đề</a></li>
+          <li><a href="#trien-khai">Cách triển khai</a></li>
           <li><a href="#loi-ich">Lợi ích</a></li>
           <li><a href="#lien-he">Liên hệ</a></li>
         </ul>

@@ -31,8 +31,9 @@ export default {
   },
 
   nav: [
-    { label: 'Giới thiệu', href: '#gioi-thieu' },
-    { label: 'Kiến trúc', href: '#kien-truc' },
+    { label: 'Vấn đề', href: '#van-de' },
+    { label: 'Hệ sinh thái', href: '#kien-truc' },
+    { label: 'Triển khai', href: '#trien-khai' },
     { label: 'Lợi ích', href: '#loi-ich' },
     { label: 'Liên hệ', href: '#lien-he' },
   ],
@@ -55,8 +56,8 @@ export default {
   },
 
   problem: {
-    id: 'gioi-thieu',
-    eyebrow: 'Vấn đề & Giải pháp',
+    id: 'van-de',
+    eyebrow: 'Vấn đề',
     title: 'Core cũ không sai. Chỉ là nó đang ngày càng đắt hơn giá trị nó tạo ra.',
     lead: 'Ingenium vẫn chạy đúng nghiệp vụ sau hàng chục năm. Nhưng chi phí vận hành, tốc độ ra tính năng và nguồn nhân lực xung quanh nó thì không còn bền vững.',
     pains: [
@@ -81,33 +82,7 @@ export default {
         desc: 'Môi trường DEV/SIT/UAT trôi dạt khỏi PRD theo thời gian, sinh ra lỗi "chạy ở đây, hỏng ở kia" và lỗ hổng kiểm toán.',
       },
     ],
-    solution: {
-      eyebrow: 'Chiến lược',
-      title: 'Strangler Fig — thay thế dần, không thay thế một lần',
-      lead: 'Thay vì "rip and replace" nhiều năm với rủi ro rất cao, BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng.',
-      steps: [
-        {
-          num: '01',
-          title: 'Bao quanh',
-          desc: 'Orbit đứng trước Ingenium, phơi bày core dưới dạng REST API mà không sửa một dòng COBOL nào.',
-        },
-        {
-          num: '02',
-          title: 'Chuyển hướng',
-          desc: 'Basal điều hướng từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.',
-        },
-        {
-          num: '03',
-          title: 'Thay thế',
-          desc: 'Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.',
-        },
-        {
-          num: '04',
-          title: 'Ngưng hệ cũ',
-          desc: 'Khi mọi luồng đã đi qua nền tảng mới, phần COBOL tương ứng được cho nghỉ. Không có ngày "big bang".',
-        },
-      ],
-    },
+    bridge: 'Thay thế toàn bộ core là chương trình nhiều năm với rủi ro rất cao. BENOVA đi đường khác.',
   },
 
   ecosystem: {
@@ -214,48 +189,69 @@ export default {
     ],
   },
 
+  strategy: {
+    id: 'trien-khai',
+    eyebrow: 'Cách triển khai',
+    title: 'Strangler Fig — thay thế dần, không thay thế một lần',
+    lead: 'BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày "big bang".',
+    steps: [
+      {
+        num: '01',
+        title: 'Bao quanh',
+        desc: 'Orbit đứng trước Ingenium, phơi bày core dưới dạng REST API mà không sửa một dòng COBOL nào.',
+      },
+      {
+        num: '02',
+        title: 'Chuyển hướng',
+        desc: 'Basal điều hướng từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.',
+      },
+      {
+        num: '03',
+        title: 'Thay thế',
+        desc: 'Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.',
+      },
+      {
+        num: '04',
+        title: 'Ngưng hệ cũ',
+        desc: 'Khi mọi luồng đã đi qua nền tảng mới, phần COBOL tương ứng được cho nghỉ, theo tiến độ bạn chọn.',
+      },
+    ],
+    caption:
+      'Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.',
+  },
+
   benefits: {
     id: 'loi-ich',
     eyebrow: 'Lợi ích',
-    title: 'Điều thay đổi trong vận hành hằng ngày',
-    lead: 'Mỗi lợi ích dưới đây gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.',
+    title: 'Bốn vấn đề ở trên, bốn kết quả ở đây',
+    lead: 'Mỗi lợi ích gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.',
     items: [
       {
+        icon: '💸',
+        title: 'Thoát dần khỏi giấy phép độc quyền',
+        answers: 'Chi phí nền tảng leo thang',
+        desc: 'Orbit bỏ middleware MQ, service mới đóng gói container và điều phối bằng Kubernetes. Càng nhiều luồng chuyển sang, phần hạ tầng phải trả tiền giấy phép càng nhỏ lại.',
+      },
+      {
+        icon: '👤',
+        title: 'Giảm phụ thuộc vào nhân sự COBOL',
+        answers: 'Thiếu nhân sự COBOL',
+        desc: 'Nexus đưa COBOL vào VS Code với pipeline chuẩn hóa nên người mới tiếp cận được. Luồng đã chuyển sang Rust thì tuyển dụng và đào tạo nằm trong mặt bằng thị trường hiện tại.',
+      },
+      {
         icon: '🚀',
-        title: 'Tốc độ',
-        desc: 'Các luồng nghiệp vụ nóng được viết lại bằng Rust: an toàn bộ nhớ theo thiết kế và nhanh hơn nhiều lần so với cài đặt COBOL tương ứng. Con số cụ thể phụ thuộc từng luồng và sẽ đo trên chính hệ thống của bạn trong POC.',
-        stat: 'Rust',
-        statLabel: 'mục tiêu 10x ở luồng đã chuyển đổi, đo trong POC',
+        title: 'Rút ngắn thời gian ra tính năng',
+        answers: 'Không theo kịp tốc độ số hóa',
+        desc: 'Biên dịch song song và triển khai tự động thay cho thao tác thủ công. REST API sẵn có nên kênh số và đối tác mới không phải chờ một lớp middleware riêng.',
       },
       {
         icon: '🛡️',
-        title: 'An toàn',
-        desc: 'Di cư từng bước theo Strangler Fig. Hệ thống đang chạy không bị phá vỡ, mỗi bước đều có cổng go/no-go và đường lùi rõ ràng.',
-        stat: '0',
-        statLabel: 'ngày "big bang" trong lộ trình',
-      },
-      {
-        icon: '🤖',
-        title: 'Thông minh',
-        desc: 'AI Agent đảm nhận các Task lặp lại và kiểm tra chéo kết quả, giảm sai sót thủ công và giải phóng đội ngũ cho phần việc cần phán đoán.',
-        stat: '24/7',
-        statLabel: 'xử lý không phụ thuộc ca trực',
-      },
-      {
-        icon: '☁️',
-        title: 'Sẵn sàng Cloud-native',
-        desc: 'Đóng gói container, điều phối bằng Kubernetes, quan sát bằng công cụ chuẩn ngành. Chạy trên cloud, on-premise hay hybrid đều cùng một cách vận hành.',
-        stat: 'K8s',
-        statLabel: 'triển khai cloud, on-prem hoặc hybrid',
-      },
-      {
-        icon: '🔓',
-        title: 'Không khóa nhà cung cấp',
-        desc: 'Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.',
-        stat: '100%',
-        statLabel: 'quyền sở hữu nghiệp vụ thuộc về bạn',
+        title: 'Giảm rủi ro thay vì tích tụ thêm',
+        answers: 'Rủi ro vận hành tích tụ',
+        desc: 'Môi trường dựng lại được từ baseline có version nên hết trôi dạt. Mỗi bước di cư có cổng go/no-go và đường lùi, hệ thống đang chạy không bị đụng tới.',
       },
     ],
+    note: 'Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.',
   },
 
   cta: {
@@ -289,8 +285,8 @@ export default {
       {
         title: 'Tìm hiểu',
         links: [
-          { label: 'Vấn đề & Giải pháp', href: '#gioi-thieu' },
-          { label: 'Chiến lược Strangler Fig', href: '#strangler' },
+          { label: 'Vấn đề', href: '#van-de' },
+          { label: 'Cách triển khai', href: '#trien-khai' },
           { label: 'Lợi ích', href: '#loi-ich' },
           { label: 'Liên hệ', href: '#lien-he' },
         ],

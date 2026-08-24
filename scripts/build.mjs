@@ -62,8 +62,8 @@ const head = () => {
   <meta name="twitter:description" content="${esc(seo.description)}" />
   <meta name="twitter:image" content="${esc(ogImage)}" />
 
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="assets/images/favicon.svg" />
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/images/binean.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -100,10 +100,8 @@ const header = () => `  <a class="skip-link" href="#main">Bỏ qua điều hư�
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="${esc(site.brand.name)} — về đầu trang">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 60 60" width="30" height="30" focusable="false">
-            <circle cx="30" cy="30" r="30" fill="#3481E5" />
-            <text x="11" y="50" class="mark-b">B</text>
-          </svg>
+          <img class="logo-dark" src="assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="assets/images/binean.svg" alt="" width="60" height="60" />
         </span>
         <span class="brand-name">${esc(site.brand.name)}</span>
       </a>
@@ -154,14 +152,15 @@ const hero = () => {
   /* Mỗi thành tố một quỹ đạo riêng, giãn đều từ trong ra ngoài. Bán kính tính
      theo % cạnh sân khấu; cộng thêm bán kính chip vẫn nằm gọn trong khung.
      Thêm hay bớt thành tố (tới 9 hoặc hơn) chỉ cần sửa content/site.mjs. */
-  const R_INNER = 0.27;
-  const R_OUTER = 0.45;
+  const R_INNER = 0.24;
+  const R_OUTER = 0.46;
 
   const orbits = sats.map((sat, i) => {
     const t = sats.length > 1 ? i / (sats.length - 1) : 0;
     const radius = R_INNER + (R_OUTER - R_INNER) * t;
-    // Quỹ đạo ngoài quay chậm hơn, cho cảm giác Kepler.
-    const duration = 26 + i * 9;
+    // Quỹ đạo ngoài quay chậm hơn, cho cảm giác Kepler. Chu kỳ đủ ngắn để
+    // chuyển động nhìn thấy được ngay, không phải đứng nhìn cả phút.
+    const duration = 11 + i * 4;
     // Góc vàng: các hành tinh không bao giờ xếp thành hình sao đều.
     const angle = (i * 137.508) % 360;
     // Animation ghi đè transform nên lệch pha bằng delay âm thay vì rotate tĩnh.
@@ -231,7 +230,6 @@ ${rings}
             <div class="orbit-corona"></div>
             <div class="orbit-core">
               <span class="core-name">${esc(hero.core.key)}</span>
-              <span class="core-sub">${esc(hero.core.name)}</span>
             </div>
             <ul class="orbit-sats">
 ${planets}
@@ -263,19 +261,26 @@ ${list(
           </article>`
 )}
         </div>
+        <p class="section-bridge reveal">${esc(p.bridge)}</p>
       </div>
+    </section>`;
+};
 
-      <div class="shell" id="strangler">
+/* --------------------------------------------------------- strategy ---- */
+
+const strategy = () => {
+  const t = site.strategy;
+  return `    <section class="section section-strategy" id="${esc(t.id)}">
+      <div class="shell">
         <div class="strangler">
           <div class="strangler-copy reveal">
-            <p class="eyebrow">${esc(p.solution.eyebrow)}</p>
-            <h2>${esc(p.solution.title)}</h2>
-            <p class="lead">${esc(p.solution.lead)}</p>
-            <a class="btn btn-ghost" href="#kien-truc">Xem cách hệ sinh thái thực thi điều này</a>
+            <p class="eyebrow">${esc(t.eyebrow)}</p>
+            <h2>${esc(t.title)}</h2>
+            <p class="lead">${esc(t.lead)}</p>
           </div>
           <ol class="strangler-steps">
 ${list(
-  p.solution.steps,
+  t.steps,
   (step) => `            <li class="reveal">
               <span class="step-num">${esc(step.num)}</span>
               <div>
@@ -295,9 +300,7 @@ ${list(
             loading="lazy"
             decoding="async"
           />
-          <figcaption>
-            Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.
-          </figcaption>
+          <figcaption>${esc(t.caption)}</figcaption>
         </figure>
       </div>
     </section>`;
@@ -381,12 +384,13 @@ ${list(
   b.items,
   (item) => `          <article class="card benefit-card reveal">
             <span class="card-icon" aria-hidden="true">${esc(item.icon)}</span>
+            <p class="benefit-answers">Trả lời: ${esc(item.answers)}</p>
             <h3>${esc(item.title)}</h3>
             <p>${esc(item.desc)}</p>
-            <p class="benefit-stat"><b>${esc(item.stat)}</b><span>${esc(item.statLabel)}</span></p>
           </article>`
 )}
         </div>
+        <p class="section-bridge reveal">${esc(b.note)}</p>
       </div>
     </section>`;
 };
@@ -473,6 +477,8 @@ ${hero()}
 ${problem()}
 
 ${ecosystem()}
+
+${strategy()}
 
 ${benefits()}
 
