@@ -10,7 +10,7 @@ export default {
   brand: {
     name: 'BENOVA',
     tagline: 'Hệ sinh thái hiện đại hóa core bảo hiểm Ingenium',
-    email: 'ingenium.modernization@gmail.com',
+    emails: ['ingenium.modernization@gmail.com', 'binean.enova@gmail.com'],
   },
 
   notice: {

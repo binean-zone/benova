@@ -23,6 +23,10 @@ const esc = (value) =>
 
 const list = (items, render) => items.map(render).join('\n');
 
+/* Địa chỉ đầu tiên là địa chỉ chính, dùng cho mọi nút CTA. */
+const primaryEmail = site.brand.emails[0];
+const mailto = (address, subject) => `mailto:${address}?subject=${encodeURIComponent(subject)}`;
+
 /* -------------------------------------------------------------- head --- */
 
 const head = () => {
@@ -39,7 +43,7 @@ const head = () => {
     url: canonical,
     operatingSystem: 'Linux, Kubernetes, Cloud, On-premise',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Tư vấn và POC theo phạm vi' },
-    publisher: { '@type': 'Organization', name: brand.name, email: brand.email },
+    publisher: { '@type': 'Organization', name: brand.name, email: brand.emails[0] },
   };
 
   return `  <meta charset="utf-8" />
@@ -91,7 +95,7 @@ const notice = () => `  <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
       <p>${esc(site.notice.text)}</p>
-      <a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Lien%20he">${esc(site.notice.linkLabel)}</a>
+      <a href="${esc(mailto(primaryEmail, 'BENOVA - Lien he'))}">${esc(site.notice.linkLabel)}</a>
     </div>
   </div>`;
 
@@ -410,7 +414,11 @@ const cta = () => {
           </div>
           <p class="hero-note">${esc(c.note)}</p>
           <p class="cta-contact">
-            <a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">${esc(site.brand.email)}</a>
+${list(
+  site.brand.emails,
+  (address) =>
+    `            <a href="${esc(mailto(address, 'BENOVA - Yeu cau tu van'))}">${esc(address)}</a>`
+)}
           </p>
         </div>
       </div>
@@ -444,7 +452,11 @@ ${list(col.links, (l) => `          <li><a href="${esc(l.href)}">${esc(l.label)}
       <div class="footer-col">
         <h2>Liên hệ</h2>
         <ul>
-          <li><a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Lien%20he">${esc(site.brand.email)}</a></li>
+${list(
+  site.brand.emails,
+  (address) =>
+    `          <li><a href="${esc(mailto(address, 'BENOVA - Lien he'))}">${esc(address)}</a></li>`
+)}
         </ul>
         <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
       </div>

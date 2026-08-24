@@ -973,7 +973,7 @@ ol {
   font-size: 0.92rem;
   color: var(--muted);
   display: flex;
-  gap: 10px;
+  gap: 8px 22px;
   justify-content: center;
   flex-wrap: wrap;
 }
