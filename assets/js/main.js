@@ -41,14 +41,17 @@
     if (!nav || !navToggle) return;
     nav.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Mở menu');
+    navToggle.setAttribute('aria-label', navToggle.dataset.labelOpen || '');
   }
 
   if (navToggle && nav) {
     navToggle.addEventListener('click', function () {
       var open = nav.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(open));
-      navToggle.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+      navToggle.setAttribute(
+        'aria-label',
+        (open ? navToggle.dataset.labelClose : navToggle.dataset.labelOpen) || ''
+      );
     });
 
     nav.addEventListener('click', function (event) {

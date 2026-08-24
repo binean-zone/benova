@@ -37,6 +37,7 @@ jobs:
       - name: Check build output
         run: |
           test -s index.html || { echo "index.html rỗng hoặc không tồn tại"; exit 1; }
+          test -s en/index.html || { echo "en/index.html rỗng hoặc không tồn tại"; exit 1; }
           test -s sitemap.xml || { echo "sitemap.xml rỗng hoặc không tồn tại"; exit 1; }
           grep -q "</html>" index.html || { echo "index.html không đóng thẻ html"; exit 1; }
           echo "OK — $(wc -c < index.html) bytes"
@@ -45,7 +46,7 @@ jobs:
       - name: Stage public files
         run: |
           mkdir -p _site
-          cp -r index.html sitemap.xml robots.txt CNAME .nojekyll assets _site/
+          cp -r index.html sitemap.xml robots.txt CNAME .nojekyll assets en _site/
 
       - uses: actions/configure-pages@v5
 

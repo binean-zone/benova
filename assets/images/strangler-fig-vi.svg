@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 420" width="1120" height="420"
-     role="img" aria-label="Sơ đồ Strangler Fig: lưu lượng đi qua Orbit, dịch dần từ Ingenium COBOL sang Rust và AI qua bốn giai đoạn.">
+     role="img" aria-label="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian.">
   <defs>
     <linearGradient id="legacy" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#8FA3BF" stop-opacity=".55"/>
@@ -20,12 +20,10 @@
 
   <rect width="1120" height="420" rx="18" fill="#0A192F"/>
 
-  <!-- Kênh số / đối tác -->
   <rect class="box" x="16" y="150" width="150" height="110" rx="14"/>
   <text class="lbl" x="91" y="196" text-anchor="middle">Kênh số</text>
   <text class="small" x="91" y="218" text-anchor="middle">web · app · đối tác</text>
 
-  <!-- Orbit facade -->
   <rect x="206" y="120" width="120" height="170" rx="14" fill="rgba(100,255,218,.08)" stroke="#64FFDA" stroke-opacity=".55"/>
   <text class="tag" x="266" y="188" text-anchor="middle">ORBIT</text>
   <text class="small" x="266" y="210" text-anchor="middle">REST API</text>
@@ -34,30 +32,27 @@
   <path d="M166 205 H206" stroke="#8FA3BF" stroke-opacity=".6" stroke-width="2"/>
   <path d="M198 199 l10 6 -10 6 z" fill="#8FA3BF" fill-opacity=".8"/>
 
-  <!-- Dải lưu lượng: Ingenium thu hẹp dần, Rust/AI mở rộng dần -->
   <path d="M326 130 C 560 130, 720 150, 1010 176 L1010 250 C 720 254, 560 268, 326 282 Z" fill="url(#legacy)"/>
   <path d="M326 282 C 560 300, 720 320, 1010 336 L1010 262 C 720 258, 560 288, 326 282 Z" fill="url(#modern)"/>
 
-  <text class="lbl" x="470" y="196" >Ingenium · COBOL</text>
+  <text class="lbl" x="470" y="196">Ingenium · COBOL</text>
   <text class="small" x="470" y="216">logic nghiệp vụ hiện hữu, vẫn phục vụ khách hàng</text>
   <text class="lbl" x="700" y="316" text-anchor="middle">Rust services + AI Agent</text>
   <text class="small" x="700" y="336" text-anchor="middle">từng luồng được cài đặt lại, chạy song song và đối chiếu</text>
 
-  <!-- Đích -->
   <rect class="box" x="1024" y="150" width="80" height="110" rx="14"/>
   <text class="tag" x="1064" y="200" text-anchor="middle">CORE</text>
   <text class="small" x="1064" y="220" text-anchor="middle">mới</text>
 
-  <!-- Trục thời gian -->
   <path d="M326 384 H1080" stroke="rgba(136,173,214,.35)" stroke-width="1.5"/>
   <path d="M1072 379 l10 5 -10 5 z" fill="rgba(136,173,214,.6)"/>
   <g>
-    <circle cx="380"  cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="380"  y="368" text-anchor="middle">01 Bao quanh</text>
-    <circle cx="600"  cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="600"  y="368" text-anchor="middle">02 Chuyển hướng</text>
-    <circle cx="820"  cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="820"  y="368" text-anchor="middle">03 Thay thế</text>
+    <circle cx="380" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="380" y="368" text-anchor="middle">01 Bao quanh</text>
+    <circle cx="600" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="600" y="368" text-anchor="middle">02 Chuyển hướng</text>
+    <circle cx="820" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="820" y="368" text-anchor="middle">03 Thay thế</text>
     <circle cx="1020" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="1020" y="368" text-anchor="middle">04 Ngưng hệ cũ</text>
   </g>
 
-  <text class="small" x="326" y="46">Cùng một mặt tiền API — không có ngày "big bang"</text>
+  <text class="small" x="326" y="46">Cùng một mặt tiền API — không có ngày &quot;big bang&quot;</text>
   <path d="M326 60 H1080" stroke="rgba(136,173,214,.2)" stroke-dasharray="4 6"/>
 </svg>

@@ -1,18 +1,28 @@
 /**
  * BENOVA static site generator.
  *
- * Đọc `content/site.mjs` và sinh ra `index.html` tĩnh hoàn chỉnh — không có
- * runtime framework, không fetch dữ liệu ở client, crawler đọc được ngay.
+ * Đọc content/vi.mjs và content/en.mjs rồi sinh ra hai trang tĩnh hoàn chỉnh —
+ * không có runtime framework, không fetch dữ liệu ở client, crawler đọc được
+ * ngay. Bản tiếng Việt ra index.html, bản tiếng Anh ra en/index.html.
  *
  *   node scripts/build.mjs
  */
-import { writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import site from '../content/site.mjs';
+import vi from '../content/vi.mjs';
+import en from '../content/en.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+/** Bản đầu tiên là ngôn ngữ mặc định, nằm ở gốc site. */
+const locales = [vi, en];
+
+/** site trỏ tới ngôn ngữ đang dựng; mọi hàm sinh HTML đọc từ đây. */
+let site = vi;
+/** Tiền tố đường dẫn từ trang hiện tại về gốc site, ví dụ '../' cho /en/. */
+let base = '';
 
 const esc = (value) =>
   String(value)
@@ -24,15 +34,21 @@ const esc = (value) =>
 const list = (items, render) => items.map(render).join('\n');
 
 /* Địa chỉ đầu tiên là địa chỉ chính, dùng cho mọi nút CTA. */
-const primaryEmail = site.brand.emails[0];
 const mailto = (address, subject) => `mailto:${address}?subject=${encodeURIComponent(subject)}`;
+
+/** Đường dẫn tương đối từ trang đang dựng sang một ngôn ngữ khác. */
+const localeHref = (target) => {
+  const href = base + target.locale.path;
+  return href === '' ? './' : href;
+};
 
 /* -------------------------------------------------------------- head --- */
 
 const head = () => {
   const { seo, brand } = site;
-  const canonical = seo.url;
-  const ogImage = new URL(seo.ogImage, canonical).href;
+  const canonical = new URL(site.locale.path, seo.url).href;
+  const ogImageFile = `assets/images/og-benova-${site.locale.code}.png`;
+  const ogImage = new URL(ogImageFile, seo.url).href;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -53,6 +69,15 @@ const head = () => {
   <meta name="keywords" content="${esc(seo.keywords)}" />
   <meta name="theme-color" content="${esc(seo.themeColor)}" />
   <link rel="canonical" href="${esc(canonical)}" />
+${locales
+  .map(
+    (l) =>
+      `  <link rel="alternate" hreflang="${esc(l.locale.code)}" href="${esc(
+        new URL(l.locale.path, seo.url).href
+      )}" />`
+  )
+  .join('\n')}
+  <link rel="alternate" hreflang="x-default" href="${esc(new URL(locales[0].locale.path, seo.url).href)}" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="${esc(brand.name)}" />
@@ -60,21 +85,21 @@ const head = () => {
   <meta property="og:description" content="${esc(seo.description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
   <meta property="og:image" content="${esc(ogImage)}" />
-  <meta property="og:locale" content="vi_VN" />
+  <meta property="og:locale" content="${esc(site.locale.code)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(seo.title)}" />
   <meta name="twitter:description" content="${esc(seo.description)}" />
   <meta name="twitter:image" content="${esc(ogImage)}" />
 
-  <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="assets/images/binean.svg" />
+  <link rel="icon" href="${base}assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="${base}assets/images/binean.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
   />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="${base}assets/css/style.css" />
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
   <script>
     // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
@@ -95,34 +120,49 @@ const notice = () => `  <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
       <p>${esc(site.notice.text)}</p>
-      <a href="${esc(mailto(primaryEmail, 'BENOVA - Lien he'))}">${esc(site.notice.linkLabel)}</a>
+      <a href="${esc(mailto(site.brand.emails[0], 'BENOVA - Lien he'))}">${esc(site.notice.linkLabel)}</a>
     </div>
   </div>`;
 
-const header = () => `  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+const header = () => `  <a class="skip-link" href="#main">${esc(site.ui.skipToContent)}</a>
   <header class="site-header" id="site-header">
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="${esc(site.brand.name)} — về đầu trang">
         <span class="brand-mark" aria-hidden="true">
-          <img class="logo-dark" src="assets/images/binean-dark.svg" alt="" width="60" height="60" />
-          <img class="logo-light" src="assets/images/binean.svg" alt="" width="60" height="60" />
+          <img class="logo-dark" src="${base}assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="${base}assets/images/binean.svg" alt="" width="60" height="60" />
         </span>
         <span class="brand-name">${esc(site.brand.name)}</span>
       </a>
 
-      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+      <nav class="site-nav" id="site-nav" aria-label="${esc(site.ui.mainNav)}">
         <ul>
 ${list(site.nav, (item) => `          <li><a href="${esc(item.href)}">${esc(item.label)}</a></li>`)}
         </ul>
       </nav>
 
       <div class="header-actions">
+        <nav class="lang-switch" aria-label="${esc(site.ui.languageNav)}">
+${locales
+  .map(
+    (l) =>
+      `          <a
+            href="${esc(localeHref(l))}"
+            lang="${esc(l.locale.code)}"
+            hreflang="${esc(l.locale.code)}"
+            title="${esc(l.locale.label)}"${
+        l.locale.code === site.locale.code ? '\n            aria-current="page"' : ''
+      }
+          >${esc(l.locale.short)}</a>`
+  )
+  .join('\n')}
+        </nav>
         <button
           class="theme-toggle"
           id="theme-toggle"
           type="button"
-          aria-label="Đổi giao diện sáng/tối"
-          title="Đổi giao diện sáng/tối"
+          aria-label="${esc(site.ui.toggleTheme)}"
+          title="${esc(site.ui.toggleTheme)}"
         >
           <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
             <circle cx="12" cy="12" r="4.5" />
@@ -132,14 +172,16 @@ ${list(site.nav, (item) => `          <li><a href="${esc(item.href)}">${esc(item
             <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
           </svg>
         </button>
-        <a class="btn btn-primary btn-sm header-cta" href="#lien-he">Liên hệ ngay</a>
+        <a class="btn btn-primary btn-sm header-cta" href="#${esc(site.cta.id)}">${esc(site.ui.headerCta)}</a>
         <button
           class="nav-toggle"
           id="nav-toggle"
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
-          aria-label="Mở menu"
+          aria-label="${esc(site.ui.openMenu)}"
+          data-label-open="${esc(site.ui.openMenu)}"
+          data-label-close="${esc(site.ui.closeMenu)}"
         >
           <span></span><span></span><span></span>
         </button>
@@ -333,7 +375,7 @@ ${list(
         </div>
         <figure class="diagram reveal">
           <img
-            src="assets/images/strangler-fig.svg"
+            src="${base}assets/images/strangler-fig-${esc(site.locale.code)}.svg"
             alt="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian."
             width="1120"
             height="420"
@@ -424,7 +466,7 @@ ${list(
   b.items,
   (item) => `          <article class="card benefit-card reveal">
             <span class="card-icon" aria-hidden="true">${esc(item.icon)}</span>
-            <p class="benefit-answers">Trả lời: ${esc(item.answers)}</p>
+            <p class="benefit-answers">${esc(site.ui.answersPrefix)}: ${esc(item.answers)}</p>
             <h3>${esc(item.title)}</h3>
             <p>${esc(item.desc)}</p>
           </article>`
@@ -471,9 +513,9 @@ const footer = () => {
         <span class="brand-name">${esc(site.brand.name)}</span>
         <p>${esc(f.blurb)}</p>
         <p class="footer-company">
-          <span>Một sản phẩm của</span>
-          <img class="logo-dark" src="assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
-          <img class="logo-light" src="assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <span>${esc(site.ui.companyLine)}</span>
+          <img class="logo-dark" src="${base}assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="${base}assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
         </p>
       </div>
 ${list(
@@ -486,7 +528,7 @@ ${list(col.links, (l) => `          <li><a href="${esc(l.href)}">${esc(l.label)}
       </nav>`
 )}
       <div class="footer-col">
-        <h2>Liên hệ</h2>
+        <h2>${esc(site.ui.contactTitle)}</h2>
         <ul>
 ${list(
   site.brand.emails,
@@ -494,7 +536,7 @@ ${list(
     `          <li><a href="${esc(mailto(address, 'BENOVA - Lien he'))}">${esc(address)}</a></li>`
 )}
         </ul>
-        <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
+        <p class="footer-contact-note">${esc(site.ui.contactNote)}</p>
       </div>
     </div>
     <div class="shell footer-bottom">
@@ -510,8 +552,8 @@ ${list(f.legal, (l) => `        <li><a href="${esc(l.href)}">${esc(l.label)}</a>
 
 /* ------------------------------------------------------------- page ---- */
 
-const page = `<!DOCTYPE html>
-<html lang="${esc(site.seo.lang)}" data-theme="dark">
+const page = () => `<!DOCTYPE html>
+<html lang="${esc(site.locale.code)}" data-theme="dark">
 <head>
 ${head()}
 </head>
@@ -535,23 +577,124 @@ ${cta()}
 
 ${footer()}
 
-  <script src="assets/js/main.js" defer></script>
+  <script src="${base}assets/js/main.js" defer></script>
 </body>
 </html>
 `;
 
-writeFileSync(join(root, 'index.html'), page, 'utf-8');
-console.log(`✓ index.html (${(page.length / 1024).toFixed(1)} KB)`);
+/* ---------------------------------------------------------- diagram ---- */
+
+/** Sơ đồ Strangler Fig, sinh riêng cho mỗi ngôn ngữ từ nhãn trong content. */
+const diagram = () => {
+  const d = site.strategy.diagram;
+  const phaseX = [380, 600, 820, 1020];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 420" width="1120" height="420"
+     role="img" aria-label="${esc(d.alt)}">
+  <defs>
+    <linearGradient id="legacy" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8FA3BF" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#8FA3BF" stop-opacity=".18"/>
+    </linearGradient>
+    <linearGradient id="modern" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#64FFDA" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#64FFDA" stop-opacity=".85"/>
+    </linearGradient>
+    <style>
+      .lbl   { font: 600 15px 'Inter', system-ui, sans-serif; fill: #E6EDF7; }
+      .small { font: 500 12px 'Inter', system-ui, sans-serif; fill: #93A7C4; }
+      .tag   { font: 700 12px 'JetBrains Mono', ui-monospace, monospace; fill: #64FFDA; letter-spacing: .08em; }
+      .phase { font: 700 13px 'Inter', system-ui, sans-serif; fill: #FFBE6B; }
+      .box   { fill: rgba(255,255,255,.04); stroke: rgba(136,173,214,.28); }
+    </style>
+  </defs>
+
+  <rect width="1120" height="420" rx="18" fill="#0A192F"/>
+
+  <rect class="box" x="16" y="150" width="150" height="110" rx="14"/>
+  <text class="lbl" x="91" y="196" text-anchor="middle">${esc(d.channels[0])}</text>
+  <text class="small" x="91" y="218" text-anchor="middle">${esc(d.channels[1])}</text>
+
+  <rect x="206" y="120" width="120" height="170" rx="14" fill="rgba(100,255,218,.08)" stroke="#64FFDA" stroke-opacity=".55"/>
+  <text class="tag" x="266" y="188" text-anchor="middle">${esc(d.facade[0])}</text>
+  <text class="small" x="266" y="210" text-anchor="middle">${esc(d.facade[1])}</text>
+  <text class="small" x="266" y="228" text-anchor="middle">${esc(d.facade[2])}</text>
+
+  <path d="M166 205 H206" stroke="#8FA3BF" stroke-opacity=".6" stroke-width="2"/>
+  <path d="M198 199 l10 6 -10 6 z" fill="#8FA3BF" fill-opacity=".8"/>
+
+  <path d="M326 130 C 560 130, 720 150, 1010 176 L1010 250 C 720 254, 560 268, 326 282 Z" fill="url(#legacy)"/>
+  <path d="M326 282 C 560 300, 720 320, 1010 336 L1010 262 C 720 258, 560 288, 326 282 Z" fill="url(#modern)"/>
+
+  <text class="lbl" x="470" y="196">${esc(d.legacy[0])}</text>
+  <text class="small" x="470" y="216">${esc(d.legacy[1])}</text>
+  <text class="lbl" x="700" y="316" text-anchor="middle">${esc(d.modern[0])}</text>
+  <text class="small" x="700" y="336" text-anchor="middle">${esc(d.modern[1])}</text>
+
+  <rect class="box" x="1024" y="150" width="80" height="110" rx="14"/>
+  <text class="tag" x="1064" y="200" text-anchor="middle">${esc(d.target[0])}</text>
+  <text class="small" x="1064" y="220" text-anchor="middle">${esc(d.target[1])}</text>
+
+  <path d="M326 384 H1080" stroke="rgba(136,173,214,.35)" stroke-width="1.5"/>
+  <path d="M1072 379 l10 5 -10 5 z" fill="rgba(136,173,214,.6)"/>
+  <g>
+${d.phases
+  .map(
+    (label, i) =>
+      `    <circle cx="${phaseX[i]}" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="${
+        phaseX[i]
+      }" y="368" text-anchor="middle">${esc(label)}</text>`
+  )
+  .join('\n')}
+  </g>
+
+  <text class="small" x="326" y="46">${esc(d.banner)}</text>
+  <path d="M326 60 H1080" stroke="rgba(136,173,214,.2)" stroke-dasharray="4 6"/>
+</svg>
+`;
+};
+
+/* ------------------------------------------------------------ output --- */
+
+for (const locale of locales) {
+  site = locale;
+  base = '../'.repeat(locale.locale.path.split('/').filter(Boolean).length);
+
+  const dir = join(root, locale.locale.path);
+  mkdirSync(dir, { recursive: true });
+
+  const html = page();
+  writeFileSync(join(dir, 'index.html'), html, 'utf-8');
+  console.log(`✓ ${locale.locale.path}index.html (${(html.length / 1024).toFixed(1)} KB)`);
+
+  writeFileSync(
+    join(root, 'assets', 'images', `strangler-fig-${locale.locale.code}.svg`),
+    diagram(),
+    'utf-8'
+  );
+}
 
 /* ---------------------------------------------------------- sitemap --- */
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${esc(site.seo.url)}</loc>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${locales
+  .map(
+    (l) => `  <url>
+    <loc>${esc(new URL(l.locale.path, l.seo.url).href)}</loc>
+${locales
+  .map(
+    (alt) =>
+      `    <xhtml:link rel="alternate" hreflang="${esc(alt.locale.code)}" href="${esc(
+        new URL(alt.locale.path, alt.seo.url).href
+      )}" />`
+  )
+  .join('\n')}
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+    <priority>${l === locales[0] ? '1.0' : '0.8'}</priority>
+  </url>`
+  )
+  .join('\n')}
 </urlset>
 `;
 

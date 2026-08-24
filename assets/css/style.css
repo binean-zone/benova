@@ -1503,3 +1503,42 @@ ol {
 [data-theme='light'] .footer-company .logo-light {
   display: block;
 }
+
+/* --------------------------------------------- 14. đổi ngôn ngữ -------- */
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.lang-switch a {
+  display: block;
+  padding: 4px 9px;
+  border-radius: 7px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang-switch a:hover {
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.lang-switch a[aria-current='page'] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+@media (max-width: 620px) {
+  .lang-switch a {
+    padding: 4px 7px;
+    font-size: 0.72rem;
+  }
+}

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BENOVA — Modernize Ingenium. Powered by AI and Rust.</title>
+  <meta name="description" content="BENOVA is a next-generation insurance core ecosystem for companies running Ingenium: migrate from COBOL/AIX to a cloud-native platform with Rust and AI, following the Strangler Fig strategy, without interrupting operations." />
+  <meta name="keywords" content="BENOVA, Ingenium modernization, insurance core, COBOL modernization, Strangler Fig, Rust, AI Agent, cloud-native, Binean" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="BENOVA — Modernize Ingenium. Powered by AI and Rust." />
+  <meta property="og:description" content="BENOVA is a next-generation insurance core ecosystem for companies running Ingenium: migrate from COBOL/AIX to a cloud-native platform with Rust and AI, following the Strangler Fig strategy, without interrupting operations." />
+  <meta property="og:url" content="https://binean.com/en/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BENOVA — Modernize Ingenium. Powered by AI and Rust." />
+  <meta name="twitter:description" content="BENOVA is a next-generation insurance core ecosystem for companies running Ingenium: migrate from COBOL/AIX to a cloud-native platform with Rust and AI, following the Strangler Fig strategy, without interrupting operations." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+  />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BENOVA","applicationCategory":"BusinessApplication","description":"BENOVA is a next-generation insurance core ecosystem for companies running Ingenium: migrate from COBOL/AIX to a cloud-native platform with Rust and AI, following the Strangler Fig strategy, without interrupting operations.","url":"https://binean.com/en/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>This site is still being built out. Content and product roadmap will keep being updated.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">Contact us by email</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="BENOVA — về đầu trang">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">BENOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#ecosystem">Ecosystem</a></li>
+          <li><a href="#adoption">Adoption</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../en/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#contact">Get in touch</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">For insurers running Ingenium · COBOL · AIX · IBM MQ</p>
+          <h1 class="hero-title reveal">
+            <span>Modernize Ingenium.</span>
+            <span class="grad">Powered by AI and Rust.</span>
+          </h1>
+          <p class="hero-sub reveal">BENOVA — a next-generation insurance core ecosystem that lets you migrate off the legacy platform onto modern cloud-native infrastructure without interrupting operations.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#ecosystem">Explore the architecture</a>
+            <a class="btn btn-ghost" href="#contact">Talk to us</a>
+          </div>
+          <p class="hero-note reveal">Keep your business logic · Your Ingenium licence untouched · Cloud, on-premise or hybrid</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="orbit-stage">
+            <div class="starfield">
+            <i style="--x:88.71%; --y:63.11%; --s:1.99px; --tw:6.18s; --td:3.94s"></i>
+            <i style="--x:12.67%; --y:58.41%; --s:1.20px; --tw:5.97s; --td:4.51s"></i>
+            <i style="--x:70.50%; --y:98.91%; --s:1.26px; --tw:4.40s; --td:3.26s"></i>
+            <i style="--x:21.29%; --y:17.19%; --s:1.82px; --tw:6.23s; --td:4.31s"></i>
+            <i style="--x:13.15%; --y:42.65%; --s:1.10px; --tw:4.60s; --td:3.81s"></i>
+            <i style="--x:24.48%; --y:64.98%; --s:1.94px; --tw:6.36s; --td:1.11s"></i>
+            <i style="--x:7.85%; --y:52.69%; --s:0.83px; --tw:6.80s; --td:2.41s"></i>
+            <i style="--x:27.61%; --y:9.70%; --s:2.10px; --tw:3.96s; --td:4.42s"></i>
+            <i style="--x:23.54%; --y:0.65%; --s:1.00px; --tw:3.51s; --td:1.87s"></i>
+            <i style="--x:96.36%; --y:44.43%; --s:1.21px; --tw:6.44s; --td:2.05s"></i>
+            <i style="--x:55.90%; --y:54.55%; --s:1.90px; --tw:3.39s; --td:4.37s"></i>
+            <i style="--x:48.76%; --y:1.84%; --s:1.26px; --tw:5.82s; --td:4.19s"></i>
+            <i style="--x:48.03%; --y:58.37%; --s:2.07px; --tw:3.99s; --td:1.99s"></i>
+            <i style="--x:7.02%; --y:46.28%; --s:0.82px; --tw:5.48s; --td:4.08s"></i>
+            <i style="--x:87.45%; --y:25.13%; --s:1.15px; --tw:4.23s; --td:1.42s"></i>
+            <i style="--x:31.40%; --y:50.24%; --s:2.17px; --tw:3.87s; --td:4.72s"></i>
+            <i style="--x:13.82%; --y:40.67%; --s:1.63px; --tw:4.76s; --td:3.68s"></i>
+            <i style="--x:56.74%; --y:13.11%; --s:1.92px; --tw:6.84s; --td:1.93s"></i>
+            <i style="--x:8.85%; --y:96.97%; --s:1.97px; --tw:5.23s; --td:4.29s"></i>
+            <i style="--x:61.88%; --y:4.03%; --s:2.28px; --tw:6.68s; --td:3.57s"></i>
+            <i style="--x:43.75%; --y:83.29%; --s:2.30px; --tw:4.52s; --td:1.88s"></i>
+            <i style="--x:10.21%; --y:40.62%; --s:1.75px; --tw:3.35s; --td:0.58s"></i>
+            <i style="--x:4.73%; --y:65.79%; --s:1.74px; --tw:6.50s; --td:0.94s"></i>
+            <i style="--x:74.42%; --y:56.79%; --s:1.03px; --tw:6.68s; --td:3.09s"></i>
+            <i style="--x:41.09%; --y:41.87%; --s:1.28px; --tw:6.01s; --td:1.47s"></i>
+            <i style="--x:13.73%; --y:49.20%; --s:1.90px; --tw:5.10s; --td:2.24s"></i>
+            <i style="--x:20.43%; --y:37.40%; --s:0.90px; --tw:5.70s; --td:0.92s"></i>
+            <i style="--x:14.92%; --y:52.94%; --s:0.95px; --tw:6.57s; --td:1.80s"></i>
+            <i style="--x:75.81%; --y:19.01%; --s:2.34px; --tw:5.84s; --td:4.98s"></i>
+            <i style="--x:18.89%; --y:3.83%; --s:2.20px; --tw:4.64s; --td:2.66s"></i>
+            <i style="--x:39.46%; --y:63.03%; --s:2.22px; --tw:5.94s; --td:4.46s"></i>
+            <i style="--x:84.84%; --y:25.25%; --s:2.38px; --tw:5.49s; --td:0.09s"></i>
+            <i style="--x:59.78%; --y:85.00%; --s:2.36px; --tw:5.17s; --td:0.35s"></i>
+            <i style="--x:25.85%; --y:92.25%; --s:1.73px; --tw:3.73s; --td:3.24s"></i>
+            <i style="--x:99.93%; --y:47.37%; --s:1.21px; --tw:4.16s; --td:0.12s"></i>
+            <i style="--x:32.32%; --y:82.39%; --s:0.95px; --tw:6.52s; --td:2.33s"></i>
+            <i style="--x:29.06%; --y:15.71%; --s:1.12px; --tw:4.34s; --td:0.87s"></i>
+            <i style="--x:0.58%; --y:76.94%; --s:1.00px; --tw:3.77s; --td:1.95s"></i>
+            <i style="--x:44.23%; --y:88.21%; --s:0.88px; --tw:4.04s; --td:1.18s"></i>
+            <i style="--x:23.02%; --y:81.07%; --s:1.82px; --tw:3.18s; --td:2.40s"></i>
+            <i style="--x:78.99%; --y:68.54%; --s:2.23px; --tw:6.53s; --td:4.86s"></i>
+            <i style="--x:6.31%; --y:37.43%; --s:1.09px; --tw:6.40s; --td:2.23s"></i>
+            </div>
+            <div class="orbit-corona"></div>
+            <div class="orbit-flare"></div>
+            <div class="orbit-scene">
+              <div class="orbit-core">
+                <span class="core-name">B</span>
+              </div>
+              <ul class="orbit-sats">
+            <li
+              class="sat-plane"
+              style="--rf:0.2800; --node:-26deg; --incl:-9deg; --dur:19s; --delay:0.00s; --static-a:0.00deg; --c:#5eead4; --ps:1.24"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Engine — Orchestration framework"
+                    >
+                      <span class="sat-key">E</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.3350; --node:12deg; --incl:6deg; --dur:25s; --delay:-9.55s; --static-a:137.51deg; --c:#fbbf24; --ps:0.88"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Nexus — DevOps for Ingenium"
+                    >
+                      <span class="sat-key">N</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.3900; --node:-7deg; --incl:-3deg; --dur:31s; --delay:-23.68s; --static-a:275.02deg; --c:#a78bfa; --ps:1.12"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body sat-ringed"
+                      title="Orbit — Hybrid service host"
+                    >
+                      <span class="sat-key">O</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.4450; --node:31deg; --incl:11deg; --dur:38s; --delay:-5.54s; --static-a:52.52deg; --c:#fb7185; --ps:0.8"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Vista — Flow &amp; task management"
+                    >
+                      <span class="sat-key">V</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.5000; --node:-16deg; --incl:-6deg; --dur:45s; --delay:-23.75s; --static-a:190.03deg; --c:#a3e635; --ps:1"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="AI Agent — Speaks Agent Client Protocol"
+                    >
+                      <span class="sat-key">A</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-problem" id="problem">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The problem</p>
+          <h2>The old core is not wrong. It is just costing more than the value it returns.</h2>
+          <p class="lead">Ingenium has run your business correctly for decades. What is no longer sustainable is the cost of running it, the speed of shipping on it, and the talent pool around it.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">💸</span>
+            <h3>Platform costs keep climbing</h3>
+            <p>AIX, IBM MQ and WebSphere are proprietary licences whose maintenance cost rises every year while the capability stays the same.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">👤</span>
+            <h3>The COBOL talent pool is shrinking</h3>
+            <p>The engineers who know COBOL are retiring. Hiring replacements is close to impossible and retraining takes years.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">🐢</span>
+            <h3>Too slow for digital delivery</h3>
+            <p>Hour-long compiles, manual deployments, no REST API — every new digital channel or partner needs another layer of patched-together middleware.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">⚠️</span>
+            <h3>Operational risk accumulates</h3>
+            <p>DEV/SIT/UAT drift away from PRD over time, producing &quot;works here, breaks there&quot; defects and audit gaps.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">Replacing the whole core is a multi-year programme with very high risk. BENOVA takes a different route.</p>
+      </div>
+    </section>
+
+    <section class="section section-ecosystem" id="ecosystem">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Core ecosystem</p>
+          <h2>Five elements, one platform</h2>
+          <p class="lead">BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Engine orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and AI Agent accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.</p>
+        </div>
+        <div class="agent-grid">
+          <article class="card engine-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">E</span>
+              <div>
+                <h3>Engine</h3>
+                <p class="agent-role">Orchestration framework</p>
+              </div>
+              <span class="status status-core">In development</span>
+            </header>
+            <p class="agent-desc">The orchestration framework of BENOVA, made up of several independent projects. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Spine deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.</p>
+            <ul class="tag-row">
+              <li>Event-driven</li>
+              <li>Specification first, implementation second</li>
+              <li>One Agent concept: human, machine or AI</li>
+            </ul>
+            <div class="sub-grid">
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">🦴</span>
+                <h4>Spine — the orchestration model</h4>
+                <p>The event-driven workflow model inside Engine. A Flow is an immutable, versioned process definition, a Process is one run, a Task is one unit of work. The specification is written first; the implementation and conformance tests exist to prove the specification correct.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">🔀</span>
+                <h4>Basal — the navigation authority</h4>
+                <p>Not a passive router: Basal is the single authority over navigation, and it actively drives the processing loop. It owns the Process lifecycle, Task state transitions, join conditions and recovery.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">⚡</span>
+                <h4>Reflex — the built-in Task Agent</h4>
+                <p>An Agent that ships inside the core and handles the mechanical work of every Flow: compiler-generated gateways, script-driven data binding, and calling another Flow as a Skill to start a child process.</p>
+              </div>
+              <div class="sub-card">
+                <span class="sub-icon" aria-hidden="true">⏱️</span>
+                <h4>Scheduler &amp; Timeout</h4>
+                <p>A separate project inside Engine, in development, covering scheduling and timeout supervision. The goal: no Task ever hangs silently — an overdue Task raises an event, a compensation and an alert.</p>
+              </div>
+            </div>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">N</span>
+              <div>
+                <h3>Nexus</h3>
+                <p class="agent-role">DevOps for Ingenium</p>
+              </div>
+              <span class="status">Available</span>
+            </header>
+            <p class="agent-desc">A DevOps toolchain built specifically for Ingenium, running inside VS Code. It turns risky manual operations into standardized, repeatable pipelines.</p>
+            <ul class="feature-list">
+              <li>Parallel COBOL compilation driven by a dependency graph</li>
+              <li>Verified database backup and restore</li>
+              <li>Policy management: export, import and copy across environments</li>
+              <li>Start/stop regions and automate day-to-day operations</li>
+              <li>Credentials encrypted with AES-256-GCM, never written to logs in clear text</li>
+            </ul>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">O</span>
+              <div>
+                <h3>Orbit</h3>
+                <p class="agent-role">Hybrid service host</p>
+              </div>
+              <span class="status">In development</span>
+            </header>
+            <p class="agent-desc">Where the old and the new run side by side. Orbit hosts new Rust services and legacy Ingenium behind a single API facade — the technical foundation for the Strangler Fig strategy.</p>
+            <ul class="feature-list">
+              <li>Run Rust services and Ingenium side by side in one host</li>
+              <li>Expose the core as REST APIs and drop the MQ middleware</li>
+              <li>Ship new capability without taking the legacy system down</li>
+              <li>Query policies 24/7, including during batch windows</li>
+              <li>Move one flow at a time, with a way back at every step</li>
+            </ul>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p class="agent-role">Flow &amp; task management</p>
+              </div>
+              <span class="status">On the roadmap</span>
+            </header>
+            <p class="agent-desc">A user interface designed around flows rather than screens. A user starts a flow, the system creates a process, the process produces Tasks and assigns them to a machine, a human or an AI.</p>
+            <ul class="feature-list">
+              <li>Start a flow from the menu → a new process is created</li>
+              <li>The process produces Tasks, assigned to machine / human / AI</li>
+              <li>Human tasks are completed through a form, results return to the process</li>
+              <li>Basal takes the result and navigates to the next step</li>
+              <li>Admin area: manage users, flows and tasks, and monitor processes</li>
+            </ul>
+          </article>
+          <article class="card agent-card agent-card-wide reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">A</span>
+              <div>
+                <h3>AI Agent</h3>
+                <p class="agent-role">Artificial intelligence</p>
+              </div>
+              <span class="status">On the roadmap</span>
+            </header>
+            <p class="agent-desc">AI is not a feature bolted on the side; it is a kind of Agent, on equal footing with humans and machines. The AI Agent receives Tasks from Spine exactly as any other Agent does — so work can be handed over piece by piece.</p>
+            <ul class="feature-list">
+              <li>Speaks ACP — Agent Client Protocol</li>
+              <li>Takes on Tasks automatically according to a confidence threshold</li>
+              <li>Learns from operational data and processing history</li>
+              <li>Suggests process improvements and flags anomalies</li>
+              <li>Always keeps a human in the loop for high-risk decisions</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-strategy" id="adoption">
+      <div class="shell">
+        <div class="strangler">
+          <div class="strangler-copy reveal">
+            <p class="eyebrow">How you adopt it</p>
+            <h2>Strangler Fig — replace gradually, never all at once</h2>
+            <p class="lead">Orbit wraps around Ingenium and tightens on one business flow at a time: the new flow runs on Rust and AI while the old one keeps serving customers. Once a flow is stable on the new platform, the corresponding COBOL is retired. There is no &quot;big bang&quot; day.</p>
+          </div>
+          <ol class="strangler-steps">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Wrap</h3>
+                <p>Orbit sits in front of Ingenium and exposes the core as REST APIs without changing a single line of COBOL.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Redirect</h3>
+                <p>Basal routes each business flow: modernized flows go to Rust/AI, the rest still go to Ingenium.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Replace</h3>
+                <p>Tasks are reimplemented in Rust or handed to the AI Agent, run in parallel and reconciled against the legacy result.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Retire</h3>
+                <p>Once every flow runs on the new platform, the corresponding COBOL is retired, on the schedule you choose.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="diagram reveal">
+          <img
+            src="../assets/images/strangler-fig-en.svg"
+            alt="Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian."
+            width="1120"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Behind one API facade, traffic shifts from Ingenium to Rust and AI one business flow at a time.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-benefits" id="benefits">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Benefits</p>
+          <h2>Four problems, four answers</h2>
+          <p class="lead">Every benefit maps to a specific technical change — not a slogan.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">💸</span>
+            <p class="benefit-answers">Answers: Platform costs keep climbing</p>
+            <h3>Step off proprietary licences</h3>
+            <p>Orbit removes the MQ middleware; new services are containerized and orchestrated with Kubernetes. The more flows you move, the smaller the licensed footprint you keep paying for.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">👤</span>
+            <p class="benefit-answers">Answers: The COBOL talent pool is shrinking</p>
+            <h3>Less work that needs a scarce specialist</h3>
+            <p>Rust engineers are scarce too — the difference is that the Rust community is still growing while COBOL only shrinks. More importantly: Nexus standardizes build and deployment, so less work strictly requires a core specialist, and you do not need to write Rust yourself to use Nexus or Orbit.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🚀</span>
+            <p class="benefit-answers">Answers: Too slow for digital delivery</p>
+            <h3>Shorter time to ship</h3>
+            <p>Parallel compilation and automated deployment replace manual steps. REST APIs are already there, so new channels and partners do not wait on a bespoke middleware layer.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">🛡️</span>
+            <p class="benefit-answers">Answers: Operational risk accumulates</p>
+            <h3>Reproducible environments, no more drift</h3>
+            <p>Nexus rebuilds DEV/SIT/UAT from a versioned baseline and shows schema and reference-data differences against PRD — no more &quot;works here, breaks there&quot;. Credentials are encrypted, and batch jobs are scheduled and alerted instead of run by hand.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">You keep your business logic, your data and your ownership. BENOVA integrates with Ingenium; it does not replace your licence or modify its source.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Ready to transform your insurance core?</h2>
+          <p class="lead">Start with a tightly scoped POC on one of your own Ingenium business flows. Prove the build-and-deploy improvement first, then decide how far to go.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Demo%20request">Request a demo</a>
+            <a class="btn btn-ghost btn-lg" href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%2030%20minute%20call">Book a 30-minute call</a>
+          </div>
+          <p class="hero-note">We currently take enquiries by email only. A 30-minute conversation, no commitment.</p>
+          <p class="cta-contact">
+            <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">binean.enova@gmail.com</a>
+            <a href="mailto:ingenium.modernization@gmail.com?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">ingenium.modernization@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernizing the Ingenium insurance core one step at a time, without interrupting operations.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="#ecosystem">Engine</a></li>
+          <li><a href="#ecosystem">Nexus</a></li>
+          <li><a href="#ecosystem">Orbit</a></li>
+          <li><a href="#ecosystem">Vista</a></li>
+          <li><a href="#ecosystem">AI Agent</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Learn">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="#problem">The problem</a></li>
+          <li><a href="#adoption">How you adopt it</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+          <li><a href="mailto:ingenium.modernization@gmail.com?subject=BENOVA%20-%20Lien%20he">ingenium.modernization@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Email is currently our only contact channel.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

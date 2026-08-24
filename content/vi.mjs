@@ -1,17 +1,32 @@
 /**
- * BENOVA — nguồn nội dung duy nhất của landing page.
+ * BENOVA — bản tiếng Việt.
  *
- * Toàn bộ chữ hiển thị trên trang được khai báo tại đây.
- * Sửa file này rồi chạy `npm run build` để sinh lại index.html.
+ * Toàn bộ chữ tiếng Việt trên trang nằm ở đây. Những thứ không đổi theo ngôn
+ * ngữ nằm ở shared.mjs. Sửa xong chạy `npm run build`.
  */
-const emails = ['binean.enova@gmail.com', 'ingenium.modernization@gmail.com'];
-const mail = `mailto:${emails[0]}`;
+import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
 
 export default {
+  locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
+
   brand: {
-    name: 'BENOVA',
+    name: brandName,
     tagline: 'Hệ sinh thái hiện đại hóa core bảo hiểm Ingenium',
     emails,
+  },
+
+  ui: {
+    skipToContent: 'Bỏ qua điều hướng',
+    mainNav: 'Điều hướng chính',
+    toggleTheme: 'Đổi giao diện sáng/tối',
+    headerCta: 'Liên hệ ngay',
+    openMenu: 'Mở menu',
+    closeMenu: 'Đóng menu',
+    answersPrefix: 'Trả lời',
+    contactTitle: 'Liên hệ',
+    contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
+    companyLine: 'Một sản phẩm của',
+    languageNav: 'Chọn ngôn ngữ',
   },
 
   notice: {
@@ -20,15 +35,13 @@ export default {
   },
 
   seo: {
-    lang: 'vi',
     title: 'BENOVA — Hiện đại hóa Ingenium. Tiếp sức bởi AI và Rust.',
     description:
       'BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành.',
     keywords:
       'BENOVA, Ingenium modernization, core bảo hiểm, COBOL modernization, Strangler Fig, Rust, AI Agent, insurance core, cloud-native, Binean',
-    url: 'https://binean.com/',
-    ogImage: 'assets/images/og-benova.png',
-    themeColor: '#0A192F',
+    url: siteUrl,
+    themeColor,
   },
 
   nav: [
@@ -49,12 +62,12 @@ export default {
     // B ở tâm hệ mặt trời là chữ đầu của Binean, tên công ty.
     core: { key: 'B' },
     satellites: [
-      { key: 'E', name: 'Engine', desc: 'Framework điều phối', color: '#5eead4' },
-      { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium', color: '#fbbf24' },
-      { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host', color: '#a78bfa', ring: true },
-      { key: 'V', name: 'Vista', desc: 'Flow & Task Management', color: '#fb7185' },
-      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn Agent Client Protocol', color: '#a3e635' },
-    ],
+      { key: 'E', name: 'Engine', desc: 'Framework điều phối' },
+      { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium' },
+      { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host' },
+      { key: 'V', name: 'Vista', desc: 'Flow & Task Management' },
+      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn Agent Client Protocol' },
+    ].map((s) => ({ ...s, ...planetVisuals[s.key] })),
   },
 
   problem: {
@@ -181,7 +194,7 @@ export default {
         icon: '✨',
         desc: 'AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.',
         features: [
-          'Nói ACP — Agent Client Protocol, chuẩn giao tiếp cùng họ với MCP',
+          'Nói ACP — Agent Client Protocol',
           'Tự động đảm nhận Task theo mức độ tin cậy',
           'Học từ dữ liệu vận hành và lịch sử xử lý',
           'Đề xuất tối ưu quy trình và phát hiện bất thường',
@@ -220,12 +233,23 @@ export default {
     ],
     caption:
       'Cùng một mặt tiền API, tỉ trọng lưu lượng dịch dần từ Ingenium sang Rust và AI theo từng luồng nghiệp vụ.',
+    // Nhãn của sơ đồ; build sinh ra file SVG riêng cho mỗi ngôn ngữ.
+    diagram: {
+      alt: 'Sơ đồ chiến lược Strangler Fig: các luồng nghiệp vụ mới đi qua Orbit vào service Rust và AI, các luồng còn lại vẫn vào Ingenium COBOL, tỉ lệ dịch chuyển dần theo thời gian.',
+      banner: 'Cùng một mặt tiền API — không có ngày "big bang"',
+      channels: ['Kênh số', 'web · app · đối tác'],
+      facade: ['ORBIT', 'REST API', 'facade'],
+      legacy: ['Ingenium · COBOL', 'logic nghiệp vụ hiện hữu, vẫn phục vụ khách hàng'],
+      modern: ['Rust services + AI Agent', 'từng luồng được cài đặt lại, chạy song song và đối chiếu'],
+      target: ['CORE', 'mới'],
+      phases: ['01 Bao quanh', '02 Chuyển hướng', '03 Thay thế', '04 Ngưng hệ cũ'],
+    },
   },
 
   benefits: {
     id: 'loi-ich',
     eyebrow: 'Lợi ích',
-    title: 'Bốn vấn đề ở trên, bốn kết quả ở đây',
+    title: 'Bốn vấn đề, bốn câu trả lời',
     lead: 'Mỗi lợi ích gắn với một thay đổi kỹ thuật cụ thể — không phải khẩu hiệu.',
     items: [
       {
