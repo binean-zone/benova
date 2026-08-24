@@ -100,13 +100,9 @@ const header = () => `  <a class="skip-link" href="#main">Bỏ qua điều hư�
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="${esc(site.brand.name)} — về đầu trang">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="28" height="28" focusable="false">
-            <circle cx="16" cy="16" r="14" class="mark-ring" />
-            <circle cx="16" cy="16" r="5" class="mark-core" />
-            <circle cx="16" cy="2.4" r="2.4" class="mark-dot" />
-            <circle cx="29.6" cy="16" r="2.4" class="mark-dot" />
-            <circle cx="16" cy="29.6" r="2.4" class="mark-dot" />
-            <circle cx="2.4" cy="16" r="2.4" class="mark-dot" />
+          <svg viewBox="0 0 60 60" width="30" height="30" focusable="false">
+            <circle cx="30" cy="30" r="30" fill="#3481E5" />
+            <text x="11" y="50" class="mark-b">B</text>
           </svg>
         </span>
         <span class="brand-name">${esc(site.brand.name)}</span>
@@ -396,6 +392,11 @@ const footer = () => {
       <div class="footer-brand">
         <span class="brand-name">${esc(site.brand.name)}</span>
         <p>${esc(f.blurb)}</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
       </div>
 ${list(
   f.columns,

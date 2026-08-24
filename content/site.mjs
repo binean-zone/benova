@@ -44,8 +44,9 @@ export default {
     primaryCta: { label: 'Khám phá kiến trúc', href: '#kien-truc' },
     secondaryCta: { label: 'Liên hệ tư vấn', href: '#lien-he' },
     note: 'Giữ nguyên logic nghiệp vụ · Không đụng tới giấy phép Ingenium · Triển khai cloud, on-prem hoặc hybrid',
-    core: { key: 'BE', name: 'Binean Engine' },
+    core: { key: 'B', name: 'Binean' },
     satellites: [
+      { key: 'E', name: 'Engine', desc: 'Framework điều phối' },
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host' },
       { key: 'V', name: 'Vista', desc: 'Flow & Task Management' },
@@ -122,10 +123,10 @@ export default {
   ecosystem: {
     id: 'kien-truc',
     eyebrow: 'Hệ sinh thái lõi',
-    title: 'Một engine, bốn sản phẩm',
-    lead: 'BENOVA = BE + NOVA. BE là Binean Engine — bộ khung điều phối mà mọi thứ chạy trên đó. NOVA là bốn sản phẩm giải quyết bốn tầng của bài toán hiện đại hóa: Nexus, Orbit, Vista và AI Agent. Mỗi sản phẩm triển khai được độc lập, theo thứ tự phù hợp với bạn.',
+    title: 'Năm thành tố, một nền tảng',
+    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Engine điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và AI Agent tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
     engine: {
-      key: 'BE',
+      key: 'E',
       name: 'Binean Engine',
       role: 'Framework điều phối',
       status: 'Đang phát triển',
@@ -283,7 +284,7 @@ export default {
   },
 
   footer: {
-    blurb: 'BENOVA = Binean Engine + NOVA. Một bộ khung điều phối, và bốn sản phẩm hiện đại hóa core bảo hiểm Ingenium chạy trên nó: Nexus, Orbit, Vista, AI Agent.',
+    blurb: 'BENOVA = B + ENOVA. B là Binean; ENOVA là năm thành tố hiện đại hóa core bảo hiểm Ingenium: Engine, Nexus, Orbit, Vista và AI Agent.',
     columns: [
       {
         title: 'Sản phẩm',

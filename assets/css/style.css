@@ -20,6 +20,7 @@
   --accent-soft: rgba(100, 255, 218, 0.12);
   --accent-ink: #06231d;
   --amber: #ffbe6b;
+  --binean: #3481e5;
   --shadow: 0 24px 60px -32px rgba(2, 8, 20, 0.9);
   --radius: 16px;
   --radius-lg: 22px;
@@ -44,6 +45,7 @@
   --accent-soft: rgba(13, 148, 136, 0.1);
   --accent-ink: #ffffff;
   --amber: #b45309;
+  --binean: #2563c4;
   --shadow: 0 20px 50px -34px rgba(10, 25, 47, 0.45);
 }
 
@@ -207,18 +209,11 @@ ol {
   display: block;
 }
 
-.mark-ring {
-  fill: none;
-  stroke: var(--border-strong);
-  stroke-width: 1.2;
-}
-
-.mark-core {
-  fill: var(--accent);
-}
-
-.mark-dot {
-  fill: var(--muted);
+.mark-b {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-size: 60px;
+  font-weight: 700;
+  fill: #f8fafb;
 }
 
 .brand-name {
@@ -501,26 +496,28 @@ ol {
   aspect-ratio: 1;
   border-radius: 50%;
   padding: 0 6%;
-  background: radial-gradient(circle at 32% 28%, var(--bg-raise), var(--bg-alt));
-  border: 1px solid var(--border-strong);
-  box-shadow: 0 0 0 8px var(--accent-soft), var(--shadow);
+  background: radial-gradient(circle at 30% 26%, color-mix(in srgb, var(--binean) 88%, #ffffff), var(--binean));
+  border: 0;
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--binean) 18%, transparent), var(--shadow);
   text-align: center;
 }
 
 .core-name {
-  font-weight: 800;
-  font-size: clamp(1.15rem, 0.85rem + 1vw, 1.65rem);
-  letter-spacing: 0.1em;
-  color: var(--text-strong);
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 4.4rem);
+  line-height: 0.9;
+  color: #f8fafb;
 }
 
 .core-sub {
   font-family: var(--mono);
   font-size: clamp(0.55rem, 0.45rem + 0.25vw, 0.66rem);
-  letter-spacing: 0.06em;
-  color: var(--muted);
+  letter-spacing: 0.16em;
+  color: rgba(248, 250, 251, 0.82);
   text-align: center;
   line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .orbit-sats {
@@ -1319,4 +1316,33 @@ ol {
   .notice-inner {
     gap: 8px;
   }
+}
+
+/* ------------------------------------------ 13. logo công ty ở footer -- */
+
+.footer-company {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.footer-company img {
+  width: 104px;
+  height: auto;
+}
+
+/* Bản chữ trắng cho nền tối, bản chữ xanh cho nền sáng. */
+.footer-company .logo-light {
+  display: none;
+}
+
+[data-theme='light'] .footer-company .logo-dark {
+  display: none;
+}
+
+[data-theme='light'] .footer-company .logo-light {
+  display: block;
 }
