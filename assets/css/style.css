@@ -461,28 +461,92 @@ ol {
 }
 
 .orbit-stage {
-  --size: clamp(280px, 34vw, 430px);
-  --r: calc(var(--size) / 2);
+  --size: clamp(300px, 36vw, 460px);
   position: relative;
   width: var(--size);
   height: var(--size);
   display: grid;
   place-items: center;
+  isolation: isolate;
 }
+
+/* trường sao ------------------------------------------------------------- */
+
+.starfield {
+  position: absolute;
+  inset: -14%;
+  pointer-events: none;
+}
+
+.starfield i {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.35;
+  animation: twinkle var(--tw) ease-in-out var(--td) infinite;
+}
+
+/* Nền sáng thì không có bầu trời đêm; bỏ sao đi cho sạch. */
+[data-theme='light'] .starfield {
+  display: none;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+/* quỹ đạo ---------------------------------------------------------------- */
 
 .orbit-ring {
   position: absolute;
-  inset: 0;
+  inset: calc(50% - var(--size) * var(--rf));
   border: 1px solid var(--border);
   border-radius: 50%;
+  opacity: 0.55;
 }
 
-.orbit-ring.ring-2 {
-  inset: 13%;
-  border-style: dashed;
-  border-color: color-mix(in srgb, var(--accent) 26%, transparent);
-  animation: spin 44s linear infinite reverse;
+/* quầng sáng quanh lõi --------------------------------------------------- */
+
+.orbit-corona {
+  position: absolute;
+  width: 58%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--binean) 42%, transparent) 0%,
+    color-mix(in srgb, var(--binean) 14%, transparent) 42%,
+    transparent 68%
+  );
+  filter: blur(6px);
+  animation: breathe 7s ease-in-out infinite;
 }
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* lõi -------------------------------------------------------------------- */
 
 .orbit-core {
   position: relative;
@@ -491,75 +555,80 @@ ol {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  width: 46%;
+  width: 33%;
   aspect-ratio: 1;
   border-radius: 50%;
-  padding: 0 6%;
-  background: radial-gradient(circle at 30% 26%, color-mix(in srgb, var(--binean) 88%, #ffffff), var(--binean));
-  border: 0;
-  box-shadow: 0 0 0 10px color-mix(in srgb, var(--binean) 18%, transparent), var(--shadow);
-  text-align: center;
+  background: radial-gradient(
+    circle at 32% 26%,
+    color-mix(in srgb, var(--binean) 55%, #ffffff),
+    var(--binean) 58%,
+    color-mix(in srgb, var(--binean) 78%, #000000)
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #ffffff 30%, transparent),
+    0 0 26px -2px color-mix(in srgb, var(--binean) 85%, transparent),
+    0 0 70px 6px color-mix(in srgb, var(--binean) 40%, transparent);
 }
 
 .core-name {
   font-family: 'Times New Roman', Times, Georgia, serif;
   font-weight: 700;
-  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 4.4rem);
-  line-height: 0.9;
+  font-size: clamp(3.2rem, 1.9rem + 4.4vw, 5.4rem);
+  line-height: 0.82;
   color: #f8fafb;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.32);
 }
 
 .core-sub {
   font-family: var(--mono);
-  font-size: clamp(0.55rem, 0.45rem + 0.25vw, 0.66rem);
-  letter-spacing: 0.16em;
-  color: rgba(248, 250, 251, 0.82);
-  text-align: center;
-  line-height: 1.35;
+  font-size: clamp(0.5rem, 0.4rem + 0.24vw, 0.6rem);
+  letter-spacing: 0.2em;
+  color: rgba(248, 250, 251, 0.85);
   text-transform: uppercase;
+  margin-top: 2px;
 }
+
+/* hành tinh -------------------------------------------------------------- */
 
 .orbit-sats {
   position: absolute;
   inset: 0;
-  animation: spin 44s linear infinite;
 }
 
+/* Ba lớp: .sat quay, .sat-pos đẩy ra bán kính quỹ đạo, .sat-chip quay ngược
+   lại đúng cùng chu kỳ và cùng pha nên chữ luôn đứng thẳng. */
 .sat {
+  position: absolute;
+  inset: 0;
+  animation: spin var(--dur) linear var(--delay) infinite;
+}
+
+.sat-pos {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0;
-  height: 0;
-  transform: rotate(var(--a)) translate(var(--r)) rotate(calc(-1 * var(--a)));
+  transform: translate(-50%, -50%) translateX(calc(var(--size) * var(--rf)));
 }
 
 .sat-chip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
   display: grid;
   place-items: center;
-  width: clamp(46px, 5.4vw, 58px);
+  width: clamp(42px, 4.6vw, 52px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--bg-raise);
+  background: radial-gradient(circle at 34% 28%, var(--bg-raise), var(--bg-alt));
   border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow);
-  animation: spin 44s linear infinite reverse;
+  box-shadow:
+    0 0 14px -2px color-mix(in srgb, var(--accent) 55%, transparent),
+    var(--shadow);
+  animation: spin var(--dur) linear var(--delay) infinite reverse;
 }
 
 .sat-key {
   font-weight: 800;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--accent);
   letter-spacing: 0.04em;
-}
-
-.sat-meta {
-  display: none;
 }
 
 @keyframes spin {
@@ -1151,10 +1220,21 @@ ol {
     scroll-behavior: auto;
   }
 
-  .orbit-sats,
+  .sat,
   .sat-chip,
-  .orbit-ring.ring-2 {
+  .orbit-corona,
+  .starfield i {
     animation: none !important;
+  }
+
+  /* Không quay thì phải đặt sẵn góc, nếu không mọi hành tinh chồng lên nhau,
+     và chip phải xoay ngược lại đúng chừng đó để chữ vẫn đứng thẳng. */
+  .sat {
+    transform: rotate(var(--static-a));
+  }
+
+  .sat-chip {
+    transform: rotate(calc(-1 * var(--static-a)));
   }
 
   .reveal {

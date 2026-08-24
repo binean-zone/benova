@@ -149,16 +149,60 @@ ${list(site.nav, (item) => `          <li><a href="${esc(item.href)}">${esc(item
 
 const hero = () => {
   const { hero } = site;
-  const step = 360 / hero.satellites.length;
-  const orbit = list(
-    hero.satellites,
-    (sat, i) => `          <li class="sat" style="--a:${(i * step).toFixed(2)}deg">
-            <span class="sat-chip">
-              <span class="sat-key">${esc(sat.key)}</span>
-              <span class="sat-meta"><b>${esc(sat.name)}</b><i>${esc(sat.desc)}</i></span>
-            </span>
-          </li>`
+  const sats = hero.satellites;
+
+  /* Mỗi thành tố một quỹ đạo riêng, giãn đều từ trong ra ngoài. Bán kính tính
+     theo % cạnh sân khấu; cộng thêm bán kính chip vẫn nằm gọn trong khung.
+     Thêm hay bớt thành tố (tới 9 hoặc hơn) chỉ cần sửa content/site.mjs. */
+  const R_INNER = 0.27;
+  const R_OUTER = 0.45;
+
+  const orbits = sats.map((sat, i) => {
+    const t = sats.length > 1 ? i / (sats.length - 1) : 0;
+    const radius = R_INNER + (R_OUTER - R_INNER) * t;
+    // Quỹ đạo ngoài quay chậm hơn, cho cảm giác Kepler.
+    const duration = 26 + i * 9;
+    // Góc vàng: các hành tinh không bao giờ xếp thành hình sao đều.
+    const angle = (i * 137.508) % 360;
+    // Animation ghi đè transform nên lệch pha bằng delay âm thay vì rotate tĩnh.
+    const delay = -(angle / 360) * duration;
+    return { sat, radius, duration, delay, angle };
+  });
+
+  const rings = list(
+    orbits,
+    (o) => `            <div class="orbit-ring" style="--rf:${o.radius.toFixed(4)}"></div>`
   );
+
+  const planets = list(
+    orbits,
+    (o) => `            <li
+              class="sat"
+              style="--rf:${o.radius.toFixed(4)}; --dur:${o.duration}s; --delay:${o.delay.toFixed(2)}s; --static-a:${o.angle.toFixed(2)}deg"
+            >
+              <span class="sat-pos">
+                <span class="sat-chip">
+                  <span class="sat-key">${esc(o.sat.key)}</span>
+                </span>
+              </span>
+            </li>`
+  );
+
+  /* Trường sao tĩnh, sinh bằng PRNG có seed để mỗi lần build ra đúng một kết
+     quả — nếu ngẫu nhiên thật thì CI sẽ thấy index.html đổi sau mỗi lần build. */
+  let seed = 20260824;
+  const rand = () => {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed / 2147483648;
+  };
+  const stars = Array.from({ length: 42 }, () => {
+    const size = (rand() * 1.6 + 0.8).toFixed(2);
+    return `            <i style="--x:${(rand() * 100).toFixed(2)}%; --y:${(rand() * 100).toFixed(
+      2
+    )}%; --s:${size}px; --tw:${(rand() * 4 + 3).toFixed(2)}s; --td:${(rand() * 5).toFixed(
+      2
+    )}s"></i>`;
+  }).join('\n');
 
   return `    <section class="hero" id="top">
       <div class="hero-glow" aria-hidden="true"></div>
@@ -180,14 +224,17 @@ const hero = () => {
 
         <div class="hero-visual reveal" aria-hidden="true">
           <div class="orbit-stage">
-            <div class="orbit-ring ring-1"></div>
-            <div class="orbit-ring ring-2"></div>
+            <div class="starfield">
+${stars}
+            </div>
+${rings}
+            <div class="orbit-corona"></div>
             <div class="orbit-core">
               <span class="core-name">${esc(hero.core.key)}</span>
               <span class="core-sub">${esc(hero.core.name)}</span>
             </div>
             <ul class="orbit-sats">
-${orbit}
+${planets}
             </ul>
           </div>
         </div>
