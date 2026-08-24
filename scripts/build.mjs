@@ -213,7 +213,10 @@ const hero = () => {
               <span class="sat">
                 <span class="sat-pos">
                   <span class="sat-chip">
-                    <span class="sat-body${o.sat.ring ? ' sat-ringed' : ''}">
+                    <span
+                      class="sat-body${o.sat.ring ? ' sat-ringed' : ''}"
+                      title="${esc(o.sat.name)} — ${esc(o.sat.desc)}"
+                    >
                       <span class="sat-key">${esc(o.sat.key)}</span>
                     </span>
                   </span>

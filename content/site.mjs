@@ -53,7 +53,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium', color: '#fbbf24' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host', color: '#a78bfa', ring: true },
       { key: 'V', name: 'Vista', desc: 'Flow & Task Management', color: '#fb7185' },
-      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn ACP', color: '#a3e635' },
+      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn Agent Client Protocol', color: '#a3e635' },
     ],
   },
 
@@ -181,7 +181,7 @@ export default {
         icon: '✨',
         desc: 'AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.',
         features: [
-          'Nói ACP, chuẩn giao tiếp giữa các Agent cùng họ với MCP',
+          'Nói ACP — Agent Client Protocol, chuẩn giao tiếp cùng họ với MCP',
           'Tự động đảm nhận Task theo mức độ tin cậy',
           'Học từ dữ liệu vận hành và lịch sử xử lý',
           'Đề xuất tối ưu quy trình và phát hiện bất thường',
