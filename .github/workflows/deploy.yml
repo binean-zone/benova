@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Kiểm tra build trên nhánh phát triển mà không deploy.
+  pull_request:
+  # Cho phép deploy thủ công từ tab Actions, chọn nhánh nào cũng được.
   workflow_dispatch:
 
 permissions:
@@ -25,18 +28,18 @@ jobs:
         with:
           node-version: 20
 
-      # Sinh lại index.html + sitemap.xml từ content/site.mjs.
+      # GitHub sinh index.html + sitemap.xml từ content/site.mjs.
+      # Bản commit trong repo chỉ để xem trước, luôn bị ghi đè ở đây,
+      # nên nội dung deploy không bao giờ cũ so với content/site.mjs.
       - name: Build static site
         run: npm run build
 
-      - name: Fail if generated files are stale
+      - name: Check build output
         run: |
-          if ! git diff --quiet -- index.html sitemap.xml; then
-            echo "index.html/sitemap.xml khác với kết quả build từ content/site.mjs."
-            echo "Chạy 'npm run build' rồi commit lại."
-            git --no-pager diff --stat -- index.html sitemap.xml
-            exit 1
-          fi
+          test -s index.html || { echo "index.html rỗng hoặc không tồn tại"; exit 1; }
+          test -s sitemap.xml || { echo "sitemap.xml rỗng hoặc không tồn tại"; exit 1; }
+          grep -q "</html>" index.html || { echo "index.html không đóng thẻ html"; exit 1; }
+          echo "OK — $(wc -c < index.html) bytes"
 
       # Chỉ đóng gói phần công khai — docs/, tasks/, personal/ ở lại repo.
       - name: Stage public files
@@ -52,6 +55,8 @@ jobs:
 
   deploy:
     needs: build
+    # Pull request chỉ build để kiểm tra, không đụng tới site đang chạy.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

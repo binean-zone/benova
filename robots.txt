@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.binean.com/sitemap.xml
+Sitemap: https://binean.com/sitemap.xml

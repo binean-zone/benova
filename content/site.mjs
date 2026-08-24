@@ -19,7 +19,7 @@ export default {
       'BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành.',
     keywords:
       'BENOVA, Ingenium modernization, core bảo hiểm, COBOL modernization, Strangler Fig, Rust, AI Agent, insurance core, cloud-native, Binean',
-    url: 'https://www.binean.com/',
+    url: 'https://binean.com/',
     ogImage: 'assets/images/og-benova.png',
     themeColor: '#0A192F',
   },
