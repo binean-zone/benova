@@ -133,7 +133,7 @@
           <li class="sat sat-1" style="--i:0">
             <span class="sat-chip">
               <span class="sat-key">BE</span>
-              <span class="sat-meta"><b>Binean Engine</b><i>Framework điều phối Agent lai</i></span>
+              <span class="sat-meta"><b>Binean Engine</b><i>Framework điều phối, nhân là Spine</i></span>
             </span>
           </li>
           <li class="sat sat-2" style="--i:1">
@@ -241,7 +241,7 @@
               <span class="step-num">02</span>
               <div>
                 <h3>Chuyển hướng</h3>
-                <p>Basal định tuyến từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.</p>
+                <p>Basal điều hướng từng luồng nghiệp vụ: luồng đã hiện đại hóa đi vào Rust/AI, phần còn lại vẫn đi vào Ingenium.</p>
               </div>
             </li>
             <li class="reveal">
@@ -293,32 +293,32 @@
               </div>
               <span class="status status-core">Nền tảng</span>
             </header>
-            <p class="agent-desc">Bộ khung điều phối của toàn hệ sinh thái. Binean Engine mô hình hóa mọi việc cần làm thành Skill và Task, rồi phân phối cho Agent phù hợp — dù Agent đó là con người, máy, hay AI.</p>
+            <p class="agent-desc">Bộ khung điều phối của toàn hệ sinh thái, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.</p>
             <ul class="tag-row">
-              <li>Agent lai: Human + Machine + AI</li>
               <li>Event-driven</li>
-              <li>Độ trễ cực thấp (Rust)</li>
+              <li>Đặc tả trước, hiện thực sau</li>
+              <li>Cùng một Agent: người, máy hay AI</li>
             </ul>
             <div class="sub-grid">
               <div class="sub-card">
                 <span class="sub-icon" aria-hidden="true">🦴</span>
-                <h4>Spine — Orchestrator chính</h4>
-                <p>Trái tim điều phối. Thiết kế để hỗ trợ Agent lai (Human + Machine + AI), quản lý vòng đời Skill và Task, đảm bảo mỗi việc đến đúng người thực thi với đúng ngữ cảnh.</p>
+                <h4>Spine — Model điều phối</h4>
+                <p>Model workflow event-driven của Binean Engine. Flow là định nghĩa quy trình bất biến và có version, Process là một lần chạy, Task là một đơn vị công việc. Đặc tả được viết trước, còn implementation và conformance test tồn tại để chứng minh đặc tả đúng.</p>
               </div>
               <div class="sub-card">
                 <span class="sub-icon" aria-hidden="true">🔀</span>
-                <h4>Basal — Event Machine Agent</h4>
-                <p>Bộ định tuyến sự kiện. Nhận sự kiện từ process, quyết định bước kế tiếp và điều hướng giữa các Agent — đây cũng là nơi chiến lược Strangler Fig được thực thi trong thực tế.</p>
+                <h4>Basal — Thẩm quyền điều hướng</h4>
+                <p>Không phải bộ định tuyến thụ động: Basal là bên duy nhất có thẩm quyền điều hướng, và là bên chủ động chạy vòng lặp xử lý. Nó sở hữu vòng đời Process, chuyển trạng thái Task, điều kiện hội tụ nhánh và cơ chế phục hồi.</p>
               </div>
               <div class="sub-card">
                 <span class="sub-icon" aria-hidden="true">⚡</span>
-                <h4>Reflex — Machine Agent nội bộ</h4>
-                <p>Agent máy nằm sát Spine, thực thi Task với độ trễ cực thấp. Dành cho các tác vụ tính toán, kiểm tra và biến đổi dữ liệu cần phản hồi tức thì.</p>
+                <h4>Reflex — Task Agent dựng sẵn</h4>
+                <p>Agent có sẵn trong lõi, lo phần việc máy móc của mỗi Flow: nhánh rẽ do compiler sinh ra, biến đổi dữ liệu bằng script, và gọi một Flow khác như một Skill để tạo process con.</p>
               </div>
               <div class="sub-card">
                 <span class="sub-icon" aria-hidden="true">⏱️</span>
                 <h4>Scheduler &amp; Timeout</h4>
-                <p>Agent chuyên trách lịch trình và giám sát timeout. Không Task nào bị treo im lặng: quá hạn là có sự kiện, có đền bù, có cảnh báo — giúp Spine vận hành bền vững dài hạn.</p>
+                <p>Project riêng trong Binean Engine, đang phát triển, lo lịch trình và giám sát timeout. Mục tiêu: không Task nào bị treo im lặng — quá hạn là có sự kiện, có đền bù, có cảnh báo.</p>
               </div>
             </div>
           </article>
