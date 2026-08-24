@@ -477,12 +477,16 @@ ol {
 
 .orbit-stage {
   --size: clamp(300px, 36vw, 460px);
+  /* Góc nhìn chếch xuống mặt phẳng hệ và độ mạnh của phối cảnh. */
+  --scene: 56deg;
+  --sun: 27%;
   position: relative;
   width: var(--size);
   height: var(--size);
   display: grid;
   place-items: center;
-  isolation: isolate;
+  perspective: calc(var(--size) * 1.9);
+  perspective-origin: 50% 50%;
 }
 
 /* trường sao ------------------------------------------------------------- */
@@ -520,16 +524,6 @@ ol {
     opacity: 0.7;
     transform: scale(1.15);
   }
-}
-
-/* quỹ đạo ---------------------------------------------------------------- */
-
-.orbit-ring {
-  position: absolute;
-  inset: calc(50% - var(--size) * var(--rf));
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  opacity: 0.55;
 }
 
 /* quầng sáng và tia quanh mặt trời --------------------------------------- */
@@ -619,6 +613,62 @@ ol {
     0 3px 26px rgba(4, 22, 48, 0.7);
 }
 
+/* cảnh 3D ---------------------------------------------------------------- */
+
+/* Mọi lớp trong cảnh đều phải preserve-3d, chỉ cần một lớp bị làm phẳng là toàn
+   bộ phép sắp xếp chiều sâu hỏng. Cũng vì vậy không lớp nào trong cảnh được đặt
+   overflow, filter hay opacity — ba thứ đó ép lớp về phẳng. */
+.orbit-scene,
+.orbit-sats,
+.sat-plane,
+.sat,
+.sat-pos,
+.sat-chip {
+  transform-style: preserve-3d;
+}
+
+.orbit-scene {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(var(--scene));
+}
+
+/* mặt trời --------------------------------------------------------------- */
+
+.orbit-core {
+  position: absolute;
+  inset: calc((100% - var(--sun)) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  /* Dựng đứng lại để không bị bẹt theo góc nhìn của cảnh. */
+  transform: rotateX(calc(-1 * var(--scene)));
+  /* Sao xanh nóng: lõi gần trắng, rìa về đúng màu thương hiệu Binean. */
+  background: radial-gradient(
+    circle at 31% 25%,
+    #ffffff 0%,
+    color-mix(in srgb, var(--binean) 48%, #ffffff) 15%,
+    var(--binean) 56%,
+    color-mix(in srgb, var(--binean) 68%, #000000) 100%
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #ffffff 40%, transparent),
+    0 0 30px -2px color-mix(in srgb, var(--binean) 90%, transparent),
+    0 0 90px 8px color-mix(in srgb, var(--binean) 45%, transparent);
+}
+
+.core-name {
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-weight: 700;
+  font-size: calc(var(--size) * 0.2);
+  line-height: 0.74;
+  color: #f8fafb;
+  text-shadow:
+    0 1px 2px rgba(4, 22, 48, 0.45),
+    0 3px 26px rgba(4, 22, 48, 0.7);
+}
+
 /* hành tinh -------------------------------------------------------------- */
 
 .orbit-sats {
@@ -626,41 +676,77 @@ ol {
   inset: 0;
 }
 
-/* Ba lớp: .sat quay theo quỹ đạo, .sat-pos là thân hành tinh, .sat-chip quay
-   ngược lại đúng cùng chu kỳ và cùng pha nên chữ luôn đứng thẳng.
-   Thân nằm ở lớp quay nên nửa được chiếu sáng luôn hướng về mặt trời. */
+/* 1. Mặt phẳng quỹ đạo riêng: hướng nút lên và độ nghiêng của từng hành tinh. */
+.sat-plane {
+  position: absolute;
+  inset: 0;
+  transform: rotateZ(var(--node)) rotateX(var(--incl));
+}
+
+/* 2. Quay quanh mặt trời. */
 .sat {
   position: absolute;
   inset: 0;
-  animation: spin var(--dur) linear var(--delay) infinite;
+  animation: orbit var(--dur) linear var(--delay) infinite;
 }
 
+@keyframes orbit {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* 3. Đẩy ra bán kính quỹ đạo. Căn giữa bằng margin chứ không bằng translate,
+      vì translate sẽ bị các phép quay ở lớp ngoài kéo lệch theo. */
 .sat-pos {
+  --pw: calc(clamp(34px, 3.6vw, 44px) * var(--ps));
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  width: var(--pw);
+  height: var(--pw);
+  margin: calc(var(--pw) / -2) 0 0 calc(var(--pw) / -2);
+  transform: translateX(calc(var(--size) * var(--rf)));
+}
+
+/* 4 và 5. Billboard: gỡ lần lượt từng phép quay của chuỗi bên trên, theo đúng
+   thứ tự ngược lại, để thân hành tinh luôn quay mặt về người xem. */
+.sat-chip {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: orbit-billboard var(--dur) linear var(--delay) infinite;
+}
+
+@keyframes orbit-billboard {
+  to {
+    transform: rotateZ(-360deg);
+  }
+}
+
+.sat-body {
+  position: relative;
   display: grid;
   place-items: center;
-  width: calc(clamp(34px, 3.6vw, 44px) * var(--ps));
-  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  transform: translate(-50%, -50%) translateX(calc(var(--size) * var(--rf)));
-  /* Nguồn sáng ở phía -x, tức là phía mặt trời. */
+  transform: rotateX(calc(-1 * var(--incl))) rotateZ(calc(-1 * var(--node)))
+    rotateX(calc(-1 * var(--scene)));
   background: radial-gradient(
-    circle at 26% 40%,
-    color-mix(in srgb, var(--c) 45%, #ffffff) 0%,
+    circle at 30% 26%,
+    color-mix(in srgb, var(--c) 42%, #ffffff) 0%,
     var(--c) 46%,
     color-mix(in srgb, var(--c) 55%, #071426) 100%
   );
   box-shadow:
-    inset -3px -2px 7px -2px rgba(4, 12, 26, 0.75),
-    0 0 16px -3px var(--c),
+    inset -3px -3px 8px -2px rgba(4, 12, 26, 0.75),
+    0 0 18px -3px var(--c),
     0 6px 16px -8px rgba(0, 0, 0, 0.9);
 }
 
-/* Orbit đeo vành như Sao Thổ. Vành nằm ở lớp quay ngược nên độ nghiêng của nó
-   giữ nguyên trên màn hình thay vì lắc theo quỹ đạo. */
-.sat-ringed .sat-chip::before {
+/* Orbit đeo vành như Sao Thổ. */
+.sat-ringed::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -672,15 +758,6 @@ ol {
   border: 1.5px solid color-mix(in srgb, var(--c) 75%, #ffffff);
   border-radius: 50%;
   opacity: 0.85;
-}
-
-.sat-chip {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  animation: spin var(--dur) linear var(--delay) infinite reverse;
 }
 
 .sat-key {
@@ -1237,13 +1314,13 @@ ol {
   }
 
   /* Không quay thì phải đặt sẵn góc, nếu không mọi hành tinh chồng lên nhau,
-     và chip phải xoay ngược lại đúng chừng đó để chữ vẫn đứng thẳng. */
+     và lớp billboard phải gỡ lại đúng chừng đó để chữ vẫn đứng thẳng. */
   .sat {
-    transform: rotate(var(--static-a));
+    transform: rotateZ(var(--static-a));
   }
 
   .sat-chip {
-    transform: rotate(calc(-1 * var(--static-a)));
+    transform: rotateZ(calc(-1 * var(--static-a)));
   }
 
   .reveal {

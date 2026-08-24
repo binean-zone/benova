@@ -153,45 +153,70 @@ const hero = () => {
   const { hero } = site;
   const sats = hero.satellites;
 
-  /* Mỗi thành tố một quỹ đạo riêng, giãn đều từ trong ra ngoài. Bán kính tính
-     theo % cạnh sân khấu; cộng thêm bán kính chip vẫn nằm gọn trong khung.
-     Thêm hay bớt thành tố (tới 9 hoặc hơn) chỉ cần sửa content/site.mjs. */
-  const R_INNER = 0.24;
-  const R_OUTER = 0.46;
+  /* Hệ mặt trời dựng bằng CSS 3D thật: sân khấu có perspective, mọi lớp đều
+     preserve-3d. Elip, xa gần và việc hành tinh chui ra sau mặt trời đều là kết
+     quả của phép chiếu phối cảnh chứ không phải keyframe mô phỏng.
+     Thêm hay bớt thành tố chỉ cần sửa content/site.mjs. */
+  const R_INNER = 0.28;
+  const R_OUTER = 0.5;
 
-  // Hành tinh to nhỏ chênh nhau rõ rệt cho đỡ đều tăm tắp; Engine là bộ khung
-  // nên to nhất. Dãy cố định nên build luôn tái lập được.
+  // Hành tinh to nhỏ chênh nhau rõ rệt; Engine là bộ khung nên to nhất.
   const SCALES = [1.24, 0.88, 1.12, 0.8, 1];
+  // Chu kỳ quỹ đạo trong cùng, tính bằng giây.
+  const BASE_PERIOD = 19;
+  // Mặt phẳng quỹ đạo: mỗi hành tinh một hướng nút lên và một độ nghiêng riêng,
+  // nên không cái nào cùng mặt phẳng với cái nào.
+  const NODES = [-26, 12, -7, 31, -16];
+  const INCLINATIONS = [-9, 6, -3, 11, -6];
 
   const orbits = sats.map((sat, i) => {
     const t = sats.length > 1 ? i / (sats.length - 1) : 0;
     const radius = R_INNER + (R_OUTER - R_INNER) * t;
-    // Quỹ đạo ngoài quay chậm hơn, cho cảm giác Kepler. Chu kỳ đủ ngắn để
-    // chuyển động nhìn thấy được ngay, không phải đứng nhìn cả phút.
-    const duration = 11 + i * 4;
+    // Chu kỳ theo định luật Kepler 3: T tỉ lệ với r mũ 1.5. Quỹ đạo ngoài chậm
+    // hơn hẳn quỹ đạo trong chứ không chỉ chậm hơn một chút.
+    const duration = Math.round(BASE_PERIOD * Math.pow(radius / R_INNER, 1.5));
     // Góc vàng: các hành tinh không bao giờ xếp thành hình sao đều.
     const angle = (i * 137.508) % 360;
     // Animation ghi đè transform nên lệch pha bằng delay âm thay vì rotate tĩnh.
     const delay = -(angle / 360) * duration;
-    return { sat, radius, duration, delay, angle, scale: SCALES[i % SCALES.length] };
+    return {
+      sat,
+      radius,
+      duration,
+      delay,
+      angle,
+      scale: SCALES[i % SCALES.length],
+      node: NODES[i % NODES.length],
+      incl: INCLINATIONS[i % INCLINATIONS.length],
+    };
   });
 
-  const rings = list(
-    orbits,
-    (o) => `            <div class="orbit-ring" style="--rf:${o.radius.toFixed(4)}"></div>`
-  );
-
+  /* Chuỗi biến đổi từ ngoài vào trong:
+       .orbit-scene  rotateX(scene)              nghiêng cả hệ để nhìn chếch
+       .sat-plane    rotateZ(node) rotateX(incl) mặt phẳng riêng của quỹ đạo
+       .sat          rotateZ(θ)                  quay quanh mặt trời   (động)
+       .sat-pos      translateX(r)               đẩy ra bán kính
+       .sat-chip     rotateZ(-θ)                 billboard phần động   (động)
+       .sat-body     rotateX(-incl) rotateZ(-node) rotateX(-scene)     billboard
+     Ba phép quay cuối là nghịch đảo của toàn bộ chuỗi trên, nên thân hành tinh
+     luôn quay mặt về phía người xem và chữ luôn đứng thẳng. */
   const planets = list(
     orbits,
     (o) => `            <li
-              class="sat"
-              style="--rf:${o.radius.toFixed(4)}; --dur:${o.duration}s; --delay:${o.delay.toFixed(
+              class="sat-plane"
+              style="--rf:${o.radius.toFixed(4)}; --node:${o.node}deg; --incl:${
+      o.incl
+    }deg; --dur:${o.duration}s; --delay:${o.delay.toFixed(2)}s; --static-a:${o.angle.toFixed(
       2
-    )}s; --static-a:${o.angle.toFixed(2)}deg; --c:${esc(o.sat.color)}; --ps:${o.scale}"
+    )}deg; --c:${esc(o.sat.color)}; --ps:${o.scale}"
             >
-              <span class="sat-pos${o.sat.ring ? ' sat-ringed' : ''}">
-                <span class="sat-chip">
-                  <span class="sat-key">${esc(o.sat.key)}</span>
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span class="sat-body${o.sat.ring ? ' sat-ringed' : ''}">
+                      <span class="sat-key">${esc(o.sat.key)}</span>
+                    </span>
+                  </span>
                 </span>
               </span>
             </li>`
@@ -236,15 +261,16 @@ const hero = () => {
             <div class="starfield">
 ${stars}
             </div>
-${rings}
             <div class="orbit-corona"></div>
             <div class="orbit-flare"></div>
-            <div class="orbit-core">
-              <span class="core-name">${esc(hero.core.key)}</span>
-            </div>
-            <ul class="orbit-sats">
+            <div class="orbit-scene">
+              <div class="orbit-core">
+                <span class="core-name">${esc(hero.core.key)}</span>
+              </div>
+              <ul class="orbit-sats">
 ${planets}
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
