@@ -53,7 +53,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium', color: '#fbbf24' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host', color: '#a78bfa', ring: true },
       { key: 'V', name: 'Vista', desc: 'Flow & Task Management', color: '#fb7185' },
-      { key: 'A', name: 'AI Agent', desc: 'Autonomous Control Plane', color: '#a3e635' },
+      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn ACP', color: '#a3e635' },
     ],
   },
 
@@ -181,7 +181,7 @@ export default {
         icon: '✨',
         desc: 'AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.',
         features: [
-          'Hỗ trợ ACP — Autonomous Control Plane',
+          'Nói ACP, chuẩn giao tiếp giữa các Agent cùng họ với MCP',
           'Tự động đảm nhận Task theo mức độ tin cậy',
           'Học từ dữ liệu vận hành và lịch sử xử lý',
           'Đề xuất tối ưu quy trình và phát hiện bất thường',
@@ -195,7 +195,7 @@ export default {
     id: 'trien-khai',
     eyebrow: 'Cách triển khai',
     title: 'Strangler Fig — thay thế dần, không thay thế một lần',
-    lead: 'BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày "big bang".',
+    lead: 'Orbit bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày "big bang".',
     steps: [
       {
         num: '01',
@@ -248,9 +248,9 @@ export default {
       },
       {
         icon: '🛡️',
-        title: 'Giảm rủi ro thay vì tích tụ thêm',
+        title: 'Môi trường dựng lại được, hết trôi dạt',
         answers: 'Rủi ro vận hành tích tụ',
-        desc: 'Môi trường dựng lại được từ baseline có version nên hết trôi dạt. Mỗi bước di cư có cổng go/no-go và đường lùi, hệ thống đang chạy không bị đụng tới.',
+        desc: 'Nexus dựng lại DEV/SIT/UAT từ baseline có version và chỉ ra chênh lệch schema, dữ liệu nền so với PRD — hết cảnh "chạy ở đây, hỏng ở kia". Thông tin đăng nhập được mã hóa, batch có lịch và có cảnh báo thay vì script chạy tay.',
       },
     ],
     note: 'Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.',

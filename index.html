@@ -396,7 +396,7 @@
             </header>
             <p class="agent-desc">AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.</p>
             <ul class="feature-list">
-              <li>Hỗ trợ ACP — Autonomous Control Plane</li>
+              <li>Nói ACP, chuẩn giao tiếp giữa các Agent cùng họ với MCP</li>
               <li>Tự động đảm nhận Task theo mức độ tin cậy</li>
               <li>Học từ dữ liệu vận hành và lịch sử xử lý</li>
               <li>Đề xuất tối ưu quy trình và phát hiện bất thường</li>
@@ -413,7 +413,7 @@
           <div class="strangler-copy reveal">
             <p class="eyebrow">Cách triển khai</p>
             <h2>Strangler Fig — thay thế dần, không thay thế một lần</h2>
-            <p class="lead">BENOVA bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày &quot;big bang&quot;.</p>
+            <p class="lead">Orbit bao quanh Ingenium và siết dần từng luồng nghiệp vụ: luồng mới chạy trên Rust và AI, luồng cũ vẫn phục vụ khách hàng. Khi một luồng đã ổn định trên nền tảng mới, phần COBOL tương ứng được ngưng sử dụng. Không có ngày &quot;big bang&quot;.</p>
           </div>
           <ol class="strangler-steps">
             <li class="reveal">
@@ -489,8 +489,8 @@
           <article class="card benefit-card reveal">
             <span class="card-icon" aria-hidden="true">🛡️</span>
             <p class="benefit-answers">Trả lời: Rủi ro vận hành tích tụ</p>
-            <h3>Giảm rủi ro thay vì tích tụ thêm</h3>
-            <p>Môi trường dựng lại được từ baseline có version nên hết trôi dạt. Mỗi bước di cư có cổng go/no-go và đường lùi, hệ thống đang chạy không bị đụng tới.</p>
+            <h3>Môi trường dựng lại được, hết trôi dạt</h3>
+            <p>Nexus dựng lại DEV/SIT/UAT từ baseline có version và chỉ ra chênh lệch schema, dữ liệu nền so với PRD — hết cảnh &quot;chạy ở đây, hỏng ở kia&quot;. Thông tin đăng nhập được mã hóa, batch có lịch và có cảnh báo thay vì script chạy tay.</p>
           </article>
         </div>
         <p class="section-bridge reveal">Bạn giữ nguyên logic nghiệp vụ, dữ liệu và quyền sở hữu. BENOVA tích hợp với Ingenium chứ không thay thế giấy phép hay chỉnh sửa mã nguồn của nó.</p>
