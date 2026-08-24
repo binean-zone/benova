@@ -4,12 +4,18 @@
  * Toàn bộ chữ hiển thị trên trang được khai báo tại đây.
  * Sửa file này rồi chạy `npm run build` để sinh lại index.html.
  */
+const mail = 'mailto:ingenium.modernization@gmail.com';
+
 export default {
   brand: {
     name: 'BENOVA',
     tagline: 'Hệ sinh thái hiện đại hóa core bảo hiểm Ingenium',
     email: 'ingenium.modernization@gmail.com',
-    phone: '+84 28 7300 0000',
+  },
+
+  notice: {
+    text: 'Trang đang trong quá trình hoàn thiện. Nội dung và lộ trình sản phẩm sẽ tiếp tục được cập nhật.',
+    linkLabel: 'Liên hệ qua email',
   },
 
   seo: {
@@ -122,7 +128,7 @@ export default {
       key: 'BE',
       name: 'Binean Engine',
       role: 'Framework điều phối',
-      status: 'Nền tảng',
+      status: 'Đang phát triển',
       icon: '🧠',
       desc: 'Bộ khung điều phối của toàn hệ sinh thái, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
       highlights: ['Event-driven', 'Đặc tả trước, hiện thực sau', 'Cùng một Agent: người, máy hay AI'],
@@ -226,9 +232,9 @@ export default {
       {
         icon: '🚀',
         title: 'Tốc độ',
-        desc: 'Các luồng nghiệp vụ nóng được viết lại bằng Rust — nhanh hơn tới 10x so với cài đặt COBOL tương ứng, đồng thời an toàn bộ nhớ theo thiết kế.',
-        stat: '10x',
-        statLabel: 'nhanh hơn ở luồng đã chuyển sang Rust',
+        desc: 'Các luồng nghiệp vụ nóng được viết lại bằng Rust: an toàn bộ nhớ theo thiết kế và nhanh hơn nhiều lần so với cài đặt COBOL tương ứng. Con số cụ thể phụ thuộc từng luồng và sẽ đo trên chính hệ thống của bạn trong POC.',
+        stat: 'Rust',
+        statLabel: 'mục tiêu 10x ở luồng đã chuyển đổi, đo trong POC',
       },
       {
         icon: '🛡️',
@@ -265,9 +271,15 @@ export default {
     id: 'lien-he',
     title: 'Sẵn sàng chuyển đổi core bảo hiểm?',
     lead: 'Bắt đầu bằng một POC có phạm vi rõ ràng trên chính một luồng nghiệp vụ Ingenium của bạn. Chứng minh cải thiện build-and-deploy trước, rồi mới quyết định đi xa tới đâu.',
-    primary: { label: 'Đăng ký Demo', href: '#' },
-    secondary: { label: 'Tải Whitepaper', href: '#' },
-    note: 'Tư vấn 30 phút, không ràng buộc. Phản hồi trong vòng 2 ngày làm việc.',
+    primary: {
+      label: 'Đăng ký xem demo',
+      href: `${mail}?subject=${encodeURIComponent('BENOVA - Dang ky xem demo')}`,
+    },
+    secondary: {
+      label: 'Đặt lịch trao đổi 30 phút',
+      href: `${mail}?subject=${encodeURIComponent('BENOVA - Dat lich trao doi 30 phut')}`,
+    },
+    note: 'Hiện tại chúng tôi chỉ nhận liên hệ qua email. Trao đổi 30 phút, không ràng buộc.',
   },
 
   footer: {
@@ -289,14 +301,11 @@ export default {
           { label: 'Vấn đề & Giải pháp', href: '#gioi-thieu' },
           { label: 'Chiến lược Strangler Fig', href: '#strangler' },
           { label: 'Lợi ích', href: '#loi-ich' },
-          { label: 'Đăng ký Demo', href: '#lien-he' },
+          { label: 'Liên hệ', href: '#lien-he' },
         ],
       },
     ],
-    legal: [
-      { label: 'Chính sách bảo mật', href: '#' },
-      { label: 'Điều khoản sử dụng', href: '#' },
-    ],
+    legal: [],
     copyright: '© 2026 BENOVA. All rights reserved.',
   },
 };

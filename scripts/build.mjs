@@ -87,6 +87,14 @@ const head = () => {
 
 /* ------------------------------------------------------------ header --- */
 
+const notice = () => `  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>${esc(site.notice.text)}</p>
+      <a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Lien%20he">${esc(site.notice.linkLabel)}</a>
+    </div>
+  </div>`;
+
 const header = () => `  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
   <header class="site-header" id="site-header">
     <div class="shell header-inner">
@@ -373,8 +381,6 @@ const cta = () => {
           <p class="hero-note">${esc(c.note)}</p>
           <p class="cta-contact">
             <a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">${esc(site.brand.email)}</a>
-            <span aria-hidden="true">·</span>
-            <a href="tel:${esc(site.brand.phone.replace(/\s/g, ''))}">${esc(site.brand.phone)}</a>
           </p>
         </div>
       </div>
@@ -403,16 +409,18 @@ ${list(col.links, (l) => `          <li><a href="${esc(l.href)}">${esc(l.label)}
       <div class="footer-col">
         <h2>Liên hệ</h2>
         <ul>
-          <li><a href="mailto:${esc(site.brand.email)}">${esc(site.brand.email)}</a></li>
-          <li><a href="tel:${esc(site.brand.phone.replace(/\s/g, ''))}">${esc(site.brand.phone)}</a></li>
+          <li><a href="mailto:${esc(site.brand.email)}?subject=BENOVA%20-%20Lien%20he">${esc(site.brand.email)}</a></li>
         </ul>
+        <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
       </div>
     </div>
     <div class="shell footer-bottom">
       <p>${esc(f.copyright)}</p>
-      <ul>
+${f.legal.length
+  ? `      <ul>
 ${list(f.legal, (l) => `        <li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`)}
-      </ul>
+      </ul>`
+  : ''}
     </div>
   </footer>`;
 };
@@ -424,7 +432,8 @@ const page = `<!DOCTYPE html>
 <head>
 ${head()}
 </head>
-<body data-contact-email="${esc(site.brand.email)}">
+<body>
+${notice()}
 ${header()}
 
   <main id="main">

@@ -136,16 +136,4 @@
     });
   }
 
-  /* --------------------------- CTA chưa nối backend: chuyển sang email -- */
-
-  var contactEmail = document.body.getAttribute('data-contact-email');
-
-  document.querySelectorAll('.cta-box a[href="#"]').forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      if (!contactEmail) return;
-      event.preventDefault();
-      window.location.href =
-        'mailto:' + contactEmail + '?subject=' + encodeURIComponent('BENOVA - ' + link.textContent.trim());
-    });
-  });
 })();
