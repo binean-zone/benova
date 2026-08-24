@@ -167,7 +167,7 @@ export default {
           'Chạy song song service Rust và Ingenium trong cùng một host',
           'Phơi bày core dưới dạng REST API, bỏ middleware MQ',
           'Triển khai tính năng mới mà không ngưng hệ cũ',
-          'Truy vấn hợp đồng 24/7, kể cả trong cửa sổ batch',
+          'Truy vấn hợp đồng 24/7, kể cả đang chạy batch job',
           'Chuyển đổi từng luồng, có đường lùi ở mọi bước',
         ],
       },

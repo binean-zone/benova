@@ -168,7 +168,7 @@ export default {
           'Run Rust services and Ingenium side by side in one host',
           'Expose the core as REST APIs and drop the MQ middleware',
           'Ship new capability without taking the legacy system down',
-          'Query policies 24/7, including during batch windows',
+          'Query policies 24/7, even while batch jobs are running',
           'Move one flow at a time, with a way back at every step',
         ],
       },

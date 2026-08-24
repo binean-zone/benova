@@ -3,7 +3,7 @@
  * sắc của các hành tinh. Để chung một chỗ để hai bản ngôn ngữ không trôi dạt
  * khỏi nhau.
  */
-export const emails = ['binean.enova@gmail.com', 'ingenium.modernization@gmail.com'];
+export const emails = ['binean.enova@gmail.com'];
 export const mail = `mailto:${emails[0]}`;
 
 export const brandName = 'BENOVA';
