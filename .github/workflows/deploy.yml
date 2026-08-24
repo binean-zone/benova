@@ -1,41 +1,61 @@
-name: Deploy Docusaurus via SSH
+name: Deploy landing page to GitHub Pages
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Docusaurus site
+      # Sinh lại index.html + sitemap.xml từ content/site.mjs.
+      - name: Build static site
         run: npm run build
 
-      - name: Set git user info
+      - name: Fail if generated files are stale
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          if ! git diff --quiet -- index.html sitemap.xml; then
+            echo "index.html/sitemap.xml khác với kết quả build từ content/site.mjs."
+            echo "Chạy 'npm run build' rồi commit lại."
+            git --no-pager diff --stat -- index.html sitemap.xml
+            exit 1
+          fi
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
+      # Chỉ đóng gói phần công khai — docs/, tasks/, personal/ ở lại repo.
+      - name: Stage public files
+        run: |
+          mkdir -p _site
+          cp -r index.html sitemap.xml robots.txt CNAME .nojekyll assets _site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+          path: _site
 
-      - name: Deploy using SSH
-        env:
-          USE_SSH: true
-        run: |
-          npm run deploy
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
