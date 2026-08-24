@@ -46,7 +46,8 @@ export default {
     primaryCta: { label: 'Khám phá kiến trúc', href: '#kien-truc' },
     secondaryCta: { label: 'Liên hệ tư vấn', href: '#lien-he' },
     note: 'Giữ nguyên logic nghiệp vụ · Không đụng tới giấy phép Ingenium · Triển khai cloud, on-prem hoặc hybrid',
-    core: { key: 'B', name: 'Binean' },
+    // B ở tâm hệ mặt trời là chữ đầu của Binean, tên công ty.
+    core: { key: 'B' },
     satellites: [
       { key: 'E', name: 'Engine', desc: 'Framework điều phối', color: '#5eead4' },
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium', color: '#fbbf24' },
@@ -93,18 +94,18 @@ export default {
     lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Engine điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và AI Agent tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
     engine: {
       key: 'E',
-      name: 'Binean Engine',
+      name: 'Engine',
       role: 'Framework điều phối',
       status: 'Đang phát triển',
       icon: '🧠',
-      desc: 'Bộ khung điều phối của toàn hệ sinh thái, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
+      desc: 'Bộ khung điều phối của BENOVA, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
       highlights: ['Event-driven', 'Đặc tả trước, hiện thực sau', 'Cùng một Agent: người, máy hay AI'],
       children: [
         {
           key: 'Spine',
           icon: '🦴',
           title: 'Spine — Model điều phối',
-          desc: 'Model workflow event-driven của Binean Engine. Flow là định nghĩa quy trình bất biến và có version, Process là một lần chạy, Task là một đơn vị công việc. Đặc tả được viết trước, còn implementation và conformance test tồn tại để chứng minh đặc tả đúng.',
+          desc: 'Model workflow event-driven bên trong Engine. Flow là định nghĩa quy trình bất biến và có version, Process là một lần chạy, Task là một đơn vị công việc. Đặc tả được viết trước, còn implementation và conformance test tồn tại để chứng minh đặc tả đúng.',
         },
         {
           key: 'Basal',
@@ -122,7 +123,7 @@ export default {
           key: 'Scheduler',
           icon: '⏱️',
           title: 'Scheduler & Timeout',
-          desc: 'Project riêng trong Binean Engine, đang phát triển, lo lịch trình và giám sát timeout. Mục tiêu: không Task nào bị treo im lặng — quá hạn là có sự kiện, có đền bù, có cảnh báo.',
+          desc: 'Project riêng bên trong Engine, đang phát triển, lo lịch trình và giám sát timeout. Mục tiêu: không Task nào bị treo im lặng — quá hạn là có sự kiện, có đền bù, có cảnh báo.',
         },
       ],
     },
@@ -276,7 +277,7 @@ export default {
       {
         title: 'Sản phẩm',
         links: [
-          { label: 'Binean Engine', href: '#kien-truc' },
+          { label: 'Engine', href: '#kien-truc' },
           { label: 'Nexus', href: '#kien-truc' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },
