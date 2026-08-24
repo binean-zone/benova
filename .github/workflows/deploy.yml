@@ -28,25 +28,28 @@ jobs:
         with:
           node-version: 20
 
-      # GitHub sinh index.html + sitemap.xml từ content/site.mjs.
-      # Bản commit trong repo chỉ để xem trước, luôn bị ghi đè ở đây,
-      # nên nội dung deploy không bao giờ cũ so với content/site.mjs.
+      # npm run build chạy check-content.mjs trước: hai bản ngôn ngữ lệch cấu
+      # trúc là hỏng build ngay, không để lọt ra bản deploy.
+      # Các file HTML commit trong repo chỉ để xem trước, luôn bị ghi đè ở đây,
+      # nên bản deploy không bao giờ cũ so với content/.
       - name: Build static site
         run: npm run build
 
       - name: Check build output
         run: |
-          test -s index.html || { echo "index.html rỗng hoặc không tồn tại"; exit 1; }
-          test -s en/index.html || { echo "en/index.html rỗng hoặc không tồn tại"; exit 1; }
-          test -s sitemap.xml || { echo "sitemap.xml rỗng hoặc không tồn tại"; exit 1; }
-          grep -q "</html>" index.html || { echo "index.html không đóng thẻ html"; exit 1; }
-          echo "OK — $(wc -c < index.html) bytes"
+          for f in index.html en/index.html 404.html sitemap.xml assets/css/fonts.css; do
+            test -s "$f" || { echo "$f rỗng hoặc không tồn tại"; exit 1; }
+          done
+          for f in index.html en/index.html 404.html; do
+            grep -q "</html>" "$f" || { echo "$f không đóng thẻ html"; exit 1; }
+          done
+          echo "OK — vi $(wc -c < index.html) bytes, en $(wc -c < en/index.html) bytes"
 
       # Chỉ đóng gói phần công khai — docs/, tasks/, personal/ ở lại repo.
       - name: Stage public files
         run: |
           mkdir -p _site
-          cp -r index.html sitemap.xml robots.txt CNAME .nojekyll assets en _site/
+          cp -r index.html 404.html sitemap.xml robots.txt CNAME .nojekyll assets en _site/
 
       - uses: actions/configure-pages@v5
 

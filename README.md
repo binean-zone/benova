@@ -26,7 +26,9 @@ npm run dev          # http://localhost:4173, tự build lại mỗi lần tải
 Chỉ build mà không chạy server:
 
 ```bash
-npm run build        # sinh index.html và sitemap.xml
+npm run build        # kiểm tra song ngữ rồi sinh index.html, en/index.html, 404.html, sitemap.xml
+npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
+npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
 ```
 
 Không có Node cũng xem được trang đã build:
@@ -68,22 +70,27 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 
 ```
 /
-├── index.html              # bản tiếng Việt, đã sinh (đừng sửa tay)
-├── en/index.html           # bản tiếng Anh, đã sinh (đừng sửa tay)
-├── sitemap.xml             # sinh cùng lúc, liệt kê cả hai ngôn ngữ
+├── index.html              # bản tiếng Việt (sinh ra, đừng sửa tay)
+├── en/index.html           # bản tiếng Anh (sinh ra)
+├── 404.html                # trang lỗi song ngữ (sinh ra)
+├── sitemap.xml             # sinh cùng lúc, có hreflang cho cả hai bản
 ├── content/
-│   ├── vi.mjs              # chữ tiếng Việt
-│   ├── en.mjs              # chữ tiếng Anh
-│   └── shared.mjs          # email, URL, màu hành tinh — dùng chung
+│   ├── shared.mjs          # thương hiệu, email, URL, màu hành tinh
+│   ├── vi.mjs              # NGUỒN NỘI DUNG tiếng Việt
+│   └── en.mjs              # NGUỒN NỘI DUNG tiếng Anh
 ├── scripts/
-│   ├── build.mjs           # generator: content → HTML
+│   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
+│   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau
+│   ├── fetch-fonts.mjs     # tải font về tự host (chạy tay)
 │   └── serve.mjs           # dev server (chỉ dùng thư viện chuẩn Node)
 ├── assets/
 │   ├── css/style.css       # toàn bộ style, dark-first + theme sáng
-│   ├── js/main.js          # theme, menu mobile, reveal khi cuộn, scrollspy
-│   └── images/             # logo, favicon; sơ đồ và ảnh OG sinh theo ngôn ngữ
-├── docs/                   # tài liệu sản phẩm (nguồn tham chiếu, không deploy)
-├── CNAME                   # binean.com — tên miền tùy chỉnh cho Pages
+│   ├── css/fonts.css       # sinh bởi fetch-fonts.mjs
+│   ├── fonts/              # Inter tự host, woff2 biến thiên
+│   ├── js/main.js          # theme, menu, reveal khi cuộn, scrollspy
+│   └── images/             # logo, favicon, sơ đồ, ảnh Open Graph
+├── docs/                   # tài liệu sản phẩm (tham chiếu, không deploy)
+├── CNAME                   # binean.com
 ├── robots.txt
 └── .nojekyll               # Pages phục vụ file nguyên trạng, bỏ qua Jekyll
 ```
@@ -133,8 +140,20 @@ Cần bật một lần trong repo:
 - **Hệ mặt trời ở hero** dựng bằng CSS 3D thật (`perspective` + `preserve-3d`). Không
   đặt `overflow`, `filter` hay `opacity` lên bất kỳ lớp nào trong cảnh — ba thuộc tính
   đó ép lớp về phẳng và làm hỏng phép sắp xếp chiều sâu.
-- **Font.** Inter + JetBrains Mono từ Google Fonts, luôn có font hệ thống dự phòng nếu
-  mạng chặn.
+- **Không request ra ngoài.** Font Inter tự host trong `assets/fonts/`, sinh bởi
+  `npm run fonts`. Trang không gọi tới máy chủ nào ngoài chính nó. Chữ mono dùng font
+  hệ thống: webfont mono từng tốn 31 KB cho vỏn vẹn bốn số thứ tự và năm badge chữ cái
+  mỗi trang.
+- **Cân nặng.** Trang tiếng Việt khoảng 78 KB sau gzip, tiếng Anh khoảng 68 KB. Ảnh
+  Open Graph không nằm trong số đó — chỉ crawler mạng xã hội tải nó, trình duyệt thì
+  không.
+- **Song ngữ.** `content/vi.mjs` và `content/en.mjs`; phần không đổi theo ngôn ngữ nằm ở
+  `content/shared.mjs`. `npm run build` chạy `scripts/check-content.mjs` trước, vì hai
+  bản lệch nội dung thì trang **vẫn build và vẫn deploy được** — không ai thấy cho tới
+  khi khách hàng mở bản tiếng Anh. Script so cấu trúc, độ dài mảng, và kiểm mọi anchor
+  có trỏ tới section có thật của chính ngôn ngữ đó.
+- **Trang 404.** GitHub Pages trả `404.html` cho mọi đường dẫn sai, kể cả dưới `/en/`,
+  nên nó dùng đường dẫn tính từ gốc site và để nội dung song ngữ.
 
 ---
 

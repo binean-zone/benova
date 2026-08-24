@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — BENOVA</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/fonts.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script>
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <main class="not-found">
+    <div class="shell nf-inner">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <section class="nf-block" lang="vi">
+        <h1>Không tìm thấy trang</h1>
+        <p>Đường dẫn bạn mở không tồn tại, hoặc đã đổi trong lần dựng lại trang gần đây.</p>
+        <a class="btn btn-primary" href="/">Về trang chủ</a>
+      </section>
+      <section class="nf-block" lang="en">
+        <h2>Page not found</h2>
+        <p>The address you opened does not exist, or it changed when the site was rebuilt.</p>
+        <a class="btn btn-ghost" href="/en/">Back to home</a>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

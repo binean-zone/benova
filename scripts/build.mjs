@@ -93,12 +93,15 @@ ${locales
 
   <link rel="icon" href="${base}assets/images/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="${base}assets/images/binean.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
-  />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+${(site.locale.code === 'vi' ? ['inter-latin', 'inter-vietnamese'] : ['inter-latin'])
+    .map(
+      (file) =>
+        `  <link rel="preload" as="font" type="font/woff2" href="${base}assets/fonts/${file}.woff2" crossorigin />`
+    )
+    .join('\n')}
+  <link rel="stylesheet" href="${base}assets/css/fonts.css" />
   <link rel="stylesheet" href="${base}assets/css/style.css" />
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
   <script>
@@ -654,6 +657,55 @@ ${d.phases
 `;
 };
 
+/* -------------------------------------------------------------- 404 --- */
+
+/* GitHub Pages trả file này cho MỌI đường dẫn không tồn tại, kể cả dưới /en/,
+   nên đường dẫn tài nguyên phải tính từ gốc site chứ không được tương đối. Một
+   file phục vụ cả hai cây ngôn ngữ nên nội dung để song ngữ. */
+const notFound = () => {
+  const [first, ...rest] = locales;
+  const block = (l) => `      <section class="nf-block" lang="${esc(l.locale.code)}">
+        <h${l === first ? '1' : '2'}>${esc(l.notFound.title)}</h${l === first ? '1' : '2'}>
+        <p>${esc(l.notFound.desc)}</p>
+        <a class="btn ${l === first ? 'btn-primary' : 'btn-ghost'}" href="/${esc(
+    l.locale.path
+  )}">${esc(l.notFound.home)}</a>
+      </section>`;
+
+  return `<!DOCTYPE html>
+<html lang="${esc(first.locale.code)}" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — ${esc(first.brand.name)}</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="${esc(first.seo.themeColor)}" />
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/fonts.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script>
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <main class="not-found">
+    <div class="shell nf-inner">
+      <p class="nf-code" aria-hidden="true">404</p>
+${[first, ...rest].map(block).join('\n')}
+    </div>
+  </main>
+</body>
+</html>
+`;
+};
+
 /* ------------------------------------------------------------ output --- */
 
 for (const locale of locales) {
@@ -673,6 +725,9 @@ for (const locale of locales) {
     'utf-8'
   );
 }
+
+writeFileSync(join(root, '404.html'), notFound(), 'utf-8');
+console.log('✓ 404.html');
 
 /* ---------------------------------------------------------- sitemap --- */
 

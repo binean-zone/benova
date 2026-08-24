@@ -5,7 +5,9 @@
   "description": "BENOVA — landing page giới thiệu hệ sinh thái hiện đại hóa core bảo hiểm Ingenium",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/check-content.mjs && node scripts/build.mjs",
+    "check": "node scripts/check-content.mjs",
+    "fonts": "node scripts/fetch-fonts.mjs",
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs"
   },

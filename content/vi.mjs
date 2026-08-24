@@ -295,6 +295,12 @@ export default {
     note: 'Hiện tại chúng tôi chỉ nhận liên hệ qua email. Trao đổi 30 phút, không ràng buộc.',
   },
 
+  notFound: {
+    title: 'Không tìm thấy trang',
+    desc: 'Đường dẫn bạn mở không tồn tại, hoặc đã đổi trong lần dựng lại trang gần đây.',
+    home: 'Về trang chủ',
+  },
+
   footer: {
     blurb: 'Hiện đại hóa core bảo hiểm Ingenium theo từng bước, không ngừng vận hành.',
     columns: [

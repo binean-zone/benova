@@ -295,6 +295,12 @@ export default {
     note: 'We currently take enquiries by email only. A 30-minute conversation, no commitment.',
   },
 
+  notFound: {
+    title: 'Page not found',
+    desc: 'The address you opened does not exist, or it changed when the site was rebuilt.',
+    home: 'Back to home',
+  },
+
   footer: {
     blurb: 'Modernizing the Ingenium insurance core one step at a time, without interrupting operations.',
     columns: [
