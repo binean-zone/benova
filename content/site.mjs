@@ -54,16 +54,6 @@ export default {
     ],
   },
 
-  proof: {
-    title: 'Được chứng minh trên một chương trình di cư thật',
-    metrics: [
-      { value: '3 giờ → 20 phút', label: 'Thời gian triển khai một thay đổi tiêu biểu' },
-      { value: '~9 tháng', label: 'Hoàn tất di cư Ingenium từ AIX sang Linux' },
-      { value: '~5 phút', label: 'Cửa sổ downtime có kế hoạch mỗi lần deploy' },
-      { value: '5–10x', label: 'Tăng tốc biên dịch COBOL nhờ phân tích phụ thuộc' },
-    ],
-  },
-
   problem: {
     id: 'gioi-thieu',
     eyebrow: 'Vấn đề & Giải pháp',

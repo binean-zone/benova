@@ -242,23 +242,6 @@ ${planets}
     </section>`;
 };
 
-/* ------------------------------------------------------------- proof --- */
-
-const proof = () => `    <section class="proof">
-      <div class="shell">
-        <p class="proof-title reveal">${esc(site.proof.title)}</p>
-        <dl class="proof-grid">
-${list(
-  site.proof.metrics,
-  (m) => `          <div class="proof-item reveal">
-            <dt>${esc(m.value)}</dt>
-            <dd>${esc(m.label)}</dd>
-          </div>`
-)}
-        </dl>
-      </div>
-    </section>`;
-
 /* ---------------------------------------------------------- problem ---- */
 
 const problem = () => {
@@ -486,8 +469,6 @@ ${header()}
 
   <main id="main">
 ${hero()}
-
-${proof()}
 
 ${problem()}
 
