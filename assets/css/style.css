@@ -1627,12 +1627,13 @@ ol {
   text-align: center;
 }
 
-/* Chữ E: một hình khối liền, tô đậm hơn nền để đọc ra được là chữ. */
-.nd-e {
+/* Hai lớp điều phối trừu tượng bao quanh vùng não. */
+.nd-shell {
   fill: color-mix(in srgb, var(--accent) 12%, transparent);
   stroke: var(--accent);
   stroke-width: 2.5;
   stroke-linejoin: round;
+  stroke-linecap: round;
   opacity: 0.9;
 }
 
@@ -1643,7 +1644,7 @@ ol {
   letter-spacing: 0.14em;
 }
 
-/* hai bán cầu */
+/* Hai vùng não bên trong dùng cùng ngôn ngữ panel bo góc. */
 .nd-lobe rect {
   fill: var(--bg-raise);
   stroke: color-mix(in srgb, var(--accent) 55%, transparent);
