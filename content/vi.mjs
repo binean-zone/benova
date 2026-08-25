@@ -113,9 +113,8 @@ export default {
       icon: '🧠',
       desc: 'Bộ khung điều phối của BENOVA, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
       diagram: {
-        alt: 'Sơ đồ Engine như hai bán cầu não và cột sống: Scheduler và Timeout tạo hai vỏ chạm nhau, Basal và Reflex phủ lên trên, spine chồng qua điểm nối rồi kéo dài sang phải. Mỗi đốt chính nối với Nexus, Orbit, Vista hoặc AI Agent; đốt ngắn cuối biểu thị khả năng mở rộng.',
-        caption:
-          'Basal và Reflex là hai bán cầu; Scheduler và Timeout là hai lớp bao quanh. Spine gối qua điểm nối rồi kéo dài thành các đốt, mỗi đốt chính là một điểm cắm cho N, O, V hoặc A.',
+        alt: ''
+        caption: '',
         spine: 'SPINE',
         cord: 'Task · Event · Skill',
       },
