@@ -30,7 +30,7 @@ export default {
   },
 
   notice: {
-    text: 'Trang đang trong quá trình hoàn thiện. Nội dung và lộ trình sản phẩm sẽ tiếp tục được cập nhật.',
+    text: 'Nexus đã chạy trên hệ Ingenium thật. Các thành tố còn lại đang được xây dựng.',
     linkLabel: 'Liên hệ qua email',
   },
 
@@ -55,7 +55,7 @@ export default {
   hero: {
     eyebrow: 'Dành cho doanh nghiệp bảo hiểm đang vận hành Ingenium · COBOL · AIX · IBM MQ',
     headline: ['Hiện đại hóa Ingenium.', 'Tiếp sức bởi AI và Rust.'],
-    sub: 'BENOVA – Hệ sinh thái core bảo hiểm thế hệ mới, cho phép bạn di cư từ hệ thống cũ sang nền tảng Cloud-native hiện đại mà không ngừng vận hành.',
+    sub: 'BENOVA – Hệ sinh thái core bảo hiểm thế hệ mới, được xây để đưa bạn từ hệ thống cũ sang nền tảng Cloud-native hiện đại mà không ngừng vận hành.',
     primaryCta: { label: 'Khám phá kiến trúc', href: '#kien-truc' },
     secondaryCta: { label: 'Liên hệ tư vấn', href: '#lien-he' },
     note: 'Giữ nguyên logic nghiệp vụ · Không đụng tới giấy phép Ingenium · Triển khai cloud, on-prem hoặc hybrid',
@@ -282,17 +282,17 @@ export default {
 
   cta: {
     id: 'lien-he',
-    title: 'Sẵn sàng chuyển đổi core bảo hiểm?',
-    lead: 'Bắt đầu bằng một POC có phạm vi rõ ràng trên chính một luồng nghiệp vụ Ingenium của bạn. Chứng minh cải thiện build-and-deploy trước, rồi mới quyết định đi xa tới đâu.',
+    title: 'Nexus dùng được hôm nay. Phần còn lại đang xây.',
+    lead: 'Nếu bạn đang vận hành Ingenium, hãy bắt đầu từ Nexus — nó đã chạy trên hệ thật. Còn Engine, Orbit, Vista và AI Agent thì chúng tôi muốn xây cùng người thật sự vận hành core, thay vì ngồi đoán.',
     primary: {
-      label: 'Đăng ký xem demo',
-      href: `${mail}?subject=${encodeURIComponent('BENOVA - Dang ky xem demo')}`,
+      label: 'Trao đổi 30 phút',
+      href: `${mail}?subject=${encodeURIComponent('BENOVA - Trao doi 30 phut')}`,
     },
     secondary: {
-      label: 'Đặt lịch trao đổi 30 phút',
-      href: `${mail}?subject=${encodeURIComponent('BENOVA - Dat lich trao doi 30 phut')}`,
+      label: 'Nhận tin khi có bản dùng thử',
+      href: `${mail}?subject=${encodeURIComponent('BENOVA - Nhan tin khi co ban dung thu')}`,
     },
-    note: 'Hiện tại chúng tôi chỉ nhận liên hệ qua email. Trao đổi 30 phút, không ràng buộc.',
+    note: 'Chỉ liên hệ qua email, không ràng buộc. Chúng tôi sẽ nói thẳng cái gì đã chạy được và cái gì chưa.',
   },
 
   notFound: {

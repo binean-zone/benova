@@ -30,7 +30,7 @@ export default {
   },
 
   notice: {
-    text: 'This site is still being built out. Content and product roadmap will keep being updated.',
+    text: 'Nexus already runs on a live Ingenium system. The rest of the ecosystem is still being built.',
     linkLabel: 'Contact us by email',
   },
 
@@ -55,7 +55,7 @@ export default {
   hero: {
     eyebrow: 'For insurers running Ingenium · COBOL · AIX · IBM MQ',
     headline: ['Modernize Ingenium.', 'Powered by AI and Rust.'],
-    sub: 'BENOVA — a next-generation insurance core ecosystem that lets you migrate off the legacy platform onto modern cloud-native infrastructure without interrupting operations.',
+    sub: 'BENOVA — a next-generation insurance core ecosystem, built to move you off the legacy platform onto modern cloud-native infrastructure without interrupting operations.',
     primaryCta: { label: 'Explore the architecture', href: '#ecosystem' },
     secondaryCta: { label: 'Talk to us', href: '#contact' },
     note: 'Keep your business logic · Your Ingenium licence untouched · Cloud, on-premise or hybrid',
@@ -282,17 +282,17 @@ export default {
 
   cta: {
     id: 'contact',
-    title: 'Ready to transform your insurance core?',
-    lead: 'Start with a tightly scoped POC on one of your own Ingenium business flows. Prove the build-and-deploy improvement first, then decide how far to go.',
+    title: 'Nexus works today. The rest is being built.',
+    lead: 'If you run Ingenium, start with Nexus — it already runs on a live system. For Engine, Orbit, Vista and the AI Agent, we would rather build alongside someone who actually operates a core than guess at it.',
     primary: {
-      label: 'Request a demo',
-      href: `${mail}?subject=${encodeURIComponent('BENOVA - Demo request')}`,
-    },
-    secondary: {
       label: 'Book a 30-minute call',
       href: `${mail}?subject=${encodeURIComponent('BENOVA - 30 minute call')}`,
     },
-    note: 'We currently take enquiries by email only. A 30-minute conversation, no commitment.',
+    secondary: {
+      label: 'Tell me when there is something to try',
+      href: `${mail}?subject=${encodeURIComponent('BENOVA - Notify me about a trial')}`,
+    },
+    note: 'Email only, no commitment. We will be straight about what works today and what does not.',
   },
 
   notFound: {
