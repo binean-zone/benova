@@ -393,6 +393,126 @@ ${list(
 
 /* -------------------------------------------------------- ecosystem ---- */
 
+
+/* ------------------------------------------------- sơ đồ Engine (E) --- */
+
+/* Chữ E của ENOVA vẽ thành chính sơ đồ của nó, đặt nằm ngang như não và tủy
+   sống. Chữ E là MỘT hình khối liền — nếu vẽ nét dọc và hai nhánh thành ba
+   hình rời thì chúng đè lên nhau và không ai đọc ra chữ E nữa.
+
+   Nhánh trên là Scheduler, nhánh dưới là Timeout, nét dọc bên trái nối cả ba —
+   đó chính là đoạn nối xuống spine. Hai khoảng trống của chữ E chứa Basal và
+   Reflex như hai bán cầu. Nhánh giữa của chữ E chính là đoạn spine đầu tiên,
+   nên spine đúng nghĩa chui giữa hai bán cầu rồi kéo dài thành tủy sống.
+
+   Vẽ inline chứ không phải file ảnh vì cần đổi màu theo theme và cần animate. */
+const engineDiagram = (engine) => {
+  const d = engine.diagram;
+
+  const X0 = 56;
+  const ARM_R = 344;
+  const TOP = 74;
+  const BOT = 350;
+  const ARM_H = 48;
+  const STEM_R = X0 + 48;
+
+  const SPINE_TOP = 200;
+  const SPINE_H = 24;
+  const SPINE_BOT = SPINE_TOP + SPINE_H;
+  const SPINE_RIGHT = 1064;
+
+  /* Một đường khép kín vẽ trọn chữ E: mép trên sang phải, xuống hết nhánh
+     trên, lùi về nét dọc, xuống nhánh giữa, và cứ thế. */
+  const ePath = [
+    `M${X0} ${TOP}`,
+    `H${ARM_R}`,
+    `V${TOP + ARM_H}`,
+    `H${STEM_R}`,
+    `V${SPINE_TOP}`,
+    `H${ARM_R}`,
+    `V${SPINE_BOT}`,
+    `H${STEM_R}`,
+    `V${BOT - ARM_H}`,
+    `H${ARM_R}`,
+    `V${BOT}`,
+    `H${X0}`,
+    'Z',
+  ].join(' ');
+
+  // Đốt sống: màu lặp lại đúng bảng màu các hành tinh ở hero, nên nhìn hai hình
+  // là thấy chúng nói về cùng một hệ.
+  const SEG_COLORS = ['#5eead4', '#fbbf24', '#a78bfa', '#fb7185', '#a3e635', '#3481e5'];
+  const SEG_W = 42;
+  const SEG_GAP = 6;
+  const segments = [];
+  for (let x = X0 + 10, i = 0; x + SEG_W <= SPINE_RIGHT; x += SEG_W + SEG_GAP, i += 1) {
+    segments.push(
+      `      <rect class="nd-seg" x="${x}" y="${SPINE_TOP + 4}" width="${SEG_W}" height="${
+        SPINE_H - 8
+      }" rx="4" fill="${SEG_COLORS[i % SEG_COLORS.length]}" style="--i:${i}" />`
+    );
+  }
+
+  // N, O, V, A lấy thẳng từ hero: cùng ký tự, cùng màu, khỏi khai báo lại.
+  const NODE = 62;
+  const NODE_CY = 68;
+  const nodes = site.hero.satellites
+    .filter((sat) => sat.key !== engine.key)
+    .map((node, i) => {
+      const cx = 500 + i * 150;
+      // Dây kết thúc BÊN TRONG ô chứ không chạm mép: ô trôi nhẹ vài pixel mà
+      // đầu dây vẫn bị ô che, không hở ra như bị đứt.
+      const wireTop = NODE_CY + 12;
+      const bend = (i % 2 === 0 ? 1 : -1) * 26;
+      return `      <g class="nd-node" style="--i:${i}; --c:${node.color}">
+        <path class="nd-wire" d="M${cx} ${wireTop} C${cx + bend} ${wireTop + 46} ${
+        cx - bend
+      } ${SPINE_TOP - 46} ${cx} ${SPINE_TOP}" />
+        <circle class="nd-port" cx="${cx}" cy="${SPINE_TOP}" r="5" />
+        <g class="nd-chip">
+          <rect x="${cx - NODE / 2}" y="${NODE_CY - NODE / 2}" width="${NODE}" height="${NODE}" rx="16" />
+          <text x="${cx}" y="${NODE_CY}" class="nd-key" text-anchor="middle" dominant-baseline="central">${esc(
+        node.key
+      )}</text>
+        </g>
+      </g>`;
+    })
+    .join('\n');
+
+  return `        <figure class="engine-diagram reveal">
+          <div class="engine-diagram-scroll">
+          <svg viewBox="0 0 1120 400" role="img" aria-label="${esc(d.alt)}">
+      <path class="nd-e" d="${ePath}" />
+
+      <text class="nd-arm" x="${X0 + 74}" y="${TOP + ARM_H / 2}" dominant-baseline="central">SCHEDULER</text>
+      <text class="nd-arm" x="${X0 + 74}" y="${BOT - ARM_H / 2}" dominant-baseline="central">TIMEOUT</text>
+
+      <g class="nd-lobe">
+        <rect x="${STEM_R + 16}" y="${TOP + ARM_H + 12}" width="${
+    ARM_R - STEM_R - 32
+  }" height="54" rx="12" />
+        <text x="${(STEM_R + ARM_R) / 2}" y="${TOP + ARM_H + 39}" text-anchor="middle" dominant-baseline="central">BASAL</text>
+      </g>
+      <g class="nd-lobe">
+        <rect x="${STEM_R + 16}" y="${SPINE_BOT + 12}" width="${
+    ARM_R - STEM_R - 32
+  }" height="54" rx="12" />
+        <text x="${(STEM_R + ARM_R) / 2}" y="${SPINE_BOT + 39}" text-anchor="middle" dominant-baseline="central">REFLEX</text>
+      </g>
+
+${segments.join('\n')}
+      <text class="nd-spine" x="${ARM_R + 30}" y="${SPINE_TOP - 14}">${esc(d.spine)}</text>
+      <text class="nd-cord" x="${SPINE_RIGHT}" y="${SPINE_BOT + 26}" text-anchor="end">${esc(
+    d.cord
+  )}</text>
+
+${nodes}
+          </svg>
+          </div>
+          <figcaption>${esc(d.caption)}</figcaption>
+        </figure>`;
+};
+
 const engineCard = (engine) => `          <article class="card engine-card reveal">
             <header class="agent-head">
               <span class="agent-key" aria-hidden="true">${esc(engine.key)}</span>
@@ -406,6 +526,7 @@ const engineCard = (engine) => `          <article class="card engine-card revea
             <ul class="tag-row">
 ${list(engine.highlights, (h) => `              <li>${esc(h)}</li>`)}
             </ul>
+${engineDiagram(engine)}
             <div class="sub-grid">
 ${list(
   engine.children,

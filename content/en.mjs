@@ -113,6 +113,13 @@ export default {
       status: 'In development',
       icon: '🧠',
       desc: 'The orchestration framework of BENOVA, made up of several independent projects. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Spine deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.',
+      diagram: {
+        alt: 'Diagram of Engine drawn as the letter E: the vertical stroke plus the Scheduler and Timeout arms form the frame; Basal and Reflex sit in the two counters like brain hemispheres; the spine is a strip of coloured segments running between them and out to the right, where Nexus, Orbit, Vista and the AI Agent connect through nerve-like wires.',
+        caption:
+          'The E in ENOVA is also a diagram of itself: Basal and Reflex are the two hemispheres, Scheduler and Timeout wrap around them, and the spine runs through and out to where N, O, V and A plug in.',
+        spine: 'SPINE',
+        cord: 'Task · Event · Skill',
+      },
       highlights: ['Event-driven', 'Specification first, implementation second', 'One Agent concept: human, machine or AI'],
       children: [
         {

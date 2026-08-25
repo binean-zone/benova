@@ -1193,7 +1193,7 @@ ol {
 
 @media (max-width: 1024px) {
   .hero-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     text-align: left;
   }
 
@@ -1216,7 +1216,7 @@ ol {
   }
 
   .strangler {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .footer-inner {
@@ -1270,7 +1270,7 @@ ol {
   .benefit-grid,
   .sub-grid,
   .footer-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .engine-card {
@@ -1309,7 +1309,10 @@ ol {
   .sat-chip,
   .orbit-corona,
   .orbit-flare,
-  .starfield i {
+  .starfield i,
+  .nd-seg,
+  .nd-wire,
+  .nd-chip {
     animation: none !important;
   }
 
@@ -1390,7 +1393,7 @@ ol {
 @media (max-width: 1024px) {
   .agent-card-wide {
     grid-column: span 2;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .agent-card-wide .agent-head,
@@ -1419,7 +1422,7 @@ ol {
   }
 
   .benefit-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1585,4 +1588,166 @@ ol {
 .nf-block p {
   color: var(--muted);
   margin-bottom: 1.6rem;
+}
+
+/* -------------------------------------------- 15. sơ đồ Engine (E) ----- */
+
+.engine-diagram {
+  margin: 0 0 28px;
+  padding: 20px 18px 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-alt);
+}
+
+.engine-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Màn hình hẹp: thà cuộn ngang còn hơn co chữ xuống mức không đọc nổi. Chỉ
+   phần hình mới cuộn — caption nằm ngoài vùng cuộn nên không bị kéo dài theo. */
+@media (max-width: 900px) {
+  .engine-diagram-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .engine-diagram svg {
+    min-width: 700px;
+  }
+}
+
+.engine-diagram figcaption {
+  margin: 14px 4px 16px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Chữ E: một hình khối liền, tô đậm hơn nền để đọc ra được là chữ. */
+.nd-e {
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}
+
+.nd-arm {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+/* hai bán cầu */
+.nd-lobe rect {
+  fill: var(--bg-raise);
+  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
+  stroke-width: 1.4;
+}
+
+.nd-lobe text {
+  fill: var(--text-strong);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+/* đốt sống — sáng dần theo đợt, đọc như xung thần kinh chạy dọc tủy */
+.nd-seg {
+  animation: nd-pulse 3.4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.13s);
+}
+
+@keyframes nd-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.nd-spine {
+  fill: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+}
+
+.nd-cord {
+  fill: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}
+
+/* dây thần kinh: nét đứt chạy từ ô xuống spine như tín hiệu truyền về */
+.nd-wire {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 7 11;
+  opacity: 0.75;
+  animation: nd-signal 2.6s linear infinite;
+  animation-delay: calc(var(--i) * -0.6s);
+}
+
+@keyframes nd-signal {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
+.nd-port {
+  fill: var(--c);
+}
+
+/* ô N, O, V, A trôi nhẹ quanh chỗ của nó */
+.nd-chip {
+  animation: nd-float 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -1.4s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nd-chip rect {
+  fill: var(--c);
+  stroke: color-mix(in srgb, var(--c) 60%, #ffffff);
+  stroke-width: 1.5;
+}
+
+.nd-key {
+  fill: #071426;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+@keyframes nd-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(2px, -5px) rotate(-1.6deg);
+  }
+  66% {
+    transform: translate(-2px, 4px) rotate(1.4deg);
+  }
+}
+
+@media (max-width: 620px) {
+  .engine-diagram {
+    padding: 12px 10px 2px;
+  }
+
+  .engine-diagram figcaption {
+    font-size: 0.8rem;
+  }
 }
