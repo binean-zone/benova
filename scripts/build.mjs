@@ -404,38 +404,37 @@ const engineDiagram = (engine) => {
   const SPINE_TOP = 192;
   const SPINE_H = 36;
   const SPINE_BOT = SPINE_TOP + SPINE_H;
-  const CERVICAL_X = 252;
+  const CERVICAL_X = 333;
   const CERVICAL_W = 22;
   const SECOND_X = CERVICAL_X + CERVICAL_W;
   const NODE = 62;
-  const NODE_CY = 68;
+  const NODE_CY = 118;
   const agentNodes = site.hero.satellites.filter((sat) => sat.key !== engine.key);
 
   // Đốt đầu chồng lên cả hai bán cầu tại khe; đốt thứ hai chồng lên hai vỏ nền.
-  const SEG_COLORS = ['#5eead4', '#fbbf24', '#a78bfa', '#fb7185', '#a3e635', '#3481e5'];
-  const SEG_W = 44;
-  const AGENT_SEG_W = 150;
+  const SEG_W = 20;
+  const AGENT_SEG_W = 120;
   const AGENT_START_X = SECOND_X + SEG_W;
   const AGENT_GAP = AGENT_SEG_W;
   const TERMINAL_X = AGENT_START_X + agentNodes.length * AGENT_SEG_W;
   const TERMINAL_W = 18;
   const segments = [];
   segments.push(
-    `      <rect class="nd-seg nd-cervical" x="${CERVICAL_X}" y="${SPINE_TOP + 4}" width="${CERVICAL_W}" height="${SPINE_H - 8}" rx="4" fill="${SEG_COLORS[0]}" style="--i:0" />`
+    `      <rect class="nd-seg nd-cervical" x="${CERVICAL_X}" y="${SPINE_TOP + 4}" width="${CERVICAL_W}" height="${SPINE_H - 8}" rx="4" style="--i:0" />`
   );
   segments.push(
-    `      <rect class="nd-seg nd-shell-seg" x="${SECOND_X}" y="${SPINE_TOP + 4}" width="${SEG_W}" height="${SPINE_H - 8}" rx="4" fill="#a78bfa" style="--i:1" />`
+    `      <rect class="nd-seg nd-shell-seg" x="${SECOND_X}" y="${SPINE_TOP + 4}" width="${SEG_W}" height="${SPINE_H - 8}" rx="4" style="--i:1" />`
   );
   agentNodes.forEach((node, i) => {
     const cx = AGENT_START_X + i * AGENT_GAP + AGENT_SEG_W / 2;
     segments.push(
-      `      <rect class="nd-seg" x="${cx - AGENT_SEG_W / 2}" y="${SPINE_TOP + 4}" width="${AGENT_SEG_W}" height="${
+      `      <rect class="nd-seg nd-agent-seg" x="${cx - AGENT_SEG_W / 2}" y="${SPINE_TOP + 4}" width="${AGENT_SEG_W}" height="${
         SPINE_H - 8
-      }" rx="4" fill="${node.color}" style="--i:${i + 2}" />`
+      }" rx="4" style="--i:${i + 2}; --c:${node.color}" />`
     );
   });
   segments.push(
-    `      <rect class="nd-seg nd-terminal" x="${TERMINAL_X}" y="${SPINE_TOP + 5}" width="${TERMINAL_W}" height="${SPINE_H - 10}" rx="4" fill="${SEG_COLORS[5]}" style="--i:${agentNodes.length + 2}" />`
+    `      <rect class="nd-seg nd-terminal" x="${TERMINAL_X}" y="${SPINE_TOP + 5}" width="${TERMINAL_W}" height="${SPINE_H - 10}" rx="4" style="--i:${agentNodes.length + 2}" />`
   );
 
   // N, O, V, A lấy thẳng từ hero: cùng ký tự, cùng màu, khỏi khai báo lại.
@@ -452,7 +451,7 @@ const engineDiagram = (engine) => {
       } ${SPINE_TOP - 46} ${cx} ${SPINE_TOP}" />
         <circle class="nd-port" cx="${cx}" cy="${SPINE_TOP}" r="5" />
         <g class="nd-chip">
-          <rect x="${cx - NODE / 2}" y="${NODE_CY - NODE / 2}" width="${NODE}" height="${NODE}" rx="16" />
+          <circle cx="${cx}" cy="${NODE_CY}" r="${NODE / 2}" />
           <text x="${cx}" y="${NODE_CY}" class="nd-key" text-anchor="middle" dominant-baseline="central">${esc(
         node.key
       )}</text>
@@ -460,32 +459,42 @@ const engineDiagram = (engine) => {
       </g>`;
     })
     .join('\n');
+  const futureNodes = Array.from({ length: 4 }, (_, i) => {
+    const cx = AGENT_START_X + i * AGENT_GAP + AGENT_SEG_W / 2;
+    const futureDurations = [8.4, 10.2, 9.1, 12.3];
+    const futureDelays = [-1.1, -5.4, -2.6, -8.7];
+    return `      <g class="nd-future-node" style="--i:${i}; --fd:${futureDurations[i]}s; --fdelay:${futureDelays[i]}s">
+        <path class="nd-future-wire" d="M${cx} ${SPINE_BOT} C${cx + 8} ${SPINE_BOT + 12} ${cx - 8} 248 ${cx} 262" />
+        <circle cx="${cx}" cy="286" r="24" />
+      </g>`;
+  }).join('\n');
 
   return `        <figure class="engine-diagram reveal">
           <div class="engine-diagram-scroll">
-          <svg viewBox="0 0 1120 400" role="img" aria-label="${esc(d.alt)}">
-          <path class="nd-shell" d="M64 210 V110 Q64 82 92 82 H328 Q356 82 356 110 V210 Z" />
-          <path class="nd-shell" d="M64 210 H356 V310 Q356 338 328 338 H92 Q64 338 64 310 V210 Z" />
-
-          <text class="nd-arm" x="88" y="110" dominant-baseline="central">SCHEDULER</text>
-          <text class="nd-arm" x="88" y="310" dominant-baseline="central">TIMEOUT</text>
-
-      <g class="nd-lobe">
-            <rect x="150" y="122" width="178" height="84" rx="22" />
-            <text x="226" y="158" text-anchor="middle" dominant-baseline="central">BASAL</text>
-      </g>
-      <g class="nd-lobe">
-            <rect x="150" y="214" width="178" height="84" rx="22" />
-            <text x="208" y="260" text-anchor="middle" dominant-baseline="central">REFLEX</text>
-      </g>
+          <svg viewBox="0 0 1170 400" shape-rendering="geometricPrecision" text-rendering="optimizeLegibility" role="img" aria-label="${esc(d.alt)}">
+          <path class="nd-shell" d="M172 210 H350 Q366 210 366 194 V132 Q366 102 336 102 H244 Q164 102 164 182 V202 Q164 210 172 210 Z" />
+          <path class="nd-shell" d="M172 210 H350 Q366 210 366 226 V288 Q366 318 336 318 H244 Q164 318 164 238 V218 Q164 210 172 210 Z" />
 
 ${segments.join('\n')}
-  <text class="nd-spine" x="382" y="${SPINE_TOP - 14}">${esc(d.spine)}</text>
+  <text class="nd-spine" x="437" y="${SPINE_TOP - 14}">${esc(d.spine)}</text>
       <text class="nd-cord" x="${TERMINAL_X + TERMINAL_W}" y="${SPINE_BOT + 26}" text-anchor="end">${esc(
     d.cord
   )}</text>
 
+          <text class="nd-arm" x="280" y="130" text-anchor="middle" dominant-baseline="central">SCHEDULER</text>
+          <text class="nd-arm" x="280" y="290" text-anchor="middle" dominant-baseline="central">TIMEOUT</text>
+
+      <g class="nd-lobe">
+             <path d="M274 153 H314 Q354 153 354 193 V183 Q354 203 334 203 H242 Q234 203 234 195 V193 Q234 153 274 153 Z" />
+            <text x="294" y="180" text-anchor="middle" dominant-baseline="central">BASAL</text>
+      </g>
+      <g class="nd-lobe">
+        <path d="M274 267 H314 Q354 267 354 227 V237 Q354 217 334 217 H242 Q234 217 234 225 V227 Q234 267 274 267 Z" />
+        <text x="294" y="240" text-anchor="middle" dominant-baseline="central">REFLEX</text>
+      </g>
+
 ${nodes}
+${futureNodes}
           </svg>
           </div>
           <figcaption>${esc(d.caption)}</figcaption>

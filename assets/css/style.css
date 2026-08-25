@@ -1604,6 +1604,8 @@ ol {
   display: block;
   width: 100%;
   height: auto;
+  shape-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
 }
 
 /* Màn hình hẹp: thà cuộn ngang còn hơn co chữ xuống mức không đọc nổi. Chỉ
@@ -1630,8 +1632,8 @@ ol {
 /* Hai lớp điều phối trừu tượng bao quanh vùng não. */
 .nd-shell {
   fill: color-mix(in srgb, var(--accent) 12%, transparent);
-  stroke: var(--accent);
-  stroke-width: 2.5;
+  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
+  stroke-width: 1.4;
   stroke-linejoin: round;
   stroke-linecap: round;
   opacity: 0.9;
@@ -1645,7 +1647,8 @@ ol {
 }
 
 /* Hai vùng não bên trong dùng cùng ngôn ngữ panel bo góc. */
-.nd-lobe rect {
+.nd-lobe rect,
+.nd-lobe path {
   fill: var(--bg-raise);
   stroke: color-mix(in srgb, var(--accent) 55%, transparent);
   stroke-width: 1.4;
@@ -1658,16 +1661,40 @@ ol {
   letter-spacing: 0.16em;
 }
 
-/* đốt sống — sáng dần theo đợt, đọc như xung thần kinh chạy dọc tủy */
+/* đốt sống — nền lắng để các nút Agent nổi lên */
 .nd-seg {
-  animation: nd-pulse 3.4s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.13s);
+  fill: color-mix(in srgb, var(--accent) 55%, var(--bg-raise));
+  stroke: color-mix(in srgb, var(--accent) 38%, transparent);
+  stroke-width: 0.6;
+  opacity: 0.92;
+  animation: nd-pulse 3.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.22s);
+}
+
+/* Đốt của mỗi Agent lấy đúng màu chip nhưng nhạt bớt; đặc hiệu cao để không bị đè. */
+.nd-seg.nd-agent-seg {
+  fill: color-mix(in srgb, var(--c) 45%, var(--bg-raise));
+  stroke: color-mix(in srgb, var(--c) 36%, transparent);
+}
+
+.nd-seg.nd-shell-seg {
+  fill: color-mix(in srgb, var(--accent) 34%, var(--bg-raise));
+  stroke: color-mix(in srgb, var(--accent) 26%, transparent);
+}
+
+.nd-seg.nd-cervical {
+  fill: color-mix(in srgb, #ffffff 84%, #8a98a8);
+  stroke: color-mix(in srgb, #ffffff 48%, #8a98a8);
+}
+
+.nd-seg.nd-terminal {
+  fill: color-mix(in srgb, var(--accent) 30%, var(--bg-raise));
 }
 
 @keyframes nd-pulse {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.92;
   }
   50% {
     opacity: 1;
@@ -1713,21 +1740,69 @@ ol {
 /* ô N, O, V, A trôi nhẹ quanh chỗ của nó */
 .nd-chip {
   animation: nd-float 6s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -1.4s);
+  animation-delay: calc(var(--i) * -1.3s);
   transform-box: fill-box;
   transform-origin: center;
 }
 
-.nd-chip rect {
+.nd-chip circle {
   fill: var(--c);
-  stroke: color-mix(in srgb, var(--c) 60%, #ffffff);
-  stroke-width: 1.5;
+  stroke: color-mix(in srgb, #ffffff 22%, var(--c));
+  stroke-width: 1;
 }
 
 .nd-key {
-  fill: #071426;
+  fill: color-mix(in srgb, #06101f 82%, var(--c));
   font-size: 26px;
   font-weight: 800;
+}
+
+.nd-future-node {
+  animation: nd-future-float var(--fd) ease-in-out infinite;
+  animation-delay: var(--fdelay);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nd-future-node circle {
+  fill: color-mix(in srgb, #91a0af 34%, var(--bg-raise));
+  stroke: color-mix(in srgb, #91a0af 42%, transparent);
+  stroke-width: 1;
+  opacity: 0.34;
+  stroke-dasharray: 3 5;
+}
+
+.nd-future-wire {
+  fill: none;
+  stroke: #718096;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 3 7;
+  opacity: 0.32;
+  animation: nd-future-signal 3.8s linear infinite;
+  animation-delay: calc(var(--i) * -0.55s);
+}
+
+@keyframes nd-future-signal {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@keyframes nd-future-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  23% {
+    transform: translate(3px, -4px) scale(1.02);
+  }
+  47% {
+    transform: translate(-4px, -1px) scale(0.99);
+  }
+  71% {
+    transform: translate(2px, 4px) scale(1.01);
+  }
 }
 
 @keyframes nd-float {
@@ -1736,10 +1811,10 @@ ol {
     transform: translate(0, 0) rotate(0deg);
   }
   33% {
-    transform: translate(2px, -5px) rotate(-1.6deg);
+    transform: translate(8px, -10px);
   }
   66% {
-    transform: translate(-2px, 4px) rotate(1.4deg);
+    transform: translate(-8px, 10px);
   }
 }
 
