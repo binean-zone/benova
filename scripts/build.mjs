@@ -404,7 +404,7 @@ const engineDiagram = (engine) => {
   const SPINE_TOP = 192;
   const SPINE_H = 36;
   const SPINE_BOT = SPINE_TOP + SPINE_H;
-  const CERVICAL_X = 252;
+  const CERVICAL_X = 334;
   const CERVICAL_W = 22;
   const SECOND_X = CERVICAL_X + CERVICAL_W;
   const NODE = 62;
@@ -413,7 +413,7 @@ const engineDiagram = (engine) => {
 
   // Đốt đầu chồng lên cả hai bán cầu tại khe; đốt thứ hai chồng lên hai vỏ nền.
   const SEG_COLORS = ['#5eead4', '#fbbf24', '#a78bfa', '#fb7185', '#a3e635', '#3481e5'];
-  const SEG_W = 44;
+  const SEG_W = 20;
   const AGENT_SEG_W = 150;
   const AGENT_START_X = SECOND_X + SEG_W;
   const AGENT_GAP = AGENT_SEG_W;
@@ -463,27 +463,27 @@ const engineDiagram = (engine) => {
 
   return `        <figure class="engine-diagram reveal">
           <div class="engine-diagram-scroll">
-          <svg viewBox="0 0 1120 400" role="img" aria-label="${esc(d.alt)}">
-          <path class="nd-shell" d="M64 210 V110 Q64 82 92 82 H328 Q356 82 356 110 V210 Z" />
-          <path class="nd-shell" d="M64 210 H356 V310 Q356 338 328 338 H92 Q64 338 64 310 V210 Z" />
-
-          <text class="nd-arm" x="88" y="110" dominant-baseline="central">SCHEDULER</text>
-          <text class="nd-arm" x="88" y="310" dominant-baseline="central">TIMEOUT</text>
-
-      <g class="nd-lobe">
-            <rect x="150" y="122" width="178" height="84" rx="22" />
-            <text x="226" y="158" text-anchor="middle" dominant-baseline="central">BASAL</text>
-      </g>
-      <g class="nd-lobe">
-            <rect x="150" y="214" width="178" height="84" rx="22" />
-            <text x="208" y="260" text-anchor="middle" dominant-baseline="central">REFLEX</text>
-      </g>
+          <svg viewBox="0 0 1170 400" shape-rendering="geometricPrecision" text-rendering="optimizeLegibility" role="img" aria-label="${esc(d.alt)}">
+          <path class="nd-shell" d="M172 210 H350 Q366 210 366 194 V132 Q366 102 336 102 H244 Q164 102 164 182 V202 Q164 210 172 210 Z" />
+          <path class="nd-shell" d="M172 210 H350 Q366 210 366 226 V288 Q366 318 336 318 H244 Q164 318 164 238 V218 Q164 210 172 210 Z" />
 
 ${segments.join('\n')}
-  <text class="nd-spine" x="382" y="${SPINE_TOP - 14}">${esc(d.spine)}</text>
+  <text class="nd-spine" x="437" y="${SPINE_TOP - 14}">${esc(d.spine)}</text>
       <text class="nd-cord" x="${TERMINAL_X + TERMINAL_W}" y="${SPINE_BOT + 26}" text-anchor="end">${esc(
     d.cord
   )}</text>
+
+          <text class="nd-arm" x="280" y="130" text-anchor="middle" dominant-baseline="central">SCHEDULER</text>
+          <text class="nd-arm" x="280" y="290" text-anchor="middle" dominant-baseline="central">TIMEOUT</text>
+
+      <g class="nd-lobe">
+             <path d="M274 155 H314 Q354 155 354 195 V185 Q354 205 334 205 H242 Q234 205 234 197 V195 Q234 155 274 155 Z" />
+            <text x="294" y="180" text-anchor="middle" dominant-baseline="central">BASAL</text>
+      </g>
+      <g class="nd-lobe">
+        <path d="M274 265 H314 Q354 265 354 225 V235 Q354 215 334 215 H242 Q234 215 234 223 V225 Q234 265 274 265 Z" />
+        <text x="294" y="240" text-anchor="middle" dominant-baseline="central">REFLEX</text>
+      </g>
 
 ${nodes}
           </svg>
