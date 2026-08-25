@@ -404,7 +404,7 @@ const engineDiagram = (engine) => {
   const SPINE_TOP = 192;
   const SPINE_H = 36;
   const SPINE_BOT = SPINE_TOP + SPINE_H;
-  const CERVICAL_X = 334;
+  const CERVICAL_X = 333;
   const CERVICAL_W = 22;
   const SECOND_X = CERVICAL_X + CERVICAL_W;
   const NODE = 62;
@@ -477,11 +477,11 @@ ${segments.join('\n')}
           <text class="nd-arm" x="280" y="290" text-anchor="middle" dominant-baseline="central">TIMEOUT</text>
 
       <g class="nd-lobe">
-             <path d="M274 155 H314 Q354 155 354 195 V185 Q354 205 334 205 H242 Q234 205 234 197 V195 Q234 155 274 155 Z" />
+             <path d="M274 153 H314 Q354 153 354 193 V183 Q354 203 334 203 H242 Q234 203 234 195 V193 Q234 153 274 153 Z" />
             <text x="294" y="180" text-anchor="middle" dominant-baseline="central">BASAL</text>
       </g>
       <g class="nd-lobe">
-        <path d="M274 265 H314 Q354 265 354 225 V235 Q354 215 334 215 H242 Q234 215 234 223 V225 Q234 265 274 265 Z" />
+        <path d="M274 267 H314 Q354 267 354 227 V237 Q354 217 334 217 H242 Q234 217 234 225 V227 Q234 267 274 267 Z" />
         <text x="294" y="240" text-anchor="middle" dominant-baseline="central">REFLEX</text>
       </g>
 
