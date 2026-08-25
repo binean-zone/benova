@@ -408,34 +408,33 @@ const engineDiagram = (engine) => {
   const CERVICAL_W = 22;
   const SECOND_X = CERVICAL_X + CERVICAL_W;
   const NODE = 62;
-  const NODE_CY = 68;
+  const NODE_CY = 118;
   const agentNodes = site.hero.satellites.filter((sat) => sat.key !== engine.key);
 
   // Đốt đầu chồng lên cả hai bán cầu tại khe; đốt thứ hai chồng lên hai vỏ nền.
-  const SEG_COLORS = ['#5eead4', '#fbbf24', '#a78bfa', '#fb7185', '#a3e635', '#3481e5'];
   const SEG_W = 20;
-  const AGENT_SEG_W = 150;
+  const AGENT_SEG_W = 120;
   const AGENT_START_X = SECOND_X + SEG_W;
   const AGENT_GAP = AGENT_SEG_W;
   const TERMINAL_X = AGENT_START_X + agentNodes.length * AGENT_SEG_W;
   const TERMINAL_W = 18;
   const segments = [];
   segments.push(
-    `      <rect class="nd-seg nd-cervical" x="${CERVICAL_X}" y="${SPINE_TOP + 4}" width="${CERVICAL_W}" height="${SPINE_H - 8}" rx="4" fill="${SEG_COLORS[0]}" style="--i:0" />`
+    `      <rect class="nd-seg nd-cervical" x="${CERVICAL_X}" y="${SPINE_TOP + 4}" width="${CERVICAL_W}" height="${SPINE_H - 8}" rx="4" style="--i:0" />`
   );
   segments.push(
-    `      <rect class="nd-seg nd-shell-seg" x="${SECOND_X}" y="${SPINE_TOP + 4}" width="${SEG_W}" height="${SPINE_H - 8}" rx="4" fill="#a78bfa" style="--i:1" />`
+    `      <rect class="nd-seg nd-shell-seg" x="${SECOND_X}" y="${SPINE_TOP + 4}" width="${SEG_W}" height="${SPINE_H - 8}" rx="4" style="--i:1" />`
   );
   agentNodes.forEach((node, i) => {
     const cx = AGENT_START_X + i * AGENT_GAP + AGENT_SEG_W / 2;
     segments.push(
-      `      <rect class="nd-seg" x="${cx - AGENT_SEG_W / 2}" y="${SPINE_TOP + 4}" width="${AGENT_SEG_W}" height="${
+      `      <rect class="nd-seg nd-agent-seg" x="${cx - AGENT_SEG_W / 2}" y="${SPINE_TOP + 4}" width="${AGENT_SEG_W}" height="${
         SPINE_H - 8
-      }" rx="4" fill="${node.color}" style="--i:${i + 2}" />`
+      }" rx="4" style="--i:${i + 2}; --c:${node.color}" />`
     );
   });
   segments.push(
-    `      <rect class="nd-seg nd-terminal" x="${TERMINAL_X}" y="${SPINE_TOP + 5}" width="${TERMINAL_W}" height="${SPINE_H - 10}" rx="4" fill="${SEG_COLORS[5]}" style="--i:${agentNodes.length + 2}" />`
+    `      <rect class="nd-seg nd-terminal" x="${TERMINAL_X}" y="${SPINE_TOP + 5}" width="${TERMINAL_W}" height="${SPINE_H - 10}" rx="4" style="--i:${agentNodes.length + 2}" />`
   );
 
   // N, O, V, A lấy thẳng từ hero: cùng ký tự, cùng màu, khỏi khai báo lại.
@@ -452,7 +451,7 @@ const engineDiagram = (engine) => {
       } ${SPINE_TOP - 46} ${cx} ${SPINE_TOP}" />
         <circle class="nd-port" cx="${cx}" cy="${SPINE_TOP}" r="5" />
         <g class="nd-chip">
-          <rect x="${cx - NODE / 2}" y="${NODE_CY - NODE / 2}" width="${NODE}" height="${NODE}" rx="16" />
+          <circle cx="${cx}" cy="${NODE_CY}" r="${NODE / 2}" />
           <text x="${cx}" y="${NODE_CY}" class="nd-key" text-anchor="middle" dominant-baseline="central">${esc(
         node.key
       )}</text>
@@ -460,6 +459,15 @@ const engineDiagram = (engine) => {
       </g>`;
     })
     .join('\n');
+  const futureNodes = Array.from({ length: 4 }, (_, i) => {
+    const cx = AGENT_START_X + i * AGENT_GAP + AGENT_SEG_W / 2;
+    const futureDurations = [8.4, 10.2, 9.1, 12.3];
+    const futureDelays = [-1.1, -5.4, -2.6, -8.7];
+    return `      <g class="nd-future-node" style="--i:${i}; --fd:${futureDurations[i]}s; --fdelay:${futureDelays[i]}s">
+        <path class="nd-future-wire" d="M${cx} ${SPINE_BOT} C${cx + 8} ${SPINE_BOT + 12} ${cx - 8} 248 ${cx} 262" />
+        <circle cx="${cx}" cy="286" r="24" />
+      </g>`;
+  }).join('\n');
 
   return `        <figure class="engine-diagram reveal">
           <div class="engine-diagram-scroll">
@@ -486,6 +494,7 @@ ${segments.join('\n')}
       </g>
 
 ${nodes}
+${futureNodes}
           </svg>
           </div>
           <figcaption>${esc(d.caption)}</figcaption>
