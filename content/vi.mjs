@@ -27,7 +27,7 @@ export default {
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
     engineMore: 'Tìm hiểu Engine',
-    engineDiffLabel: 'Khác Spine ở đâu:',
+    engineDiffLabel: 'Engine khác ở đâu:',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
     companyLine: 'Một sản phẩm của',
@@ -116,7 +116,7 @@ export default {
       role: 'Framework điều phối',
       status: 'Đang phát triển',
       icon: '🧠',
-      desc: 'Bộ khung điều phối của BENOVA, hợp thành từ nhiều project độc lập. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Spine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
+      desc: 'Engine điều phối đa tác nhân, không viết riêng cho bảo hiểm — BENOVA là ứng dụng đầu tiên của nó. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Engine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
       diagram: {
         alt: '',
         caption: '',

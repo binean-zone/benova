@@ -27,7 +27,7 @@ export default {
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
     engineMore: 'Read about Engine',
-    engineDiffLabel: 'How Spine differs:',
+    engineDiffLabel: 'How Engine differs:',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
     companyLine: 'A product of',
@@ -117,7 +117,7 @@ export default {
       role: 'Orchestration framework',
       status: 'In development',
       icon: '🧠',
-      desc: 'The orchestration framework of BENOVA, made up of several independent projects. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Spine deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.',
+      desc: 'A multi-agent orchestration engine, not written for insurance — BENOVA is its first application. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Engine deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.',
       diagram: {
         alt: '',
         caption: '',
