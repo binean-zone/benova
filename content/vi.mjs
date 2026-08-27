@@ -5,8 +5,11 @@
  * ngữ nằm ở shared.mjs. Sửa xong chạy `npm run build`.
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
+import enginePage from './engine-vi.mjs';
 
 export default {
+  enginePage,
+
   locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
 
   brand: {
@@ -23,6 +26,8 @@ export default {
     openMenu: 'Mở menu',
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
+    engineMore: 'Tìm hiểu Engine',
+    engineDiffLabel: 'Khác Spine ở đâu:',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
     companyLine: 'Một sản phẩm của',

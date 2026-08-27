@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Engine — Orchestration for hybrid agents | BENOVA</title>
+  <meta name="description" content="Binean Engine is the orchestration framework behind BENOVA: Flow, Process, Task and Agent, with Basal as the single navigation authority. An architecture introduction, the design decisions behind it, and a straight comparison with Temporal, Camunda, Conductor and Step Functions." />
+  <meta name="keywords" content="Binean Engine, Spine, workflow orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, event-driven, human in the loop, AI agent orchestration" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/engine/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/engine/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/engine/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/engine/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Engine — Orchestration for hybrid agents | BENOVA" />
+  <meta property="og:description" content="Binean Engine is the orchestration framework behind BENOVA: Flow, Process, Task and Agent, with Basal as the single navigation authority. An architecture introduction, the design decisions behind it, and a straight comparison with Temporal, Camunda, Conductor and Step Functions." />
+  <meta property="og:url" content="https://binean.com/en/engine/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Engine — Orchestration for hybrid agents | BENOVA" />
+  <meta name="twitter:description" content="Binean Engine is the orchestration framework behind BENOVA: Flow, Process, Task and Agent, with Basal as the single navigation authority. An architecture introduction, the design decisions behind it, and a straight comparison with Temporal, Camunda, Conductor and Step Functions." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BENOVA","applicationCategory":"BusinessApplication","description":"Binean Engine is the orchestration framework behind BENOVA: Flow, Process, Task and Agent, with Basal as the single navigation authority. An architecture introduction, the design decisions behind it, and a straight comparison with Temporal, Camunda, Conductor and Step Functions.","url":"https://binean.com/en/engine/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Nexus already runs on a live Ingenium system. The rest of the ecosystem is still being built.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">Contact us by email</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="BENOVA — về đầu trang">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">BENOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#ecosystem">Ecosystem</a></li>
+          <li><a href="#adoption">Adoption</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../engine/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/engine/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#contact">Get in touch</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="eng-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="shell eng-shell">
+        <a class="eng-back" href="../../en/">← BENOVA</a>
+        <p class="eyebrow reveal">The E in ENOVA</p>
+        <h1 class="eng-title reveal">Orchestration is the hard part, not the plumbing</h1>
+        <p class="eng-lead reveal">Binean Engine is the orchestration framework behind BENOVA. At its core is Spine — an event-driven workflow model specified before it was implemented. This page covers what Engine is, where it departs from the market, and what it cannot do yet.</p>
+      </div>
+    </section>
+
+    <section class="section eng-section" id="problem">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The problem</p>
+          <h2>An insurance process does not fit inside one running program</h2>
+
+        </div>
+        <p class="eng-para reveal">Take a claim. The system pulls the policy, an assessor reviews the file, a model scores the risk, a manager approves it if the amount crosses a threshold, then finance pays out. Four different kinds of executor, on four different pieces of infrastructure, and the whole thing measured in days rather than milliseconds.</p>
+        <p class="eng-para reveal">Write that as a sequence of function calls and it breaks at the first human step: a process cannot sit and wait three days. Write it as message queues and every step has to carry its own state, its own retries, its own record of what already ran — and nobody can see the shape of the process any more.</p>
+        <p class="eng-para reveal">This is the problem orchestration engines exist to solve. The question is not whether you need one, but how the one you pick models the world.</p>
+
+
+
+      </div>
+    </section>
+
+    <section class="section eng-section" id="model">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The model</p>
+          <h2>Five nouns, and a single authority</h2>
+          <p class="lead">Spine deliberately keeps the concept count as small as it can. Almost everything in the system reduces to these five nouns.</p>
+        </div>
+
+        <dl class="eng-glossary reveal">
+          <div>
+            <dt>Flow</dt>
+            <dd>The process definition. Immutable, with an exact versioned identity — changing a process produces a new Flow rather than editing the old one.</dd>
+          </div>
+          <div>
+            <dt>Process</dt>
+            <dd>One run of one Flow. It carries its own business state as JSON data.</dd>
+          </div>
+          <div>
+            <dt>Task</dt>
+            <dd>A unit of work inside a Process. It arrives with validated input and reports back through an independent Outcome.</dd>
+          </div>
+          <div>
+            <dt>Skill</dt>
+            <dd>The capability a Task requires, described by an input and output schema. A Flow can also act as a Skill, so processes compose.</dd>
+          </div>
+          <div>
+            <dt>Agent</dt>
+            <dd>Whatever executes a Task. Spine has exactly one Agent concept and does not classify it — see below; this is a design decision, not an omission.</dd>
+          </div>
+        </dl>
+        <p class="eng-para reveal">Coordinating all of that is <strong>Basal</strong>. It is not a passive router waiting to be called: Basal drives the loop — it claims a batch of events, decides what happens next for each Process, and hands the whole result to the storage layer as one unit. At any moment a Process has exactly one Basal with authority over it.</p>
+        <p class="eng-para reveal">Alongside it sits <strong>Reflex</strong>, an agent built into the core that handles the mechanical work every process needs: conditional branching, reshaping data between steps, and invoking another Flow as a Skill.</p>
+
+      </div>
+    </section>
+
+    <section class="section eng-section" id="decisions">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Design decisions</p>
+          <h2>Four places Spine departs from the crowd</h2>
+          <p class="lead">These are the choices worth arguing about. Each one costs something, and the cost is written down here too.</p>
+        </div>
+
+
+
+        <div class="eng-decisions">
+          <article class="card eng-decision reveal">
+            <span class="eng-num" aria-hidden="true">01</span>
+            <h3>The specification is the product, not the documentation</h3>
+            <p>Spine writes the specification first and implements second; the conformance suite exists to prove the specification right, not to prove the code runs. The consequence is that behaviour is defined independently of any language, and a second implementation can be checked for equivalence.</p>
+            <p class="eng-cost">The cost is speed. Most engines on the market ship features far faster because they never have to settle a specification first.</p>
+          </article>
+          <article class="card eng-decision reveal">
+            <span class="eng-num" aria-hidden="true">02</span>
+            <h3>One Agent concept — human and machine are not separate kinds</h3>
+            <p>Spine has no &quot;user task&quot; and &quot;service task&quot; as distinct types. There is a Task and a reference to an Agent. A person, a service and a model are all agents; interpreting that reference as concrete execution capacity belongs to the runtime layer.</p>
+            <p class="eng-cost">In exchange, everything that usually rides along with a &quot;human task&quot; concept elsewhere — forms, work queues, permissions, delegation — Spine does not hand you. You build it, or you wait for Vista.</p>
+          </article>
+          <article class="card eng-decision reveal">
+            <span class="eng-num" aria-hidden="true">03</span>
+            <h3>The core does not own your storage</h3>
+            <p>Reading events, writing results, claiming tasks and applying outcomes are all replaceable boundaries. The core defines semantics; whether it runs on Postgres, Kafka or a queue you already operate is your decision. For an insurer with existing infrastructure and audit constraints, that matters.</p>
+            <p class="eng-cost">The cost is that there is no install-and-run path. Engines that ship their own storage layer get you started far more quickly.</p>
+          </article>
+          <article class="card eng-decision reveal">
+            <span class="eng-num" aria-hidden="true">04</span>
+            <h3>Process versioning is a first-class primitive</h3>
+            <p>Every Flow has an exact versioned identity, and a Process is pinned to the version it started on. A process already in flight never changes behaviour mid-run because somebody edited the definition. For insurance contracts that live for years, this is not a detail.</p>
+            <p class="eng-cost">In exchange there is no hot-patching a process that is running wrong. Fixing it goes through recovery, not through editing the definition.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eng-section section-compare" id="comparison">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Comparison</p>
+          <h2>Where Spine sits in the market</h2>
+          <p class="lead">There is no tick-box table here. Those tables always favour whoever drew them, and in this case it would favour us absurdly: all four products below run in production at serious scale today, and Spine does not.</p>
+        </div>
+        <div class="eng-compare">
+          <article class="card eng-rival reveal">
+            <header>
+              <h3>Temporal</h3>
+              <span class="eng-kind">Durable execution</span>
+            </header>
+            <p class="eng-strength">You write the process as ordinary code in your language and the engine guarantees it runs to completion even when machines die. Battle-tested at very large scale, with SDKs across many languages. If you need an orchestration engine today, this is the sensible default.</p>
+            <p class="eng-diff"><span>How Spine differs:</span> Temporal gets determinism by replaying event history, so workflow code must obey particular constraints and changing a workflow version is a well-known sore point. Spine takes the other road: the process is data rather than code, and determinism comes from narrowly restricting what the data-transformation step is allowed to do.</p>
+          </article>
+          <article class="card eng-rival reveal">
+            <header>
+              <h3>Camunda 8 / Zeebe</h3>
+              <span class="eng-kind">BPMN, model-driven</span>
+            </header>
+            <p class="eng-strength">Standard BPMN, a visual modeller that business people can actually read, and a mature human-task story — forms, work queues and permissions all ship with it. This is the closest competitor for an insurance problem.</p>
+            <p class="eng-diff"><span>How Spine differs:</span> Camunda draws a firm line between user tasks and service tasks; Spine deliberately does not. Camunda hands you a great deal that works immediately; Spine hands you a smaller model and a core that stays out of your infrastructure. If what you need is forms and work queues by next month, Camunda has them and Spine does not.</p>
+          </article>
+          <article class="card eng-rival reveal">
+            <header>
+              <h3>Netflix Conductor / Orkes</h3>
+              <span class="eng-kind">Microservice orchestration</span>
+            </header>
+            <p class="eng-strength">Processes described as JSON, well suited to stitching services into a business flow. Lighter than BPMN, quick to start with, and available commercially with an operations UI.</p>
+            <p class="eng-diff"><span>How Spine differs:</span> It shares the &quot;process as data&quot; idea with Spine. The difference is emphasis: Spine leans on immutable versioned identity and replaceable boundaries, while Conductor leans on operational convenience for a fleet of microservices.</p>
+          </article>
+          <article class="card eng-rival reveal">
+            <header>
+              <h3>AWS Step Functions</h3>
+              <span class="eng-kind">Serverless state machines</span>
+            </header>
+            <p class="eng-strength">Nothing to operate, deep integration with the rest of AWS, priced per state transition. If your systems already live entirely inside AWS, this is the path of least friction.</p>
+            <p class="eng-diff"><span>How Spine differs:</span> The trade is hard vendor coupling. For an insurance core running on-premise or hybrid, most of the value evaporates. Spine treats where it runs as your decision.</p>
+          </article>
+          <article class="card eng-rival reveal">
+            <header>
+              <h3>Airflow, Dagster, Prefect</h3>
+              <span class="eng-kind">Data orchestration — a different category</span>
+            </header>
+            <p class="eng-strength">Excellent for scheduled data pipelines: dependencies between steps, backfills, run monitoring.</p>
+            <p class="eng-diff"><span>How Spine differs:</span> Listed here to prevent a bad comparison. They solve &quot;run these things in the right order on a schedule&quot;, not &quot;a business process that lives for days, involves people, and needs approvals&quot;. Do not pick this family for Spine’s problem, or the reverse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eng-section" id="fit">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Straight assessment</p>
+          <h2>When it fits, and when it does not</h2>
+        </div>
+        <div class="eng-fits">
+          <article class="card eng-fit eng-fit-good reveal">
+            <h3>Spine is worth considering if</h3>
+            <ul>
+              <li>Your processes mix people, machines and AI, and you would rather those not be three different mechanisms.</li>
+              <li>You are constrained to run on infrastructure you already have, or you must be able to audit where data sits.</li>
+              <li>Processes live for years and you need certainty that a case opened this year will not change behaviour because of next year’s update.</li>
+              <li>You value having a specification you can read over having a product with more features.</li>
+            </ul>
+          </article>
+          <article class="card eng-fit eng-fit-bad reveal">
+            <h3>Do not pick Spine if</h3>
+            <ul>
+              <li>You need to be in production this quarter. Spine is not ready, and saying otherwise would be dishonest.</li>
+              <li>You need forms, work queues and an admin UI out of the box. Camunda has them; Spine does not.</li>
+              <li>Your team writes Java, Go or Python and needs an SDK for it. There is one implementation today, in Rust.</li>
+              <li>You need a community, a plugin ecosystem, or a vendor you can call at two in the morning.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eng-section section-status" id="status">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Status</p>
+          <h2>Where Spine actually stands</h2>
+        </div>
+        <p class="eng-para reveal">The V1 specification has settled most of the core semantics and there is a Rust implementation that runs end to end with a passing test suite. But V1 is <strong>not yet implementation-ready</strong>: parts of the specification are still being corrected because implementing it keeps surfacing contradictions.</p>
+        <p class="eng-para reveal">Put plainly: Spine today is a carefully considered design plus a working skeleton that tests the design, not a product to put into operation. Nexus is the only part of BENOVA that already runs on a live Ingenium system.</p>
+        <p class="eng-para reveal">If you operate an insurance core and this model seems worth arguing about, the most useful conversation right now is about the design — where we have it wrong, and where you have already hit this in practice.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Argue about the design</h2>
+          <p class="lead">We want to hear from people who actually operate an insurance core, especially about the places you think this model breaks.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Engine%20-%20Design%20conversation">Book a 30-minute call</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">See the whole BENOVA ecosystem</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernizing the Ingenium insurance core one step at a time, without interrupting operations.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="#ecosystem">Engine</a></li>
+          <li><a href="#ecosystem">Nexus</a></li>
+          <li><a href="#ecosystem">Orbit</a></li>
+          <li><a href="#ecosystem">Vista</a></li>
+          <li><a href="#ecosystem">AI Agent</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Learn">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="#problem">The problem</a></li>
+          <li><a href="#adoption">How you adopt it</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Email is currently our only contact channel.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js" defer></script>
+</body>
+</html>

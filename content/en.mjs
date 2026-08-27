@@ -5,8 +5,11 @@
  * lives in shared.mjs. Edit, then run `npm run build`.
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
+import enginePage from './engine-en.mjs';
 
 export default {
+  enginePage,
+
   locale: { code: 'en', label: 'English', short: 'EN', path: 'en/' },
 
   brand: {
@@ -23,6 +26,8 @@ export default {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
+    engineMore: 'Read about Engine',
+    engineDiffLabel: 'How Spine differs:',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
     companyLine: 'A product of',

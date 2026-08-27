@@ -70,14 +70,18 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 
 ```
 /
-├── index.html              # bản tiếng Việt (sinh ra, đừng sửa tay)
-├── en/index.html           # bản tiếng Anh (sinh ra)
+├── index.html              # trang chủ tiếng Việt (sinh ra, đừng sửa tay)
+├── en/index.html           # trang chủ tiếng Anh (sinh ra)
+├── engine/index.html       # trang Binean Engine, tiếng Việt (sinh ra)
+├── en/engine/index.html    # trang Binean Engine, tiếng Anh (sinh ra)
 ├── 404.html                # trang lỗi song ngữ (sinh ra)
 ├── sitemap.xml             # sinh cùng lúc, có hreflang cho cả hai bản
 ├── content/
 │   ├── shared.mjs          # thương hiệu, email, URL, màu hành tinh
-│   ├── vi.mjs              # NGUỒN NỘI DUNG tiếng Việt
-│   └── en.mjs              # NGUỒN NỘI DUNG tiếng Anh
+│   ├── vi.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Việt
+│   ├── en.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Anh
+│   ├── engine-vi.mjs       # NGUỒN NỘI DUNG trang Engine, tiếng Việt
+│   └── engine-en.mjs       # NGUỒN NỘI DUNG trang Engine, tiếng Anh
 ├── scripts/
 │   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
 │   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau

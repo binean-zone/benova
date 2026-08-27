@@ -37,10 +37,10 @@ jobs:
 
       - name: Check build output
         run: |
-          for f in index.html en/index.html 404.html sitemap.xml assets/css/fonts.css; do
+          for f in index.html en/index.html engine/index.html en/engine/index.html 404.html sitemap.xml assets/css/fonts.css; do
             test -s "$f" || { echo "$f rỗng hoặc không tồn tại"; exit 1; }
           done
-          for f in index.html en/index.html 404.html; do
+          for f in index.html en/index.html engine/index.html en/engine/index.html 404.html; do
             grep -q "</html>" "$f" || { echo "$f không đóng thẻ html"; exit 1; }
           done
           echo "OK — vi $(wc -c < index.html) bytes, en $(wc -c < en/index.html) bytes"
@@ -49,7 +49,7 @@ jobs:
       - name: Stage public files
         run: |
           mkdir -p _site
-          cp -r index.html 404.html sitemap.xml robots.txt CNAME .nojekyll assets en _site/
+          cp -r index.html 404.html sitemap.xml robots.txt CNAME .nojekyll assets en engine _site/
 
       - uses: actions/configure-pages@v5
 

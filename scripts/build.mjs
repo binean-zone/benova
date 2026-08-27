@@ -14,6 +14,7 @@ import { dirname, join } from 'node:path';
 import vi from '../content/vi.mjs';
 import en from '../content/en.mjs';
 
+
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 /** Bản đầu tiên là ngôn ngữ mặc định, nằm ở gốc site. */
@@ -23,6 +24,12 @@ const locales = [vi, en];
 let site = vi;
 /** Tiền tố đường dẫn từ trang hiện tại về gốc site, ví dụ '../' cho /en/. */
 let base = '';
+
+/** Đường dẫn của trang trong một ngôn ngữ: '' là trang chủ, 'engine/' là trang
+    Engine. Ghép với locale.path ra đường dẫn đầy đủ. */
+let pagePath = '';
+
+const fullPath = (locale = site) => locale.locale.path + pagePath;
 
 const esc = (value) =>
   String(value)
@@ -37,16 +44,19 @@ const list = (items, render) => items.map(render).join('\n');
 const mailto = (address, subject) => `mailto:${address}?subject=${encodeURIComponent(subject)}`;
 
 /** Đường dẫn tương đối từ trang đang dựng sang một ngôn ngữ khác. */
+/* Đổi ngôn ngữ thì giữ nguyên trang đang xem, không đá về trang chủ. */
 const localeHref = (target) => {
-  const href = base + target.locale.path;
+  const href = base + fullPath(target);
   return href === '' ? './' : href;
 };
 
 /* -------------------------------------------------------------- head --- */
 
 const head = () => {
-  const { seo, brand } = site;
-  const canonical = new URL(site.locale.path, seo.url).href;
+  const { brand } = site;
+  // Trang Engine mang khối seo riêng; những trường chung thì kế thừa.
+  const seo = { ...site.seo, ...(pagePath === 'engine/' ? site.enginePage.seo : {}) };
+  const canonical = new URL(fullPath(), seo.url).href;
   const ogImageFile = `assets/images/og-benova-${site.locale.code}.png`;
   const ogImage = new URL(ogImageFile, seo.url).href;
 
@@ -73,11 +83,11 @@ ${locales
   .map(
     (l) =>
       `  <link rel="alternate" hreflang="${esc(l.locale.code)}" href="${esc(
-        new URL(l.locale.path, seo.url).href
+        new URL(fullPath(l), seo.url).href
       )}" />`
   )
   .join('\n')}
-  <link rel="alternate" hreflang="x-default" href="${esc(new URL(locales[0].locale.path, seo.url).href)}" />
+  <link rel="alternate" hreflang="x-default" href="${esc(new URL(fullPath(locales[0]), seo.url).href)}" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="${esc(brand.name)}" />
@@ -514,6 +524,9 @@ const engineCard = (engine) => `          <article class="card engine-card revea
             <ul class="tag-row">
 ${list(engine.highlights, (h) => `              <li>${esc(h)}</li>`)}
             </ul>
+            <p class="engine-more">
+              <a href="${base}${esc(site.locale.path)}engine/">${esc(site.ui.engineMore)} →</a>
+            </p>
 ${engineDiagram(engine)}
             <div class="sub-grid">
 ${list(
@@ -694,6 +707,171 @@ ${footer()}
 </html>
 `;
 
+
+/* ------------------------------------------------- trang Engine ------- */
+
+/* Chữ đậm trong content viết bằng **cặp sao**, đổi sang <strong> khi dựng.
+   Escape trước rồi mới thay, để nội dung không chèn được thẻ vào trang. */
+const rich = (text) =>
+  esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+const enginePage = () => {
+  const p = site.enginePage;
+
+  const section = (sec) => `    <section class="section eng-section" id="${esc(sec.id)}">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(sec.eyebrow)}</p>
+          <h2>${esc(sec.title)}</h2>
+${sec.lead ? `          <p class="lead">${esc(sec.lead)}</p>` : ''}
+        </div>
+${(sec.body || []).map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+${
+  sec.glossary
+    ? `        <dl class="eng-glossary reveal">
+${sec.glossary
+  .map(
+    (g) => `          <div>
+            <dt>${esc(g.term)}</dt>
+            <dd>${esc(g.desc)}</dd>
+          </div>`
+  )
+  .join('\n')}
+        </dl>`
+    : ''
+}
+${(sec.after || []).map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+${
+  sec.decisions
+    ? `        <div class="eng-decisions">
+${sec.decisions
+  .map(
+    (dec, i) => `          <article class="card eng-decision reveal">
+            <span class="eng-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+            <h3>${esc(dec.title)}</h3>
+            <p>${esc(dec.desc)}</p>
+            <p class="eng-cost">${esc(dec.cost)}</p>
+          </article>`
+  )
+  .join('\n')}
+        </div>`
+    : ''
+}
+      </div>
+    </section>`;
+
+  const comparison = `    <section class="section eng-section section-compare" id="${esc(
+    p.comparison.id
+  )}">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.comparison.eyebrow)}</p>
+          <h2>${esc(p.comparison.title)}</h2>
+          <p class="lead">${esc(p.comparison.lead)}</p>
+        </div>
+        <div class="eng-compare">
+${p.comparison.items
+  .map(
+    (item) => `          <article class="card eng-rival reveal">
+            <header>
+              <h3>${esc(item.name)}</h3>
+              <span class="eng-kind">${esc(item.kind)}</span>
+            </header>
+            <p class="eng-strength">${esc(item.strength)}</p>
+            <p class="eng-diff"><span>${esc(site.ui.engineDiffLabel)}</span> ${esc(item.diff)}</p>
+          </article>`
+  )
+  .join('\n')}
+        </div>
+      </div>
+    </section>`;
+
+  const fitList = (block, cls) => `          <article class="card eng-fit ${cls} reveal">
+            <h3>${esc(block.title)}</h3>
+            <ul>
+${block.items.map((i) => `              <li>${esc(i)}</li>`).join('\n')}
+            </ul>
+          </article>`;
+
+  const fit = `    <section class="section eng-section" id="${esc(p.fit.id)}">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.fit.eyebrow)}</p>
+          <h2>${esc(p.fit.title)}</h2>
+        </div>
+        <div class="eng-fits">
+${fitList(p.fit.good, 'eng-fit-good')}
+${fitList(p.fit.bad, 'eng-fit-bad')}
+        </div>
+      </div>
+    </section>`;
+
+  const status = `    <section class="section eng-section section-status" id="${esc(p.status.id)}">
+      <div class="shell eng-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.status.eyebrow)}</p>
+          <h2>${esc(p.status.title)}</h2>
+        </div>
+${p.status.body.map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+      </div>
+    </section>`;
+
+  const cta = `    <section class="section section-cta">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>${esc(p.cta.title)}</h2>
+          <p class="lead">${esc(p.cta.lead)}</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="${esc(
+              mailto(site.brand.emails[0], p.cta.subject)
+            )}">${esc(p.cta.label)}</a>
+            <a class="btn btn-ghost btn-lg" href="${base}${esc(site.locale.path)}">${esc(
+    p.cta.back
+  )}</a>
+          </div>
+        </div>
+      </div>
+    </section>`;
+
+  return `<!DOCTYPE html>
+<html lang="${esc(site.locale.code)}" data-theme="dark">
+<head>
+${head()}
+</head>
+<body>
+${notice()}
+${header()}
+
+  <main id="main">
+    <section class="eng-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="shell eng-shell">
+        <a class="eng-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
+        <p class="eyebrow reveal">${esc(p.hero.eyebrow)}</p>
+        <h1 class="eng-title reveal">${esc(p.hero.title)}</h1>
+        <p class="eng-lead reveal">${esc(p.hero.lead)}</p>
+      </div>
+    </section>
+
+${p.sections.map(section).join('\n\n')}
+
+${comparison}
+
+${fit}
+
+${status}
+
+${cta}
+  </main>
+
+${footer()}
+
+  <script src="${base}assets/js/main.js" defer></script>
+</body>
+</html>
+`;
+};
+
 /* ---------------------------------------------------------- diagram ---- */
 
 /** Sơ đồ Strangler Fig, sinh riêng cho mỗi ngôn ngữ từ nhãn trong content. */
@@ -817,17 +995,31 @@ ${[first, ...rest].map(block).join('\n')}
 
 /* ------------------------------------------------------------ output --- */
 
+/** Các trang dựng cho mỗi ngôn ngữ. slug rỗng là trang chủ. */
+const pages = [
+  { slug: '', render: page },
+  { slug: 'engine/', render: enginePage },
+];
+
 for (const locale of locales) {
   site = locale;
+
+  for (const { slug, render } of pages) {
+    pagePath = slug;
+    const path = fullPath();
+    // Độ sâu tính theo đường dẫn đầy đủ, nên /en/engine/ trỏ đúng lên gốc.
+    base = '../'.repeat(path.split('/').filter(Boolean).length);
+
+    const dir = join(root, path);
+    mkdirSync(dir, { recursive: true });
+
+    const html = render();
+    writeFileSync(join(dir, 'index.html'), html, 'utf-8');
+    console.log(`✓ ${path}index.html (${(html.length / 1024).toFixed(1)} KB)`);
+  }
+
+  pagePath = '';
   base = '../'.repeat(locale.locale.path.split('/').filter(Boolean).length);
-
-  const dir = join(root, locale.locale.path);
-  mkdirSync(dir, { recursive: true });
-
-  const html = page();
-  writeFileSync(join(dir, 'index.html'), html, 'utf-8');
-  console.log(`✓ ${locale.locale.path}index.html (${(html.length / 1024).toFixed(1)} KB)`);
-
   writeFileSync(
     join(root, 'assets', 'images', `strangler-fig-${locale.locale.code}.svg`),
     diagram(),
@@ -840,22 +1032,26 @@ console.log('✓ 404.html');
 
 /* ---------------------------------------------------------- sitemap --- */
 
+const sitemapEntries = pages.flatMap(({ slug }) =>
+  locales.map((l) => ({ locale: l, slug }))
+);
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${locales
+${sitemapEntries
   .map(
-    (l) => `  <url>
-    <loc>${esc(new URL(l.locale.path, l.seo.url).href)}</loc>
+    ({ locale, slug }) => `  <url>
+    <loc>${esc(new URL(locale.locale.path + slug, locale.seo.url).href)}</loc>
 ${locales
   .map(
     (alt) =>
       `    <xhtml:link rel="alternate" hreflang="${esc(alt.locale.code)}" href="${esc(
-        new URL(alt.locale.path, alt.seo.url).href
+        new URL(alt.locale.path + slug, alt.seo.url).href
       )}" />`
   )
   .join('\n')}
     <changefreq>monthly</changefreq>
-    <priority>${l === locales[0] ? '1.0' : '0.8'}</priority>
+    <priority>${locale === locales[0] && slug === '' ? '1.0' : '0.8'}</priority>
   </url>`
   )
   .join('\n')}

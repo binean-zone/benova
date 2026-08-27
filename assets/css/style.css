@@ -1827,3 +1827,241 @@ ol {
     font-size: 0.8rem;
   }
 }
+
+/* ------------------------------------------- 16. trang Binean Engine --- */
+
+/* Trang bài viết nên hẹp hơn trang chủ: dòng chữ dài quá 75 ký tự là mắt bắt
+   đầu trượt dòng. */
+.eng-shell {
+  max-width: 860px;
+}
+
+.eng-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(40px, 6vw, 72px) 0 clamp(28px, 4vw, 44px);
+}
+
+.eng-back {
+  display: inline-block;
+  margin-bottom: 22px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.eng-back:hover {
+  color: var(--accent);
+}
+
+.eng-title {
+  position: relative;
+  font-size: clamp(2rem, 1.3rem + 2.8vw, 3.2rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.eng-lead {
+  position: relative;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  color: var(--muted);
+  max-width: 66ch;
+  margin: 0;
+}
+
+.eng-section {
+  padding: clamp(44px, 5vw, 72px) 0;
+}
+
+.eng-section + .eng-section {
+  border-top: 1px solid var(--border);
+}
+
+.eng-section .section-head {
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+.eng-para {
+  max-width: 72ch;
+  margin: 0 0 1.15rem;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+.eng-para strong {
+  color: var(--text-strong);
+}
+
+/* năm danh từ */
+.eng-glossary {
+  display: grid;
+  gap: 1px;
+  margin: 26px 0;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.eng-glossary > div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 20px;
+  padding: 16px 20px;
+  background: var(--bg);
+}
+
+.eng-glossary dt {
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 0.98rem;
+}
+
+.eng-glossary dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+/* bốn quyết định thiết kế */
+.eng-decisions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.eng-decision {
+  position: relative;
+}
+
+.eng-num {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.eng-decision h3 {
+  font-size: 1.06rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Cái giá của mỗi quyết định — tách hẳn ra để không đọc lướt qua được. */
+.eng-cost {
+  margin-top: 14px !important;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  color: var(--amber) !important;
+  font-size: 0.88rem !important;
+}
+
+/* so sánh với thị trường */
+.eng-compare {
+  display: grid;
+  gap: 18px;
+}
+
+.eng-rival header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.eng-rival h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.eng-kind {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 11px;
+}
+
+.eng-strength {
+  margin-bottom: 12px !important;
+}
+
+.eng-diff {
+  margin: 0 !important;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.eng-diff span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* hợp và không hợp */
+.eng-fits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.eng-fit h3 {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.eng-fit li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 11px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.eng-fit li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+}
+
+.eng-fit-good li::before {
+  content: '✓';
+  color: var(--accent);
+}
+
+.eng-fit-bad li::before {
+  content: '✕';
+  color: var(--amber);
+}
+
+.section-status {
+  background: var(--bg-alt);
+}
+
+/* link từ thẻ Engine ở trang chủ sang trang này */
+.engine-more {
+  margin: 0 0 26px;
+}
+
+.engine-more a {
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 760px) {
+  .eng-decisions,
+  .eng-fits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eng-glossary > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}
