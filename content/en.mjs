@@ -27,7 +27,6 @@ export default {
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
     engineMore: 'Read about Engine',
-    engineDiffLabel: 'How Engine differs:',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
     companyLine: 'A product of',

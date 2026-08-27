@@ -84,25 +84,50 @@ const collectAnchors = (value, path, out) => {
   }
 };
 
+/* Mỗi trang có không gian id riêng, nên anchor phải được kiểm theo đúng trang
+   chứa nó: trang chủ và trang Engine đều có section mang id "van-de". */
+const pageIds = {
+  home: (c) =>
+    ['problem', 'ecosystem', 'strategy', 'benefits', 'cta']
+      .map((section) => c[section]?.id)
+      .filter(Boolean),
+  engine: (c) =>
+    [
+      ...(c.enginePage?.sections || []).map((s) => s.id),
+      c.enginePage?.comparison?.id,
+      c.enginePage?.fit?.id,
+      c.enginePage?.status?.id,
+    ].filter(Boolean),
+};
+
 for (const [code, content] of [
   ['vi', vi],
   ['en', en],
 ]) {
-  const ids = new Set(
-    ['problem', 'ecosystem', 'strategy', 'benefits', 'cta']
-      .map((section) => content[section]?.id)
-      .filter(Boolean)
-  );
-  const anchors = [];
-  collectAnchors(content, '', anchors);
+  const { enginePage, ...home } = content;
 
-  for (const { path, anchor } of anchors) {
-    if (!ids.has(anchor)) problems.push(`${code}: ${path} trỏ tới #${anchor} không tồn tại`);
-  }
+  for (const [page, tree, requireUsed] of [
+    ['home', home, true],
+    ['engine', { enginePage }, false],
+  ]) {
+    const ids = new Set(pageIds[page](content));
+    const anchors = [];
+    collectAnchors(tree, '', anchors);
 
-  const used = new Set(anchors.map((a) => a.anchor));
-  for (const id of ids) {
-    if (!used.has(id)) problems.push(`${code}: section #${id} không có link nào trỏ tới`);
+    for (const { path, anchor } of anchors) {
+      if (!ids.has(anchor)) {
+        problems.push(`${code}/${page}: ${path} trỏ tới #${anchor} không tồn tại`);
+      }
+    }
+
+    /* Chỉ trang chủ mới đòi mọi section phải có link trỏ tới: nav của trang
+       Engine cố ý chỉ liệt kê năm mục chính, không liệt kê hết tám section. */
+    if (requireUsed) {
+      const used = new Set(anchors.map((a) => a.anchor));
+      for (const id of ids) {
+        if (!used.has(id)) problems.push(`${code}/${page}: section #${id} không có link nào trỏ tới`);
+      }
+    }
   }
 }
 

@@ -1,240 +1,311 @@
 /**
  * Trang giới thiệu Binean Engine — bản tiếng Việt.
  *
- * Engine là engine điều phối đa tác nhân, KHÔNG viết riêng cho ngành nào.
- * BENOVA là ứng dụng đầu tiên của nó, không phải phạm vi của nó. Mọi câu trên
- * trang này phải đọc được bởi người ngoài ngành bảo hiểm.
+ * Engine là engine điều phối đa tác nhân, KHÔNG viết riêng cho ngành nào, và
+ * trang này phải đứng độc lập với BENOVA. BENOVA chỉ được nhắc tới đúng hai
+ * lần, ở vai trò triển khai đầu tiên.
  *
- * Viết ở mức kiến trúc và quyết định thiết kế. Chi tiết đặc tả của project
- * spine không đưa ra đây: repo đó là proprietary.
+ * Văn phong: khách quan, không dùng ngôi thứ nhất số ít. "Chúng tôi" chỉ xuất
+ * hiện ở khối liên hệ, nơi công ty lên tiếng.
+ *
+ * Chi tiết đặc tả của project spine không đưa ra đây: repo đó là proprietary.
  */
 export default {
   seo: {
-    title: 'Binean Engine — Bộ não điều phối cho người, máy và AI | Binean',
+    title: 'Binean Engine — Điều phối quy trình cho người, máy và AI | Binean',
     description:
-      'Binean Engine (BE) là engine điều phối đa tác nhân: con người, một service và một AI Agent là cùng một khái niệm Agent. Kiến trúc, các quyết định thiết kế kèm cái giá của chúng, và so sánh thẳng thắn với Temporal, Camunda, Conductor, Step Functions và các framework agent AI.',
+      'Binean Engine (BE) là engine điều phối đa tác nhân: con người, service và AI Agent dùng chung một khái niệm Agent. Kiến trúc, các quyết định thiết kế kèm chi phí, và bảng đánh giá có tính điểm đặt Engine cạnh Temporal, Camunda, Conductor, Step Functions và các framework agent AI.',
     keywords:
       'Binean Engine, brain engine, multi-agent orchestration, workflow orchestration, human in the loop, AI agent orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, LangGraph, event-driven, Spine',
   },
 
+  brandName: 'Binean',
+  headerCta: 'Liên hệ',
+
+  notice: {
+    text: 'Binean Engine đang ở giai đoạn đặc tả và hiện thực thử nghiệm, chưa sẵn sàng cho vận hành.',
+    linkLabel: 'Liên hệ qua email',
+  },
+
+  nav: [
+    { href: '#mo-hinh', label: 'Mô hình' },
+    { href: '#quyet-dinh', label: 'Thiết kế' },
+    { href: '#so-sanh', label: 'Đánh giá' },
+    { href: '#phu-hop', label: 'Phù hợp' },
+    { href: '#trang-thai', label: 'Trạng thái' },
+  ],
+
   hero: {
-    back: 'BENOVA',
-    eyebrow: 'BE — Binean Engine, cũng là Brain Engine',
-    title: 'Bộ não điều phối cho người, máy và AI',
-    lead: 'Binean Engine không viết riêng cho ngành nào. Nó là một engine điều phối nơi con người, một service và một AI Agent là cùng một khái niệm. BENOVA — hiện đại hóa core bảo hiểm — là ứng dụng đầu tiên của nó, không phải giới hạn của nó. Trang này nói Engine là gì, nó quyết định khác thị trường ở chỗ nào, và nó chưa làm được gì.',
+    back: 'Trang chủ',
+    eyebrow: 'Binean Engine',
+    title: 'Điều phối quy trình cho người, máy và AI trong cùng một mô hình',
+    lead: 'Binean Engine là engine điều phối đa tác nhân. Một con người, một service và một AI Agent được mô tả bằng cùng một khái niệm, nhận việc theo cùng một cơ chế và trả kết quả theo cùng một hợp đồng. Tài liệu này trình bày mô hình, các quyết định thiết kế kèm chi phí của chúng, và một bảng đánh giá có tính điểm đặt Engine cạnh các engine điều phối đang có trên thị trường.',
   },
 
   sections: [
     {
       id: 'van-de',
-      eyebrow: 'Vấn đề',
-      title: 'Ba loại tác nhân, một quy trình, không cơ chế nào chung',
+      eyebrow: 'Bài toán',
+      title: 'Ba loại tác nhân, một quy trình, không cơ chế chung',
       body: [
-        'Phần lớn công việc đáng để điều phối đều có cùng một hình dạng: vài bước máy chạy xong trong mili giây, vài bước một con người phải đọc rồi quyết định, và ngày càng nhiều bước giao cho một mô hình. Duyệt bồi thường, phê duyệt tín dụng, kiểm duyệt nội dung, ứng cứu sự cố, quy trình tuyển dụng — bên dưới đều là một chuỗi việc mà người, máy và AI thay phiên nhau làm, kéo dài hàng giờ đến hàng tháng.',
-        'Viết chuyện đó bằng code gọi hàm tuần tự thì hỏng ngay ở bước có con người: một tiến trình không thể đứng chờ ba ngày. Viết bằng hàng đợi tin nhắn thì mỗi bước phải tự lo trạng thái, tự lo chạy lại, tự nhớ cái gì đã chạy rồi — và không ai còn nhìn ra hình dạng của quy trình nữa.',
-        'Các engine điều phối sinh ra để giải chuyện này. Nhưng gần như tất cả đều giải bằng cách chia thế giới ra: "service task" là một loại, "user task" là loại khác, và giờ agent AI được gắn thêm vào như loại thứ ba. Mỗi loại có vòng đời riêng, cách giao việc riêng, cách báo kết quả riêng. Càng về sau, phần lớn độ phức tạp của hệ nằm đúng ở chỗ nối ba loại đó lại với nhau.',
-        'Engine bắt đầu từ giả định ngược lại: cả ba vốn là một. Việc cần giao, năng lực để làm được việc đó, và kết quả trả về — ba thứ ấy có hình dạng giống nhau bất kể ai làm. Cái khác chỉ là độ trễ và cách gọi, mà đó là chuyện của tầng chạy chứ không phải của mô hình.',
+        'Hầu hết quy trình đáng được điều phối đều mang cùng một cấu trúc: một số bước hoàn tất trong mili giây bằng phần mềm, một số bước cần con người đọc và ra quyết định, và một số bước ngày càng được giao cho mô hình. Xét duyệt bồi thường, phê duyệt tín dụng, kiểm duyệt nội dung, ứng cứu sự cố hay quy trình tuyển dụng đều thuộc dạng này, với tổng thời gian tính bằng giờ hoặc bằng tháng.',
+        'Hai cách hiện thực phổ biến đều chạm giới hạn. Gọi hàm tuần tự thất bại ngay ở bước cần con người, vì một tiến trình không thể duy trì trạng thái chờ trong nhiều ngày. Ghép bằng hàng đợi tin nhắn buộc mỗi bước tự quản lý trạng thái, tự xử lý chạy lại và tự ghi nhận phần việc đã hoàn tất, khiến hình dạng của quy trình biến mất khỏi mã nguồn.',
+        'Các engine điều phối ra đời để lấp khoảng trống đó. Điểm khác biệt giữa chúng nằm ở cách mô hình hóa. Phần lớn tách thế giới thành nhiều loại bước — bước gọi service, bước giao cho người, và gần đây là bước gọi agent — mỗi loại có vòng đời, cách giao việc và cách báo kết quả riêng. Chi phí tích hợp giữa các loại đó tăng dần theo thời gian và thường trở thành phần phức tạp nhất của hệ thống.',
+        'Binean Engine chọn giả định ngược lại. Việc cần giao, năng lực để thực hiện và kết quả trả về có cùng cấu trúc bất kể ai thực hiện. Khác biệt chỉ nằm ở độ trễ và giao thức gọi, và cả hai thuộc tầng thực thi chứ không thuộc mô hình quy trình.',
       ],
     },
     {
       id: 'brain',
-      eyebrow: 'Vì sao là brain engine',
-      title: 'BE đọc là Binean Engine, và cũng là Brain Engine',
-      lead: 'Cái tên không phải chơi chữ suông. Nó mô tả đúng cách hệ được chia phần.',
+      eyebrow: 'Kiến trúc',
+      title: 'Brain Engine: bốn vai trò tách bạch',
+      lead: 'Ký hiệu BE mang hai nghĩa — Binean Engine và Brain Engine — và nghĩa thứ hai mô tả đúng cách hệ thống phân vai.',
       body: [
-        'Một bộ não không quan tâm tín hiệu cuối cùng đi tới bàn tay, tới thanh quản hay tới một cơ trơn nào đó. Việc của nó là biết đang ở đâu trong chuỗi hành động, quyết định điều gì xảy ra tiếp theo, rồi phát tín hiệu đi và chờ phản hồi. Engine được dựng theo đúng hình đó.',
+        'Hệ thần kinh trung ương không mô tả cách bàn tay cầm nắm. Nhiệm vụ của nó là xác định vị trí hiện tại trong chuỗi hành động, quyết định bước kế tiếp, phát tín hiệu và tiếp nhận phản hồi. Engine phân vai theo đúng nguyên tắc đó.',
       ],
       glossary: [
         {
-          term: 'Vỏ não — Basal',
-          desc: 'Nơi duy nhất có quyền quyết định bước kế tiếp. Không tác nhân nào tự đi bước tiếp theo mà không qua đây, nên trạng thái quy trình luôn có đúng một nguồn sự thật.',
+          term: 'Basal — vỏ não',
+          desc: 'Thẩm quyền điều hướng duy nhất. Không tác nhân nào tự chuyển quy trình sang bước kế tiếp, nhờ đó trạng thái quy trình luôn có một nguồn sự thật.',
         },
         {
-          term: 'Tủy sống — Spine',
-          desc: 'Mô hình dẫn truyền: việc đi ra, kết quả đi về, theo sự kiện và theo thứ tự. Đây là phần được đặc tả kỹ nhất của Engine và là nhân của nó.',
+          term: 'Spine — tủy sống',
+          desc: 'Mô hình dẫn truyền theo sự kiện: việc được phát đi, kết quả được thu về, thứ tự được bảo toàn. Đây là phần được đặc tả chặt nhất và là nhân của Engine.',
         },
         {
-          term: 'Phản xạ — Reflex',
-          desc: 'Những việc máy móc không cần lên tới não: rẽ nhánh theo điều kiện, biến đổi dữ liệu giữa hai bước, gọi một quy trình con như một năng lực.',
+          term: 'Reflex — phản xạ',
+          desc: 'Tác nhân dựng sẵn trong lõi, đảm nhận phần cơ học mà mọi quy trình đều cần: rẽ nhánh theo điều kiện, biến đổi dữ liệu giữa các bước, và gọi một quy trình khác như một năng lực.',
         },
         {
-          term: 'Chi thể — Agent',
-          desc: 'Bên thực thi. Một con người, một service, hay một mô hình. Với não thì cả ba là cùng một loại đầu ra: giao việc, chờ, nhận kết quả.',
+          term: 'Agent — cơ quan thực thi',
+          desc: 'Bên thực hiện công việc: một con người, một service, hoặc một mô hình. Ở tầng điều phối, cả ba tuân theo cùng một hợp đồng.',
         },
       ],
       after: [
-        'Phần quan trọng của phép ẩn dụ này lại nằm ở chỗ nó **không** nói: bộ não không mô tả chi tiết cách bàn tay cầm nắm. Engine cũng vậy — nó định nghĩa việc gì phải làm và theo thứ tự nào, chứ không định nghĩa cách một service kết nối cơ sở dữ liệu, cách một mô hình được gọi, hay cách một con người đăng nhập vào biểu mẫu.',
+        'Cách phân vai này đồng thời xác định phạm vi Engine **không** đảm nhận. Cách một service truy cập cơ sở dữ liệu, cách một mô hình được gọi, hay cách một người đăng nhập vào biểu mẫu đều thuộc tầng thực thi và nằm ngoài mô hình.',
       ],
     },
     {
       id: 'mo-hinh',
       eyebrow: 'Mô hình',
-      title: 'Năm danh từ, và một thẩm quyền duy nhất',
-      lead: 'Engine cố ý giữ số khái niệm ở mức nhỏ nhất có thể. Gần như mọi thứ trong hệ quy về năm danh từ sau.',
+      title: 'Năm danh từ và một thẩm quyền duy nhất',
+      lead: 'Engine giữ số khái niệm ở mức tối thiểu. Toàn bộ mô hình quy về năm danh từ.',
       glossary: [
         {
           term: 'Flow',
-          desc: 'Định nghĩa quy trình. Bất biến, và có định danh chính xác kèm số phiên bản — sửa quy trình là sinh ra một Flow mới chứ không phải sửa Flow cũ.',
+          desc: 'Định nghĩa quy trình. Bất biến, mang định danh chính xác kèm số phiên bản; cập nhật quy trình tạo ra một Flow mới thay vì sửa Flow cũ.',
         },
         {
           term: 'Process',
-          desc: 'Một lần chạy của một Flow. Mang theo trạng thái nghiệp vụ của riêng nó dưới dạng dữ liệu JSON.',
+          desc: 'Một lần chạy của một Flow, mang theo trạng thái nghiệp vụ riêng dưới dạng dữ liệu JSON.',
         },
         {
           term: 'Task',
-          desc: 'Một đơn vị công việc trong một Process. Có dữ liệu đầu vào đã được kiểm tra sẵn, và trả về kết quả qua một Outcome độc lập.',
+          desc: 'Một đơn vị công việc trong một Process. Dữ liệu đầu vào được kiểm tra trước khi giao, kết quả trả về qua một Outcome độc lập.',
         },
         {
           term: 'Skill',
-          desc: 'Năng lực mà một Task đòi hỏi, mô tả bằng schema đầu vào và đầu ra. Một Flow cũng có thể đóng vai một Skill, nên quy trình lồng được vào nhau.',
+          desc: 'Năng lực mà một Task đòi hỏi, mô tả bằng schema đầu vào và đầu ra. Một Flow cũng có thể đóng vai một Skill, nhờ đó quy trình lồng được vào nhau.',
         },
         {
           term: 'Agent',
-          desc: 'Bên thực thi Task. Engine chỉ có đúng một khái niệm Agent và không phân loại nó — xem phần dưới, đây là quyết định thiết kế chứ không phải thiếu sót.',
+          desc: 'Bên thực thi Task. Engine chỉ định nghĩa một khái niệm Agent và không phân loại nó; đây là quyết định thiết kế, được trình bày ở phần dưới.',
         },
       ],
       after: [
-        'Điều phối tất cả những thứ đó là **Basal**. Nó không phải bộ định tuyến thụ động chờ người ta gọi: Basal chủ động chạy vòng lặp — nhận một lô sự kiện, quyết định điều gì xảy ra tiếp theo cho từng Process, rồi giao toàn bộ kết quả cho tầng lưu trữ như một khối. Mỗi Process tại một thời điểm chỉ có đúng một Basal có thẩm quyền.',
-        'Vì Skill được mô tả bằng schema chứ không bằng loại tác nhân, một bước trong quy trình có thể đổi người thực thi mà định nghĩa quy trình không đổi một chữ. Việc hôm nay một chuyên viên làm bằng tay, sáu tháng sau giao cho một mô hình, và một năm sau thành một service — cả ba lần đều là cùng một Task đòi cùng một Skill.',
+        'Việc điều phối do **Basal** đảm nhận. Đây không phải bộ định tuyến thụ động: Basal chủ động nhận một lô sự kiện, xác định bước kế tiếp cho từng Process, rồi ghi toàn bộ kết quả xuống tầng lưu trữ như một đơn vị nguyên tử. Tại mỗi thời điểm, một Process chỉ chịu thẩm quyền của một Basal.',
+        'Vì Skill được mô tả bằng schema thay vì bằng loại tác nhân, một bước có thể đổi bên thực thi mà định nghĩa quy trình giữ nguyên. Công việc hôm nay do chuyên viên xử lý thủ công, sáu tháng sau chuyển cho một mô hình, một năm sau được một service đảm nhận — cả ba giai đoạn vẫn là cùng một Task đòi hỏi cùng một Skill.',
       ],
     },
     {
       id: 'quyet-dinh',
       eyebrow: 'Quyết định thiết kế',
-      title: 'Bốn chỗ Engine đi khác số đông',
-      lead: 'Đây là những chỗ đáng bàn. Mỗi quyết định đều có cái giá của nó, và tôi ghi cả hai mặt.',
+      title: 'Bốn điểm Engine đi khác số đông',
+      lead: 'Bốn quyết định dưới đây định hình toàn bộ mô hình. Mỗi quyết định đều có chi phí đi kèm, ghi ngay bên dưới.',
       decisions: [
         {
           title: 'Đặc tả là sản phẩm, không phải tài liệu đi kèm',
-          desc: 'Engine viết đặc tả trước, rồi mới hiện thực; bộ conformance test tồn tại để chứng minh đặc tả đúng chứ không phải để chứng minh code chạy. Hệ quả: hành vi được định nghĩa độc lập với ngôn ngữ, và bản hiện thực thứ hai có thể được kiểm chứng là tương đương.',
-          cost: 'Cái giá: chậm. Phần lớn engine trên thị trường ra tính năng nhanh hơn nhiều vì họ không phải chốt đặc tả trước.',
+          desc: 'Đặc tả được viết trước, hiện thực đến sau. Bộ conformance test tồn tại để chứng minh đặc tả đúng, không phải để chứng minh mã nguồn chạy. Hệ quả là hành vi được định nghĩa độc lập với ngôn ngữ, và một bản hiện thực thứ hai có thể được kiểm chứng là tương đương.',
+          cost: 'Chi phí: tốc độ ra tính năng. Phần lớn engine trên thị trường phát hành nhanh hơn đáng kể vì không phải chốt đặc tả trước.',
         },
         {
           title: 'Một khái niệm Agent, không phân loại người, máy hay AI',
-          desc: 'Engine không có "user task", "service task" và "agent step" như ba loại khác nhau. Chỉ có Task, và một tham chiếu tới Agent. Người, service hay mô hình đều là Agent; diễn giải tham chiếu đó thành năng lực thực thi cụ thể là việc của tầng runtime. Đây là chỗ khác biệt lớn nhất so với thị trường, và cũng là chỗ dễ bị phản đối nhất.',
-          cost: 'Đổi lại, những gì đi kèm khái niệm "human task" ở engine khác — biểu mẫu, hàng đợi công việc, phân quyền, uỷ quyền — Engine không cho sẵn. Bạn phải dựng ở tầng trên; trong BENOVA, đó là việc của Vista.',
+          desc: 'Engine không định nghĩa "user task", "service task" và "agent step" như ba loại riêng biệt. Chỉ có Task và một tham chiếu tới Agent. Con người, service và mô hình đều là Agent; việc diễn giải tham chiếu đó thành năng lực thực thi cụ thể thuộc tầng runtime. Đây là khác biệt lớn nhất so với thị trường và cũng là điểm dễ bị phản đối nhất.',
+          cost: 'Chi phí: những thành phần thường đi kèm khái niệm "human task" ở nơi khác — biểu mẫu, hàng đợi công việc, phân quyền, ủy quyền — không có sẵn và phải được dựng ở tầng trên.',
         },
         {
-          title: 'Lõi không sở hữu chỗ lưu trữ',
-          desc: 'Việc đọc sự kiện, ghi kết quả, giành Task và áp kết quả đều là các ranh giới thay thế được. Lõi định nghĩa ngữ nghĩa, còn chuyện chạy trên Postgres, Kafka hay một hàng đợi có sẵn trong nhà là quyết định của bạn. Với tổ chức đã có hạ tầng riêng và ràng buộc về nơi dữ liệu được phép nằm, đây là điểm cộng lớn.',
-          cost: 'Cái giá: không có đường "cài một cái là chạy". Engine khác đóng gói sẵn cả tầng lưu trữ nên khởi động nhanh hơn nhiều.',
+          title: 'Lõi không sở hữu tầng lưu trữ',
+          desc: 'Đọc sự kiện, ghi kết quả, giành Task và áp kết quả đều là các ranh giới thay thế được. Lõi định nghĩa ngữ nghĩa; việc chạy trên Postgres, Kafka hay một hàng đợi có sẵn trong tổ chức là quyết định của bên triển khai. Với tổ chức đã có hạ tầng riêng và ràng buộc về nơi dữ liệu được phép lưu, đây là điều kiện tiên quyết.',
+          cost: 'Chi phí: không có đường cài đặt một bước là chạy. Các engine đóng gói sẵn tầng lưu trữ khởi động nhanh hơn nhiều.',
         },
         {
-          title: 'Phiên bản quy trình là công dân hạng nhất',
-          desc: 'Mỗi Flow có định danh chính xác kèm số phiên bản, và Process gắn cứng vào đúng phiên bản nó khởi chạy. Process đang chạy dở không bao giờ bị đổi hành vi giữa chừng vì ai đó vừa sửa quy trình. Với quy trình sống hàng tháng tới hàng năm — một hồ sơ vay, một hợp đồng, một ca điều tra — đây không phải chi tiết nhỏ.',
-          cost: 'Đổi lại, không có cách "vá nóng" một Process đang chạy sai. Muốn sửa thì phải xử lý bằng cơ chế phục hồi, không phải bằng cách sửa định nghĩa.',
+          title: 'Phiên bản quy trình là khái niệm hạng nhất',
+          desc: 'Mỗi Flow mang định danh chính xác kèm số phiên bản, và mỗi Process gắn cố định vào phiên bản nó khởi chạy. Một Process đang chạy không đổi hành vi giữa chừng vì định nghĩa quy trình vừa được cập nhật. Với quy trình sống hàng tháng tới hàng năm — một hồ sơ vay, một hợp đồng, một hồ sơ điều tra — đây là ràng buộc bắt buộc.',
+          cost: 'Chi phí: không có cơ chế vá nóng một Process đang chạy sai. Việc khắc phục đi qua cơ chế phục hồi, không qua việc sửa định nghĩa.',
         },
       ],
     },
     {
       id: 'ung-dung',
-      eyebrow: 'Ứng dụng',
-      title: 'BENOVA là ứng dụng đầu tiên của Engine, không phải phạm vi của nó',
+      eyebrow: 'Phạm vi ứng dụng',
+      title: 'Những bài toán Engine nhắm tới',
       body: [
-        'BENOVA dùng Engine để hiện đại hóa core bảo hiểm Ingenium: Engine điều phối, Nexus lo vận hành, Orbit mở core ra thành API, Vista lo phần con người tương tác, AI Agent nói Agent Client Protocol. Đó là một cách lắp — không phải cách duy nhất.',
-        'Bảo hiểm được chọn làm ứng dụng đầu tiên vì nó ép Engine phải đúng ở nhiều chỗ khó cùng một lúc: quy trình sống nhiều năm, phê duyệt nhiều cấp, ràng buộc kiểm toán chặt, và chạy trên hạ tầng không thể thay thế một lần. Một engine sống được ở đó thì phần lớn nơi khác nhẹ hơn.',
-        'Dưới đây là những nơi có cùng hình dạng bài toán. Nói cho rõ: đây là phạm vi thiết kế, không phải danh sách khách hàng — hiện tại chỉ có BENOVA đang được xây.',
+        'Engine không gắn với một nghiệp vụ cụ thể. Điều kiện phù hợp nằm ở cấu trúc bài toán chứ không ở lĩnh vực: quy trình kéo dài, nhiều loại tác nhân cùng tham gia, và toàn bộ diễn tiến phải để lại dấu vết kiểm toán được.',
       ],
       glossary: [
         {
           term: 'Quy trình nghiệp vụ có phê duyệt',
-          desc: 'Bồi thường, tín dụng, mua sắm, tuyển dụng. Máy chuẩn bị hồ sơ, người quyết định, hệ thống thực thi kết quả — và toàn bộ phải để lại dấu vết kiểm toán được.',
+          desc: 'Bồi thường, tín dụng, mua sắm, tuyển dụng. Hệ thống chuẩn bị hồ sơ, con người ra quyết định, hệ thống thực thi kết quả.',
         },
         {
           term: 'Quy trình có AI trong vòng lặp',
-          desc: 'Mô hình đề xuất, con người duyệt hoặc bác, và lần duyệt đó quay lại thành dữ liệu. Cần một chỗ dừng chờ người mà không phải giữ tiến trình sống suốt thời gian chờ.',
+          desc: 'Mô hình đề xuất, con người phê duyệt hoặc bác bỏ, và phán quyết đó quay lại thành dữ liệu huấn luyện. Yêu cầu một điểm dừng chờ người mà không giữ tiến trình sống suốt thời gian chờ.',
         },
         {
           term: 'Vận hành và ứng cứu sự cố',
-          desc: 'Cảnh báo kích hoạt quy trình, một phần chạy tự động, một phần dừng lại chờ người xác nhận trước khi động vào hệ thống đang chạy thật.',
+          desc: 'Cảnh báo khởi tạo quy trình, một phần chạy tự động, một phần dừng chờ xác nhận trước khi tác động lên hệ thống đang phục vụ.',
         },
         {
           term: 'Điều phối nhiều agent AI',
-          desc: 'Nhiều agent cùng theo đuổi một mục tiêu. Cần biết ai đang giữ việc gì, việc nào đã xong, và ai có quyền quyết định bước kế tiếp — thay vì để các agent tự gọi nhau.',
+          desc: 'Nhiều agent cùng theo đuổi một mục tiêu, cần một nơi ghi nhận ai đang giữ việc gì, việc nào đã hoàn tất, và ai có thẩm quyền quyết định bước kế tiếp.',
         },
+      ],
+      after: [
+        'Danh sách trên là phạm vi thiết kế, không phải danh sách khách hàng. Triển khai đầu tiên là BENOVA, chương trình hiện đại hóa hệ core bảo hiểm của Binean. Bảo hiểm được chọn làm ứng dụng mở đầu vì nó tập trung nhiều ràng buộc khó vào cùng một hệ: quy trình kéo dài nhiều năm, phê duyệt nhiều cấp, yêu cầu kiểm toán chặt, và hạ tầng không thể thay thế trong một lần.',
       ],
     },
   ],
 
   comparison: {
     id: 'so-sanh',
-    eyebrow: 'So sánh',
-    title: 'Engine đứng ở đâu giữa thị trường',
-    lead: 'Tôi không làm bảng tick xanh đỏ ở đây. Một bảng như vậy luôn nghiêng về phía người viết nó, và trong trường hợp này nó sẽ nghiêng một cách vô lý: các sản phẩm dưới đây đều đang chạy thật trong sản xuất ở quy mô lớn, còn Engine thì chưa.',
-    items: [
+    eyebrow: 'Đánh giá',
+    title: 'Engine đặt cạnh thị trường, chấm theo sáu tiêu chí',
+    lead: 'Sáu tiêu chí dưới đây được chọn theo yêu cầu của lớp bài toán vừa nêu và chấm trên thang 0–5. Bốn tiêu chí đầu thuộc về mô hình, hai tiêu chí sau thuộc về mức độ trưởng thành của sản phẩm.',
+    max: 5,
+    chartTitle: 'Engine, Temporal và Camunda 8 trên sáu tiêu chí',
+    chartCaption:
+      'Chỉ ba sản phẩm được vẽ để hình còn đọc được; toàn bộ sáu sản phẩm có mặt trong bảng điểm bên dưới. Đường nét đứt là Engine, biểu thị điểm theo thiết kế đã đặc tả chứ không phải kết quả đo trên hệ thống sản xuất.',
+    provisionalLabel: 'điểm theo thiết kế',
+    axes: [
+      {
+        key: 'agent',
+        label: 'Tác nhân hợp nhất',
+        group: 'design',
+        desc: 'Người, máy và AI được mô tả bằng cùng một khái niệm thay vì ba loại bước khác nhau.',
+      },
+      {
+        key: 'longrun',
+        label: 'Quy trình dài hạn',
+        group: 'design',
+        desc: 'Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, phục hồi sau sự cố mà không mất trạng thái.',
+      },
+      {
+        key: 'infra',
+        label: 'Độc lập hạ tầng',
+        group: 'design',
+        desc: 'Nơi chạy và nơi lưu trữ do tổ chức quyết định, không do engine áp đặt.',
+      },
+      {
+        key: 'version',
+        label: 'Phiên bản quy trình',
+        group: 'design',
+        desc: 'Một lần chạy đang dở giữ nguyên hành vi khi định nghĩa quy trình được cập nhật.',
+      },
+      {
+        key: 'tooling',
+        label: 'Công cụ và SDK',
+        group: 'ops',
+        desc: 'Giao diện vận hành, biểu mẫu, hàng đợi công việc, SDK cho nhiều ngôn ngữ.',
+      },
+      {
+        key: 'maturity',
+        label: 'Độ chín sản xuất',
+        group: 'ops',
+        desc: 'Mức đã được kiểm chứng ở quy mô thật, cùng cộng đồng và nhà cung cấp hỗ trợ.',
+      },
+    ],
+    products: [
+      {
+        name: 'Binean Engine',
+        kind: 'Điều phối đa tác nhân',
+        scores: [5, 4, 5, 5, 1, 1],
+        plot: true,
+        provisional: true,
+        note: 'Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn.',
+      },
       {
         name: 'Temporal',
         kind: 'Durable execution',
-        strength:
-          'Viết quy trình bằng code thường của ngôn ngữ bạn dùng, engine bảo đảm nó chạy tới cùng kể cả khi máy chết. Bền bỉ, đã được kiểm chứng ở quy mô rất lớn, SDK phủ nhiều ngôn ngữ. Nếu bạn cần một engine điều phối hôm nay, đây là lựa chọn mặc định hợp lý.',
-        diff:
-          'Temporal bảo đảm tính xác định bằng cách phát lại lịch sử sự kiện, nên code quy trình phải tuân thủ những ràng buộc riêng và việc đổi phiên bản quy trình nổi tiếng là chỗ khó. Engine đi đường khác: quy trình là dữ liệu chứ không phải code, và tính xác định đến từ việc giới hạn hẹp những gì đoạn biến đổi dữ liệu được phép làm.',
+        scores: [2, 5, 3, 2, 5, 5],
+        plot: true,
+        note: 'Lựa chọn mặc định hợp lý nếu cần một engine điều phối ngay hôm nay; đổi phiên bản quy trình là điểm yếu được ghi nhận rộng rãi.',
       },
       {
         name: 'Camunda 8 / Zeebe',
         kind: 'BPMN, hướng mô hình',
-        strength:
-          'Chuẩn BPMN, có công cụ vẽ quy trình trực quan mà người nghiệp vụ đọc được, và phần human task rất chín — biểu mẫu, hàng đợi công việc, phân quyền đều có sẵn. Khi quy trình có con người tham gia, đây là đối thủ gần nhất.',
-        diff:
-          'Camunda phân biệt rõ user task và service task như hai loại khác nhau, còn Engine cố ý không phân biệt. Camunda cho bạn nhiều thứ dùng được ngay; Engine cho bạn một model nhỏ hơn và một lõi không dính vào hạ tầng của bạn. Nếu điều bạn cần là biểu mẫu và hàng đợi công việc cho tháng sau, Camunda đang có, Engine thì chưa.',
-      },
-      {
-        name: 'LangGraph, CrewAI, AutoGen',
-        kind: 'Framework agent AI',
-        strength:
-          'Dựng vòng lặp agent rất nhanh: gọi công cụ, chia vai, nhiều agent nói chuyện với nhau, và có sẵn hệ sinh thái quanh mô hình ngôn ngữ. Nếu bài toán của bạn nằm trọn trong một phiên làm việc kéo dài vài phút, đây là chỗ nên bắt đầu.',
-        diff:
-          'Nhóm này điều phối trong phạm vi một lần chạy chương trình, còn chờ con người phê duyệt trong ba ngày là thứ phải tự gắn thêm. Engine đặt vấn đề ngược lại: chờ người là trường hợp bình thường, và một agent AI chỉ là một Agent trong số đó — cùng cách giao việc, cùng cách trả kết quả, cùng cách bị timeout như mọi Agent khác.',
+        scores: [3, 5, 3, 4, 5, 5],
+        plot: true,
+        note: 'Đối chiếu gần nhất khi quy trình có con người tham gia, nhưng phân biệt rõ bước giao cho người với bước gọi service.',
       },
       {
         name: 'Netflix Conductor / Orkes',
         kind: 'Điều phối microservice',
-        strength:
-          'Quy trình mô tả bằng JSON, hợp với việc xâu chuỗi các service lại thành một luồng nghiệp vụ. Nhẹ hơn BPMN, dễ bắt đầu, có bản thương mại kèm giao diện vận hành.',
-        diff:
-          'Cùng ý tưởng "quy trình là dữ liệu" với Engine. Khác ở chỗ Engine đặt nặng định danh phiên bản bất biến và ranh giới thay thế được, còn Conductor thiên về sự tiện dụng khi vận hành đội microservice.',
+        scores: [2, 4, 3, 4, 4, 5],
+        note: 'Cùng nguyên tắc quy trình là dữ liệu, nhưng tối ưu cho việc xâu chuỗi dịch vụ hơn là cho tác nhân hỗn hợp.',
       },
       {
         name: 'AWS Step Functions',
         kind: 'Máy trạng thái phi máy chủ',
-        strength:
-          'Không phải vận hành gì cả, tích hợp sâu với phần còn lại của AWS, trả tiền theo lượt chuyển trạng thái. Nếu hệ thống của bạn vốn đã nằm trọn trong AWS thì đây là con đường ít ma sát nhất.',
-        diff:
-          'Đổi lại là gắn chặt vào một nhà cung cấp. Với hệ chạy tại chỗ hoặc lai — và với tổ chức bị ràng buộc về nơi dữ liệu được phép nằm — phần lớn giá trị của Step Functions biến mất. Engine đặt việc chạy ở đâu là quyết định của bạn.',
+        scores: [2, 4, 1, 3, 4, 5],
+        note: 'Chi phí vận hành gần bằng không và tích hợp sâu trong AWS; điểm độc lập hạ tầng thấp là hệ quả trực tiếp.',
       },
       {
-        name: 'Airflow, Dagster, Prefect',
-        kind: 'Điều phối dữ liệu — khác loại',
-        strength:
-          'Rất mạnh cho pipeline dữ liệu chạy theo lịch: phụ thuộc giữa các bước, chạy bù, theo dõi lần chạy.',
-        diff:
-          'Nêu ra đây để tránh so nhầm. Chúng giải bài toán "chạy đúng thứ tự theo lịch", không phải "một quy trình sống nhiều ngày, có người tham gia và có phê duyệt". Đừng chọn nhóm này cho bài toán của Engine, và ngược lại.',
+        name: 'LangGraph, CrewAI, AutoGen',
+        kind: 'Framework agent AI',
+        scores: [2, 2, 3, 1, 4, 4],
+        note: 'Dựng vòng lặp agent rất nhanh trong phạm vi một lần chạy chương trình; chờ người phê duyệt nhiều ngày nằm ngoài mô hình gốc.',
       },
     ],
+    table: {
+      product: 'Sản phẩm',
+      design: 'Mô hình',
+      designSub: '4 tiêu chí đầu',
+      ops: 'Vận hành',
+      opsSub: '2 tiêu chí sau',
+      total: 'Tổng',
+      caption: 'Điểm từng tiêu chí trên thang 0–5, cùng tổng theo hai nhóm.',
+    },
+    verdict: [
+      'Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 19 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.',
+      'Cách đọc bảng này quan trọng hơn thứ hạng. Với tổ chức cần triển khai trong quý này, hai tiêu chí vận hành mới là yếu tố quyết định, và lựa chọn hợp lý nằm ở nhóm sản phẩm đã trưởng thành. Engine chỉ đáng cân nhắc khi bốn tiêu chí đầu là ràng buộc không thể thỏa hiệp và tổ chức chấp nhận tham gia từ giai đoạn thiết kế.',
+    ],
+    method: {
+      title: 'Về cách chấm điểm',
+      body: 'Thang điểm do Binean tự chấm, dựa trên tài liệu công khai của từng sản phẩm và giả định sáu tiêu chí có trọng số bằng nhau — một giả định không đúng với bất kỳ tổ chức cụ thể nào. Trọng số khác sẽ cho thứ hạng khác. Airflow, Dagster và Prefect không có trong bảng vì chúng giải bài toán khác: điều phối pipeline dữ liệu theo lịch. Đưa chúng vào cùng thang điểm sẽ cho kết luận sai cho cả hai phía.',
+    },
   },
 
   fit: {
     id: 'phu-hop',
-    eyebrow: 'Đánh giá thẳng',
-    title: 'Khi nào nên, và khi nào không nên',
+    eyebrow: 'Điều kiện áp dụng',
+    title: 'Khi nào phù hợp, và khi nào không',
     good: {
-      title: 'Engine đáng cân nhắc nếu',
+      title: 'Engine đáng cân nhắc khi',
       items: [
-        'Quy trình của bạn trộn người, máy và AI, và bạn không muốn ba loại đó là ba cơ chế khác nhau.',
-        'Quy trình sống hàng giờ tới hàng tháng: có chờ đợi, có phê duyệt, có việc phải chạy lại.',
-        'Bạn có ràng buộc phải chạy trên hạ tầng sẵn có, hoặc phải kiểm toán được nơi dữ liệu nằm.',
-        'Bạn cần chắc chắn một lần chạy đã bắt đầu sẽ không đổi hành vi vì một bản cập nhật quy trình sau đó.',
-        'Bạn coi trọng việc có một đặc tả đọc được hơn là có một sản phẩm nhiều tính năng.',
+        'Quy trình trộn người, máy và AI, và ba loại tác nhân đó không nên là ba cơ chế khác nhau.',
+        'Quy trình kéo dài từ hàng giờ tới hàng tháng, có thời gian chờ, có phê duyệt và có phần việc phải chạy lại.',
+        'Tổ chức bị ràng buộc phải chạy trên hạ tầng sẵn có, hoặc phải kiểm toán được nơi dữ liệu lưu trữ.',
+        'Một lần chạy đã khởi động bắt buộc phải giữ nguyên hành vi khi quy trình được cập nhật.',
+        'Một đặc tả đọc được có giá trị cao hơn một sản phẩm nhiều tính năng.',
       ],
     },
     bad: {
-      title: 'Đừng chọn Engine nếu',
+      title: 'Engine không phù hợp khi',
       items: [
-        'Bạn cần đưa vào sản xuất trong quý này. Engine chưa sẵn sàng, và nói khác đi là không trung thực.',
-        'Quy trình của bạn chỉ có máy gọi máy và kết thúc trong vài giây. Hàng đợi hoặc gọi trực tiếp là đủ; thêm engine chỉ thêm một tầng.',
-        'Bạn cần biểu mẫu, hàng đợi công việc và giao diện quản trị có sẵn. Camunda đang có, Engine thì chưa.',
-        'Đội của bạn viết Java, Go hay Python và cần SDK cho ngôn ngữ đó. Hiện chỉ có một bản hiện thực bằng Rust.',
-        'Bạn cần một cộng đồng, một hệ sinh thái plugin, hoặc một nhà cung cấp có thể gọi lúc hai giờ sáng.',
+        'Yêu cầu đưa vào sản xuất trong quý này. Engine chưa sẵn sàng cho mục tiêu đó.',
+        'Quy trình chỉ gồm máy gọi máy và kết thúc trong vài giây. Hàng đợi hoặc lời gọi trực tiếp là đủ; thêm engine chỉ thêm một tầng.',
+        'Cần biểu mẫu, hàng đợi công việc và giao diện quản trị có sẵn ngay. Camunda đáp ứng được, Engine thì chưa.',
+        'Đội ngũ phát triển bằng Java, Go hoặc Python và cần SDK cho ngôn ngữ đó. Hiện chỉ có một bản hiện thực bằng Rust.',
+        'Cần một cộng đồng, một hệ sinh thái plugin, hoặc một nhà cung cấp có cam kết hỗ trợ ngoài giờ.',
       ],
     },
   },
@@ -242,19 +313,19 @@ export default {
   status: {
     id: 'trang-thai',
     eyebrow: 'Trạng thái',
-    title: 'Engine đang ở đâu, nói thẳng',
+    title: 'Mức độ hoàn thiện hiện tại',
     body: [
-      'Đặc tả V1 của Spine đã chốt được phần lớn ngữ nghĩa cốt lõi và có một bản hiện thực bằng Rust chạy được từ đầu đến cuối, kèm bộ test đi qua. Nhưng V1 **chưa đạt mức sẵn sàng cho hiện thực**: vẫn còn những chỗ trong đặc tả đang được sửa vì quá trình hiện thực phát hiện ra mâu thuẫn.',
-      'Nói cách khác: Engine hôm nay là một thiết kế đã suy nghĩ kỹ và một bản chạy thử để kiểm chứng thiết kế đó, không phải một sản phẩm để đưa vào vận hành. Trong BENOVA, Nexus mới là thành tố đã chạy trên hệ Ingenium thật; Engine thì chưa.',
-      'Nếu bạn đang vận hành một quy trình có người, máy và AI cùng tham gia, và thấy mô hình này đáng bàn, cuộc trao đổi có ích nhất lúc này là về thiết kế — chỗ nào chúng tôi nghĩ sai, chỗ nào bạn đã va phải trong thực tế.',
+      'Đặc tả V1 của Spine đã chốt phần lớn ngữ nghĩa cốt lõi, và có một bản hiện thực bằng Rust chạy được từ đầu đến cuối kèm bộ test đi qua. Tuy vậy V1 **chưa đạt mức sẵn sàng cho hiện thực**: một số phần của đặc tả vẫn đang được hiệu chỉnh vì quá trình hiện thực tiếp tục phát hiện mâu thuẫn.',
+      'Nói ngắn gọn, Engine ở thời điểm này là một thiết kế đã được cân nhắc kỹ cùng một bản chạy thử để kiểm chứng thiết kế đó, chưa phải một sản phẩm để đưa vào vận hành. Đây cũng là lý do hai tiêu chí vận hành trong bảng đánh giá chỉ đạt 1 trên 5.',
+      'Với tổ chức đang vận hành những quy trình thuộc lớp bài toán nêu trên, trao đổi có giá trị nhất ở giai đoạn này là trao đổi về thiết kế: những điểm mô hình còn sai, và những tình huống thực tế mà mô hình chưa lường tới.',
     ],
   },
 
   cta: {
-    title: 'Bàn về thiết kế',
-    lead: 'Chúng tôi muốn nghe từ người thật sự vận hành những quy trình kiểu này, nhất là những chỗ bạn cho rằng mô hình này sẽ vỡ.',
-    label: 'Trao đổi 30 phút',
+    title: 'Trao đổi về thiết kế',
+    lead: 'Chúng tôi muốn nghe từ những người trực tiếp vận hành các quy trình thuộc lớp bài toán này, đặc biệt là những điểm mà mô hình được cho là sẽ không đứng vững.',
+    label: 'Đặt lịch trao đổi 30 phút',
     subject: 'Binean Engine - Trao doi ve thiet ke',
-    back: 'Xem BENOVA — ứng dụng đầu tiên của Engine',
+    back: 'Xem BENOVA — triển khai đầu tiên',
   },
 };

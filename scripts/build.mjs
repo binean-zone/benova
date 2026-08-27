@@ -129,28 +129,46 @@ ${(site.locale.code === 'vi' ? ['inter-latin', 'inter-vietnamese'] : ['inter-lat
 
 /* ------------------------------------------------------------ header --- */
 
-const notice = () => `  <div class="site-notice" role="status">
+/* Trang Engine phải đọc được như một tài liệu độc lập, nên nó mang dải thông
+   báo, tên thương hiệu và điều hướng của riêng nó. Dùng chung của BENOVA thì
+   thanh nav còn trỏ vào những anchor không tồn tại trên trang này. */
+const onEngine = () => pagePath === 'engine/';
+
+const notice = () => {
+  const n = onEngine() ? site.enginePage.notice : site.notice;
+  const subject = onEngine() ? site.enginePage.cta.subject : 'BENOVA - Lien he';
+  return `  <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
-      <p>${esc(site.notice.text)}</p>
-      <a href="${esc(mailto(site.brand.emails[0], 'BENOVA - Lien he'))}">${esc(site.notice.linkLabel)}</a>
+      <p>${esc(n.text)}</p>
+      <a href="${esc(mailto(site.brand.emails[0], subject))}">${esc(n.linkLabel)}</a>
     </div>
   </div>`;
+};
 
-const header = () => `  <a class="skip-link" href="#main">${esc(site.ui.skipToContent)}</a>
+const header = () => {
+  const brandName = onEngine() ? site.enginePage.brandName : site.brand.name;
+  const brandHref = onEngine() ? `${base}${site.locale.path}` : '#top';
+  const navItems = onEngine() ? site.enginePage.nav : site.nav;
+  const ctaHref = onEngine()
+    ? mailto(site.brand.emails[0], site.enginePage.cta.subject)
+    : `#${site.cta.id}`;
+  const ctaLabel = onEngine() ? site.enginePage.headerCta : site.ui.headerCta;
+
+  return `  <a class="skip-link" href="#main">${esc(site.ui.skipToContent)}</a>
   <header class="site-header" id="site-header">
     <div class="shell header-inner">
-      <a class="brand" href="#top" aria-label="${esc(site.brand.name)} — về đầu trang">
+      <a class="brand" href="${esc(brandHref)}" aria-label="${esc(brandName)}">
         <span class="brand-mark" aria-hidden="true">
           <img class="logo-dark" src="${base}assets/images/binean-dark.svg" alt="" width="60" height="60" />
           <img class="logo-light" src="${base}assets/images/binean.svg" alt="" width="60" height="60" />
         </span>
-        <span class="brand-name">${esc(site.brand.name)}</span>
+        <span class="brand-name">${esc(brandName)}</span>
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="${esc(site.ui.mainNav)}">
         <ul>
-${list(site.nav, (item) => `          <li><a href="${esc(item.href)}">${esc(item.label)}</a></li>`)}
+${list(navItems, (item) => `          <li><a href="${esc(item.href)}">${esc(item.label)}</a></li>`)}
         </ul>
       </nav>
 
@@ -185,7 +203,7 @@ ${locales
             <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
           </svg>
         </button>
-        <a class="btn btn-primary btn-sm header-cta" href="#${esc(site.cta.id)}">${esc(site.ui.headerCta)}</a>
+        <a class="btn btn-primary btn-sm header-cta" href="${esc(ctaHref)}">${esc(ctaLabel)}</a>
         <button
           class="nav-toggle"
           id="nav-toggle"
@@ -201,6 +219,7 @@ ${locales
       </div>
     </div>
   </header>`;
+};
 
 /* -------------------------------------------------------------- hero --- */
 
@@ -632,6 +651,11 @@ ${list(
 
 const footer = () => {
   const f = site.footer;
+  /* Footer là điều hướng chung của cả site, nhưng link của nó là anchor của
+     trang chủ. Ở trang con, anchor trần sẽ trỏ vào chính trang đó và chết —
+     nên phải gắn thêm đường về trang chủ phía trước. */
+  const siteLink = (href) =>
+    href.startsWith('#') && pagePath ? `${base}${site.locale.path}${href}` : href;
   return `  <footer class="site-footer">
     <div class="shell footer-inner">
       <div class="footer-brand">
@@ -648,7 +672,7 @@ ${list(
   (col) => `      <nav class="footer-col" aria-label="${esc(col.title)}">
         <h2>${esc(col.title)}</h2>
         <ul>
-${list(col.links, (l) => `          <li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`)}
+${list(col.links, (l) => `          <li><a href="${esc(siteLink(l.href))}">${esc(l.label)}</a></li>`)}
         </ul>
       </nav>`
 )}
@@ -668,7 +692,7 @@ ${list(
       <p>${esc(f.copyright)}</p>
 ${f.legal.length
   ? `      <ul>
-${list(f.legal, (l) => `        <li><a href="${esc(l.href)}">${esc(l.label)}</a></li>`)}
+${list(f.legal, (l) => `        <li><a href="${esc(siteLink(l.href))}">${esc(l.label)}</a></li>`)}
       </ul>`
   : ''}
     </div>
@@ -712,6 +736,23 @@ ${footer()}
 
 /* Chữ đậm trong content viết bằng **cặp sao**, đổi sang <strong> khi dựng.
    Escape trước rồi mới thay, để nội dung không chèn được thẻ vào trang. */
+/* Cắt một nhãn thành hai dòng cân nhau, để nhãn quanh radar không phải khai
+   báo sẵn chỗ xuống dòng trong content — hai ngôn ngữ ngắt ở chỗ khác nhau. */
+const wrap2 = (text) => {
+  const words = text.split(' ');
+  if (words.length < 2 || text.length <= 14) return [text];
+  let cut = 1;
+  let diff = Infinity;
+  for (let i = 1; i < words.length; i += 1) {
+    const d = Math.abs(words.slice(0, i).join(' ').length - words.slice(i).join(' ').length);
+    if (d < diff) {
+      diff = d;
+      cut = i;
+    }
+  }
+  return [words.slice(0, cut).join(' '), words.slice(cut).join(' ')];
+};
+
 const rich = (text) =>
   esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 
@@ -760,29 +801,190 @@ ${sec.decisions
       </div>
     </section>`;
 
-  const comparison = `    <section class="section eng-section section-compare" id="${esc(
-    p.comparison.id
-  )}">
+  /* Radar sáu trục. Ba đường là trần cứng: quá số đó các đa giác che nhau và
+     hình mất nghĩa. Mọi con số vẫn đọc được đầy đủ ở bảng điểm ngay bên dưới,
+     nên hình chỉ làm việc của nó là cho thấy HÌNH DẠNG của từng sản phẩm. */
+  const cmp = p.comparison;
+  const rN = (x) => Math.round(x * 10) / 10;
+
+  const radar = () => {
+    const n = cmp.axes.length;
+    const cx = 300;
+    const cy = 262;
+    const R = 168;
+    const angle = (i) => -Math.PI / 2 + (2 * Math.PI * i) / n;
+    const at = (i, v) => {
+      const a = angle(i);
+      const r = (v / cmp.max) * R;
+      return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    };
+    const poly = (vals) => vals.map((v, i) => at(i, v).map(rN).join(',')).join(' ');
+
+    const rings = Array.from(
+      { length: cmp.max },
+      (_, k) =>
+        `        <polygon class="rad-ring" points="${poly(cmp.axes.map(() => k + 1))}" />`
+    ).join('\n');
+
+    const spokes = cmp.axes
+      .map((_, i) => {
+        const [x, y] = at(i, cmp.max).map(rN);
+        return `        <line class="rad-spoke" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" />`;
+      })
+      .join('\n');
+
+    const ticks = [1, 3, 5]
+      .filter((v) => v <= cmp.max)
+      .map(
+        (v) =>
+          `        <text class="rad-tick" x="${cx - 8}" y="${rN(
+            cy - (v / cmp.max) * R + 4
+          )}">${v}</text>`
+      )
+      .join('\n');
+
+    const labels = cmp.axes
+      .map((ax, i) => {
+        const a = angle(i);
+        const [x, y] = at(i, cmp.max + 0.78);
+        const cos = Math.cos(a);
+        const sin = Math.sin(a);
+        const anchor = cos > 0.25 ? 'start' : cos < -0.25 ? 'end' : 'middle';
+        const lines = wrap2(ax.label);
+        const shift = sin < -0.7 ? -10 : sin > 0.7 ? 10 : 0;
+        const top = rN(y + shift - ((lines.length - 1) * 15) / 2 + 5);
+        return `        <text class="rad-label" x="${rN(x)}" y="${top}" text-anchor="${anchor}">${lines
+          .map((l, k) => `<tspan x="${rN(x)}" dy="${k ? 15 : 0}">${esc(l)}</tspan>`)
+          .join('')}</text>`;
+      })
+      .join('\n');
+
+    const series = cmp.products
+      .filter((item) => item.plot)
+      .map((item, si) => {
+        const dots = item.scores
+          .map((v, i) => {
+            const [x, y] = at(i, v).map(rN);
+            return `          <circle class="rad-dot" cx="${x}" cy="${y}" r="4.5"><title>${esc(
+              item.name
+            )} — ${esc(cmp.axes[i].label)}: ${v}/${cmp.max}</title></circle>`;
+          })
+          .join('\n');
+        return `        <g class="rad-series rad-s${si + 1}${
+          item.provisional ? ' rad-provisional' : ''
+        }">
+          <polygon class="rad-area" points="${poly(item.scores)}" />
+${dots}
+        </g>`;
+      })
+      .join('\n');
+
+    const legend = cmp.products
+      .filter((item) => item.plot)
+      .map(
+        (item, si) => `          <li class="rad-s${si + 1}">
+            <span class="rad-swatch${item.provisional ? ' rad-swatch-dashed' : ''}" aria-hidden="true"></span>
+            <span>${esc(item.name)}${
+              item.provisional ? ` <em>${esc(cmp.provisionalLabel)}</em>` : ''
+            }</span>
+          </li>`
+      )
+      .join('\n');
+
+    return `        <figure class="eng-radar reveal">
+          <div class="eng-radar-plot">
+            <svg viewBox="0 0 600 524" role="img" aria-labelledby="${esc(cmp.id)}-rt">
+              <title id="${esc(cmp.id)}-rt">${esc(cmp.chartTitle)}</title>
+${rings}
+${spokes}
+${ticks}
+${labels}
+${series}
+            </svg>
+          </div>
+          <ul class="rad-legend">
+${legend}
+          </ul>
+          <figcaption>${esc(cmp.chartCaption)}</figcaption>
+        </figure>`;
+  };
+
+  const groupSum = (item, group) =>
+    cmp.axes.reduce((total, ax, i) => total + (ax.group === group ? item.scores[i] : 0), 0);
+  const groupMax = (group) => cmp.axes.filter((ax) => ax.group === group).length * cmp.max;
+
+  const scoreTable = () => {
+    const totals = cmp.products.map((item) => item.scores.reduce((a, b) => a + b, 0));
+    const best = Math.max(...totals);
+    const head = cmp.axes
+      .map((ax) => `              <th scope="col"><abbr title="${esc(ax.desc)}">${esc(ax.label)}</abbr></th>`)
+      .join('\n');
+    const rows = cmp.products
+      .map((item, r) => {
+        const cells = item.scores
+          .map(
+            (v) => `              <td class="eng-score sc-${v}">${v}</td>`
+          )
+          .join('\n');
+        return `            <tr${item.plot && item.provisional ? ' class="eng-row-self"' : ''}>
+              <th scope="row">
+                <b>${esc(item.name)}</b>
+                <span>${esc(item.kind)}</span>
+                <small>${esc(item.note)}</small>
+              </th>
+${cells}
+              <td class="eng-sub">${groupSum(item, 'design')}<span>/${groupMax('design')}</span></td>
+              <td class="eng-sub">${groupSum(item, 'ops')}<span>/${groupMax('ops')}</span></td>
+              <td class="eng-total${totals[r] === best ? ' is-best' : ''}">${totals[r]}<span>/${
+          cmp.axes.length * cmp.max
+        }</span></td>
+            </tr>`;
+      })
+      .join('\n');
+
+    return `        <div class="eng-table-wrap reveal">
+          <table class="eng-table">
+            <caption>${esc(cmp.table.caption)}</caption>
+            <thead>
+              <tr>
+                <th scope="col">${esc(cmp.table.product)}</th>
+${head}
+                <th scope="col">${esc(cmp.table.design)} <span>${esc(cmp.table.designSub)}</span></th>
+                <th scope="col">${esc(cmp.table.ops)} <span>${esc(cmp.table.opsSub)}</span></th>
+                <th scope="col">${esc(cmp.table.total)}</th>
+              </tr>
+            </thead>
+            <tbody>
+${rows}
+            </tbody>
+          </table>
+        </div>`;
+  };
+
+  const comparison = `    <section class="section eng-section section-compare" id="${esc(cmp.id)}">
       <div class="shell eng-shell">
         <div class="section-head reveal">
-          <p class="eyebrow">${esc(p.comparison.eyebrow)}</p>
-          <h2>${esc(p.comparison.title)}</h2>
-          <p class="lead">${esc(p.comparison.lead)}</p>
+          <p class="eyebrow">${esc(cmp.eyebrow)}</p>
+          <h2>${esc(cmp.title)}</h2>
+          <p class="lead">${esc(cmp.lead)}</p>
         </div>
-        <div class="eng-compare">
-${p.comparison.items
+        <dl class="eng-criteria reveal">
+${cmp.axes
   .map(
-    (item) => `          <article class="card eng-rival reveal">
-            <header>
-              <h3>${esc(item.name)}</h3>
-              <span class="eng-kind">${esc(item.kind)}</span>
-            </header>
-            <p class="eng-strength">${esc(item.strength)}</p>
-            <p class="eng-diff"><span>${esc(site.ui.engineDiffLabel)}</span> ${esc(item.diff)}</p>
-          </article>`
+    (ax) => `          <div>
+            <dt>${esc(ax.label)}</dt>
+            <dd>${esc(ax.desc)}</dd>
+          </div>`
   )
   .join('\n')}
-        </div>
+        </dl>
+${radar()}
+${scoreTable()}
+${cmp.verdict.map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+        <aside class="card eng-method reveal">
+          <h3>${esc(cmp.method.title)}</h3>
+          <p>${esc(cmp.method.body)}</p>
+        </aside>
       </div>
     </section>`;
 

@@ -27,7 +27,6 @@ export default {
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
     engineMore: 'Tìm hiểu Engine',
-    engineDiffLabel: 'Engine khác ở đâu:',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
     companyLine: 'Một sản phẩm của',

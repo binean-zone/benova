@@ -1958,49 +1958,361 @@ ol {
   font-size: 0.88rem !important;
 }
 
-/* so sánh với thị trường */
-.eng-compare {
+/* --- đánh giá có tính điểm ------------------------------------------------
+   Bảng cần rộng hơn phần chữ, nên section này nới shell ra.
+   Bảng màu ba đường radar không chọn bằng mắt: chạy qua validate_palette của
+   skill dataviz, cả light lẫn dark, ở chế độ all-pairs — vì trên radar hai
+   đường bất kỳ đều có thể nằm cạnh nhau, không chỉ hai đường liền kề. */
+.section-compare .eng-shell {
+  max-width: 1120px;
+}
+
+.section-compare .section-head,
+.section-compare .eng-para,
+.section-compare .eng-method {
+  max-width: 860px;
+}
+
+/* sáu tiêu chí chấm điểm */
+.eng-criteria {
   display: grid;
-  gap: 18px;
-}
-
-.eng-rival header {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-.eng-rival h3 {
-  margin: 0;
-  font-size: 1.15rem;
-}
-
-.eng-kind {
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--muted);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 34px;
+  background: var(--border);
   border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 11px;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
-.eng-strength {
-  margin-bottom: 12px !important;
+.eng-criteria > div {
+  padding: 16px 18px;
+  background: var(--bg);
 }
 
-.eng-diff {
-  margin: 0 !important;
-  padding-top: 12px;
+.eng-criteria dt {
+  font-weight: 700;
+  color: var(--text-strong);
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+.eng-criteria dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* --- radar --- */
+.eng-radar {
+  margin: 0 0 34px;
+}
+
+.eng-radar-plot {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.eng-radar svg {
+  display: block;
+  width: 100%;
+  min-width: 520px;
+  height: auto;
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* lưới là nét liền mảnh, lùi một bậc so với nền — nét đứt ở đây sẽ đọc thành
+   "ngưỡng" chứ không phải "lưới". */
+.rad-ring,
+.rad-spoke {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.rad-ring {
+  stroke: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.rad-tick {
+  fill: var(--muted);
+  font-size: 11px;
+  text-anchor: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.rad-label {
+  fill: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rad-s1 {
+  --c: #12a893;
+}
+
+.rad-s2 {
+  --c: #cc7f22;
+}
+
+.rad-s3 {
+  --c: #8161e0;
+}
+
+[data-theme='light'] .rad-s1 {
+  --c: #0d9488;
+}
+
+[data-theme='light'] .rad-s2 {
+  --c: #b45309;
+}
+
+[data-theme='light'] .rad-s3 {
+  --c: #7c3aed;
+}
+
+.rad-area {
+  fill: color-mix(in srgb, var(--c) 13%, transparent);
+  stroke: var(--c);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.rad-provisional .rad-area {
+  stroke-dasharray: 7 5;
+}
+
+/* vòng nền quanh chấm để hai đường chồng nhau vẫn tách ra được */
+.rad-dot {
+  fill: var(--c);
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+
+.rad-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  list-style: none;
+  margin: 10px 0 14px;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.rad-legend li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text);
+}
+
+.rad-legend em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.rad-swatch {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--c);
+  flex: none;
+}
+
+.rad-swatch-dashed {
+  background: repeating-linear-gradient(
+    to right,
+    var(--c) 0 7px,
+    transparent 7px 12px
+  );
+}
+
+.eng-radar figcaption {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  max-width: 72ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* --- bảng điểm --- */
+.eng-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.eng-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.eng-table caption {
+  caption-side: bottom;
+  padding: 12px 18px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  text-align: left;
   border-top: 1px solid var(--border);
 }
 
-.eng-diff span {
-  color: var(--accent);
+.eng-table thead th {
+  vertical-align: bottom;
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 0.78rem;
+  line-height: 1.35;
   font-weight: 700;
+  color: var(--text-strong);
+  border-bottom: 1px solid var(--border);
+}
+
+.eng-table thead th:first-child {
+  text-align: left;
+  padding-left: 18px;
+  min-width: 240px;
+}
+
+.eng-table thead th span {
+  display: block;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.eng-table thead abbr {
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border);
+  cursor: help;
+}
+
+.eng-table tbody tr + tr th,
+.eng-table tbody tr + tr td {
+  border-top: 1px solid var(--border);
+}
+
+.eng-table tbody th {
+  text-align: left;
+  padding: 14px 14px 14px 18px;
+  font-weight: 400;
+}
+
+.eng-table tbody th b {
+  display: block;
+  color: var(--text-strong);
+  font-size: 0.96rem;
+}
+
+.eng-table tbody th span {
+  display: block;
+  color: var(--accent);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.eng-table tbody th small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.eng-row-self th b {
+  color: var(--accent);
+}
+
+.eng-row-self {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* Điểm là đại lượng có thứ tự nên nền dùng một sắc độ duy nhất, đậm dần theo
+   giá trị. Con số vẫn nằm trong ô, nên thông tin không phụ thuộc màu. */
+.eng-score {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--text-strong);
+  padding: 14px 8px;
+}
+
+.sc-0 {
+  color: var(--muted);
+}
+
+.sc-1 {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.sc-2 {
+  background: color-mix(in srgb, var(--accent) 11%, transparent);
+}
+
+.sc-3 {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.sc-4 {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.sc-5 {
+  background: color-mix(in srgb, var(--accent) 29%, transparent);
+}
+
+.eng-sub,
+.eng-total {
+  text-align: center;
+  padding: 14px 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.eng-sub {
+  border-left: 1px solid var(--border);
+}
+
+.eng-total {
+  font-weight: 800;
+  color: var(--text-strong);
+}
+
+.eng-sub span,
+.eng-total span {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+.eng-total.is-best {
+  color: var(--accent);
+}
+
+/* ghi chú phương pháp chấm */
+.eng-method {
+  margin-top: 6px;
+}
+
+.eng-method h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.eng-method p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 /* hợp và không hợp */
@@ -2054,10 +2366,21 @@ ol {
   font-size: 0.94rem;
 }
 
+@media (max-width: 980px) {
+  .eng-criteria {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 760px) {
   .eng-decisions,
-  .eng-fits {
+  .eng-fits,
+  .eng-criteria {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eng-table thead th:first-child {
+    min-width: 200px;
   }
 
   .eng-glossary > div {
