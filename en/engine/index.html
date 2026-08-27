@@ -300,7 +300,7 @@
           </div>
           <div>
             <dt>Long-running processes</dt>
-            <dd>Running for days, pausing for external executors, recovering from failure without losing state.</dd>
+            <dd>Running for days, pausing for external executors, acting on its own deadlines, and recovering from failure without losing state.</dd>
           </div>
           <div>
             <dt>Infrastructure independence</dt>
@@ -344,9 +344,9 @@
         <text class="rad-label" x="131.8" y="356.6" text-anchor="end"><tspan x="131.8" dy="0">Tooling</tspan><tspan x="131.8" dy="15">and SDKs</tspan></text>
         <text class="rad-label" x="131.8" y="162.4" text-anchor="end"><tspan x="131.8" dy="0">Production</tspan><tspan x="131.8" dy="15">maturity</tspan></text>
         <g class="rad-series rad-s1 rad-provisional">
-          <polygon class="rad-area" points="300,94 416.4,194.8 445.5,346 300,430 270.9,278.8 270.9,245.2" />
+          <polygon class="rad-area" points="300,94 387.3,211.6 445.5,346 300,430 270.9,278.8 270.9,245.2" />
           <circle class="rad-dot" cx="300" cy="94" r="4.5"><title>Binean Engine — Unified executor model: 5/5</title></circle>
-          <circle class="rad-dot" cx="416.4" cy="194.8" r="4.5"><title>Binean Engine — Long-running processes: 4/5</title></circle>
+          <circle class="rad-dot" cx="387.3" cy="211.6" r="4.5"><title>Binean Engine — Long-running processes: 3/5</title></circle>
           <circle class="rad-dot" cx="445.5" cy="346" r="4.5"><title>Binean Engine — Infrastructure independence: 5/5</title></circle>
           <circle class="rad-dot" cx="300" cy="430" r="4.5"><title>Binean Engine — Process versioning: 5/5</title></circle>
           <circle class="rad-dot" cx="270.9" cy="278.8" r="4.5"><title>Binean Engine — Tooling and SDKs: 1/5</title></circle>
@@ -395,7 +395,7 @@
               <tr>
                 <th scope="col">Product</th>
               <th scope="col"><abbr title="People, machines and AI described by one concept rather than three kinds of step.">Unified executor model</abbr></th>
-              <th scope="col"><abbr title="Running for days, pausing for external executors, recovering from failure without losing state.">Long-running processes</abbr></th>
+              <th scope="col"><abbr title="Running for days, pausing for external executors, acting on its own deadlines, and recovering from failure without losing state.">Long-running processes</abbr></th>
               <th scope="col"><abbr title="Where it runs and where state is stored decided by the organisation, not imposed by the engine.">Infrastructure independence</abbr></th>
               <th scope="col"><abbr title="A run already in flight keeps its behaviour when the process definition is updated.">Process versioning</abbr></th>
               <th scope="col"><abbr title="Operations UI, forms, work queues, SDKs across several languages.">Tooling and SDKs</abbr></th>
@@ -410,17 +410,17 @@
               <th scope="row">
                 <b>Binean Engine</b>
                 <span>Multi-agent orchestration</span>
-                <small>The first four criteria are why Engine exists; the last two are the gap still to be closed.</small>
+                <small>The first four criteria are why Engine exists; the last two are the gap still to be closed. It loses a point on long-running processes for having no timer: Engine can wait, but cannot yet act when a deadline passes.</small>
               </th>
               <td class="eng-score sc-5">5</td>
-              <td class="eng-score sc-4">4</td>
+              <td class="eng-score sc-3">3</td>
               <td class="eng-score sc-5">5</td>
               <td class="eng-score sc-5">5</td>
               <td class="eng-score sc-1">1</td>
               <td class="eng-score sc-1">1</td>
-              <td class="eng-sub">19<span>/20</span></td>
+              <td class="eng-sub">18<span>/20</span></td>
               <td class="eng-sub">2<span>/10</span></td>
-              <td class="eng-total">21<span>/30</span></td>
+              <td class="eng-total">20<span>/30</span></td>
             </tr>
             <tr>
               <th scope="row">
@@ -505,7 +505,7 @@
             </tbody>
           </table>
         </div>
-        <p class="eng-para reveal">On a plain sum, Camunda 8 leads and Engine places fourth of six. That number describes the position accurately: Engine scores 19 out of 20 on the model criteria and 2 out of 10 on the operational ones.</p>
+        <p class="eng-para reveal">On a plain sum, Camunda 8 leads and Engine places fourth of six. That number describes the position accurately: Engine scores 18 out of 20 on the model criteria and 2 out of 10 on the operational ones.</p>
         <p class="eng-para reveal">How the table is read matters more than the ranking. For an organisation that has to deploy this quarter, the two operational criteria are decisive, and the reasonable choice sits among the mature products. Engine is worth considering only where the first four criteria are non-negotiable constraints and the organisation is willing to engage from the design stage.</p>
         <aside class="card eng-method reveal">
           <h3>On the scoring</h3>

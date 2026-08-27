@@ -196,7 +196,7 @@ export default {
         key: 'longrun',
         label: 'Quy trình dài hạn',
         group: 'design',
-        desc: 'Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, phục hồi sau sự cố mà không mất trạng thái.',
+        desc: 'Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, tự xử lý khi hết hạn, và phục hồi sau sự cố mà không mất trạng thái.',
       },
       {
         key: 'infra',
@@ -227,10 +227,10 @@ export default {
       {
         name: 'Binean Engine',
         kind: 'Điều phối đa tác nhân',
-        scores: [5, 4, 5, 5, 1, 1],
+        scores: [5, 3, 5, 5, 1, 1],
         plot: true,
         provisional: true,
-        note: 'Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn.',
+        note: 'Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn. Mất điểm ở quy trình dài hạn vì chưa có timer: Engine chờ được nhưng chưa tự đi tiếp khi hết hạn.',
       },
       {
         name: 'Temporal',
@@ -275,7 +275,7 @@ export default {
       caption: 'Điểm từng tiêu chí trên thang 0–5, cùng tổng theo hai nhóm.',
     },
     verdict: [
-      'Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 19 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.',
+      'Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 18 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.',
       'Cách đọc bảng này quan trọng hơn thứ hạng. Với tổ chức cần triển khai trong quý này, hai tiêu chí vận hành mới là yếu tố quyết định, và lựa chọn hợp lý nằm ở nhóm sản phẩm đã trưởng thành. Engine chỉ đáng cân nhắc khi bốn tiêu chí đầu là ràng buộc không thể thỏa hiệp và tổ chức chấp nhận tham gia từ giai đoạn thiết kế.',
     ],
     method: {

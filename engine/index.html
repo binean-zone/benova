@@ -301,7 +301,7 @@
           </div>
           <div>
             <dt>Quy trình dài hạn</dt>
-            <dd>Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, phục hồi sau sự cố mà không mất trạng thái.</dd>
+            <dd>Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, tự xử lý khi hết hạn, và phục hồi sau sự cố mà không mất trạng thái.</dd>
           </div>
           <div>
             <dt>Độc lập hạ tầng</dt>
@@ -345,9 +345,9 @@
         <text class="rad-label" x="131.8" y="364.1" text-anchor="end"><tspan x="131.8" dy="0">Công cụ và SDK</tspan></text>
         <text class="rad-label" x="131.8" y="162.4" text-anchor="end"><tspan x="131.8" dy="0">Độ chín</tspan><tspan x="131.8" dy="15">sản xuất</tspan></text>
         <g class="rad-series rad-s1 rad-provisional">
-          <polygon class="rad-area" points="300,94 416.4,194.8 445.5,346 300,430 270.9,278.8 270.9,245.2" />
+          <polygon class="rad-area" points="300,94 387.3,211.6 445.5,346 300,430 270.9,278.8 270.9,245.2" />
           <circle class="rad-dot" cx="300" cy="94" r="4.5"><title>Binean Engine — Tác nhân hợp nhất: 5/5</title></circle>
-          <circle class="rad-dot" cx="416.4" cy="194.8" r="4.5"><title>Binean Engine — Quy trình dài hạn: 4/5</title></circle>
+          <circle class="rad-dot" cx="387.3" cy="211.6" r="4.5"><title>Binean Engine — Quy trình dài hạn: 3/5</title></circle>
           <circle class="rad-dot" cx="445.5" cy="346" r="4.5"><title>Binean Engine — Độc lập hạ tầng: 5/5</title></circle>
           <circle class="rad-dot" cx="300" cy="430" r="4.5"><title>Binean Engine — Phiên bản quy trình: 5/5</title></circle>
           <circle class="rad-dot" cx="270.9" cy="278.8" r="4.5"><title>Binean Engine — Công cụ và SDK: 1/5</title></circle>
@@ -396,7 +396,7 @@
               <tr>
                 <th scope="col">Sản phẩm</th>
               <th scope="col"><abbr title="Người, máy và AI được mô tả bằng cùng một khái niệm thay vì ba loại bước khác nhau.">Tác nhân hợp nhất</abbr></th>
-              <th scope="col"><abbr title="Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, phục hồi sau sự cố mà không mất trạng thái.">Quy trình dài hạn</abbr></th>
+              <th scope="col"><abbr title="Chạy nhiều ngày, dừng chờ tác nhân bên ngoài, tự xử lý khi hết hạn, và phục hồi sau sự cố mà không mất trạng thái.">Quy trình dài hạn</abbr></th>
               <th scope="col"><abbr title="Nơi chạy và nơi lưu trữ do tổ chức quyết định, không do engine áp đặt.">Độc lập hạ tầng</abbr></th>
               <th scope="col"><abbr title="Một lần chạy đang dở giữ nguyên hành vi khi định nghĩa quy trình được cập nhật.">Phiên bản quy trình</abbr></th>
               <th scope="col"><abbr title="Giao diện vận hành, biểu mẫu, hàng đợi công việc, SDK cho nhiều ngôn ngữ.">Công cụ và SDK</abbr></th>
@@ -411,17 +411,17 @@
               <th scope="row">
                 <b>Binean Engine</b>
                 <span>Điều phối đa tác nhân</span>
-                <small>Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn.</small>
+                <small>Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn. Mất điểm ở quy trình dài hạn vì chưa có timer: Engine chờ được nhưng chưa tự đi tiếp khi hết hạn.</small>
               </th>
               <td class="eng-score sc-5">5</td>
-              <td class="eng-score sc-4">4</td>
+              <td class="eng-score sc-3">3</td>
               <td class="eng-score sc-5">5</td>
               <td class="eng-score sc-5">5</td>
               <td class="eng-score sc-1">1</td>
               <td class="eng-score sc-1">1</td>
-              <td class="eng-sub">19<span>/20</span></td>
+              <td class="eng-sub">18<span>/20</span></td>
               <td class="eng-sub">2<span>/10</span></td>
-              <td class="eng-total">21<span>/30</span></td>
+              <td class="eng-total">20<span>/30</span></td>
             </tr>
             <tr>
               <th scope="row">
@@ -506,7 +506,7 @@
             </tbody>
           </table>
         </div>
-        <p class="eng-para reveal">Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 19 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.</p>
+        <p class="eng-para reveal">Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 18 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.</p>
         <p class="eng-para reveal">Cách đọc bảng này quan trọng hơn thứ hạng. Với tổ chức cần triển khai trong quý này, hai tiêu chí vận hành mới là yếu tố quyết định, và lựa chọn hợp lý nằm ở nhóm sản phẩm đã trưởng thành. Engine chỉ đáng cân nhắc khi bốn tiêu chí đầu là ràng buộc không thể thỏa hiệp và tổ chức chấp nhận tham gia từ giai đoạn thiết kế.</p>
         <aside class="card eng-method reveal">
           <h3>Về cách chấm điểm</h3>

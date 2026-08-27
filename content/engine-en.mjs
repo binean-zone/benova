@@ -197,7 +197,7 @@ export default {
         key: 'longrun',
         label: 'Long-running processes',
         group: 'design',
-        desc: 'Running for days, pausing for external executors, recovering from failure without losing state.',
+        desc: 'Running for days, pausing for external executors, acting on its own deadlines, and recovering from failure without losing state.',
       },
       {
         key: 'infra',
@@ -228,10 +228,10 @@ export default {
       {
         name: 'Binean Engine',
         kind: 'Multi-agent orchestration',
-        scores: [5, 4, 5, 5, 1, 1],
+        scores: [5, 3, 5, 5, 1, 1],
         plot: true,
         provisional: true,
-        note: 'The first four criteria are why Engine exists; the last two are the gap still to be closed.',
+        note: 'The first four criteria are why Engine exists; the last two are the gap still to be closed. It loses a point on long-running processes for having no timer: Engine can wait, but cannot yet act when a deadline passes.',
       },
       {
         name: 'Temporal',
@@ -276,7 +276,7 @@ export default {
       caption: 'Per-criterion scores on a 0–5 scale, with subtotals for the two groups.',
     },
     verdict: [
-      'On a plain sum, Camunda 8 leads and Engine places fourth of six. That number describes the position accurately: Engine scores 19 out of 20 on the model criteria and 2 out of 10 on the operational ones.',
+      'On a plain sum, Camunda 8 leads and Engine places fourth of six. That number describes the position accurately: Engine scores 18 out of 20 on the model criteria and 2 out of 10 on the operational ones.',
       'How the table is read matters more than the ranking. For an organisation that has to deploy this quarter, the two operational criteria are decisive, and the reasonable choice sits among the mature products. Engine is worth considering only where the first four criteria are non-negotiable constraints and the organisation is willing to engage from the design stage.',
     ],
     method: {
