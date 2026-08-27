@@ -753,8 +753,12 @@ const wrap2 = (text) => {
   return [words.slice(0, cut).join(' '), words.slice(cut).join(' ')];
 };
 
+/* Escape TRƯỚC rồi mới đổi cú pháp, nên nội dung không chèn được thẻ vào trang.
+   Chỉ hỗ trợ **đậm** và `mã` — vừa đủ cho tên định danh kỹ thuật trong bài. */
 const rich = (text) =>
-  esc(text).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  esc(text)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>');
 
 const enginePage = () => {
   const p = site.enginePage;
@@ -773,7 +777,7 @@ ${
 ${sec.glossary
   .map(
     (g) => `          <div>
-            <dt>${esc(g.term)}</dt>
+            <dt>${esc(g.term)}${g.tag ? ` <span class="eng-tag">${esc(g.tag)}</span>` : ''}</dt>
             <dd>${esc(g.desc)}</dd>
           </div>`
   )

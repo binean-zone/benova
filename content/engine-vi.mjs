@@ -29,6 +29,7 @@ export default {
 
   nav: [
     { href: '#mo-hinh', label: 'Mô hình' },
+    { href: '#hoc-viec', label: 'Học việc' },
     { href: '#quyet-dinh', label: 'Thiết kế' },
     { href: '#so-sanh', label: 'Đánh giá' },
     { href: '#phu-hop', label: 'Phù hợp' },
@@ -46,7 +47,7 @@ export default {
     {
       id: 'van-de',
       eyebrow: 'Bài toán',
-      title: 'Ba loại tác nhân, một quy trình, không cơ chế chung',
+      title: 'Một quy trình, ba loại tác nhân, ba cơ chế tách rời',
       body: [
         'Hầu hết quy trình đáng được điều phối đều mang cùng một cấu trúc: một số bước hoàn tất trong mili giây bằng phần mềm, một số bước cần con người đọc và ra quyết định, và một số bước ngày càng được giao cho mô hình. Xét duyệt bồi thường, phê duyệt tín dụng, kiểm duyệt nội dung, ứng cứu sự cố hay quy trình tuyển dụng đều thuộc dạng này, với tổng thời gian tính bằng giờ hoặc bằng tháng.',
         'Hai cách hiện thực phổ biến đều chạm giới hạn. Gọi hàm tuần tự thất bại ngay ở bước cần con người, vì một tiến trình không thể duy trì trạng thái chờ trong nhiều ngày. Ghép bằng hàng đợi tin nhắn buộc mỗi bước tự quản lý trạng thái, tự xử lý chạy lại và tự ghi nhận phần việc đã hoàn tất, khiến hình dạng của quy trình biến mất khỏi mã nguồn.',
@@ -57,7 +58,7 @@ export default {
     {
       id: 'brain',
       eyebrow: 'Kiến trúc',
-      title: 'Brain Engine: bốn vai trò tách bạch',
+      title: 'Brain Engine: sáu vai trò tách bạch',
       lead: 'Ký hiệu BE mang hai nghĩa — Binean Engine và Brain Engine — và nghĩa thứ hai mô tả đúng cách hệ thống phân vai.',
       body: [
         'Hệ thần kinh trung ương không mô tả cách bàn tay cầm nắm. Nhiệm vụ của nó là xác định vị trí hiện tại trong chuỗi hành động, quyết định bước kế tiếp, phát tín hiệu và tiếp nhận phản hồi. Engine phân vai theo đúng nguyên tắc đó.',
@@ -79,9 +80,20 @@ export default {
           term: 'Agent — cơ quan thực thi',
           desc: 'Bên thực hiện công việc: một con người, một service, hoặc một mô hình. Ở tầng điều phối, cả ba tuân theo cùng một hợp đồng.',
         },
+        {
+          term: 'Scheduler — đồng hồ sinh học',
+          tag: 'Chưa có trong V1',
+          desc: 'Nơi giữ mọi hạn đã đăng ký và đánh thức Process khi tới hạn. Không có nó, Engine chờ được nhưng không tự đi tiếp; thời gian phải do một tác nhân bên ngoài đưa vào.',
+        },
+        {
+          term: 'Timeout — phản xạ hết hạn',
+          tag: 'Chưa có trong V1',
+          desc: 'Quyết định điều gì xảy ra khi một Task quá hạn: huỷ và rẽ nhánh, hay giữ nguyên và mở một nhánh leo thang song song.',
+        },
       ],
       after: [
         'Cách phân vai này đồng thời xác định phạm vi Engine **không** đảm nhận. Cách một service truy cập cơ sở dữ liệu, cách một mô hình được gọi, hay cách một người đăng nhập vào biểu mẫu đều thuộc tầng thực thi và nằm ngoài mô hình.',
+        'Bốn vai trò đầu đã có trong đặc tả V1. Scheduler và Timeout nằm trong kiến trúc nhưng chưa được đặc tả, và đó chính là lý do Engine mất điểm ở tiêu chí quy trình dài hạn trong phần đánh giá bên dưới.',
       ],
     },
     {
@@ -113,7 +125,34 @@ export default {
       ],
       after: [
         'Việc điều phối do **Basal** đảm nhận. Đây không phải bộ định tuyến thụ động: Basal chủ động nhận một lô sự kiện, xác định bước kế tiếp cho từng Process, rồi ghi toàn bộ kết quả xuống tầng lưu trữ như một đơn vị nguyên tử. Tại mỗi thời điểm, một Process chỉ chịu thẩm quyền của một Basal.',
-        'Vì Skill được mô tả bằng schema thay vì bằng loại tác nhân, một bước có thể đổi bên thực thi mà định nghĩa quy trình giữ nguyên. Công việc hôm nay do chuyên viên xử lý thủ công, sáu tháng sau chuyển cho một mô hình, một năm sau được một service đảm nhận — cả ba giai đoạn vẫn là cùng một Task đòi hỏi cùng một Skill.',
+      ],
+    },
+    {
+      id: 'hoc-viec',
+      eyebrow: 'Nguyên lý',
+      title: 'Việc phải chảy từ người sang AI sang máy',
+      lead: 'Engine không coi ba loại tác nhân là ngang hàng. Chúng được xếp theo đúng một thứ tự về chi phí và độ trễ, và thứ tự đó quyết định nhiệm vụ của Engine.',
+      glossary: [
+        {
+          term: 'Machine Agent',
+          desc: 'Nhanh nhất và rẻ nhất. Một service trả kết quả trong mili giây, chi phí gần như chỉ còn là hạ tầng, và chạy bao nhiêu lần cũng ra cùng kết quả. Đổi lại nó chỉ làm được việc đã mô tả trọn vẹn thành quy tắc.',
+        },
+        {
+          term: 'AI Agent',
+          desc: 'Chậm hơn máy vài bậc và tính tiền theo từng lần gọi, nhưng nhận được việc chưa có quy tắc rõ ràng — phần việc trước đây bắt buộc phải có con người.',
+        },
+        {
+          term: 'Human Agent',
+          desc: 'Chậm nhất và đắt nhất, tính bằng giờ hoặc ngày, và không mở rộng theo nhu cầu. Đổi lại đây là nơi duy nhất có phán đoán cho những việc chưa ai mô tả được thành quy tắc.',
+        },
+      ],
+      after: [
+        'Thứ tự đó dẫn tới một hệ quả thẳng thắn: quy trình để việc nằm mãi ở con người là trả mức giá cao nhất, mãi mãi. Nhiệm vụ của Engine vì vậy không dừng ở việc điều phối ba loại tác nhân cho trơn tru, mà là **đẩy từng phần việc xuống bậc rẻ hơn khi nó đã đủ chín**.',
+        'Cơ chế là quan hệ thầy trò. Trong lúc một con người còn đảm nhận một Skill, mỗi lần thực thi đã tự sinh ra một cặp đầu vào – đầu ra sạch: `Task.input` được kiểm tra theo schema và materialize đúng một lần, kết quả trả về qua một Outcome độc lập. Không cần gắn thêm công cụ thu thập nào — dữ liệu huấn luyện cho người kế nhiệm chính là lịch sử thi hành của người đương nhiệm.',
+        'Và vì Skill được mô tả bằng schema chứ không bằng loại tác nhân, việc chuyển giao không đụng tới định nghĩa quy trình. Một Step hôm nay trỏ tới một chuyên viên, sáu tháng sau trỏ tới một mô hình, một năm sau trỏ tới một service — cả ba lần vẫn là cùng một Task đòi hỏi cùng một Skill. Đây là chỗ quyết định "một khái niệm Agent" trả lãi.',
+        '**Meta Agent** đi thêm một bậc. Đó là tác nhân không thực hiện bước nào trong quy trình, mà chỉnh chính quy trình: tinh chỉnh schema và prompt của một Step theo kết quả quan sát được, và đề xuất sửa Flow khi dữ liệu cho thấy một nhánh không còn đúng. Nói cách khác, nó là tác nhân duy nhất có Skill là sửa Skill của tác nhân khác.',
+        'Thứ khiến điều đó chấp nhận được trong một quy trình bị kiểm toán là quyết định về phiên bản. Meta Agent sửa Flow không ghi đè lên bản đang chạy: nó sinh ra một phiên bản Flow mới, còn mọi Process đã khởi chạy vẫn gắn cố định vào phiên bản cũ. Hồ sơ đã xử lý không bao giờ bị đổi cách xử lý về sau vì một lần hệ thống tự chỉnh. Thiếu ràng buộc đó thì việc cho hệ thống tự sửa quy trình là thứ không trình bày được với bộ phận tuân thủ.',
+        'Cần nói rõ trạng thái: cơ chế thầy trò và Meta Agent nằm trong thiết kế, chưa nằm trong V1. Đặc tả V1 mới dừng ở chỗ khiến chúng khả thi — một khái niệm Agent duy nhất, Skill mô tả bằng schema, và định danh phiên bản Flow bất biến.',
       ],
     },
     {
@@ -280,7 +319,7 @@ export default {
     ],
     method: {
       title: 'Về cách chấm điểm',
-      body: 'Thang điểm do Binean tự chấm, dựa trên tài liệu công khai của từng sản phẩm và giả định sáu tiêu chí có trọng số bằng nhau — một giả định không đúng với bất kỳ tổ chức cụ thể nào. Trọng số khác sẽ cho thứ hạng khác. Airflow, Dagster và Prefect không có trong bảng vì chúng giải bài toán khác: điều phối pipeline dữ liệu theo lịch. Đưa chúng vào cùng thang điểm sẽ cho kết luận sai cho cả hai phía.',
+      body: 'Thang điểm do Binean tự chấm, dựa trên tài liệu công khai của từng sản phẩm và giả định sáu tiêu chí có trọng số bằng nhau — một giả định không đúng với bất kỳ tổ chức cụ thể nào. Trọng số khác sẽ cho thứ hạng khác. Bảng cũng cố ý không chấm chiều học việc và Meta Agent nêu ở trên: phần lớn sản phẩm trong bảng không đặt vấn đề đó, và chấm điểm một hạng mục chỉ có một thí sinh thì không nói lên điều gì. Airflow, Dagster và Prefect không có trong bảng vì chúng giải bài toán khác: điều phối pipeline dữ liệu theo lịch. Đưa chúng vào cùng thang điểm sẽ cho kết luận sai cho cả hai phía.',
     },
   },
 

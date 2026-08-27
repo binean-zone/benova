@@ -30,6 +30,7 @@ export default {
 
   nav: [
     { href: '#model', label: 'Model' },
+    { href: '#apprenticeship', label: 'Learning' },
     { href: '#decisions', label: 'Design' },
     { href: '#comparison', label: 'Evaluation' },
     { href: '#fit', label: 'Fit' },
@@ -47,7 +48,7 @@ export default {
     {
       id: 'problem',
       eyebrow: 'The problem',
-      title: 'Three kinds of executor, one process, no shared mechanism',
+      title: 'One process, three kinds of executor, three separate mechanisms',
       body: [
         'Most processes worth orchestrating share one structure: some steps software completes in milliseconds, some steps a person must read and decide on, and a growing share handed to a model. Claims assessment, credit approval, content moderation, incident response and hiring all take this form, with elapsed times measured in hours or months.',
         'Two common implementations run into the same wall. A sequence of function calls fails at the first human step, because a process cannot hold a waiting state for days. Message queues push state, retries and completion records into every individual step, and the shape of the process disappears from the source code.',
@@ -58,7 +59,7 @@ export default {
     {
       id: 'brain',
       eyebrow: 'Architecture',
-      title: 'Brain Engine: four separated roles',
+      title: 'Brain Engine: six separated roles',
       lead: 'The abbreviation BE carries two readings — Binean Engine and Brain Engine — and the second describes how responsibility is divided.',
       body: [
         'A central nervous system does not describe how the hand grips. Its task is to establish where it stands in a chain of action, decide the next step, emit the signal and take in the response. Engine divides responsibility on the same principle.',
@@ -80,9 +81,20 @@ export default {
           term: 'Agent — the executing organ',
           desc: 'Whoever performs the work: a person, a service, or a model. At the orchestration layer all three follow one contract.',
         },
+        {
+          term: 'Scheduler — the body clock',
+          tag: 'Not in V1',
+          desc: 'Holds every registered deadline and wakes a Process when one falls due. Without it Engine can wait but cannot move on by itself; time has to be fed in by an external actor.',
+        },
+        {
+          term: 'Timeout — the deadline reflex',
+          tag: 'Not in V1',
+          desc: 'Decides what happens when a Task runs past its deadline: cancel it and take another edge, or leave it running and open a parallel escalation branch.',
+        },
       ],
       after: [
         'This division also fixes what Engine does **not** cover. How a service reaches a database, how a model is invoked, and how a person signs into a form all belong to the execution layer and sit outside the model.',
+        'The first four roles are in the V1 specification. Scheduler and Timeout belong to the architecture but are not yet specified, and that is exactly why Engine loses a point on long-running processes in the evaluation below.',
       ],
     },
     {
@@ -114,7 +126,34 @@ export default {
       ],
       after: [
         'Orchestration is the responsibility of **Basal**. It is not a passive router: Basal actively claims a batch of events, determines the next step for each Process, then writes the entire result to the storage layer as one atomic unit. At any moment a Process is under the authority of exactly one Basal.',
-        'Because a Skill is described by schema rather than by kind of executor, a step can change hands without the process definition changing. Work handled manually by a specialist today, passed to a model six months later and absorbed by a service a year after that remains the same Task requiring the same Skill throughout.',
+      ],
+    },
+    {
+      id: 'apprenticeship',
+      eyebrow: 'Principle',
+      title: 'Work should flow from people to AI to machines',
+      lead: 'Engine does not treat the three kinds of executor as equals. They are ranked by cost and latency, and that ranking sets what Engine is for.',
+      glossary: [
+        {
+          term: 'Machine Agent',
+          desc: 'Fastest and cheapest. A service answers in milliseconds, the cost is close to infrastructure alone, and repeated runs give the same result. In exchange it only handles work already described completely as rules.',
+        },
+        {
+          term: 'AI Agent',
+          desc: 'Orders of magnitude slower than a machine and billed per call, but it takes on work with no clear rules yet — the work that previously required a person.',
+        },
+        {
+          term: 'Human Agent',
+          desc: 'Slowest and most expensive, measured in hours or days, and it does not scale on demand. In exchange it is the only place with judgement for work nobody has managed to write down as rules.',
+        },
+      ],
+      after: [
+        'That ranking has a blunt consequence: a process that leaves work with people forever pays the highest price forever. Engine\u2019s job is therefore not only to orchestrate three kinds of executor smoothly, but to **push each piece of work down to a cheaper tier once it is ready**.',
+        'The mechanism is apprenticeship. While a person still holds a Skill, every execution already produces a clean input\u2013output pair: `Task.input` is schema-validated and materialized exactly once, and the result returns through an independent Outcome. No extra collection tooling is needed \u2014 the training data for the successor is the incumbent\u2019s own execution history.',
+        'And because a Skill is described by schema rather than by kind of executor, the handover never touches the process definition. A Step that points at a specialist today points at a model six months later and at a service a year after that \u2014 all three times it is the same Task requiring the same Skill. This is where the one-Agent-concept decision pays off.',
+        '**Meta Agent** goes one level further. It is an executor that performs no step in the process but adjusts the process itself: tuning a Step\u2019s schema and prompt against observed results, and proposing Flow changes when the data shows a branch no longer holds. It is the one executor whose Skill is changing another executor\u2019s Skill.',
+        'What makes that acceptable inside an audited process is the versioning decision. A Meta Agent editing a Flow does not overwrite the running definition: it produces a new Flow version, while every Process already started stays pinned to the old one. A case already handled is never retroactively handled differently because the system tuned itself. Without that constraint, letting a system rewrite its own process is not something you can put in front of a compliance function.',
+        'To be clear about status: apprenticeship and Meta Agent are in the design, not in V1. The V1 specification goes only as far as making them possible \u2014 a single Agent concept, Skills described by schema, and immutable Flow version identity.',
       ],
     },
     {
@@ -281,7 +320,7 @@ export default {
     ],
     method: {
       title: 'On the scoring',
-      body: 'The scores are Binean’s own, based on each product’s public documentation, and assume the six criteria carry equal weight — an assumption that holds for no real organisation. Different weights produce a different ranking. Airflow, Dagster and Prefect are absent because they solve a different problem: scheduled data pipeline orchestration. Scoring them on this scale would mislead in both directions.',
+      body: 'The scores are Binean’s own, based on each product’s public documentation, and assume the six criteria carry equal weight — an assumption that holds for no real organisation. Different weights produce a different ranking. The table also deliberately leaves out the apprenticeship and Meta Agent dimension described above: most products here do not attempt it, and scoring a category with only one entrant says nothing. Airflow, Dagster and Prefect are absent because they solve a different problem: scheduled data pipeline orchestration. Scoring them on this scale would mislead in both directions.',
     },
   },
 

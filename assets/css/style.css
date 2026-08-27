@@ -1888,6 +1888,17 @@ ol {
   line-height: 1.75;
 }
 
+.eng-para code {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
 .eng-para strong {
   color: var(--text-strong);
 }
@@ -1915,6 +1926,23 @@ ol {
   font-weight: 800;
   color: var(--accent);
   font-size: 0.98rem;
+}
+
+/* Nhãn trạng thái cạnh một khái niệm: có trong kiến trúc, chưa có trong V1.
+   Cần thiết vì sơ đồ Engine ở trang chủ vẽ cả những phần chưa dựng. */
+.eng-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--amber);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+  white-space: nowrap;
 }
 
 .eng-glossary dd {
