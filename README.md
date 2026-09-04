@@ -26,7 +26,7 @@ npm run dev          # http://localhost:4173, tự build lại mỗi lần tải
 Chỉ build mà không chạy server:
 
 ```bash
-npm run build        # kiểm tra song ngữ rồi sinh index.html, en/index.html, 404.html, sitemap.xml
+npm run build        # kiểm tra song ngữ rồi sinh index.html, en/index.html, echelon/index.html, sitemap.xml
 npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
 npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
 ```
@@ -72,16 +72,16 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 /
 ├── index.html              # trang chủ tiếng Việt (sinh ra, đừng sửa tay)
 ├── en/index.html           # trang chủ tiếng Anh (sinh ra)
-├── engine/index.html       # trang Binean Engine, tiếng Việt (sinh ra)
-├── en/engine/index.html    # trang Binean Engine, tiếng Anh (sinh ra)
+├── echelon/index.html      # trang Binean Echelon, tiếng Việt (sinh ra)
+├── en/echelon/index.html   # trang Binean Echelon, tiếng Anh (sinh ra)
 ├── 404.html                # trang lỗi song ngữ (sinh ra)
 ├── sitemap.xml             # sinh cùng lúc, có hreflang cho cả hai bản
 ├── content/
 │   ├── shared.mjs          # thương hiệu, email, URL, màu hành tinh
 │   ├── vi.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Việt
 │   ├── en.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Anh
-│   ├── engine-vi.mjs       # NGUỒN NỘI DUNG trang Engine, tiếng Việt
-│   └── engine-en.mjs       # NGUỒN NỘI DUNG trang Engine, tiếng Anh
+│   ├── echelon-vi.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Việt
+│   └── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
 ├── scripts/
 │   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
 │   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau

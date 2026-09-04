@@ -1,7 +1,7 @@
 /**
- * Binean Engine page — English.
+ * Binean Echelon page — English.
  *
- * Engine is a multi-agent orchestration engine, NOT written for any one
+ * Echelon is a multi-agent orchestration engine, NOT written for any one
  * industry, and this page has to stand on its own without BENOVA framing it.
  * BENOVA appears exactly twice, as the first deployment.
  *
@@ -13,18 +13,18 @@
  */
 export default {
   seo: {
-    title: 'Binean Engine — Orchestration for humans, machines and AI | Binean',
+    title: 'Binean Echelon — Orchestration for humans, machines and AI | Binean',
     description:
-      'Binean Engine (BE) is a multi-agent orchestration engine: people, services and AI agents share one Agent concept. The architecture, the design decisions and what each one costs, and a scored evaluation placing Engine alongside Temporal, Camunda, Conductor, Step Functions and the AI agent frameworks.',
+      'Binean Echelon (BE) is a multi-agent orchestration engine: people, services and AI agents share one Agent concept. The architecture, the design decisions and what each one costs, and a scored evaluation placing Echelon alongside Temporal, Camunda, Conductor, Step Functions and the AI agent frameworks.',
     keywords:
-      'Binean Engine, brain engine, multi-agent orchestration, workflow orchestration, human in the loop, AI agent orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, LangGraph, event-driven, Spine',
+      'Binean Echelon, multi-agent orchestration, workflow orchestration, human in the loop, AI agent orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, LangGraph, event-driven, Spine',
   },
 
   brandName: 'Binean',
   headerCta: 'Contact',
 
   notice: {
-    text: 'Binean Engine is at the specification and prototype stage, and is not ready for operational use.',
+    text: 'Binean Echelon is at the specification and prototype stage, and is not ready for operational use.',
     linkLabel: 'Contact by email',
   },
 
@@ -39,9 +39,9 @@ export default {
 
   hero: {
     back: 'Home',
-    eyebrow: 'Binean Engine',
+    eyebrow: 'Binean Echelon',
     title: 'One model for orchestrating humans, machines and AI',
-    lead: 'Binean Engine is a multi-agent orchestration engine. A person, a service and an AI agent are described by the same concept, receive work through the same mechanism, and report results under the same contract. This page sets out the model, the design decisions and what each one costs, and a scored evaluation placing Engine alongside the orchestration engines available today.',
+    lead: 'Binean Echelon is a multi-agent orchestration engine. A person, a service and an AI agent are described by the same concept, receive work through the same mechanism, and report results under the same contract. This page sets out the model, the design decisions and what each one costs, and a scored evaluation placing Echelon alongside the orchestration engines available today.',
   },
 
   sections: [
@@ -53,16 +53,16 @@ export default {
         'Most processes worth orchestrating share one structure: some steps software completes in milliseconds, some steps a person must read and decide on, and a growing share handed to a model. Claims assessment, credit approval, content moderation, incident response and hiring all take this form, with elapsed times measured in hours or months.',
         'Two common implementations run into the same wall. A sequence of function calls fails at the first human step, because a process cannot hold a waiting state for days. Message queues push state, retries and completion records into every individual step, and the shape of the process disappears from the source code.',
         'Orchestration engines exist to close that gap. What separates them is how they model the world. Most split it into several kinds of step — a service step, a step assigned to a person, and more recently a step that calls an agent — each with its own lifecycle, its own way of being handed work and its own way of reporting back. The cost of integrating those kinds compounds over time and often becomes the most complex part of the system.',
-        'Binean Engine takes the opposite assumption. The work to be handed out, the capability required to perform it, and the result returned share one structure regardless of who performs it. What differs is latency and calling protocol, and both belong to the execution layer rather than to the process model.',
+        'Binean Echelon takes the opposite assumption. The work to be handed out, the capability required to perform it, and the result returned share one structure regardless of who performs it. What differs is latency and calling protocol, and both belong to the execution layer rather than to the process model.',
       ],
     },
     {
       id: 'brain',
       eyebrow: 'Architecture',
-      title: 'Brain Engine: six separated roles',
-      lead: 'The abbreviation BE carries two readings — Binean Engine and Brain Engine — and the second describes how responsibility is divided.',
+      title: 'Six separated roles',
+      lead: 'BE is the abbreviation for Binean Echelon; what follows describes how the system divides responsibility, modeled on a nervous system.',
       body: [
-        'A central nervous system does not describe how the hand grips. Its task is to establish where it stands in a chain of action, decide the next step, emit the signal and take in the response. Engine divides responsibility on the same principle.',
+        'A central nervous system does not describe how the hand grips. Its task is to establish where it stands in a chain of action, decide the next step, emit the signal and take in the response. Echelon divides responsibility on the same principle.',
       ],
       glossary: [
         {
@@ -71,7 +71,7 @@ export default {
         },
         {
           term: 'Spine — the spinal cord',
-          desc: 'The event-driven conduction model: work is emitted, outcomes are collected, ordering is preserved. This is the most tightly specified part of Engine and its core.',
+          desc: 'The event-driven conduction model: work is emitted, outcomes are collected, ordering is preserved. This is the most tightly specified part of Echelon and its core.',
         },
         {
           term: 'Reflex',
@@ -84,7 +84,7 @@ export default {
         {
           term: 'Scheduler — the body clock',
           tag: 'Not in V1',
-          desc: 'Holds every registered deadline and wakes a Process when one falls due. Without it Engine can wait but cannot move on by itself; time has to be fed in by an external actor.',
+          desc: 'Holds every registered deadline and wakes a Process when one falls due. Without it Echelon can wait but cannot move on by itself; time has to be fed in by an external actor.',
         },
         {
           term: 'Timeout — the deadline reflex',
@@ -93,15 +93,15 @@ export default {
         },
       ],
       after: [
-        'This division also fixes what Engine does **not** cover. How a service reaches a database, how a model is invoked, and how a person signs into a form all belong to the execution layer and sit outside the model.',
-        'The first four roles are in the V1 specification. Scheduler and Timeout belong to the architecture but are not yet specified, and that is exactly why Engine loses a point on long-running processes in the evaluation below.',
+        'This division also fixes what Echelon does **not** cover. How a service reaches a database, how a model is invoked, and how a person signs into a form all belong to the execution layer and sit outside the model.',
+        'The first four roles are in the V1 specification. Scheduler and Timeout belong to the architecture but are not yet specified, and that is exactly why Echelon loses a point on long-running processes in the evaluation below.',
       ],
     },
     {
       id: 'model',
       eyebrow: 'The model',
       title: 'Five nouns and a single authority',
-      lead: 'Engine keeps the concept count to a minimum. The whole model reduces to five nouns.',
+      lead: 'Echelon keeps the concept count to a minimum. The whole model reduces to five nouns.',
       glossary: [
         {
           term: 'Flow',
@@ -121,7 +121,7 @@ export default {
         },
         {
           term: 'Agent',
-          desc: 'Whoever executes a Task. Engine defines exactly one Agent concept and does not classify it; this is a design decision, covered below.',
+          desc: 'Whoever executes a Task. Echelon defines exactly one Agent concept and does not classify it; this is a design decision, covered below.',
         },
       ],
       after: [
@@ -132,7 +132,7 @@ export default {
       id: 'apprenticeship',
       eyebrow: 'Principle',
       title: 'Work should flow from people to AI to machines',
-      lead: 'Engine does not treat the three kinds of executor as equals. They are ranked by cost and latency, and that ranking sets what Engine is for.',
+      lead: 'Echelon does not treat the three kinds of executor as equals. They are ranked by cost and latency, and that ranking sets what Echelon is for.',
       glossary: [
         {
           term: 'Machine Agent',
@@ -148,7 +148,7 @@ export default {
         },
       ],
       after: [
-        'That ranking has a blunt consequence: a process that leaves work with people forever pays the highest price forever. Engine\u2019s job is therefore not only to orchestrate three kinds of executor smoothly, but to **push each piece of work down to a cheaper tier once it is ready**.',
+        'That ranking has a blunt consequence: a process that leaves work with people forever pays the highest price forever. Echelon\u2019s job is therefore not only to orchestrate three kinds of executor smoothly, but to **push each piece of work down to a cheaper tier once it is ready**.',
         'The mechanism is apprenticeship. While a person still holds a Skill, every execution already produces a clean input\u2013output pair: `Task.input` is schema-validated and materialized exactly once, and the result returns through an independent Outcome. No extra collection tooling is needed \u2014 the training data for the successor is the incumbent\u2019s own execution history.',
         'And because a Skill is described by schema rather than by kind of executor, the handover never touches the process definition. A Step that points at a specialist today points at a model six months later and at a service a year after that \u2014 all three times it is the same Task requiring the same Skill. This is where the one-Agent-concept decision pays off.',
         '**Meta Agent** goes one level further. It is an executor that performs no step in the process but adjusts the process itself: tuning a Step\u2019s schema and prompt against observed results, and proposing Flow changes when the data shows a branch no longer holds. It is the one executor whose Skill is changing another executor\u2019s Skill.',
@@ -159,7 +159,7 @@ export default {
     {
       id: 'decisions',
       eyebrow: 'Design decisions',
-      title: 'Four points where Engine departs from the field',
+      title: 'Four points where Echelon departs from the field',
       lead: 'The four decisions below shape the whole model. Each carries a cost, stated directly underneath it.',
       decisions: [
         {
@@ -169,7 +169,7 @@ export default {
         },
         {
           title: 'One Agent concept, with no classification of human, machine or AI',
-          desc: 'Engine does not define "user task", "service task" and "agent step" as three separate kinds. There is a Task and a reference to an Agent. People, services and models are all agents; resolving that reference into concrete execution capacity belongs to the runtime layer. This is the largest departure from the market and the easiest point to object to.',
+          desc: 'Echelon does not define "user task", "service task" and "agent step" as three separate kinds. There is a Task and a reference to an Agent. People, services and models are all agents; resolving that reference into concrete execution capacity belongs to the runtime layer. This is the largest departure from the market and the easiest point to object to.',
           cost: 'Cost: everything that normally accompanies a "human task" concept elsewhere — forms, work queues, permissions, delegation — is absent and has to be built a layer up.',
         },
         {
@@ -187,9 +187,9 @@ export default {
     {
       id: 'applications',
       eyebrow: 'Application scope',
-      title: 'The problems Engine targets',
+      title: 'The problems Echelon targets',
       body: [
-        'Engine is not tied to a particular line of business. Fit is determined by the structure of the problem rather than the sector: processes that run long, involve several kinds of executor, and must leave an auditable record throughout.',
+        'Echelon is not tied to a particular line of business. Fit is determined by the structure of the problem rather than the sector: processes that run long, involve several kinds of executor, and must leave an auditable record throughout.',
       ],
       glossary: [
         {
@@ -218,12 +218,12 @@ export default {
   comparison: {
     id: 'comparison',
     eyebrow: 'Evaluation',
-    title: 'Engine against the market, scored on six criteria',
+    title: 'Echelon against the market, scored on six criteria',
     lead: 'The six criteria below follow from the class of problem just described and are scored on a 0–5 scale. The first four concern the model; the last two concern product maturity.',
     max: 5,
-    chartTitle: 'Engine, Temporal and Camunda 8 across six criteria',
+    chartTitle: 'Echelon, Temporal and Camunda 8 across six criteria',
     chartCaption:
-      'Only three products are plotted so the figure stays readable; all six appear in the score table below. The dashed outline is Engine, marking scores that reflect the specified design rather than measurements from a production system.',
+      'Only three products are plotted so the figure stays readable; all six appear in the score table below. The dashed outline is Echelon, marking scores that reflect the specified design rather than measurements from a production system.',
     provisionalLabel: 'scored on design',
     axes: [
       {
@@ -265,12 +265,12 @@ export default {
     ],
     products: [
       {
-        name: 'Binean Engine',
+        name: 'Binean Echelon',
         kind: 'Multi-agent orchestration',
         scores: [5, 3, 5, 5, 1, 1],
         plot: true,
         provisional: true,
-        note: 'The first four criteria are why Engine exists; the last two are the gap still to be closed. It loses a point on long-running processes for having no timer: Engine can wait, but cannot yet act when a deadline passes.',
+        note: 'The first four criteria are why Echelon exists; the last two are the gap still to be closed. It loses a point on long-running processes for having no timer: Echelon can wait, but cannot yet act when a deadline passes.',
       },
       {
         name: 'Temporal',
@@ -315,8 +315,8 @@ export default {
       caption: 'Per-criterion scores on a 0–5 scale, with subtotals for the two groups.',
     },
     verdict: [
-      'On a plain sum, Camunda 8 leads and Engine places fourth of six. That number describes the position accurately: Engine scores 18 out of 20 on the model criteria and 2 out of 10 on the operational ones.',
-      'How the table is read matters more than the ranking. For an organisation that has to deploy this quarter, the two operational criteria are decisive, and the reasonable choice sits among the mature products. Engine is worth considering only where the first four criteria are non-negotiable constraints and the organisation is willing to engage from the design stage.',
+      'On a plain sum, Camunda 8 leads and Echelon places fourth of six. That number describes the position accurately: Echelon scores 18 out of 20 on the model criteria and 2 out of 10 on the operational ones.',
+      'How the table is read matters more than the ranking. For an organisation that has to deploy this quarter, the two operational criteria are decisive, and the reasonable choice sits among the mature products. Echelon is worth considering only where the first four criteria are non-negotiable constraints and the organisation is willing to engage from the design stage.',
     ],
     method: {
       title: 'On the scoring',
@@ -329,7 +329,7 @@ export default {
     eyebrow: 'Conditions of use',
     title: 'When it fits, and when it does not',
     good: {
-      title: 'Engine is worth considering when',
+      title: 'Echelon is worth considering when',
       items: [
         'Processes mix people, machines and AI, and those three should not be three separate mechanisms.',
         'Processes run from hours to months, with waiting periods, approvals and work that has to be retried.',
@@ -339,11 +339,11 @@ export default {
       ],
     },
     bad: {
-      title: 'Engine does not fit when',
+      title: 'Echelon does not fit when',
       items: [
-        'Production deployment is required this quarter. Engine is not ready for that.',
+        'Production deployment is required this quarter. Echelon is not ready for that.',
         'The process is machine calling machine and finishes in seconds. A queue or a direct call suffices; an engine only adds a layer.',
-        'Forms, work queues and an admin interface are needed immediately. Camunda provides them; Engine does not.',
+        'Forms, work queues and an admin interface are needed immediately. Camunda provides them; Echelon does not.',
         'The team builds in Java, Go or Python and needs an SDK for it. There is one implementation today, in Rust.',
         'A community, a plugin ecosystem, or a vendor with an out-of-hours support commitment is required.',
       ],
@@ -356,7 +356,7 @@ export default {
     title: 'Current level of completeness',
     body: [
       'Spine’s V1 specification has settled most of the core semantics, and a Rust implementation runs end to end with a passing test suite. V1 is nonetheless **not yet implementation-ready**: parts of the specification are still being corrected as implementation continues to surface contradictions.',
-      'In short, Engine at this point is a carefully considered design plus a working skeleton that tests it, not a product ready for operation. This is also why the two operational criteria in the evaluation score 1 out of 5.',
+      'In short, Echelon at this point is a carefully considered design plus a working skeleton that tests it, not a product ready for operation. This is also why the two operational criteria in the evaluation score 1 out of 5.',
       'For organisations running processes of the class described above, the most valuable conversation at this stage is about the design: where the model is wrong, and which real situations it has not accounted for.',
     ],
   },
@@ -365,7 +365,7 @@ export default {
     title: 'A conversation about the design',
     lead: 'We want to hear from people who run processes of this class directly, particularly about the points where the model is expected not to hold.',
     label: 'Book a 30-minute conversation',
-    subject: 'Binean Engine - Design conversation',
+    subject: 'Binean Echelon - Design conversation',
     back: 'See BENOVA — the first deployment',
   },
 };

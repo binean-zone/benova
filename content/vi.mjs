@@ -5,10 +5,10 @@
  * ngữ nằm ở shared.mjs. Sửa xong chạy `npm run build`.
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
-import enginePage from './engine-vi.mjs';
+import echelonPage from './echelon-vi.mjs';
 
 export default {
-  enginePage,
+  echelonPage,
 
   locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
 
@@ -26,7 +26,7 @@ export default {
     openMenu: 'Mở menu',
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
-    engineMore: 'Tìm hiểu Engine',
+    echelonMore: 'Tìm hiểu Echelon',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
     companyLine: 'Một sản phẩm của',
@@ -66,7 +66,7 @@ export default {
     // B ở tâm hệ mặt trời là chữ đầu của Binean, tên công ty.
     core: { key: 'B' },
     satellites: [
-      { key: 'E', name: 'Engine', desc: 'Framework điều phối' },
+      { key: 'E', name: 'Echelon', desc: 'Framework điều phối' },
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host' },
       { key: 'V', name: 'Vista', desc: 'Flow & Task Management' },
@@ -108,14 +108,14 @@ export default {
     id: 'kien-truc',
     eyebrow: 'Hệ sinh thái lõi',
     title: 'Năm thành tố, một nền tảng',
-    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Engine điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và AI Agent tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
-    engine: {
+    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Echelon điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và AI Agent tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
+    echelon: {
       key: 'E',
-      name: 'Engine',
+      name: 'Echelon',
       role: 'Framework điều phối',
       status: 'Đang phát triển',
       icon: '🧠',
-      desc: 'Engine điều phối đa tác nhân, không viết riêng cho bảo hiểm — BENOVA là ứng dụng đầu tiên của nó. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Engine cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
+      desc: 'Echelon điều phối đa tác nhân, không viết riêng cho bảo hiểm — BENOVA là ứng dụng đầu tiên của nó. Nhân điều phối là Spine: Flow định nghĩa quy trình, mỗi lần chạy là một Process, và Process sinh ra Task để giao cho Agent thực thi. Echelon cố tình không phân loại Agent — cùng một điểm nối có thể là con người, một service, hay một AI Agent.',
       diagram: {
         alt: '',
         caption: '',
@@ -128,7 +128,7 @@ export default {
           key: 'Spine',
           icon: '🦴',
           title: 'Spine — Model điều phối',
-          desc: 'Model workflow event-driven bên trong Engine. Flow là định nghĩa quy trình bất biến và có version, Process là một lần chạy, Task là một đơn vị công việc. Đặc tả được viết trước, còn implementation và conformance test tồn tại để chứng minh đặc tả đúng.',
+          desc: 'Model workflow event-driven bên trong Echelon. Flow là định nghĩa quy trình bất biến và có version, Process là một lần chạy, Task là một đơn vị công việc. Đặc tả được viết trước, còn implementation và conformance test tồn tại để chứng minh đặc tả đúng.',
         },
         {
           key: 'Basal',
@@ -146,7 +146,7 @@ export default {
           key: 'Scheduler',
           icon: '⏱️',
           title: 'Scheduler & Timeout',
-          desc: 'Project riêng bên trong Engine, đang phát triển, lo lịch trình và giám sát timeout. Mục tiêu: không Task nào bị treo im lặng — quá hạn là có sự kiện, có đền bù, có cảnh báo.',
+          desc: 'Project riêng bên trong Echelon, đang phát triển, lo lịch trình và giám sát timeout. Mục tiêu: không Task nào bị treo im lặng — quá hạn là có sự kiện, có đền bù, có cảnh báo.',
         },
       ],
     },
@@ -293,7 +293,7 @@ export default {
   cta: {
     id: 'lien-he',
     title: 'Nexus dùng được hôm nay. Phần còn lại đang xây.',
-    lead: 'Nếu bạn đang vận hành Ingenium, hãy bắt đầu từ Nexus — nó đã chạy trên hệ thật. Còn Engine, Orbit, Vista và AI Agent thì chúng tôi muốn xây cùng người thật sự vận hành core, thay vì ngồi đoán.',
+    lead: 'Nếu bạn đang vận hành Ingenium, hãy bắt đầu từ Nexus — nó đã chạy trên hệ thật. Còn Echelon, Orbit, Vista và AI Agent thì chúng tôi muốn xây cùng người thật sự vận hành core, thay vì ngồi đoán.',
     primary: {
       label: 'Trao đổi 30 phút',
       href: `${mail}?subject=${encodeURIComponent('BENOVA - Trao doi 30 phut')}`,
@@ -317,7 +317,7 @@ export default {
       {
         title: 'Sản phẩm',
         links: [
-          { label: 'Engine', href: '#kien-truc' },
+          { label: 'Echelon', href: '#kien-truc' },
           { label: 'Nexus', href: '#kien-truc' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },

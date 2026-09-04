@@ -5,10 +5,10 @@
  * lives in shared.mjs. Edit, then run `npm run build`.
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
-import enginePage from './engine-en.mjs';
+import echelonPage from './echelon-en.mjs';
 
 export default {
-  enginePage,
+  echelonPage,
 
   locale: { code: 'en', label: 'English', short: 'EN', path: 'en/' },
 
@@ -26,7 +26,7 @@ export default {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
-    engineMore: 'Read about Engine',
+    echelonMore: 'Read about Echelon',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
     companyLine: 'A product of',
@@ -66,7 +66,7 @@ export default {
     // The B at the centre of the solar system is the initial of Binean, the company.
     core: { key: 'B' },
     satellites: [
-      { key: 'E', name: 'Engine', desc: 'Orchestration framework' },
+      { key: 'E', name: 'Echelon', desc: 'Orchestration framework' },
       { key: 'N', name: 'Nexus', desc: 'DevOps for Ingenium' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid service host' },
       { key: 'V', name: 'Vista', desc: 'Flow & task management' },
@@ -109,14 +109,14 @@ export default {
     id: 'ecosystem',
     eyebrow: 'Core ecosystem',
     title: 'Five elements, one platform',
-    lead: 'BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Engine orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and AI Agent accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.',
-    engine: {
+    lead: 'BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Echelon orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and AI Agent accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.',
+    echelon: {
       key: 'E',
-      name: 'Engine',
+      name: 'Echelon',
       role: 'Orchestration framework',
       status: 'In development',
       icon: '🧠',
-      desc: 'A multi-agent orchestration engine, not written for insurance — BENOVA is its first application. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Engine deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.',
+      desc: 'A multi-agent orchestration engine, not written for insurance — BENOVA is its first application. Its core is Spine: a Flow defines the process, each run is a Process, and a Process produces Tasks handed to an Agent. Echelon deliberately does not classify Agents — the same slot can be a person, a service, or an AI Agent.',
       diagram: {
         alt: '',
         caption: '',
@@ -129,7 +129,7 @@ export default {
           key: 'Spine',
           icon: '🦴',
           title: 'Spine — the orchestration model',
-          desc: 'The event-driven workflow model inside Engine. A Flow is an immutable, versioned process definition, a Process is one run, a Task is one unit of work. The specification is written first; the implementation and conformance tests exist to prove the specification correct.',
+          desc: 'The event-driven workflow model inside Echelon. A Flow is an immutable, versioned process definition, a Process is one run, a Task is one unit of work. The specification is written first; the implementation and conformance tests exist to prove the specification correct.',
         },
         {
           key: 'Basal',
@@ -147,7 +147,7 @@ export default {
           key: 'Scheduler',
           icon: '⏱️',
           title: 'Scheduler & Timeout',
-          desc: 'A separate project inside Engine, in development, covering scheduling and timeout supervision. The goal: no Task ever hangs silently — an overdue Task raises an event, a compensation and an alert.',
+          desc: 'A separate project inside Echelon, in development, covering scheduling and timeout supervision. The goal: no Task ever hangs silently — an overdue Task raises an event, a compensation and an alert.',
         },
       ],
     },
@@ -293,7 +293,7 @@ export default {
   cta: {
     id: 'contact',
     title: 'Nexus works today. The rest is being built.',
-    lead: 'If you run Ingenium, start with Nexus — it already runs on a live system. For Engine, Orbit, Vista and the AI Agent, we would rather build alongside someone who actually operates a core than guess at it.',
+    lead: 'If you run Ingenium, start with Nexus — it already runs on a live system. For Echelon, Orbit, Vista and the AI Agent, we would rather build alongside someone who actually operates a core than guess at it.',
     primary: {
       label: 'Book a 30-minute call',
       href: `${mail}?subject=${encodeURIComponent('BENOVA - 30 minute call')}`,
@@ -317,7 +317,7 @@ export default {
       {
         title: 'Product',
         links: [
-          { label: 'Engine', href: '#ecosystem' },
+          { label: 'Echelon', href: '#ecosystem' },
           { label: 'Nexus', href: '#ecosystem' },
           { label: 'Orbit', href: '#ecosystem' },
           { label: 'Vista', href: '#ecosystem' },

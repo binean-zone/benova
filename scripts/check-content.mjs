@@ -85,18 +85,18 @@ const collectAnchors = (value, path, out) => {
 };
 
 /* Mỗi trang có không gian id riêng, nên anchor phải được kiểm theo đúng trang
-   chứa nó: trang chủ và trang Engine đều có section mang id "van-de". */
+   chứa nó: trang chủ và trang Echelon đều có section mang id "van-de". */
 const pageIds = {
   home: (c) =>
     ['problem', 'ecosystem', 'strategy', 'benefits', 'cta']
       .map((section) => c[section]?.id)
       .filter(Boolean),
-  engine: (c) =>
+  echelon: (c) =>
     [
-      ...(c.enginePage?.sections || []).map((s) => s.id),
-      c.enginePage?.comparison?.id,
-      c.enginePage?.fit?.id,
-      c.enginePage?.status?.id,
+      ...(c.echelonPage?.sections || []).map((s) => s.id),
+      c.echelonPage?.comparison?.id,
+      c.echelonPage?.fit?.id,
+      c.echelonPage?.status?.id,
     ].filter(Boolean),
 };
 
@@ -104,11 +104,11 @@ for (const [code, content] of [
   ['vi', vi],
   ['en', en],
 ]) {
-  const { enginePage, ...home } = content;
+  const { echelonPage, ...home } = content;
 
   for (const [page, tree, requireUsed] of [
     ['home', home, true],
-    ['engine', { enginePage }, false],
+    ['echelon', { echelonPage }, false],
   ]) {
     const ids = new Set(pageIds[page](content));
     const anchors = [];
@@ -121,7 +121,7 @@ for (const [code, content] of [
     }
 
     /* Chỉ trang chủ mới đòi mọi section phải có link trỏ tới: nav của trang
-       Engine cố ý chỉ liệt kê năm mục chính, không liệt kê hết tám section. */
+       Echelon cố ý chỉ liệt kê năm mục chính, không liệt kê hết tám section. */
     if (requireUsed) {
       const used = new Set(anchors.map((a) => a.anchor));
       for (const id of ids) {

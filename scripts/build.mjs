@@ -25,8 +25,8 @@ let site = vi;
 /** Tiền tố đường dẫn từ trang hiện tại về gốc site, ví dụ '../' cho /en/. */
 let base = '';
 
-/** Đường dẫn của trang trong một ngôn ngữ: '' là trang chủ, 'engine/' là trang
-    Engine. Ghép với locale.path ra đường dẫn đầy đủ. */
+/** Đường dẫn của trang trong một ngôn ngữ: '' là trang chủ, 'echelon/' là trang
+    Echelon. Ghép với locale.path ra đường dẫn đầy đủ. */
 let pagePath = '';
 
 const fullPath = (locale = site) => locale.locale.path + pagePath;
@@ -54,8 +54,8 @@ const localeHref = (target) => {
 
 const head = () => {
   const { brand } = site;
-  // Trang Engine mang khối seo riêng; những trường chung thì kế thừa.
-  const seo = { ...site.seo, ...(pagePath === 'engine/' ? site.enginePage.seo : {}) };
+  // Trang Echelon mang khối seo riêng; những trường chung thì kế thừa.
+  const seo = { ...site.seo, ...(pagePath === 'echelon/' ? site.echelonPage.seo : {}) };
   const canonical = new URL(fullPath(), seo.url).href;
   const ogImageFile = `assets/images/og-benova-${site.locale.code}.png`;
   const ogImage = new URL(ogImageFile, seo.url).href;
@@ -129,14 +129,14 @@ ${(site.locale.code === 'vi' ? ['inter-latin', 'inter-vietnamese'] : ['inter-lat
 
 /* ------------------------------------------------------------ header --- */
 
-/* Trang Engine phải đọc được như một tài liệu độc lập, nên nó mang dải thông
+/* Trang Echelon phải đọc được như một tài liệu độc lập, nên nó mang dải thông
    báo, tên thương hiệu và điều hướng của riêng nó. Dùng chung của BENOVA thì
    thanh nav còn trỏ vào những anchor không tồn tại trên trang này. */
-const onEngine = () => pagePath === 'engine/';
+const onEchelon = () => pagePath === 'echelon/';
 
 const notice = () => {
-  const n = onEngine() ? site.enginePage.notice : site.notice;
-  const subject = onEngine() ? site.enginePage.cta.subject : 'BENOVA - Lien he';
+  const n = onEchelon() ? site.echelonPage.notice : site.notice;
+  const subject = onEchelon() ? site.echelonPage.cta.subject : 'BENOVA - Lien he';
   return `  <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
@@ -147,13 +147,13 @@ const notice = () => {
 };
 
 const header = () => {
-  const brandName = onEngine() ? site.enginePage.brandName : site.brand.name;
-  const brandHref = onEngine() ? `${base}${site.locale.path}` : '#top';
-  const navItems = onEngine() ? site.enginePage.nav : site.nav;
-  const ctaHref = onEngine()
-    ? mailto(site.brand.emails[0], site.enginePage.cta.subject)
+  const brandName = onEchelon() ? site.echelonPage.brandName : site.brand.name;
+  const brandHref = onEchelon() ? `${base}${site.locale.path}` : '#top';
+  const navItems = onEchelon() ? site.echelonPage.nav : site.nav;
+  const ctaHref = onEchelon()
+    ? mailto(site.brand.emails[0], site.echelonPage.cta.subject)
     : `#${site.cta.id}`;
-  const ctaLabel = onEngine() ? site.enginePage.headerCta : site.ui.headerCta;
+  const ctaLabel = onEchelon() ? site.echelonPage.headerCta : site.ui.headerCta;
 
   return `  <a class="skip-link" href="#main">${esc(site.ui.skipToContent)}</a>
   <header class="site-header" id="site-header">
@@ -234,7 +234,7 @@ const hero = () => {
   const R_INNER = 0.28;
   const R_OUTER = 0.5;
 
-  // Hành tinh to nhỏ chênh nhau rõ rệt; Engine là bộ khung nên to nhất.
+  // Hành tinh to nhỏ chênh nhau rõ rệt; Echelon là bộ khung nên to nhất.
   const SCALES = [1.24, 0.88, 1.12, 0.8, 1];
   // Chu kỳ quỹ đạo trong cùng, tính bằng giây.
   const BASE_PERIOD = 19;
@@ -423,12 +423,12 @@ ${list(
 /* -------------------------------------------------------- ecosystem ---- */
 
 
-/* ------------------------------------------------- sơ đồ Engine (E) --- */
+/* ------------------------------------------------ sơ đồ Echelon (E) --- */
 
-/* Engine nằm ngang như não và đốt sống cổ: Scheduler/Timeout và Basal/Reflex
+/* Echelon nằm ngang như não và đốt sống cổ: Scheduler/Timeout và Basal/Reflex
   dùng các lớp bo góc trừu tượng, spine đi ra từ vùng chuyển tiếp bên phải. */
-const engineDiagram = (engine) => {
-  const d = engine.diagram;
+const echelonDiagram = (echelon) => {
+  const d = echelon.diagram;
 
   const SPINE_TOP = 192;
   const SPINE_H = 36;
@@ -438,7 +438,7 @@ const engineDiagram = (engine) => {
   const SECOND_X = CERVICAL_X + CERVICAL_W;
   const NODE = 62;
   const NODE_CY = 118;
-  const agentNodes = site.hero.satellites.filter((sat) => sat.key !== engine.key);
+  const agentNodes = site.hero.satellites.filter((sat) => sat.key !== echelon.key);
 
   // Đốt đầu chồng lên cả hai bán cầu tại khe; đốt thứ hai chồng lên hai vỏ nền.
   const SEG_W = 20;
@@ -498,8 +498,8 @@ const engineDiagram = (engine) => {
       </g>`;
   }).join('\n');
 
-  return `        <figure class="engine-diagram reveal">
-          <div class="engine-diagram-scroll">
+  return `        <figure class="echelon-diagram reveal">
+          <div class="echelon-diagram-scroll">
           <svg viewBox="0 0 1170 400" shape-rendering="geometricPrecision" text-rendering="optimizeLegibility" role="img" aria-label="${esc(d.alt)}">
           <path class="nd-shell" d="M172 210 H350 Q366 210 366 194 V132 Q366 102 336 102 H244 Q164 102 164 182 V202 Q164 210 172 210 Z" />
           <path class="nd-shell" d="M172 210 H350 Q366 210 366 226 V288 Q366 318 336 318 H244 Q164 318 164 238 V218 Q164 210 172 210 Z" />
@@ -530,26 +530,26 @@ ${futureNodes}
         </figure>`;
 };
 
-const engineCard = (engine) => `          <article class="card engine-card reveal">
+const echelonCard = (echelon) => `          <article class="card echelon-card reveal">
             <header class="agent-head">
-              <span class="agent-key" aria-hidden="true">${esc(engine.key)}</span>
+              <span class="agent-key" aria-hidden="true">${esc(echelon.key)}</span>
               <div>
-                <h3>${esc(engine.name)}</h3>
-                <p class="agent-role">${esc(engine.role)}</p>
+                <h3>${esc(echelon.name)}</h3>
+                <p class="agent-role">${esc(echelon.role)}</p>
               </div>
-              <span class="status status-core">${esc(engine.status)}</span>
+              <span class="status status-core">${esc(echelon.status)}</span>
             </header>
-            <p class="agent-desc">${esc(engine.desc)}</p>
+            <p class="agent-desc">${esc(echelon.desc)}</p>
             <ul class="tag-row">
-${list(engine.highlights, (h) => `              <li>${esc(h)}</li>`)}
+${list(echelon.highlights, (h) => `              <li>${esc(h)}</li>`)}
             </ul>
-            <p class="engine-more">
-              <a href="${base}${esc(site.locale.path)}engine/">${esc(site.ui.engineMore)} →</a>
+            <p class="echelon-more">
+              <a href="${base}${esc(site.locale.path)}echelon/">${esc(site.ui.echelonMore)} →</a>
             </p>
-${engineDiagram(engine)}
+${echelonDiagram(echelon)}
             <div class="sub-grid">
 ${list(
-  engine.children,
+  echelon.children,
   (child) => `              <div class="sub-card">
                 <span class="sub-icon" aria-hidden="true">${esc(child.icon)}</span>
                 <h4>${esc(child.title)}</h4>
@@ -584,7 +584,7 @@ const ecosystem = () => {
           <p class="lead">${esc(e.lead)}</p>
         </div>
         <div class="agent-grid">
-${engineCard(e.engine)}
+${echelonCard(e.echelon)}
 ${list(e.agents, (agent, index) =>
   // Card cuối được kéo rộng khi nó lẻ ra một mình ở hàng 3 cột.
   agentCard(agent, index === e.agents.length - 1 && e.agents.length % 3 === 1)
@@ -732,7 +732,7 @@ ${footer()}
 `;
 
 
-/* ------------------------------------------------- trang Engine ------- */
+/* ------------------------------------------------ trang Echelon ------- */
 
 /* Chữ đậm trong content viết bằng **cặp sao**, đổi sang <strong> khi dựng.
    Escape trước rồi mới thay, để nội dung không chèn được thẻ vào trang. */
@@ -760,24 +760,24 @@ const rich = (text) =>
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/`([^`]+)`/g, '<code>$1</code>');
 
-const enginePage = () => {
-  const p = site.enginePage;
+const echelonPage = () => {
+  const p = site.echelonPage;
 
-  const section = (sec) => `    <section class="section eng-section" id="${esc(sec.id)}">
-      <div class="shell eng-shell">
+  const section = (sec) => `    <section class="section ech-section" id="${esc(sec.id)}">
+      <div class="shell ech-shell">
         <div class="section-head reveal">
           <p class="eyebrow">${esc(sec.eyebrow)}</p>
           <h2>${esc(sec.title)}</h2>
 ${sec.lead ? `          <p class="lead">${esc(sec.lead)}</p>` : ''}
         </div>
-${(sec.body || []).map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+${(sec.body || []).map((t) => `        <p class="ech-para reveal">${rich(t)}</p>`).join('\n')}
 ${
   sec.glossary
-    ? `        <dl class="eng-glossary reveal">
+    ? `        <dl class="ech-glossary reveal">
 ${sec.glossary
   .map(
     (g) => `          <div>
-            <dt>${esc(g.term)}${g.tag ? ` <span class="eng-tag">${esc(g.tag)}</span>` : ''}</dt>
+            <dt>${esc(g.term)}${g.tag ? ` <span class="ech-tag">${esc(g.tag)}</span>` : ''}</dt>
             <dd>${esc(g.desc)}</dd>
           </div>`
   )
@@ -785,17 +785,17 @@ ${sec.glossary
         </dl>`
     : ''
 }
-${(sec.after || []).map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+${(sec.after || []).map((t) => `        <p class="ech-para reveal">${rich(t)}</p>`).join('\n')}
 ${
   sec.decisions
-    ? `        <div class="eng-decisions">
+    ? `        <div class="ech-decisions">
 ${sec.decisions
   .map(
-    (dec, i) => `          <article class="card eng-decision reveal">
-            <span class="eng-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+    (dec, i) => `          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
             <h3>${esc(dec.title)}</h3>
             <p>${esc(dec.desc)}</p>
-            <p class="eng-cost">${esc(dec.cost)}</p>
+            <p class="ech-cost">${esc(dec.cost)}</p>
           </article>`
   )
   .join('\n')}
@@ -895,8 +895,8 @@ ${dots}
       )
       .join('\n');
 
-    return `        <figure class="eng-radar reveal">
-          <div class="eng-radar-plot">
+    return `        <figure class="ech-radar reveal">
+          <div class="ech-radar-plot">
             <svg viewBox="0 0 600 524" role="img" aria-labelledby="${esc(cmp.id)}-rt">
               <title id="${esc(cmp.id)}-rt">${esc(cmp.chartTitle)}</title>
 ${rings}
@@ -927,27 +927,27 @@ ${legend}
       .map((item, r) => {
         const cells = item.scores
           .map(
-            (v) => `              <td class="eng-score sc-${v}">${v}</td>`
+            (v) => `              <td class="ech-score sc-${v}">${v}</td>`
           )
           .join('\n');
-        return `            <tr${item.plot && item.provisional ? ' class="eng-row-self"' : ''}>
+        return `            <tr${item.plot && item.provisional ? ' class="ech-row-self"' : ''}>
               <th scope="row">
                 <b>${esc(item.name)}</b>
                 <span>${esc(item.kind)}</span>
                 <small>${esc(item.note)}</small>
               </th>
 ${cells}
-              <td class="eng-sub">${groupSum(item, 'design')}<span>/${groupMax('design')}</span></td>
-              <td class="eng-sub">${groupSum(item, 'ops')}<span>/${groupMax('ops')}</span></td>
-              <td class="eng-total${totals[r] === best ? ' is-best' : ''}">${totals[r]}<span>/${
+              <td class="ech-sub">${groupSum(item, 'design')}<span>/${groupMax('design')}</span></td>
+              <td class="ech-sub">${groupSum(item, 'ops')}<span>/${groupMax('ops')}</span></td>
+              <td class="ech-total${totals[r] === best ? ' is-best' : ''}">${totals[r]}<span>/${
           cmp.axes.length * cmp.max
         }</span></td>
             </tr>`;
       })
       .join('\n');
 
-    return `        <div class="eng-table-wrap reveal">
-          <table class="eng-table">
+    return `        <div class="ech-table-wrap reveal">
+          <table class="ech-table">
             <caption>${esc(cmp.table.caption)}</caption>
             <thead>
               <tr>
@@ -965,14 +965,14 @@ ${rows}
         </div>`;
   };
 
-  const comparison = `    <section class="section eng-section section-compare" id="${esc(cmp.id)}">
-      <div class="shell eng-shell">
+  const comparison = `    <section class="section ech-section section-compare" id="${esc(cmp.id)}">
+      <div class="shell ech-shell">
         <div class="section-head reveal">
           <p class="eyebrow">${esc(cmp.eyebrow)}</p>
           <h2>${esc(cmp.title)}</h2>
           <p class="lead">${esc(cmp.lead)}</p>
         </div>
-        <dl class="eng-criteria reveal">
+        <dl class="ech-criteria reveal">
 ${cmp.axes
   .map(
     (ax) => `          <div>
@@ -984,41 +984,41 @@ ${cmp.axes
         </dl>
 ${radar()}
 ${scoreTable()}
-${cmp.verdict.map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
-        <aside class="card eng-method reveal">
+${cmp.verdict.map((t) => `        <p class="ech-para reveal">${rich(t)}</p>`).join('\n')}
+        <aside class="card ech-method reveal">
           <h3>${esc(cmp.method.title)}</h3>
           <p>${esc(cmp.method.body)}</p>
         </aside>
       </div>
     </section>`;
 
-  const fitList = (block, cls) => `          <article class="card eng-fit ${cls} reveal">
+  const fitList = (block, cls) => `          <article class="card ech-fit ${cls} reveal">
             <h3>${esc(block.title)}</h3>
             <ul>
 ${block.items.map((i) => `              <li>${esc(i)}</li>`).join('\n')}
             </ul>
           </article>`;
 
-  const fit = `    <section class="section eng-section" id="${esc(p.fit.id)}">
-      <div class="shell eng-shell">
+  const fit = `    <section class="section ech-section" id="${esc(p.fit.id)}">
+      <div class="shell ech-shell">
         <div class="section-head reveal">
           <p class="eyebrow">${esc(p.fit.eyebrow)}</p>
           <h2>${esc(p.fit.title)}</h2>
         </div>
-        <div class="eng-fits">
-${fitList(p.fit.good, 'eng-fit-good')}
-${fitList(p.fit.bad, 'eng-fit-bad')}
+        <div class="ech-fits">
+${fitList(p.fit.good, 'ech-fit-good')}
+${fitList(p.fit.bad, 'ech-fit-bad')}
         </div>
       </div>
     </section>`;
 
-  const status = `    <section class="section eng-section section-status" id="${esc(p.status.id)}">
-      <div class="shell eng-shell">
+  const status = `    <section class="section ech-section section-status" id="${esc(p.status.id)}">
+      <div class="shell ech-shell">
         <div class="section-head reveal">
           <p class="eyebrow">${esc(p.status.eyebrow)}</p>
           <h2>${esc(p.status.title)}</h2>
         </div>
-${p.status.body.map((t) => `        <p class="eng-para reveal">${rich(t)}</p>`).join('\n')}
+${p.status.body.map((t) => `        <p class="ech-para reveal">${rich(t)}</p>`).join('\n')}
       </div>
     </section>`;
 
@@ -1049,13 +1049,13 @@ ${notice()}
 ${header()}
 
   <main id="main">
-    <section class="eng-hero">
+    <section class="ech-hero">
       <div class="hero-glow" aria-hidden="true"></div>
-      <div class="shell eng-shell">
-        <a class="eng-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
+      <div class="shell ech-shell">
+        <a class="ech-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
         <p class="eyebrow reveal">${esc(p.hero.eyebrow)}</p>
-        <h1 class="eng-title reveal">${esc(p.hero.title)}</h1>
-        <p class="eng-lead reveal">${esc(p.hero.lead)}</p>
+        <h1 class="ech-title reveal">${esc(p.hero.title)}</h1>
+        <p class="ech-lead reveal">${esc(p.hero.lead)}</p>
       </div>
     </section>
 
@@ -1204,7 +1204,7 @@ ${[first, ...rest].map(block).join('\n')}
 /** Các trang dựng cho mỗi ngôn ngữ. slug rỗng là trang chủ. */
 const pages = [
   { slug: '', render: page },
-  { slug: 'engine/', render: enginePage },
+  { slug: 'echelon/', render: echelonPage },
 ];
 
 for (const locale of locales) {
@@ -1213,7 +1213,7 @@ for (const locale of locales) {
   for (const { slug, render } of pages) {
     pagePath = slug;
     const path = fullPath();
-    // Độ sâu tính theo đường dẫn đầy đủ, nên /en/engine/ trỏ đúng lên gốc.
+    // Độ sâu tính theo đường dẫn đầy đủ, nên /en/echelon/ trỏ đúng lên gốc.
     base = '../'.repeat(path.split('/').filter(Boolean).length);
 
     const dir = join(root, path);

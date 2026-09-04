@@ -1,7 +1,7 @@
 /**
- * Trang giới thiệu Binean Engine — bản tiếng Việt.
+ * Trang giới thiệu Binean Echelon — bản tiếng Việt.
  *
- * Engine là engine điều phối đa tác nhân, KHÔNG viết riêng cho ngành nào, và
+ * Echelon là engine điều phối đa tác nhân, KHÔNG viết riêng cho ngành nào, và
  * trang này phải đứng độc lập với BENOVA. BENOVA chỉ được nhắc tới đúng hai
  * lần, ở vai trò triển khai đầu tiên.
  *
@@ -12,18 +12,18 @@
  */
 export default {
   seo: {
-    title: 'Binean Engine — Điều phối quy trình cho người, máy và AI | Binean',
+    title: 'Binean Echelon — Điều phối quy trình cho người, máy và AI | Binean',
     description:
-      'Binean Engine (BE) là engine điều phối đa tác nhân: con người, service và AI Agent dùng chung một khái niệm Agent. Kiến trúc, các quyết định thiết kế kèm chi phí, và bảng đánh giá có tính điểm đặt Engine cạnh Temporal, Camunda, Conductor, Step Functions và các framework agent AI.',
+      'Binean Echelon (BE) là engine điều phối đa tác nhân: con người, service và AI Agent dùng chung một khái niệm Agent. Kiến trúc, các quyết định thiết kế kèm chi phí, và bảng đánh giá có tính điểm đặt Echelon cạnh Temporal, Camunda, Conductor, Step Functions và các framework agent AI.',
     keywords:
-      'Binean Engine, brain engine, multi-agent orchestration, workflow orchestration, human in the loop, AI agent orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, LangGraph, event-driven, Spine',
+      'Binean Echelon, multi-agent orchestration, workflow orchestration, human in the loop, AI agent orchestration, durable execution, Temporal, Camunda, Zeebe, Conductor, Step Functions, LangGraph, event-driven, Spine',
   },
 
   brandName: 'Binean',
   headerCta: 'Liên hệ',
 
   notice: {
-    text: 'Binean Engine đang ở giai đoạn đặc tả và hiện thực thử nghiệm, chưa sẵn sàng cho vận hành.',
+    text: 'Binean Echelon đang ở giai đoạn đặc tả và hiện thực thử nghiệm, chưa sẵn sàng cho vận hành.',
     linkLabel: 'Liên hệ qua email',
   },
 
@@ -38,9 +38,9 @@ export default {
 
   hero: {
     back: 'Trang chủ',
-    eyebrow: 'Binean Engine',
+    eyebrow: 'Binean Echelon',
     title: 'Điều phối quy trình cho người, máy và AI trong cùng một mô hình',
-    lead: 'Binean Engine là engine điều phối đa tác nhân. Một con người, một service và một AI Agent được mô tả bằng cùng một khái niệm, nhận việc theo cùng một cơ chế và trả kết quả theo cùng một hợp đồng. Tài liệu này trình bày mô hình, các quyết định thiết kế kèm chi phí của chúng, và một bảng đánh giá có tính điểm đặt Engine cạnh các engine điều phối đang có trên thị trường.',
+    lead: 'Binean Echelon là engine điều phối đa tác nhân. Một con người, một service và một AI Agent được mô tả bằng cùng một khái niệm, nhận việc theo cùng một cơ chế và trả kết quả theo cùng một hợp đồng. Tài liệu này trình bày mô hình, các quyết định thiết kế kèm chi phí của chúng, và một bảng đánh giá có tính điểm đặt Echelon cạnh các engine điều phối đang có trên thị trường.',
   },
 
   sections: [
@@ -52,16 +52,16 @@ export default {
         'Hầu hết quy trình đáng được điều phối đều mang cùng một cấu trúc: một số bước hoàn tất trong mili giây bằng phần mềm, một số bước cần con người đọc và ra quyết định, và một số bước ngày càng được giao cho mô hình. Xét duyệt bồi thường, phê duyệt tín dụng, kiểm duyệt nội dung, ứng cứu sự cố hay quy trình tuyển dụng đều thuộc dạng này, với tổng thời gian tính bằng giờ hoặc bằng tháng.',
         'Hai cách hiện thực phổ biến đều chạm giới hạn. Gọi hàm tuần tự thất bại ngay ở bước cần con người, vì một tiến trình không thể duy trì trạng thái chờ trong nhiều ngày. Ghép bằng hàng đợi tin nhắn buộc mỗi bước tự quản lý trạng thái, tự xử lý chạy lại và tự ghi nhận phần việc đã hoàn tất, khiến hình dạng của quy trình biến mất khỏi mã nguồn.',
         'Các engine điều phối ra đời để lấp khoảng trống đó. Điểm khác biệt giữa chúng nằm ở cách mô hình hóa. Phần lớn tách thế giới thành nhiều loại bước — bước gọi service, bước giao cho người, và gần đây là bước gọi agent — mỗi loại có vòng đời, cách giao việc và cách báo kết quả riêng. Chi phí tích hợp giữa các loại đó tăng dần theo thời gian và thường trở thành phần phức tạp nhất của hệ thống.',
-        'Binean Engine chọn giả định ngược lại. Việc cần giao, năng lực để thực hiện và kết quả trả về có cùng cấu trúc bất kể ai thực hiện. Khác biệt chỉ nằm ở độ trễ và giao thức gọi, và cả hai thuộc tầng thực thi chứ không thuộc mô hình quy trình.',
+        'Binean Echelon chọn giả định ngược lại. Việc cần giao, năng lực để thực hiện và kết quả trả về có cùng cấu trúc bất kể ai thực hiện. Khác biệt chỉ nằm ở độ trễ và giao thức gọi, và cả hai thuộc tầng thực thi chứ không thuộc mô hình quy trình.',
       ],
     },
     {
       id: 'brain',
       eyebrow: 'Kiến trúc',
-      title: 'Brain Engine: sáu vai trò tách bạch',
-      lead: 'Ký hiệu BE mang hai nghĩa — Binean Engine và Brain Engine — và nghĩa thứ hai mô tả đúng cách hệ thống phân vai.',
+      title: 'Sáu vai trò tách bạch',
+      lead: 'Ký hiệu BE là viết tắt của Binean Echelon; phần dưới đây mô tả cách hệ thống phân vai theo mô hình hệ thần kinh.',
       body: [
-        'Hệ thần kinh trung ương không mô tả cách bàn tay cầm nắm. Nhiệm vụ của nó là xác định vị trí hiện tại trong chuỗi hành động, quyết định bước kế tiếp, phát tín hiệu và tiếp nhận phản hồi. Engine phân vai theo đúng nguyên tắc đó.',
+        'Hệ thần kinh trung ương không mô tả cách bàn tay cầm nắm. Nhiệm vụ của nó là xác định vị trí hiện tại trong chuỗi hành động, quyết định bước kế tiếp, phát tín hiệu và tiếp nhận phản hồi. Echelon phân vai theo đúng nguyên tắc đó.',
       ],
       glossary: [
         {
@@ -70,7 +70,7 @@ export default {
         },
         {
           term: 'Spine — tủy sống',
-          desc: 'Mô hình dẫn truyền theo sự kiện: việc được phát đi, kết quả được thu về, thứ tự được bảo toàn. Đây là phần được đặc tả chặt nhất và là nhân của Engine.',
+          desc: 'Mô hình dẫn truyền theo sự kiện: việc được phát đi, kết quả được thu về, thứ tự được bảo toàn. Đây là phần được đặc tả chặt nhất và là nhân của Echelon.',
         },
         {
           term: 'Reflex — phản xạ',
@@ -83,7 +83,7 @@ export default {
         {
           term: 'Scheduler — đồng hồ sinh học',
           tag: 'Chưa có trong V1',
-          desc: 'Nơi giữ mọi hạn đã đăng ký và đánh thức Process khi tới hạn. Không có nó, Engine chờ được nhưng không tự đi tiếp; thời gian phải do một tác nhân bên ngoài đưa vào.',
+          desc: 'Nơi giữ mọi hạn đã đăng ký và đánh thức Process khi tới hạn. Không có nó, Echelon chờ được nhưng không tự đi tiếp; thời gian phải do một tác nhân bên ngoài đưa vào.',
         },
         {
           term: 'Timeout — phản xạ hết hạn',
@@ -92,15 +92,15 @@ export default {
         },
       ],
       after: [
-        'Cách phân vai này đồng thời xác định phạm vi Engine **không** đảm nhận. Cách một service truy cập cơ sở dữ liệu, cách một mô hình được gọi, hay cách một người đăng nhập vào biểu mẫu đều thuộc tầng thực thi và nằm ngoài mô hình.',
-        'Bốn vai trò đầu đã có trong đặc tả V1. Scheduler và Timeout nằm trong kiến trúc nhưng chưa được đặc tả, và đó chính là lý do Engine mất điểm ở tiêu chí quy trình dài hạn trong phần đánh giá bên dưới.',
+        'Cách phân vai này đồng thời xác định phạm vi Echelon **không** đảm nhận. Cách một service truy cập cơ sở dữ liệu, cách một mô hình được gọi, hay cách một người đăng nhập vào biểu mẫu đều thuộc tầng thực thi và nằm ngoài mô hình.',
+        'Bốn vai trò đầu đã có trong đặc tả V1. Scheduler và Timeout nằm trong kiến trúc nhưng chưa được đặc tả, và đó chính là lý do Echelon mất điểm ở tiêu chí quy trình dài hạn trong phần đánh giá bên dưới.',
       ],
     },
     {
       id: 'mo-hinh',
       eyebrow: 'Mô hình',
       title: 'Năm danh từ và một thẩm quyền duy nhất',
-      lead: 'Engine giữ số khái niệm ở mức tối thiểu. Toàn bộ mô hình quy về năm danh từ.',
+      lead: 'Echelon giữ số khái niệm ở mức tối thiểu. Toàn bộ mô hình quy về năm danh từ.',
       glossary: [
         {
           term: 'Flow',
@@ -120,7 +120,7 @@ export default {
         },
         {
           term: 'Agent',
-          desc: 'Bên thực thi Task. Engine chỉ định nghĩa một khái niệm Agent và không phân loại nó; đây là quyết định thiết kế, được trình bày ở phần dưới.',
+          desc: 'Bên thực thi Task. Echelon chỉ định nghĩa một khái niệm Agent và không phân loại nó; đây là quyết định thiết kế, được trình bày ở phần dưới.',
         },
       ],
       after: [
@@ -131,7 +131,7 @@ export default {
       id: 'hoc-viec',
       eyebrow: 'Nguyên lý',
       title: 'Việc phải chảy từ người sang AI sang máy',
-      lead: 'Engine không coi ba loại tác nhân là ngang hàng. Chúng được xếp theo đúng một thứ tự về chi phí và độ trễ, và thứ tự đó quyết định nhiệm vụ của Engine.',
+      lead: 'Echelon không coi ba loại tác nhân là ngang hàng. Chúng được xếp theo đúng một thứ tự về chi phí và độ trễ, và thứ tự đó quyết định nhiệm vụ của Echelon.',
       glossary: [
         {
           term: 'Machine Agent',
@@ -147,7 +147,7 @@ export default {
         },
       ],
       after: [
-        'Thứ tự đó dẫn tới một hệ quả thẳng thắn: quy trình để việc nằm mãi ở con người là trả mức giá cao nhất, mãi mãi. Nhiệm vụ của Engine vì vậy không dừng ở việc điều phối ba loại tác nhân cho trơn tru, mà là **đẩy từng phần việc xuống bậc rẻ hơn khi nó đã đủ chín**.',
+        'Thứ tự đó dẫn tới một hệ quả thẳng thắn: quy trình để việc nằm mãi ở con người là trả mức giá cao nhất, mãi mãi. Nhiệm vụ của Echelon vì vậy không dừng ở việc điều phối ba loại tác nhân cho trơn tru, mà là **đẩy từng phần việc xuống bậc rẻ hơn khi nó đã đủ chín**.',
         'Cơ chế là quan hệ thầy trò. Trong lúc một con người còn đảm nhận một Skill, mỗi lần thực thi đã tự sinh ra một cặp đầu vào – đầu ra sạch: `Task.input` được kiểm tra theo schema và materialize đúng một lần, kết quả trả về qua một Outcome độc lập. Không cần gắn thêm công cụ thu thập nào — dữ liệu huấn luyện cho người kế nhiệm chính là lịch sử thi hành của người đương nhiệm.',
         'Và vì Skill được mô tả bằng schema chứ không bằng loại tác nhân, việc chuyển giao không đụng tới định nghĩa quy trình. Một Step hôm nay trỏ tới một chuyên viên, sáu tháng sau trỏ tới một mô hình, một năm sau trỏ tới một service — cả ba lần vẫn là cùng một Task đòi hỏi cùng một Skill. Đây là chỗ quyết định "một khái niệm Agent" trả lãi.',
         '**Meta Agent** đi thêm một bậc. Đó là tác nhân không thực hiện bước nào trong quy trình, mà chỉnh chính quy trình: tinh chỉnh schema và prompt của một Step theo kết quả quan sát được, và đề xuất sửa Flow khi dữ liệu cho thấy một nhánh không còn đúng. Nói cách khác, nó là tác nhân duy nhất có Skill là sửa Skill của tác nhân khác.',
@@ -158,7 +158,7 @@ export default {
     {
       id: 'quyet-dinh',
       eyebrow: 'Quyết định thiết kế',
-      title: 'Bốn điểm Engine đi khác số đông',
+      title: 'Bốn điểm Echelon đi khác số đông',
       lead: 'Bốn quyết định dưới đây định hình toàn bộ mô hình. Mỗi quyết định đều có chi phí đi kèm, ghi ngay bên dưới.',
       decisions: [
         {
@@ -168,7 +168,7 @@ export default {
         },
         {
           title: 'Một khái niệm Agent, không phân loại người, máy hay AI',
-          desc: 'Engine không định nghĩa "user task", "service task" và "agent step" như ba loại riêng biệt. Chỉ có Task và một tham chiếu tới Agent. Con người, service và mô hình đều là Agent; việc diễn giải tham chiếu đó thành năng lực thực thi cụ thể thuộc tầng runtime. Đây là khác biệt lớn nhất so với thị trường và cũng là điểm dễ bị phản đối nhất.',
+          desc: 'Echelon không định nghĩa "user task", "service task" và "agent step" như ba loại riêng biệt. Chỉ có Task và một tham chiếu tới Agent. Con người, service và mô hình đều là Agent; việc diễn giải tham chiếu đó thành năng lực thực thi cụ thể thuộc tầng runtime. Đây là khác biệt lớn nhất so với thị trường và cũng là điểm dễ bị phản đối nhất.',
           cost: 'Chi phí: những thành phần thường đi kèm khái niệm "human task" ở nơi khác — biểu mẫu, hàng đợi công việc, phân quyền, ủy quyền — không có sẵn và phải được dựng ở tầng trên.',
         },
         {
@@ -186,9 +186,9 @@ export default {
     {
       id: 'ung-dung',
       eyebrow: 'Phạm vi ứng dụng',
-      title: 'Những bài toán Engine nhắm tới',
+      title: 'Những bài toán Echelon nhắm tới',
       body: [
-        'Engine không gắn với một nghiệp vụ cụ thể. Điều kiện phù hợp nằm ở cấu trúc bài toán chứ không ở lĩnh vực: quy trình kéo dài, nhiều loại tác nhân cùng tham gia, và toàn bộ diễn tiến phải để lại dấu vết kiểm toán được.',
+        'Echelon không gắn với một nghiệp vụ cụ thể. Điều kiện phù hợp nằm ở cấu trúc bài toán chứ không ở lĩnh vực: quy trình kéo dài, nhiều loại tác nhân cùng tham gia, và toàn bộ diễn tiến phải để lại dấu vết kiểm toán được.',
       ],
       glossary: [
         {
@@ -217,12 +217,12 @@ export default {
   comparison: {
     id: 'so-sanh',
     eyebrow: 'Đánh giá',
-    title: 'Engine đặt cạnh thị trường, chấm theo sáu tiêu chí',
+    title: 'Echelon đặt cạnh thị trường, chấm theo sáu tiêu chí',
     lead: 'Sáu tiêu chí dưới đây được chọn theo yêu cầu của lớp bài toán vừa nêu và chấm trên thang 0–5. Bốn tiêu chí đầu thuộc về mô hình, hai tiêu chí sau thuộc về mức độ trưởng thành của sản phẩm.',
     max: 5,
-    chartTitle: 'Engine, Temporal và Camunda 8 trên sáu tiêu chí',
+    chartTitle: 'Echelon, Temporal và Camunda 8 trên sáu tiêu chí',
     chartCaption:
-      'Chỉ ba sản phẩm được vẽ để hình còn đọc được; toàn bộ sáu sản phẩm có mặt trong bảng điểm bên dưới. Đường nét đứt là Engine, biểu thị điểm theo thiết kế đã đặc tả chứ không phải kết quả đo trên hệ thống sản xuất.',
+      'Chỉ ba sản phẩm được vẽ để hình còn đọc được; toàn bộ sáu sản phẩm có mặt trong bảng điểm bên dưới. Đường nét đứt là Echelon, biểu thị điểm theo thiết kế đã đặc tả chứ không phải kết quả đo trên hệ thống sản xuất.',
     provisionalLabel: 'điểm theo thiết kế',
     axes: [
       {
@@ -264,12 +264,12 @@ export default {
     ],
     products: [
       {
-        name: 'Binean Engine',
+        name: 'Binean Echelon',
         kind: 'Điều phối đa tác nhân',
         scores: [5, 3, 5, 5, 1, 1],
         plot: true,
         provisional: true,
-        note: 'Bốn tiêu chí đầu là lý do Engine tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn. Mất điểm ở quy trình dài hạn vì chưa có timer: Engine chờ được nhưng chưa tự đi tiếp khi hết hạn.',
+        note: 'Bốn tiêu chí đầu là lý do Echelon tồn tại; hai tiêu chí sau là khoảng cách còn phải rút ngắn. Mất điểm ở quy trình dài hạn vì chưa có timer: Echelon chờ được nhưng chưa tự đi tiếp khi hết hạn.',
       },
       {
         name: 'Temporal',
@@ -314,8 +314,8 @@ export default {
       caption: 'Điểm từng tiêu chí trên thang 0–5, cùng tổng theo hai nhóm.',
     },
     verdict: [
-      'Cộng đơn giản, Camunda 8 dẫn đầu và Engine đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Engine đạt 18 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.',
-      'Cách đọc bảng này quan trọng hơn thứ hạng. Với tổ chức cần triển khai trong quý này, hai tiêu chí vận hành mới là yếu tố quyết định, và lựa chọn hợp lý nằm ở nhóm sản phẩm đã trưởng thành. Engine chỉ đáng cân nhắc khi bốn tiêu chí đầu là ràng buộc không thể thỏa hiệp và tổ chức chấp nhận tham gia từ giai đoạn thiết kế.',
+      'Cộng đơn giản, Camunda 8 dẫn đầu và Echelon đứng thứ tư trong sáu. Con số phản ánh đúng hiện trạng: Echelon đạt 18 trên 20 ở nhóm tiêu chí mô hình và 2 trên 10 ở nhóm tiêu chí vận hành.',
+      'Cách đọc bảng này quan trọng hơn thứ hạng. Với tổ chức cần triển khai trong quý này, hai tiêu chí vận hành mới là yếu tố quyết định, và lựa chọn hợp lý nằm ở nhóm sản phẩm đã trưởng thành. Echelon chỉ đáng cân nhắc khi bốn tiêu chí đầu là ràng buộc không thể thỏa hiệp và tổ chức chấp nhận tham gia từ giai đoạn thiết kế.',
     ],
     method: {
       title: 'Về cách chấm điểm',
@@ -328,7 +328,7 @@ export default {
     eyebrow: 'Điều kiện áp dụng',
     title: 'Khi nào phù hợp, và khi nào không',
     good: {
-      title: 'Engine đáng cân nhắc khi',
+      title: 'Echelon đáng cân nhắc khi',
       items: [
         'Quy trình trộn người, máy và AI, và ba loại tác nhân đó không nên là ba cơ chế khác nhau.',
         'Quy trình kéo dài từ hàng giờ tới hàng tháng, có thời gian chờ, có phê duyệt và có phần việc phải chạy lại.',
@@ -338,11 +338,11 @@ export default {
       ],
     },
     bad: {
-      title: 'Engine không phù hợp khi',
+      title: 'Echelon không phù hợp khi',
       items: [
-        'Yêu cầu đưa vào sản xuất trong quý này. Engine chưa sẵn sàng cho mục tiêu đó.',
+        'Yêu cầu đưa vào sản xuất trong quý này. Echelon chưa sẵn sàng cho mục tiêu đó.',
         'Quy trình chỉ gồm máy gọi máy và kết thúc trong vài giây. Hàng đợi hoặc lời gọi trực tiếp là đủ; thêm engine chỉ thêm một tầng.',
-        'Cần biểu mẫu, hàng đợi công việc và giao diện quản trị có sẵn ngay. Camunda đáp ứng được, Engine thì chưa.',
+        'Cần biểu mẫu, hàng đợi công việc và giao diện quản trị có sẵn ngay. Camunda đáp ứng được, Echelon thì chưa.',
         'Đội ngũ phát triển bằng Java, Go hoặc Python và cần SDK cho ngôn ngữ đó. Hiện chỉ có một bản hiện thực bằng Rust.',
         'Cần một cộng đồng, một hệ sinh thái plugin, hoặc một nhà cung cấp có cam kết hỗ trợ ngoài giờ.',
       ],
@@ -355,7 +355,7 @@ export default {
     title: 'Mức độ hoàn thiện hiện tại',
     body: [
       'Đặc tả V1 của Spine đã chốt phần lớn ngữ nghĩa cốt lõi, và có một bản hiện thực bằng Rust chạy được từ đầu đến cuối kèm bộ test đi qua. Tuy vậy V1 **chưa đạt mức sẵn sàng cho hiện thực**: một số phần của đặc tả vẫn đang được hiệu chỉnh vì quá trình hiện thực tiếp tục phát hiện mâu thuẫn.',
-      'Nói ngắn gọn, Engine ở thời điểm này là một thiết kế đã được cân nhắc kỹ cùng một bản chạy thử để kiểm chứng thiết kế đó, chưa phải một sản phẩm để đưa vào vận hành. Đây cũng là lý do hai tiêu chí vận hành trong bảng đánh giá chỉ đạt 1 trên 5.',
+      'Nói ngắn gọn, Echelon ở thời điểm này là một thiết kế đã được cân nhắc kỹ cùng một bản chạy thử để kiểm chứng thiết kế đó, chưa phải một sản phẩm để đưa vào vận hành. Đây cũng là lý do hai tiêu chí vận hành trong bảng đánh giá chỉ đạt 1 trên 5.',
       'Với tổ chức đang vận hành những quy trình thuộc lớp bài toán nêu trên, trao đổi có giá trị nhất ở giai đoạn này là trao đổi về thiết kế: những điểm mô hình còn sai, và những tình huống thực tế mà mô hình chưa lường tới.',
     ],
   },
@@ -364,7 +364,7 @@ export default {
     title: 'Trao đổi về thiết kế',
     lead: 'Chúng tôi muốn nghe từ những người trực tiếp vận hành các quy trình thuộc lớp bài toán này, đặc biệt là những điểm mà mô hình được cho là sẽ không đứng vững.',
     label: 'Đặt lịch trao đổi 30 phút',
-    subject: 'Binean Engine - Trao doi ve thiet ke',
+    subject: 'Binean Echelon - Trao doi ve thiet ke',
     back: 'Xem BENOVA — triển khai đầu tiên',
   },
 };
