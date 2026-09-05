@@ -43,7 +43,7 @@ export default {
     description:
       'BENOVA là hệ sinh thái core bảo hiểm thế hệ mới cho các công ty đang vận hành Ingenium: di cư từ COBOL/AIX sang nền tảng Cloud-native bằng Rust và AI, theo chiến lược Strangler Fig, không ngừng vận hành.',
     keywords:
-      'BENOVA, Ingenium modernization, core bảo hiểm, COBOL modernization, Strangler Fig, Rust, AI Agent, insurance core, cloud-native, Binean',
+      'BENOVA, Ingenium modernization, core bảo hiểm, COBOL modernization, Strangler Fig, Rust, Aice, insurance core, cloud-native, Binean',
     url: siteUrl,
     themeColor,
   },
@@ -70,7 +70,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'DevOps cho Ingenium' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid Service Host' },
       { key: 'V', name: 'Vista', desc: 'Flow & Task Management' },
-      { key: 'A', name: 'AI Agent', desc: 'Nói chuẩn Agent Client Protocol' },
+      { key: 'A', name: 'Aice', desc: 'Nói chuẩn Agent Client Protocol' },
     ].map((s) => ({ ...s, ...planetVisuals[s.key] })),
   },
 
@@ -108,7 +108,7 @@ export default {
     id: 'kien-truc',
     eyebrow: 'Hệ sinh thái lõi',
     title: 'Năm thành tố, một nền tảng',
-    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Echelon điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và AI Agent tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
+    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Echelon điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và Aice tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
     echelon: {
       key: 'E',
       name: 'Echelon',
@@ -198,11 +198,11 @@ export default {
       },
       {
         key: 'A',
-        name: 'AI Agent',
+        name: 'Aice',
         role: 'Trí tuệ nhân tạo',
         status: 'Theo lộ trình',
         icon: '✨',
-        desc: 'AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. AI Agent nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.',
+        desc: 'AI không phải là một tính năng gắn thêm, mà là một loại Agent ngang hàng với người và máy. Aice nhận Task từ Spine đúng như mọi Agent khác — nên có thể bàn giao dần từng phần việc.',
         features: [
           'Nói ACP — Agent Client Protocol',
           'Tự động đảm nhận Task theo mức độ tin cậy',
@@ -233,7 +233,7 @@ export default {
       {
         num: '03',
         title: 'Thay thế',
-        desc: 'Từng Task được cài đặt lại bằng Rust hoặc giao cho AI Agent, chạy song song và đối chiếu kết quả với hệ cũ.',
+        desc: 'Từng Task được cài đặt lại bằng Rust hoặc giao cho Aice, chạy song song và đối chiếu kết quả với hệ cũ.',
       },
       {
         num: '04',
@@ -250,7 +250,7 @@ export default {
       channels: ['Kênh số', 'web · app · đối tác'],
       facade: ['ORBIT', 'REST API', 'facade'],
       legacy: ['Ingenium · COBOL', 'logic nghiệp vụ hiện hữu, vẫn phục vụ khách hàng'],
-      modern: ['Rust services + AI Agent', 'từng luồng được cài đặt lại, chạy song song và đối chiếu'],
+      modern: ['Rust services + Aice', 'từng luồng được cài đặt lại, chạy song song và đối chiếu'],
       target: ['CORE', 'mới'],
       phases: ['01 Bao quanh', '02 Chuyển hướng', '03 Thay thế', '04 Ngưng hệ cũ'],
     },
@@ -293,7 +293,7 @@ export default {
   cta: {
     id: 'lien-he',
     title: 'Nexus dùng được hôm nay. Phần còn lại đang xây.',
-    lead: 'Nếu bạn đang vận hành Ingenium, hãy bắt đầu từ Nexus — nó đã chạy trên hệ thật. Còn Echelon, Orbit, Vista và AI Agent thì chúng tôi muốn xây cùng người thật sự vận hành core, thay vì ngồi đoán.',
+    lead: 'Nếu bạn đang vận hành Ingenium, hãy bắt đầu từ Nexus — nó đã chạy trên hệ thật. Còn Echelon, Orbit, Vista và Aice thì chúng tôi muốn xây cùng người thật sự vận hành core, thay vì ngồi đoán.',
     primary: {
       label: 'Trao đổi 30 phút',
       href: `${mail}?subject=${encodeURIComponent('BENOVA - Trao doi 30 phut')}`,
@@ -321,7 +321,7 @@ export default {
           { label: 'Nexus', href: '#kien-truc' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },
-          { label: 'AI Agent', href: '#kien-truc' },
+          { label: 'Aice', href: '#kien-truc' },
         ],
       },
       {

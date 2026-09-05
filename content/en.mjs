@@ -43,7 +43,7 @@ export default {
     description:
       'BENOVA is a next-generation insurance core ecosystem for companies running Ingenium: migrate from COBOL/AIX to a cloud-native platform with Rust and AI, following the Strangler Fig strategy, without interrupting operations.',
     keywords:
-      'BENOVA, Ingenium modernization, insurance core, COBOL modernization, Strangler Fig, Rust, AI Agent, cloud-native, Binean',
+      'BENOVA, Ingenium modernization, insurance core, COBOL modernization, Strangler Fig, Rust, Aice, cloud-native, Binean',
     url: siteUrl,
     themeColor,
   },
@@ -70,7 +70,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'DevOps for Ingenium' },
       { key: 'O', name: 'Orbit', desc: 'Hybrid service host' },
       { key: 'V', name: 'Vista', desc: 'Flow & task management' },
-      { key: 'A', name: 'AI Agent', desc: 'Speaks Agent Client Protocol' },
+      { key: 'A', name: 'Aice', desc: 'Speaks Agent Client Protocol' },
     ].map((s) => ({ ...s, ...planetVisuals[s.key] })),
   },
 
@@ -109,7 +109,7 @@ export default {
     id: 'ecosystem',
     eyebrow: 'Core ecosystem',
     title: 'Five elements, one platform',
-    lead: 'BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Echelon orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and AI Agent accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.',
+    lead: 'BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Echelon orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and Aice accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.',
     echelon: {
       key: 'E',
       name: 'Echelon',
@@ -199,11 +199,11 @@ export default {
       },
       {
         key: 'A',
-        name: 'AI Agent',
+        name: 'Aice',
         role: 'Artificial intelligence',
         status: 'On the roadmap',
         icon: '✨',
-        desc: 'AI is not a feature bolted on the side; it is a kind of Agent, on equal footing with humans and machines. The AI Agent receives Tasks from Spine exactly as any other Agent does — so work can be handed over piece by piece.',
+        desc: 'AI is not a feature bolted on the side; it is a kind of Agent, on equal footing with humans and machines. Aice receives Tasks from Spine exactly as any other Agent does — so work can be handed over piece by piece.',
         features: [
           'Speaks ACP — Agent Client Protocol',
           'Takes on Tasks automatically according to a confidence threshold',
@@ -234,7 +234,7 @@ export default {
       {
         num: '03',
         title: 'Replace',
-        desc: 'Tasks are reimplemented in Rust or handed to the AI Agent, run in parallel and reconciled against the legacy result.',
+        desc: 'Tasks are reimplemented in Rust or handed to Aice, run in parallel and reconciled against the legacy result.',
       },
       {
         num: '04',
@@ -250,7 +250,7 @@ export default {
       channels: ['Digital channels', 'web · app · partners'],
       facade: ['ORBIT', 'REST API', 'facade'],
       legacy: ['Ingenium · COBOL', 'existing business logic, still serving customers'],
-      modern: ['Rust services + AI Agent', 'flows reimplemented, run in parallel and reconciled'],
+      modern: ['Rust services + Aice', 'flows reimplemented, run in parallel and reconciled'],
       target: ['CORE', 'new'],
       phases: ['01 Wrap', '02 Redirect', '03 Replace', '04 Retire'],
     },
@@ -293,7 +293,7 @@ export default {
   cta: {
     id: 'contact',
     title: 'Nexus works today. The rest is being built.',
-    lead: 'If you run Ingenium, start with Nexus — it already runs on a live system. For Echelon, Orbit, Vista and the AI Agent, we would rather build alongside someone who actually operates a core than guess at it.',
+    lead: 'If you run Ingenium, start with Nexus — it already runs on a live system. For Echelon, Orbit, Vista and Aice, we would rather build alongside someone who actually operates a core than guess at it.',
     primary: {
       label: 'Book a 30-minute call',
       href: `${mail}?subject=${encodeURIComponent('BENOVA - 30 minute call')}`,
@@ -321,7 +321,7 @@ export default {
           { label: 'Nexus', href: '#ecosystem' },
           { label: 'Orbit', href: '#ecosystem' },
           { label: 'Vista', href: '#ecosystem' },
-          { label: 'AI Agent', href: '#ecosystem' },
+          { label: 'Aice', href: '#ecosystem' },
         ],
       },
       {

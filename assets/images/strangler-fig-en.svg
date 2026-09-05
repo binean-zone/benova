@@ -37,7 +37,7 @@
 
   <text class="lbl" x="470" y="196">Ingenium · COBOL</text>
   <text class="small" x="470" y="216">existing business logic, still serving customers</text>
-  <text class="lbl" x="700" y="316" text-anchor="middle">Rust services + AI Agent</text>
+  <text class="lbl" x="700" y="316" text-anchor="middle">Rust services + Aice</text>
   <text class="small" x="700" y="336" text-anchor="middle">flows reimplemented, run in parallel and reconciled</text>
 
   <rect class="box" x="1024" y="150" width="80" height="110" rx="14"/>
