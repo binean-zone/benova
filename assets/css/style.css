@@ -2670,14 +2670,6 @@ ol {
   background: var(--pillar);
 }
 
-.eva-pillar-link {
-  display: inline-block;
-  margin-top: 12px;
-  color: var(--pillar);
-  font-size: 0.9rem;
-  font-weight: 650;
-}
-
 .eva-flow {
   display: grid;
   grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);

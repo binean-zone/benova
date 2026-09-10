@@ -28,7 +28,6 @@ export default {
     openMenu: 'Mở menu',
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
-    echelonMore: 'Tìm hiểu Echelon',
     evaMore: 'Khám phá mô hình EVA',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
@@ -323,7 +322,6 @@ export default {
         title: 'Sản phẩm',
         links: [
           { label: 'EVA', href: 'eva/' },
-          { label: 'Echelon', href: 'echelon/' },
           { label: 'Nexus', href: '#kien-truc' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },

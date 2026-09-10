@@ -28,7 +28,6 @@ export default {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
-    echelonMore: 'Read about Echelon',
     evaMore: 'Explore the EVA model',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
@@ -323,7 +322,6 @@ export default {
         title: 'Product',
         links: [
           { label: 'EVA', href: 'eva/' },
-          { label: 'Echelon', href: 'echelon/' },
           { label: 'Nexus', href: '#ecosystem' },
           { label: 'Orbit', href: '#ecosystem' },
           { label: 'Vista', href: '#ecosystem' },

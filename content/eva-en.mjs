@@ -78,7 +78,6 @@ export default {
         color: '#5eead4',
         desc: 'Holds Flow and Process state, emits Tasks, receives Outcomes and decides the next step from one source of authority.',
         features: ['Long-running, versioned processes', 'One Task for a person, service or AI', 'Event-based recovery and inspection'],
-        link: { label: 'Explore Echelon', href: 'echelon/' },
       },
       {
         key: 'V',

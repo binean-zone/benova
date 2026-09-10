@@ -548,9 +548,6 @@ const echelonCard = (echelon) => `          <article class="card echelon-card re
             <ul class="tag-row">
 ${list(echelon.highlights, (h) => `              <li>${esc(h)}</li>`)}
             </ul>
-            <p class="echelon-more">
-              <a href="${base}${esc(site.locale.path)}echelon/">${esc(site.ui.echelonMore)} →</a>
-            </p>
 ${echelonDiagram(echelon)}
             <div class="sub-grid">
 ${list(

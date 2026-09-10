@@ -77,7 +77,6 @@ export default {
         color: '#5eead4',
         desc: 'Giữ trạng thái của Flow và Process, phát Task, nhận Outcome rồi quyết định bước tiếp theo từ một nguồn thẩm quyền duy nhất.',
         features: ['Quy trình dài hạn và có version', 'Một Task cho người, service hoặc AI', 'Khôi phục và kiểm tra theo sự kiện'],
-        link: { label: 'Tìm hiểu Echelon', href: 'echelon/' },
       },
       {
         key: 'V',
