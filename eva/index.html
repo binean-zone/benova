@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean EVA — Một quy trình cho người, service và AI</title>
+  <meta name="description" content="Binean EVA kết hợp Echelon, Vista và Aice thành một mô hình vận hành quy trình có thể kiểm soát: hệ thống điều phối, con người xử lý và AI hỗ trợ trên cùng một luồng công việc." />
+  <meta name="keywords" content="Binean EVA, Echelon, Vista, Aice, human in the loop, AI workflow, multi-agent orchestration, private AI, process automation" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/eva/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/eva/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/eva/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/eva/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean EVA — Một quy trình cho người, service và AI" />
+  <meta property="og:description" content="Binean EVA kết hợp Echelon, Vista và Aice thành một mô hình vận hành quy trình có thể kiểm soát: hệ thống điều phối, con người xử lý và AI hỗ trợ trên cùng một luồng công việc." />
+  <meta property="og:url" content="https://binean.com/eva/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean EVA — Một quy trình cho người, service và AI" />
+  <meta name="twitter:description" content="Binean EVA kết hợp Echelon, Vista và Aice thành một mô hình vận hành quy trình có thể kiểm soát: hệ thống điều phối, con người xử lý và AI hỗ trợ trên cùng một luồng công việc." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean EVA","applicationCategory":"BusinessApplication","description":"Binean EVA kết hợp Echelon, Vista và Aice thành một mô hình vận hành quy trình có thể kiểm soát: hệ thống điều phối, con người xử lý và AI hỗ trợ trên cùng một luồng công việc.","url":"https://binean.com/eva/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>EVA đang được xây dựng theo hướng đặc tả trước, thử nghiệm trên một quy trình thật trước khi mở rộng.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Trao%20doi%20use%20case">Trao đổi cùng Binean</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean EVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean EVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#bai-toan">Bài toán</a></li>
+          <li><a href="#mo-hinh">Mô hình EVA</a></li>
+          <li><a href="#gia-tri">Giá trị</a></li>
+          <li><a href="#ung-dung">Ứng dụng</a></li>
+          <li><a href="#benova">BENOVA</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../eva/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/eva/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Trao%20doi%20use%20case">Trao đổi use case</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="eva-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell eva-hero-inner">
+        <div class="eva-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">Echelon · Vista · Aice</p>
+          <h1 class="eva-title reveal">Một quy trình. Người, service và AI cùng hoàn thành.</h1>
+          <p class="eva-lead reveal">EVA là mô hình vận hành quy trình có thể kiểm soát của Binean. Echelon giữ luồng công việc, Vista đưa đúng Task tới người phụ trách, còn Aice đảm nhận hoặc hỗ trợ phần việc phù hợp với AI.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#mo-hinh">Khám phá mô hình EVA</a>
+            <a class="btn btn-ghost" href="#lien-he-eva">Chọn một use case</a>
+          </div>
+        </div>
+
+        <div class="eva-system reveal">
+          <p class="eva-system-kicker">Kết quả cần đạt</p>
+          <p class="eva-system-outcome">Ít thao tác tay hơn, quyết định quan trọng vẫn ở đúng người, và mọi bước đều có dấu vết để kiểm tra.</p>
+          <ol class="eva-system-parts" aria-label="Echelon, Vista, Aice">
+            <li style="--pillar:#5eead4">
+              <span>E</span>
+              <div><strong>Echelon</strong><small>Engine điều phối</small></div>
+            </li>
+            <li style="--pillar:#fb7185">
+              <span>V</span>
+              <div><strong>Vista</strong><small>Bàn làm việc cho con người</small></div>
+            </li>
+            <li style="--pillar:#a3e635">
+              <span>A</span>
+              <div><strong>Aice</strong><small>Năng lực AI</small></div>
+            </li>
+          </ol>
+          <div class="eva-signal" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="bai-toan">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Bài toán</p>
+          <h2>Quy trình thật luôn đi qua nhiều người và nhiều hệ thống</h2>
+          <p class="lead">Hồ sơ không chỉ chạy qua API. Nó chờ người kiểm tra, cần AI đọc tài liệu, gọi service nghiệp vụ rồi quay lại cho một quyết định. Khi mỗi bên dùng một cơ chế riêng, trạng thái phân mảnh và trách nhiệm trở nên khó theo dõi.</p>
+        </div>
+        <div class="eva-problem-grid">
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">↗</span>
+            <h3>Bàn giao dễ đứt gãy</h3>
+            <p>Email, bảng tính, hàng đợi và script giữ những phần khác nhau của cùng một hồ sơ. Không ai thấy trọn hành trình.</p>
+          </article>
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">◎</span>
+            <h3>AI trở thành hộp đen</h3>
+            <p>Một kết quả do model tạo ra nhưng thiếu dữ liệu nguồn, người xác nhận và trạng thái xử lý thì khó đưa vào vận hành thật.</p>
+          </article>
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">⌁</span>
+            <h3>Tự động hóa bị khóa cứng</h3>
+            <p>Đổi một bước từ người sang AI hoặc service thường kéo theo việc viết lại luồng, tích hợp và cơ chế kiểm soát xung quanh.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-model-section" id="mo-hinh">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Mô hình EVA</p>
+          <h2>Ba lớp, một vòng công việc khép kín</h2>
+          <p class="lead">EVA tách rõ ai điều phối, ai tương tác và ai thực thi. Mỗi lớp làm đúng phần việc của mình nhưng cùng dùng Task và Outcome để phối hợp.</p>
+        </div>
+        <div class="eva-pillar-grid">
+          <article class="card eva-pillar reveal" style="--pillar:#5eead4">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">E</span>
+              <div>
+                <h3>Echelon</h3>
+                <p>Engine điều phối</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Giữ trạng thái của Flow và Process, phát Task, nhận Outcome rồi quyết định bước tiếp theo từ một nguồn thẩm quyền duy nhất.</p>
+            <ul class="feature-list">
+              <li>Quy trình dài hạn và có version</li>
+              <li>Một Task cho người, service hoặc AI</li>
+              <li>Khôi phục và kiểm tra theo sự kiện</li>
+            </ul>
+            <a class="eva-pillar-link" href="../echelon/">Tìm hiểu Echelon →</a>
+          </article>
+          <article class="card eva-pillar reveal" style="--pillar:#fb7185">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p>Bàn làm việc cho con người</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Trình bày đúng Task, dữ liệu và hành động mà người dùng cần. Vista thu ý định của người dùng nhưng không tự quyết định logic nghiệp vụ.</p>
+            <ul class="feature-list">
+              <li>Task, form và ngữ cảnh trong một nơi</li>
+              <li>Trạng thái xử lý rõ ràng</li>
+              <li>Giao diện thích ứng theo Flow</li>
+            </ul>
+
+          </article>
+          <article class="card eva-pillar reveal" style="--pillar:#a3e635">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">A</span>
+              <div>
+                <h3>Aice</h3>
+                <p>Năng lực AI</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Nhận trọn một Task phù hợp với AI, hoặc tạo bản nháp ngay trong Human Task để người phụ trách xem, sửa và xác nhận.</p>
+            <ul class="feature-list">
+              <li>Trích xuất, phân loại và tổng hợp</li>
+              <li>Bản nháp theo cấu trúc đầu ra</li>
+              <li>Giữ người trong vòng kiểm soát</li>
+            </ul>
+
+          </article>
+        </div>
+        <div class="eva-flow">
+          <div class="eva-flow-intro reveal">
+            <p class="eyebrow">Task → Outcome</p>
+            <h3>Cùng một hợp đồng từ đầu đến cuối</h3>
+            <p>Đổi người thực thi không buộc phải đổi Flow: hôm nay một người xử lý, ngày mai Aice hỗ trợ, và khi quy tắc đã đủ rõ một service có thể đảm nhận.</p>
+          </div>
+          <ol class="eva-flow-steps">
+            <li class="reveal">
+              <span>01</span>
+              <div>
+                <h4>Echelon phát Task</h4>
+                <p>Flow xác định việc cần làm và dữ liệu đầu vào.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>02</span>
+              <div>
+                <h4>Vista hoặc Aice thực thi</h4>
+                <p>Người, AI hay service nhận đúng phần việc được giao.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>03</span>
+              <div>
+                <h4>Outcome quay về</h4>
+                <p>Kết quả và trạng thái được trả theo cùng một hợp đồng.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>04</span>
+              <div>
+                <h4>Echelon điều hướng</h4>
+                <p>Basal quyết định bước kế tiếp và giữ một nguồn sự thật.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="gia-tri">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Giá trị</p>
+          <h2>Tự động hóa tăng dần mà quyền kiểm soát không giảm đi</h2>
+          <p class="lead">EVA được thiết kế cho những quy trình cần cả tốc độ của máy lẫn phán đoán của con người.</p>
+        </div>
+        <div class="eva-value-grid">
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">◫</span>
+            <h3>Một hành trình có thể kiểm tra</h3>
+            <p>Task, người thực hiện, kết quả và bước chuyển tiếp nằm trong cùng một dòng sự kiện thay vì rải rác qua nhiều công cụ.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">✓</span>
+            <h3>Con người giữ quyết định quan trọng</h3>
+            <p>Aice có thể soạn nháp và đề xuất; người phụ trách vẫn là bên xác nhận những kết quả có tác động cao.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">⇄</span>
+            <h3>Bàn giao theo mức sẵn sàng</h3>
+            <p>Từng Task có thể đi từ người sang AI rồi sang service khi dữ liệu, độ tin cậy và quy tắc đã đủ rõ.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">⌂</span>
+            <h3>Phù hợp môi trường riêng</h3>
+            <p>Kiến trúc hướng tới khả năng triển khai trong hạ tầng do tổ chức lựa chọn khi dữ liệu không thể rời khỏi ranh giới kiểm soát.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-applications" id="ung-dung">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Ứng dụng</p>
+          <h2>Bắt đầu từ một quy trình có hồ sơ, quy tắc và người review</h2>
+          <p class="lead">EVA phù hợp nhất khi công việc có đầu vào rõ, đi qua nhiều bước và cần giữ bằng chứng cho quyết định cuối cùng.</p>
+        </div>
+        <div class="eva-use-grid">
+          <article class="eva-use-card reveal">
+            <span>01</span>
+            <h3>Tiếp nhận và kiểm tra hồ sơ</h3>
+            <p>AI trích xuất và kiểm tra dữ liệu; người xử lý tập trung vào ngoại lệ và quyết định cuối.</p>
+          </article>
+          <article class="eva-use-card reveal">
+            <span>02</span>
+            <h3>Phê duyệt nhiều bước</h3>
+            <p>Service chuẩn bị dữ liệu, Vista đưa Task đến đúng vai trò, Echelon giữ điều kiện và lịch sử của quy trình.</p>
+          </article>
+          <article class="eva-use-card reveal">
+            <span>03</span>
+            <h3>Điều tra và xử lý sự cố</h3>
+            <p>Máy thu thập tín hiệu, AI tổng hợp bối cảnh, con người duyệt hành động trước khi hệ thống tiếp tục.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">Một pilot tốt nên bắt đầu bằng một Flow, một loại hồ sơ và một tích hợp có tiêu chí thành công đo được.</p>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-benova" id="benova">
+      <div class="shell">
+        <div class="eva-benova-copy reveal">
+          <p class="eyebrow">Từ EVA đến BENOVA</p>
+          <h2>EVA là mô hình nền. BENOVA đưa mô hình đó vào Ingenium.</h2>
+          <p class="lead">Trong BENOVA, Echelon, Vista và Aice phối hợp quy trình giữa người, service và AI. Nexus bổ sung DevOps chuyên biệt cho Ingenium; Orbit cho hệ cũ và service mới cùng chạy sau một mặt tiền API.</p>
+          <a class="eva-benova-link" href="../">Khám phá BENOVA →</a>
+        </div>
+        <div class="eva-formula reveal">
+          <div class="eva-formula-part">
+            <strong>EVA</strong>
+            <span>Điều phối · Trải nghiệm · AI</span>
+          </div>
+          <span class="eva-formula-op" aria-hidden="true">+</span>
+          <div class="eva-formula-part">
+            <strong>Nexus + Orbit</strong>
+            <span>Vận hành · Tích hợp Ingenium</span>
+          </div>
+          <span class="eva-formula-op" aria-hidden="true">=</span>
+          <div class="eva-formula-part is-result">
+            <strong>BENOVA</strong>
+            <span>Hiện đại hóa core theo từng bước</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he-eva">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Chọn một quy trình đủ nhỏ để chứng minh giá trị.</h2>
+          <p class="lead">Mang đến một quy trình đang tốn nhiều thao tác tay, có hồ sơ thật và một người chịu trách nhiệm kết quả. Binean sẽ cùng bạn xác định chỗ nào nên giao cho service, chỗ nào Aice có thể hỗ trợ và chỗ nào con người phải giữ quyền quyết định.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Trao%20doi%20use%20case">Trao đổi use case trong 30 phút</a>
+            <a class="btn btn-ghost btn-lg" href="../">Xem BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa core bảo hiểm Ingenium theo từng bước, không ngừng vận hành.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../eva/">EVA</a></li>
+          <li><a href="../echelon/">Echelon</a></li>
+          <li><a href="../#kien-truc">Nexus</a></li>
+          <li><a href="../#kien-truc">Orbit</a></li>
+          <li><a href="../#kien-truc">Vista</a></li>
+          <li><a href="../#kien-truc">Aice</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Vấn đề</a></li>
+          <li><a href="../#trien-khai">Cách triển khai</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

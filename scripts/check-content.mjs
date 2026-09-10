@@ -85,7 +85,7 @@ const collectAnchors = (value, path, out) => {
 };
 
 /* Mỗi trang có không gian id riêng, nên anchor phải được kiểm theo đúng trang
-   chứa nó: trang chủ và trang Echelon đều có section mang id "van-de". */
+   chứa nó. */
 const pageIds = {
   home: (c) =>
     ['problem', 'ecosystem', 'strategy', 'benefits', 'cta']
@@ -98,17 +98,22 @@ const pageIds = {
       c.echelonPage?.fit?.id,
       c.echelonPage?.status?.id,
     ].filter(Boolean),
+  eva: (c) =>
+    ['problem', 'model', 'value', 'applications', 'benova', 'cta']
+      .map((section) => c.evaPage?.[section]?.id)
+      .filter(Boolean),
 };
 
 for (const [code, content] of [
   ['vi', vi],
   ['en', en],
 ]) {
-  const { echelonPage, ...home } = content;
+  const { echelonPage, evaPage, ...home } = content;
 
   for (const [page, tree, requireUsed] of [
     ['home', home, true],
     ['echelon', { echelonPage }, false],
+    ['eva', { evaPage }, true],
   ]) {
     const ids = new Set(pageIds[page](content));
     const anchors = [];
@@ -120,8 +125,7 @@ for (const [code, content] of [
       }
     }
 
-    /* Chỉ trang chủ mới đòi mọi section phải có link trỏ tới: nav của trang
-       Echelon cố ý chỉ liệt kê năm mục chính, không liệt kê hết tám section. */
+    /* Echelon cố ý không liệt kê hết mọi section trong nav. */
     if (requireUsed) {
       const used = new Set(anchors.map((a) => a.anchor));
       for (const id of ids) {

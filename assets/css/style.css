@@ -2416,3 +2416,497 @@ ol {
     gap: 6px;
   }
 }
+
+/* ---------------------------------------------------- 17. trang EVA ---- */
+
+.section-link {
+  margin: 18px 0 0;
+}
+
+.section-link a {
+  font-weight: 650;
+  font-size: 0.94rem;
+}
+
+.eva-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(42px, 6vw, 82px) 0 clamp(58px, 7vw, 94px);
+  border-bottom: 1px solid var(--border);
+}
+
+.eva-hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  gap: clamp(38px, 6vw, 82px);
+  align-items: center;
+}
+
+.eva-hero-copy .ech-back {
+  margin-bottom: 28px;
+}
+
+.eva-title {
+  max-width: 15ch;
+  font-size: clamp(2.35rem, 1.45rem + 3.8vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.048em;
+  margin-bottom: 1.3rem;
+}
+
+.eva-lead {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 0.93rem + 0.4vw, 1.18rem);
+  margin-bottom: 1.75rem;
+}
+
+.eva-system {
+  position: relative;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 9%, var(--bg-raise)), var(--bg-raise) 58%);
+  box-shadow: var(--shadow);
+}
+
+.eva-system::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(125deg, color-mix(in srgb, #5eead4 30%, transparent), transparent 42%, color-mix(in srgb, #a3e635 18%, transparent));
+  filter: blur(26px);
+  opacity: 0.72;
+}
+
+.eva-system-kicker {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eva-system-outcome {
+  color: var(--text-strong);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.eva-system-parts {
+  display: grid;
+  gap: 10px;
+}
+
+.eva-system-parts li {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 13px 15px;
+  border: 1px solid color-mix(in srgb, var(--pillar) 34%, var(--border));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--pillar) 6%, var(--surface));
+}
+
+.eva-system-parts li > span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pillar) 18%, var(--bg));
+  color: var(--pillar);
+  font-size: 1.16rem;
+  font-weight: 850;
+}
+
+.eva-system-parts strong,
+.eva-system-parts small {
+  display: block;
+}
+
+.eva-system-parts strong {
+  color: var(--text-strong);
+  line-height: 1.3;
+}
+
+.eva-system-parts small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+
+.eva-signal {
+  display: grid;
+  grid-template-columns: auto minmax(40px, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  margin-top: 18px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eva-signal i {
+  position: relative;
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--amber));
+}
+
+.eva-signal i::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid var(--amber);
+  border-right: 1px solid var(--amber);
+  transform: rotate(45deg);
+}
+
+.eva-section {
+  scroll-margin-top: 80px;
+}
+
+.eva-problem-grid,
+.eva-pillar-grid,
+.eva-use-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.eva-card-icon,
+.eva-value-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.eva-model-section,
+.eva-applications {
+  background: var(--bg-alt);
+  border-block: 1px solid var(--border);
+}
+
+.eva-pillar {
+  overflow: hidden;
+  border-top: 3px solid var(--pillar);
+}
+
+.eva-pillar::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 90px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--pillar) 9%, transparent), transparent);
+  pointer-events: none;
+}
+
+.eva-pillar-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.eva-pillar-head h3,
+.eva-pillar-head p {
+  margin: 0;
+}
+
+.eva-pillar-head h3 {
+  font-size: 1.25rem;
+}
+
+.eva-pillar-head p {
+  color: var(--pillar);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.eva-pillar-key {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--pillar) 16%, var(--bg));
+  color: var(--pillar);
+  font-size: 1.35rem;
+  font-weight: 850;
+}
+
+.eva-pillar .eva-pillar-desc {
+  min-height: 7.6em;
+  margin-bottom: 20px;
+  line-height: 1.65;
+}
+
+.eva-pillar .feature-list li::before {
+  background: var(--pillar);
+}
+
+.eva-pillar-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--pillar);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.eva-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(32px, 5vw, 70px);
+  align-items: start;
+  margin-top: clamp(48px, 6vw, 76px);
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raise);
+}
+
+.eva-flow-intro h3 {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.85rem);
+}
+
+.eva-flow-intro > p:last-child {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.eva-flow-steps {
+  counter-reset: eva-step;
+}
+
+.eva-flow-steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 16px;
+  padding: 0 0 22px;
+}
+
+.eva-flow-steps li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  bottom: 2px;
+  left: 17px;
+  width: 1px;
+  background: var(--border-strong);
+}
+
+.eva-flow-steps li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg-raise);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.eva-flow-steps h4 {
+  font-size: 0.98rem;
+  margin: 1px 0 4px;
+}
+
+.eva-flow-steps p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.eva-value-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.eva-value-card {
+  padding: 24px;
+}
+
+.eva-value-icon {
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+}
+
+.eva-use-card {
+  position: relative;
+  padding: 26px 0 0;
+  border-top: 1px solid var(--border-strong);
+}
+
+.eva-use-card > span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+}
+
+.eva-use-card p {
+  color: var(--muted);
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.eva-benova .shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(480px, 1.1fr);
+  gap: clamp(38px, 6vw, 78px);
+  align-items: center;
+}
+
+.eva-benova-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 650;
+}
+
+.eva-formula {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto minmax(150px, 1fr) auto minmax(150px, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.eva-formula-part {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 138px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.eva-formula-part.is-result {
+  border-color: var(--border-strong);
+  background: linear-gradient(145deg, var(--accent-soft), var(--surface));
+}
+
+.eva-formula-part strong,
+.eva-formula-part span {
+  display: block;
+}
+
+.eva-formula-part strong {
+  color: var(--text-strong);
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+}
+
+.eva-formula-part span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.eva-formula-op {
+  align-self: center;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 1.25rem;
+}
+
+@media (max-width: 1100px) {
+  .site-nav a {
+    padding-inline: 10px;
+  }
+
+  .eva-hero-inner,
+  .eva-benova .shell {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
+  }
+
+  .eva-value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eva-formula {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eva-formula-part {
+    min-height: 0;
+  }
+
+  .eva-formula-op {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .eva-hero-inner,
+  .eva-benova .shell,
+  .eva-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eva-system {
+    max-width: 620px;
+  }
+
+  .eva-pillar-grid,
+  .eva-problem-grid,
+  .eva-use-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eva-pillar .eva-pillar-desc {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .eva-title {
+    font-size: clamp(2.2rem, 1.45rem + 6vw, 3rem);
+  }
+
+  .eva-system {
+    padding: 20px;
+  }
+
+  .eva-value-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .eva-flow {
+    padding: 22px 18px;
+  }
+}

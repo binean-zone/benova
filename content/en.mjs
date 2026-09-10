@@ -6,9 +6,11 @@
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
 import echelonPage from './echelon-en.mjs';
+import evaPage from './eva-en.mjs';
 
 export default {
   echelonPage,
+  evaPage,
 
   locale: { code: 'en', label: 'English', short: 'EN', path: 'en/' },
 
@@ -27,6 +29,7 @@ export default {
     closeMenu: 'Close menu',
     answersPrefix: 'Answers',
     echelonMore: 'Read about Echelon',
+    evaMore: 'Explore the EVA model',
     contactTitle: 'Contact',
     contactNote: 'Email is currently our only contact channel.',
     companyLine: 'A product of',
@@ -49,6 +52,7 @@ export default {
   },
 
   nav: [
+    { label: 'EVA', href: 'eva/' },
     { label: 'Problem', href: '#problem' },
     { label: 'Ecosystem', href: '#ecosystem' },
     { label: 'Adoption', href: '#adoption' },
@@ -109,7 +113,8 @@ export default {
     id: 'ecosystem',
     eyebrow: 'Core ecosystem',
     title: 'Five elements, one platform',
-    lead: 'BENOVA = B + ENOVA. B is Binean, the company behind the platform. ENOVA is five elements: Echelon orchestrates, Nexus operates, Orbit opens the core, Vista handles experience and Aice accelerates. Each element solves one layer of the modernization problem and can be adopted independently, in whatever order suits you.',
+    lead: 'BENOVA brings the EVA model — Echelon, Vista and Aice — to Ingenium modernization, then adds Nexus for operations and Orbit to connect the legacy core with new services. The five elements cover five layers of the journey and can be adopted in the order that fits you.',
+    evaLink: { label: 'See how Echelon, Vista and Aice work together', href: 'eva/' },
     echelon: {
       key: 'E',
       name: 'Echelon',
@@ -317,7 +322,8 @@ export default {
       {
         title: 'Product',
         links: [
-          { label: 'Echelon', href: '#ecosystem' },
+          { label: 'EVA', href: 'eva/' },
+          { label: 'Echelon', href: 'echelon/' },
           { label: 'Nexus', href: '#ecosystem' },
           { label: 'Orbit', href: '#ecosystem' },
           { label: 'Vista', href: '#ecosystem' },

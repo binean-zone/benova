@@ -4,8 +4,8 @@ Trang giới thiệu sản phẩm một trang (one-page) cho **BENOVA**, hệ si
 core bảo hiểm Ingenium. Trang hoàn toàn tĩnh, không framework runtime, triển khai trên
 GitHub Pages.
 
-**Kiến trúc:** `content/vi.mjs` + `content/en.mjs` (nội dung) → `scripts/build.mjs`
-(generator) → `index.html` và `en/index.html` (HTML tĩnh đã commit) + `assets/`.
+**Kiến trúc:** `content/vi.mjs` + `content/en.mjs` và nội dung các trang con →
+`scripts/build.mjs` (generator) → HTML tĩnh đã commit + `assets/`.
 
 Trang có hai ngôn ngữ: tiếng Việt ở gốc, tiếng Anh ở `/en/`. Nút VI/EN nằm trên header.
 
@@ -26,7 +26,7 @@ npm run dev          # http://localhost:4173, tự build lại mỗi lần tải
 Chỉ build mà không chạy server:
 
 ```bash
-npm run build        # kiểm tra song ngữ rồi sinh index.html, en/index.html, echelon/index.html, sitemap.xml
+npm run build        # kiểm tra song ngữ rồi sinh trang chủ, EVA, Echelon và sitemap.xml
 npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
 npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
 ```
@@ -72,6 +72,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 /
 ├── index.html              # trang chủ tiếng Việt (sinh ra, đừng sửa tay)
 ├── en/index.html           # trang chủ tiếng Anh (sinh ra)
+├── eva/index.html          # trang mô hình EVA, tiếng Việt (sinh ra)
+├── en/eva/index.html       # trang mô hình EVA, tiếng Anh (sinh ra)
 ├── echelon/index.html      # trang Binean Echelon, tiếng Việt (sinh ra)
 ├── en/echelon/index.html   # trang Binean Echelon, tiếng Anh (sinh ra)
 ├── 404.html                # trang lỗi song ngữ (sinh ra)
@@ -80,6 +82,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 │   ├── shared.mjs          # thương hiệu, email, URL, màu hành tinh
 │   ├── vi.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Việt
 │   ├── en.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Anh
+│   ├── eva-vi.mjs          # NGUỒN NỘI DUNG trang EVA, tiếng Việt
+│   ├── eva-en.mjs          # NGUỒN NỘI DUNG trang EVA, tiếng Anh
 │   ├── echelon-vi.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Việt
 │   └── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
 ├── scripts/

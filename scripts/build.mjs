@@ -25,8 +25,8 @@ let site = vi;
 /** Tiền tố đường dẫn từ trang hiện tại về gốc site, ví dụ '../' cho /en/. */
 let base = '';
 
-/** Đường dẫn của trang trong một ngôn ngữ: '' là trang chủ, 'echelon/' là trang
-    Echelon. Ghép với locale.path ra đường dẫn đầy đủ. */
+/** Đường dẫn của trang trong một ngôn ngữ: '' là trang chủ, các slug còn lại
+    là trang sản phẩm. Ghép với locale.path ra đường dẫn đầy đủ. */
 let pagePath = '';
 
 const fullPath = (locale = site) => locale.locale.path + pagePath;
@@ -39,6 +39,13 @@ const esc = (value) =>
     .replace(/"/g, '&quot;');
 
 const list = (items, render) => items.map(render).join('\n');
+
+/** Nội dung riêng của trang sản phẩm đang dựng, nếu có. */
+const detailPage = () => {
+  if (pagePath === 'echelon/') return site.echelonPage;
+  if (pagePath === 'eva/') return site.evaPage;
+  return null;
+};
 
 /* Địa chỉ đầu tiên là địa chỉ chính, dùng cho mọi nút CTA. */
 const mailto = (address, subject) => `mailto:${address}?subject=${encodeURIComponent(subject)}`;
@@ -54,8 +61,9 @@ const localeHref = (target) => {
 
 const head = () => {
   const { brand } = site;
-  // Trang Echelon mang khối seo riêng; những trường chung thì kế thừa.
-  const seo = { ...site.seo, ...(pagePath === 'echelon/' ? site.echelonPage.seo : {}) };
+  // Trang sản phẩm mang khối SEO riêng; những trường chung thì kế thừa.
+  const current = detailPage();
+  const seo = { ...site.seo, ...(current?.seo || {}) };
   const canonical = new URL(fullPath(), seo.url).href;
   const ogImageFile = `assets/images/og-benova-${site.locale.code}.png`;
   const ogImage = new URL(ogImageFile, seo.url).href;
@@ -63,7 +71,7 @@ const head = () => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: brand.name,
+    name: current?.brandName || brand.name,
     applicationCategory: 'BusinessApplication',
     description: seo.description,
     url: canonical,
@@ -129,14 +137,10 @@ ${(site.locale.code === 'vi' ? ['inter-latin', 'inter-vietnamese'] : ['inter-lat
 
 /* ------------------------------------------------------------ header --- */
 
-/* Trang Echelon phải đọc được như một tài liệu độc lập, nên nó mang dải thông
-   báo, tên thương hiệu và điều hướng của riêng nó. Dùng chung của BENOVA thì
-   thanh nav còn trỏ vào những anchor không tồn tại trên trang này. */
-const onEchelon = () => pagePath === 'echelon/';
-
 const notice = () => {
-  const n = onEchelon() ? site.echelonPage.notice : site.notice;
-  const subject = onEchelon() ? site.echelonPage.cta.subject : 'BENOVA - Lien he';
+  const current = detailPage();
+  const n = current?.notice || site.notice;
+  const subject = current?.cta.subject || 'BENOVA - Lien he';
   return `  <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
@@ -147,13 +151,14 @@ const notice = () => {
 };
 
 const header = () => {
-  const brandName = onEchelon() ? site.echelonPage.brandName : site.brand.name;
-  const brandHref = onEchelon() ? `${base}${site.locale.path}` : '#top';
-  const navItems = onEchelon() ? site.echelonPage.nav : site.nav;
-  const ctaHref = onEchelon()
-    ? mailto(site.brand.emails[0], site.echelonPage.cta.subject)
+  const current = detailPage();
+  const brandName = current?.brandName || site.brand.name;
+  const brandHref = current ? `${base}${site.locale.path}` : '#top';
+  const navItems = current?.nav || site.nav;
+  const ctaHref = current
+    ? mailto(site.brand.emails[0], current.cta.subject)
     : `#${site.cta.id}`;
-  const ctaLabel = onEchelon() ? site.echelonPage.headerCta : site.ui.headerCta;
+  const ctaLabel = current?.headerCta || site.ui.headerCta;
 
   return `  <a class="skip-link" href="#main">${esc(site.ui.skipToContent)}</a>
   <header class="site-header" id="site-header">
@@ -582,6 +587,7 @@ const ecosystem = () => {
           <p class="eyebrow">${esc(e.eyebrow)}</p>
           <h2>${esc(e.title)}</h2>
           <p class="lead">${esc(e.lead)}</p>
+          <p class="section-link"><a href="${esc(e.evaLink.href)}">${esc(e.evaLink.label)} →</a></p>
         </div>
         <div class="agent-grid">
 ${echelonCard(e.echelon)}
@@ -654,8 +660,11 @@ const footer = () => {
   /* Footer là điều hướng chung của cả site, nhưng link của nó là anchor của
      trang chủ. Ở trang con, anchor trần sẽ trỏ vào chính trang đó và chết —
      nên phải gắn thêm đường về trang chủ phía trước. */
-  const siteLink = (href) =>
-    href.startsWith('#') && pagePath ? `${base}${site.locale.path}${href}` : href;
+  const siteLink = (href) => {
+    if (href.startsWith('#')) return pagePath ? `${base}${site.locale.path}${href}` : href;
+    if (/^(?:[a-z]+:|\/)/i.test(href)) return href;
+    return `${base}${site.locale.path}${href}`;
+  };
   return `  <footer class="site-footer">
     <div class="shell footer-inner">
       <div class="footer-brand">
@@ -1078,6 +1087,251 @@ ${footer()}
 `;
 };
 
+/* ------------------------------------------------------------- trang EVA */
+
+const evaPage = () => {
+  const p = site.evaPage;
+
+  const productPath = (href) => `${base}${site.locale.path}${href}`;
+
+  const problemCards = p.problem.items
+    .map(
+      (item) => `          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">${esc(item.icon)}</span>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.desc)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const pillarCards = p.model.pillars
+    .map(
+      (pillar) => `          <article class="card eva-pillar reveal" style="--pillar:${esc(
+        pillar.color
+      )}">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">${esc(pillar.key)}</span>
+              <div>
+                <h3>${esc(pillar.name)}</h3>
+                <p>${esc(pillar.role)}</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">${esc(pillar.desc)}</p>
+            <ul class="feature-list">
+${pillar.features.map((feature) => `              <li>${esc(feature)}</li>`).join('\n')}
+            </ul>
+${
+  pillar.link
+    ? `            <a class="eva-pillar-link" href="${esc(productPath(pillar.link.href))}">${esc(
+        pillar.link.label
+      )} →</a>`
+    : ''
+}
+          </article>`
+    )
+    .join('\n');
+
+  const flowSteps = p.model.flow.steps
+    .map(
+      (step) => `            <li class="reveal">
+              <span>${esc(step.num)}</span>
+              <div>
+                <h4>${esc(step.title)}</h4>
+                <p>${esc(step.desc)}</p>
+              </div>
+            </li>`
+    )
+    .join('\n');
+
+  const valueCards = p.value.items
+    .map(
+      (item) => `          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">${esc(item.icon)}</span>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.desc)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const applicationCards = p.applications.items
+    .map(
+      (item) => `          <article class="eva-use-card reveal">
+            <span>${esc(item.num)}</span>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.desc)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const formula = p.benova.formula
+    .map(
+      (item, index) => `${
+        index
+          ? `          <span class="eva-formula-op" aria-hidden="true">${
+              index === p.benova.formula.length - 1 ? '=' : '+'
+            }</span>\n`
+          : ''
+      }          <div class="eva-formula-part${
+        index === p.benova.formula.length - 1 ? ' is-result' : ''
+      }">
+            <strong>${esc(item.name)}</strong>
+            <span>${esc(item.desc)}</span>
+          </div>`
+    )
+    .join('\n');
+
+  return `<!DOCTYPE html>
+<html lang="${esc(site.locale.code)}" data-theme="dark">
+<head>
+${head()}
+</head>
+<body>
+${notice()}
+${header()}
+
+  <main id="main">
+    <section class="eva-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell eva-hero-inner">
+        <div class="eva-hero-copy">
+          <a class="ech-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
+          <p class="eyebrow reveal">${esc(p.hero.eyebrow)}</p>
+          <h1 class="eva-title reveal">${esc(p.hero.title)}</h1>
+          <p class="eva-lead reveal">${esc(p.hero.lead)}</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="${esc(p.hero.primaryCta.href)}">${esc(
+    p.hero.primaryCta.label
+  )}</a>
+            <a class="btn btn-ghost" href="${esc(p.hero.secondaryCta.href)}">${esc(
+    p.hero.secondaryCta.label
+  )}</a>
+          </div>
+        </div>
+
+        <div class="eva-system reveal">
+          <p class="eva-system-kicker">${esc(p.hero.outcome)}</p>
+          <p class="eva-system-outcome">${esc(p.hero.outcomeText)}</p>
+          <ol class="eva-system-parts" aria-label="Echelon, Vista, Aice">
+${p.model.pillars
+  .map(
+    (pillar) => `            <li style="--pillar:${esc(pillar.color)}">
+              <span>${esc(pillar.key)}</span>
+              <div><strong>${esc(pillar.name)}</strong><small>${esc(pillar.role)}</small></div>
+            </li>`
+  )
+  .join('\n')}
+          </ol>
+          <div class="eva-signal" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="${esc(p.problem.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.problem.eyebrow)}</p>
+          <h2>${esc(p.problem.title)}</h2>
+          <p class="lead">${esc(p.problem.lead)}</p>
+        </div>
+        <div class="eva-problem-grid">
+${problemCards}
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-model-section" id="${esc(p.model.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.model.eyebrow)}</p>
+          <h2>${esc(p.model.title)}</h2>
+          <p class="lead">${esc(p.model.lead)}</p>
+        </div>
+        <div class="eva-pillar-grid">
+${pillarCards}
+        </div>
+        <div class="eva-flow">
+          <div class="eva-flow-intro reveal">
+            <p class="eyebrow">Task → Outcome</p>
+            <h3>${esc(p.model.flow.title)}</h3>
+            <p>${esc(p.model.flow.caption)}</p>
+          </div>
+          <ol class="eva-flow-steps">
+${flowSteps}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="${esc(p.value.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.value.eyebrow)}</p>
+          <h2>${esc(p.value.title)}</h2>
+          <p class="lead">${esc(p.value.lead)}</p>
+        </div>
+        <div class="eva-value-grid">
+${valueCards}
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-applications" id="${esc(p.applications.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.applications.eyebrow)}</p>
+          <h2>${esc(p.applications.title)}</h2>
+          <p class="lead">${esc(p.applications.lead)}</p>
+        </div>
+        <div class="eva-use-grid">
+${applicationCards}
+        </div>
+        <p class="section-bridge reveal">${esc(p.applications.note)}</p>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-benova" id="${esc(p.benova.id)}">
+      <div class="shell">
+        <div class="eva-benova-copy reveal">
+          <p class="eyebrow">${esc(p.benova.eyebrow)}</p>
+          <h2>${esc(p.benova.title)}</h2>
+          <p class="lead">${esc(p.benova.lead)}</p>
+          <a class="eva-benova-link" href="${esc(productPath(p.benova.cta.href))}">${esc(
+    p.benova.cta.label
+  )} →</a>
+        </div>
+        <div class="eva-formula reveal">
+${formula}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="${esc(p.cta.id)}">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>${esc(p.cta.title)}</h2>
+          <p class="lead">${esc(p.cta.lead)}</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="${esc(
+              mailto(site.brand.emails[0], p.cta.subject)
+            )}">${esc(p.cta.label)}</a>
+            <a class="btn btn-ghost btn-lg" href="${base}${esc(site.locale.path)}">${esc(
+    p.cta.back
+  )}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+${footer()}
+
+  <script src="${base}assets/js/main.js" defer></script>
+</body>
+</html>
+`;
+};
+
 /* ---------------------------------------------------------- diagram ---- */
 
 /** Sơ đồ Strangler Fig, sinh riêng cho mỗi ngôn ngữ từ nhãn trong content. */
@@ -1204,6 +1458,7 @@ ${[first, ...rest].map(block).join('\n')}
 /** Các trang dựng cho mỗi ngôn ngữ. slug rỗng là trang chủ. */
 const pages = [
   { slug: '', render: page },
+  { slug: 'eva/', render: evaPage },
   { slug: 'echelon/', render: echelonPage },
 ];
 

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean EVA — One process for people, services and AI</title>
+  <meta name="description" content="Binean EVA combines Echelon, Vista and Aice into a controllable operating model: the system orchestrates, people decide and AI assists through one flow of work." />
+  <meta name="keywords" content="Binean EVA, Echelon, Vista, Aice, human in the loop, AI workflow, multi-agent orchestration, private AI, process automation" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/eva/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/eva/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/eva/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/eva/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean EVA — One process for people, services and AI" />
+  <meta property="og:description" content="Binean EVA combines Echelon, Vista and Aice into a controllable operating model: the system orchestrates, people decide and AI assists through one flow of work." />
+  <meta property="og:url" content="https://binean.com/en/eva/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean EVA — One process for people, services and AI" />
+  <meta name="twitter:description" content="Binean EVA combines Echelon, Vista and Aice into a controllable operating model: the system orchestrates, people decide and AI assists through one flow of work." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean EVA","applicationCategory":"BusinessApplication","description":"Binean EVA combines Echelon, Vista and Aice into a controllable operating model: the system orchestrates, people decide and AI assists through one flow of work.","url":"https://binean.com/en/eva/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>EVA is being built specification-first, proving one real process before expanding the surface.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Discuss%20a%20use%20case">Talk with Binean</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../en/" aria-label="Binean EVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean EVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#model">EVA model</a></li>
+          <li><a href="#value">Value</a></li>
+          <li><a href="#applications">Applications</a></li>
+          <li><a href="#benova">BENOVA</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../eva/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/eva/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Discuss%20a%20use%20case">Discuss a use case</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="eva-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell eva-hero-inner">
+        <div class="eva-hero-copy">
+          <a class="ech-back" href="../../en/">← Back to BENOVA</a>
+          <p class="eyebrow reveal">Echelon · Vista · Aice</p>
+          <h1 class="eva-title reveal">One process. People, services and AI complete it together.</h1>
+          <p class="eva-lead reveal">EVA is Binean's controllable operating model for business processes. Echelon holds the flow of work, Vista brings each Task to the responsible person, and Aice performs or assists with the work suited to AI.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#model">Explore the EVA model</a>
+            <a class="btn btn-ghost" href="#eva-contact">Choose a use case</a>
+          </div>
+        </div>
+
+        <div class="eva-system reveal">
+          <p class="eva-system-kicker">The outcome</p>
+          <p class="eva-system-outcome">Less manual handling, important decisions kept with the right person, and an evidence trail for every step.</p>
+          <ol class="eva-system-parts" aria-label="Echelon, Vista, Aice">
+            <li style="--pillar:#5eead4">
+              <span>E</span>
+              <div><strong>Echelon</strong><small>Orchestration engine</small></div>
+            </li>
+            <li style="--pillar:#fb7185">
+              <span>V</span>
+              <div><strong>Vista</strong><small>The human workbench</small></div>
+            </li>
+            <li style="--pillar:#a3e635">
+              <span>A</span>
+              <div><strong>Aice</strong><small>AI capability</small></div>
+            </li>
+          </ol>
+          <div class="eva-signal" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="problem">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The problem</p>
+          <h2>Real processes always cross people and systems</h2>
+          <p class="lead">A case does not simply pass through APIs. It waits for a person to review it, asks AI to read documents, calls a business service, then returns for a decision. When each participant uses a separate mechanism, state fragments and accountability becomes hard to follow.</p>
+        </div>
+        <div class="eva-problem-grid">
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">↗</span>
+            <h3>Handoffs break easily</h3>
+            <p>Email, spreadsheets, queues and scripts each hold a different part of the same case. Nobody sees the full journey.</p>
+          </article>
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">◎</span>
+            <h3>AI becomes a black box</h3>
+            <p>A model output without its source data, reviewer and processing state is difficult to trust in real operations.</p>
+          </article>
+          <article class="card eva-problem-card reveal">
+            <span class="eva-card-icon" aria-hidden="true">⌁</span>
+            <h3>Automation gets locked in</h3>
+            <p>Changing one step from a person to AI or a service often means rebuilding the flow, integrations and controls around it.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-model-section" id="model">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The EVA model</p>
+          <h2>Three layers, one closed loop of work</h2>
+          <p class="lead">EVA makes a clear separation between orchestration, interaction and execution. Each layer owns its part while using Tasks and Outcomes to work together.</p>
+        </div>
+        <div class="eva-pillar-grid">
+          <article class="card eva-pillar reveal" style="--pillar:#5eead4">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">E</span>
+              <div>
+                <h3>Echelon</h3>
+                <p>Orchestration engine</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Holds Flow and Process state, emits Tasks, receives Outcomes and decides the next step from one source of authority.</p>
+            <ul class="feature-list">
+              <li>Long-running, versioned processes</li>
+              <li>One Task for a person, service or AI</li>
+              <li>Event-based recovery and inspection</li>
+            </ul>
+            <a class="eva-pillar-link" href="../../en/echelon/">Explore Echelon →</a>
+          </article>
+          <article class="card eva-pillar reveal" style="--pillar:#fb7185">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p>The human workbench</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Presents the Task, data and actions a person needs. Vista captures user intent without making business decisions on its own.</p>
+            <ul class="feature-list">
+              <li>Tasks, forms and context in one place</li>
+              <li>Clear processing state</li>
+              <li>An interface shaped by the Flow</li>
+            </ul>
+
+          </article>
+          <article class="card eva-pillar reveal" style="--pillar:#a3e635">
+            <header class="eva-pillar-head">
+              <span class="eva-pillar-key" aria-hidden="true">A</span>
+              <div>
+                <h3>Aice</h3>
+                <p>AI capability</p>
+              </div>
+            </header>
+            <p class="eva-pillar-desc">Takes a complete Task suited to AI, or drafts an answer inside a Human Task for the responsible person to review, edit and confirm.</p>
+            <ul class="feature-list">
+              <li>Extraction, classification and summary</li>
+              <li>Drafts that match the output schema</li>
+              <li>Human control where it matters</li>
+            </ul>
+
+          </article>
+        </div>
+        <div class="eva-flow">
+          <div class="eva-flow-intro reveal">
+            <p class="eyebrow">Task → Outcome</p>
+            <h3>One contract from end to end</h3>
+            <p>Changing the executor does not require a new Flow: a person can handle it today, Aice can assist tomorrow, and a service can take over once the rules are clear.</p>
+          </div>
+          <ol class="eva-flow-steps">
+            <li class="reveal">
+              <span>01</span>
+              <div>
+                <h4>Echelon emits a Task</h4>
+                <p>The Flow defines the work and its input data.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>02</span>
+              <div>
+                <h4>Vista or Aice executes</h4>
+                <p>A person, AI or service receives exactly the work assigned.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>03</span>
+              <div>
+                <h4>The Outcome returns</h4>
+                <p>Result and status come back through the same contract.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span>04</span>
+              <div>
+                <h4>Echelon navigates</h4>
+                <p>Basal chooses the next step and preserves one source of truth.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section" id="value">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Value</p>
+          <h2>Automation grows without giving up control</h2>
+          <p class="lead">EVA is designed for processes that need both machine speed and human judgement.</p>
+        </div>
+        <div class="eva-value-grid">
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">◫</span>
+            <h3>One inspectable journey</h3>
+            <p>The Task, executor, result and transition live in one event trail instead of being scattered across tools.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">✓</span>
+            <h3>People keep important decisions</h3>
+            <p>Aice can draft and recommend; the responsible person still confirms outcomes with material consequences.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">⇄</span>
+            <h3>Handover when ready</h3>
+            <p>A Task can move from a person to AI and then a service as the data, confidence and rules become clear enough.</p>
+          </article>
+          <article class="card eva-value-card reveal">
+            <span class="eva-value-icon" aria-hidden="true">⌂</span>
+            <h3>Designed for private environments</h3>
+            <p>The architecture aims to run on infrastructure the organisation chooses when data cannot leave its control boundary.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-applications" id="applications">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Applications</p>
+          <h2>Start with one process that has cases, rules and a reviewer</h2>
+          <p class="lead">EVA fits work with clear input, several stages and a need to preserve evidence for the final decision.</p>
+        </div>
+        <div class="eva-use-grid">
+          <article class="eva-use-card reveal">
+            <span>01</span>
+            <h3>Case intake and validation</h3>
+            <p>AI extracts and checks data while people focus on exceptions and the final decision.</p>
+          </article>
+          <article class="eva-use-card reveal">
+            <span>02</span>
+            <h3>Multi-stage approvals</h3>
+            <p>Services prepare data, Vista brings the Task to the right role, and Echelon keeps the conditions and history.</p>
+          </article>
+          <article class="eva-use-card reveal">
+            <span>03</span>
+            <h3>Investigation and incident response</h3>
+            <p>Machines collect signals, AI assembles context, and a person approves action before the system continues.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">A strong pilot starts with one Flow, one case type and one integration, with measurable success criteria.</p>
+      </div>
+    </section>
+
+    <section class="section eva-section eva-benova" id="benova">
+      <div class="shell">
+        <div class="eva-benova-copy reveal">
+          <p class="eyebrow">From EVA to BENOVA</p>
+          <h2>EVA is the foundation. BENOVA applies it to Ingenium.</h2>
+          <p class="lead">Inside BENOVA, Echelon, Vista and Aice coordinate processes across people, services and AI. Nexus adds Ingenium-specific DevOps; Orbit lets the legacy core and new services run behind one API facade.</p>
+          <a class="eva-benova-link" href="../../en/">Explore BENOVA →</a>
+        </div>
+        <div class="eva-formula reveal">
+          <div class="eva-formula-part">
+            <strong>EVA</strong>
+            <span>Orchestration · Experience · AI</span>
+          </div>
+          <span class="eva-formula-op" aria-hidden="true">+</span>
+          <div class="eva-formula-part">
+            <strong>Nexus + Orbit</strong>
+            <span>Operations · Ingenium integration</span>
+          </div>
+          <span class="eva-formula-op" aria-hidden="true">=</span>
+          <div class="eva-formula-part is-result">
+            <strong>BENOVA</strong>
+            <span>Core modernization one step at a time</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="eva-contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Choose a process small enough to prove the value.</h2>
+          <p class="lead">Bring one process with heavy manual handling, real cases and a person accountable for the outcome. Binean will help identify what a service should do, where Aice can assist and where a person must keep decision authority.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=EVA%20-%20Discuss%20a%20use%20case">Discuss a use case in 30 minutes</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">View BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernizing the Ingenium insurance core one step at a time, without interrupting operations.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="../../en/eva/">EVA</a></li>
+          <li><a href="../../en/echelon/">Echelon</a></li>
+          <li><a href="../../en/#ecosystem">Nexus</a></li>
+          <li><a href="../../en/#ecosystem">Orbit</a></li>
+          <li><a href="../../en/#ecosystem">Vista</a></li>
+          <li><a href="../../en/#ecosystem">Aice</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Learn">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="../../en/#problem">The problem</a></li>
+          <li><a href="../../en/#adoption">How you adopt it</a></li>
+          <li><a href="../../en/#benefits">Benefits</a></li>
+          <li><a href="../../en/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Email is currently our only contact channel.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js" defer></script>
+</body>
+</html>

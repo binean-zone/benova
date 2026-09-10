@@ -6,9 +6,11 @@
  */
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
 import echelonPage from './echelon-vi.mjs';
+import evaPage from './eva-vi.mjs';
 
 export default {
   echelonPage,
+  evaPage,
 
   locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
 
@@ -27,6 +29,7 @@ export default {
     closeMenu: 'Đóng menu',
     answersPrefix: 'Trả lời',
     echelonMore: 'Tìm hiểu Echelon',
+    evaMore: 'Khám phá mô hình EVA',
     contactTitle: 'Liên hệ',
     contactNote: 'Hiện chỉ hỗ trợ liên hệ qua email.',
     companyLine: 'Một sản phẩm của',
@@ -49,6 +52,7 @@ export default {
   },
 
   nav: [
+    { label: 'EVA', href: 'eva/' },
     { label: 'Vấn đề', href: '#van-de' },
     { label: 'Hệ sinh thái', href: '#kien-truc' },
     { label: 'Triển khai', href: '#trien-khai' },
@@ -108,7 +112,8 @@ export default {
     id: 'kien-truc',
     eyebrow: 'Hệ sinh thái lõi',
     title: 'Năm thành tố, một nền tảng',
-    lead: 'BENOVA = B + ENOVA. B là Binean, công ty đứng sau nền tảng. ENOVA là năm thành tố: Echelon điều phối, Nexus vận hành, Orbit mở core, Vista trải nghiệm và Aice tăng tốc. Mỗi thành tố giải quyết một tầng của bài toán hiện đại hóa và triển khai được độc lập, theo thứ tự phù hợp với bạn.',
+    lead: 'BENOVA đưa mô hình EVA — Echelon, Vista và Aice — vào bài toán hiện đại hóa Ingenium, rồi bổ sung Nexus để vận hành và Orbit để kết nối core cũ với service mới. Năm thành tố giải quyết năm tầng của hành trình và có thể triển khai theo thứ tự phù hợp với bạn.',
+    evaLink: { label: 'Khám phá cách Echelon, Vista và Aice phối hợp', href: 'eva/' },
     echelon: {
       key: 'E',
       name: 'Echelon',
@@ -317,7 +322,8 @@ export default {
       {
         title: 'Sản phẩm',
         links: [
-          { label: 'Echelon', href: '#kien-truc' },
+          { label: 'EVA', href: 'eva/' },
+          { label: 'Echelon', href: 'echelon/' },
           { label: 'Nexus', href: '#kien-truc' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },
