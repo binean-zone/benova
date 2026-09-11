@@ -102,18 +102,23 @@ const pageIds = {
     ['problem', 'model', 'value', 'applications', 'benova', 'cta']
       .map((section) => c.evaPage?.[section]?.id)
       .filter(Boolean),
+  nexus: (c) =>
+    ['capabilities', 'flows', 'architecture', 'developer', 'status', 'cta']
+      .map((section) => c.nexusPage?.[section]?.id)
+      .filter(Boolean),
 };
 
 for (const [code, content] of [
   ['vi', vi],
   ['en', en],
 ]) {
-  const { echelonPage, evaPage, ...home } = content;
+  const { echelonPage, evaPage, nexusPage, ...home } = content;
 
   for (const [page, tree, requireUsed] of [
     ['home', home, true],
     ['echelon', { echelonPage }, false],
     ['eva', { evaPage }, true],
+    ['nexus', { nexusPage }, false],
   ]) {
     const ids = new Set(pageIds[page](content));
     const anchors = [];

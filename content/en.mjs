@@ -7,10 +7,12 @@
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
 import echelonPage from './echelon-en.mjs';
 import evaPage from './eva-en.mjs';
+import nexusPage from './nexus-en.mjs';
 
 export default {
   echelonPage,
   evaPage,
+  nexusPage,
 
   locale: { code: 'en', label: 'English', short: 'EN', path: 'en/' },
 
@@ -170,6 +172,7 @@ export default {
           'Start/stop regions and automate day-to-day operations',
           'Credentials encrypted with AES-256-GCM, never written to logs in clear text',
         ],
+        link: { label: 'Explore Nexus', href: 'nexus/' },
       },
       {
         key: 'O',
@@ -322,7 +325,7 @@ export default {
         title: 'Product',
         links: [
           { label: 'EVA', href: 'eva/' },
-          { label: 'Nexus', href: '#ecosystem' },
+          { label: 'Nexus', href: 'nexus/' },
           { label: 'Orbit', href: '#ecosystem' },
           { label: 'Vista', href: '#ecosystem' },
           { label: 'Aice', href: '#ecosystem' },

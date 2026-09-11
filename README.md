@@ -1,8 +1,7 @@
 # BENOVA — Landing page
 
-Trang giới thiệu sản phẩm một trang (one-page) cho **BENOVA**, hệ sinh thái hiện đại hóa
-core bảo hiểm Ingenium. Trang hoàn toàn tĩnh, không framework runtime, triển khai trên
-GitHub Pages.
+Site giới thiệu **BENOVA**, hệ sinh thái hiện đại hóa core bảo hiểm Ingenium. Trang hoàn
+toàn tĩnh, không framework runtime, triển khai trên GitHub Pages.
 
 **Kiến trúc:** `content/vi.mjs` + `content/en.mjs` và nội dung các trang con →
 `scripts/build.mjs` (generator) → HTML tĩnh đã commit + `assets/`.
@@ -26,7 +25,7 @@ npm run dev          # http://localhost:4173, tự build lại mỗi lần tải
 Chỉ build mà không chạy server:
 
 ```bash
-npm run build        # kiểm tra song ngữ rồi sinh trang chủ, EVA, Echelon và sitemap.xml
+npm run build        # kiểm tra song ngữ rồi sinh trang chủ, các trang sản phẩm và sitemap.xml
 npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
 npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
 ```
@@ -76,6 +75,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 ├── en/eva/index.html       # trang mô hình EVA, tiếng Anh (sinh ra)
 ├── echelon/index.html      # trang Binean Echelon, tiếng Việt (sinh ra)
 ├── en/echelon/index.html   # trang Binean Echelon, tiếng Anh (sinh ra)
+├── nexus/index.html        # trang Binean Nexus, tiếng Việt (sinh ra)
+├── en/nexus/index.html     # trang Binean Nexus, tiếng Anh (sinh ra)
 ├── 404.html                # trang lỗi song ngữ (sinh ra)
 ├── sitemap.xml             # sinh cùng lúc, có hreflang cho cả hai bản
 ├── content/
@@ -85,7 +86,9 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 │   ├── eva-vi.mjs          # NGUỒN NỘI DUNG trang EVA, tiếng Việt
 │   ├── eva-en.mjs          # NGUỒN NỘI DUNG trang EVA, tiếng Anh
 │   ├── echelon-vi.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Việt
-│   └── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
+│   ├── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
+│   ├── nexus-vi.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Việt
+│   └── nexus-en.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Anh
 ├── scripts/
 │   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
 │   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau

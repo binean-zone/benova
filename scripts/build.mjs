@@ -44,6 +44,7 @@ const list = (items, render) => items.map(render).join('\n');
 const detailPage = () => {
   if (pagePath === 'echelon/') return site.echelonPage;
   if (pagePath === 'eva/') return site.evaPage;
+  if (pagePath === 'nexus/') return site.nexusPage;
   return null;
 };
 
@@ -574,6 +575,11 @@ const agentCard = (agent, wide) => `          <article class="card agent-card${w
             <ul class="feature-list">
 ${list(agent.features, (f) => `              <li>${esc(f)}</li>`)}
             </ul>
+${
+  agent.link
+    ? `            <a class="agent-more" href="${esc(agent.link.href)}">${esc(agent.link.label)} →</a>`
+    : ''
+}
           </article>`;
 
 const ecosystem = () => {
@@ -1329,6 +1335,253 @@ ${footer()}
 `;
 };
 
+/* ----------------------------------------------------------- trang Nexus */
+
+const nexusPage = () => {
+  const p = site.nexusPage;
+
+  const terminalSteps = p.hero.terminal.steps
+    .map(
+      (step) => `            <li class="is-${esc(step.state)}">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>${esc(step.tool)}</code>
+              <span>${esc(step.text)}</span>
+            </li>`
+    )
+    .join('\n');
+
+  const capabilityCards = p.capabilities.items
+    .map(
+      (item) => `          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">${esc(item.icon)}</span>
+              <div>
+                <h3>${esc(item.title)}</h3>
+                <code>${esc(item.tools)}</code>
+              </div>
+            </header>
+            <p>${esc(item.desc)}</p>
+            <ul class="feature-list">
+${item.points.map((point) => `              <li>${esc(point)}</li>`).join('\n')}
+            </ul>
+          </article>`
+    )
+    .join('\n');
+
+  const flowCards = p.flows.items
+    .map(
+      (flow) => `          <article class="nx-flow-card reveal">
+            <header>
+              <span>${esc(flow.num)}</span>
+              <div>
+                <h3>${esc(flow.title)}</h3>
+                <p>${esc(flow.summary)}</p>
+              </div>
+            </header>
+            <ol>
+${flow.steps
+  .map(
+    (step, index) => `              <li><span>${String(index + 1).padStart(2, '0')}</span>${esc(
+      step
+    )}</li>`
+  )
+  .join('\n')}
+            </ol>
+            <p class="nx-flow-outcome">${esc(flow.outcome)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const architectureLayers = p.architecture.layers
+    .map(
+      (layer, index) => `${
+        index
+          ? `            <div class="nx-arch-arrow" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>\n`
+          : ''
+      }            <article class="nx-arch-node nx-arch-${esc(layer.key.toLowerCase())}">
+              <span class="nx-arch-key" aria-hidden="true">${esc(layer.key)}</span>
+              <div>
+                <p>${esc(layer.role)}</p>
+                <h3>${esc(layer.title)}</h3>
+                <span>${esc(layer.desc)}</span>
+              </div>
+            </article>`
+    )
+    .join('\n');
+
+  const developerFeatures = p.developer.features
+    .map(
+      (feature) => `              <li>
+                <span aria-hidden="true">${esc(feature.icon)}</span>
+                <div><strong>${esc(feature.title)}</strong><small>${esc(feature.desc)}</small></div>
+              </li>`
+    )
+    .join('\n');
+
+  const statusColumn = (status, extraClass) => `          <article class="nx-status-card ${extraClass} reveal">
+            <p>${esc(status.tag)}</p>
+            <h3>${esc(status.title)}</h3>
+            <ul class="feature-list">
+${status.items.map((item) => `              <li>${esc(item)}</li>`).join('\n')}
+            </ul>
+          </article>`;
+
+  return `<!DOCTYPE html>
+<html lang="${esc(site.locale.code)}" data-theme="dark">
+<head>
+${head()}
+</head>
+<body>
+${notice()}
+${header()}
+
+  <main id="main">
+    <section class="nx-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell nx-hero-inner">
+        <div class="nx-hero-copy">
+          <a class="ech-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
+          <p class="eyebrow reveal">${esc(p.hero.eyebrow)}</p>
+          <h1 class="nx-title reveal">${esc(p.hero.title)}</h1>
+          <p class="nx-lead reveal">${esc(p.hero.lead)}</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="${esc(p.hero.primaryCta.href)}">${esc(
+    p.hero.primaryCta.label
+  )}</a>
+            <a class="btn btn-ghost" href="${esc(p.hero.secondaryCta.href)}">${esc(
+    p.hero.secondaryCta.label
+  )}</a>
+          </div>
+        </div>
+
+        <div class="nx-terminal reveal">
+          <div class="nx-terminal-bar">
+            <span aria-hidden="true"><i></i><i></i><i></i></span>
+            <strong>${esc(p.hero.terminal.label)}</strong>
+          </div>
+          <p class="nx-terminal-context"><span>›</span> ${esc(p.hero.terminal.context)}</p>
+          <ol>
+${terminalSteps}
+          </ol>
+          <p class="nx-terminal-result">${esc(p.hero.terminal.result)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section" id="${esc(p.capabilities.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.capabilities.eyebrow)}</p>
+          <h2>${esc(p.capabilities.title)}</h2>
+          <p class="lead">${esc(p.capabilities.lead)}</p>
+        </div>
+        <div class="nx-capability-grid">
+${capabilityCards}
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-flow-section" id="${esc(p.flows.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.flows.eyebrow)}</p>
+          <h2>${esc(p.flows.title)}</h2>
+          <p class="lead">${esc(p.flows.lead)}</p>
+        </div>
+        <div class="nx-flow-grid">
+${flowCards}
+        </div>
+        <p class="section-bridge nx-flow-note reveal">${esc(p.flows.note)}</p>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-architecture" id="${esc(p.architecture.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.architecture.eyebrow)}</p>
+          <h2>${esc(p.architecture.title)}</h2>
+          <p class="lead">${esc(p.architecture.lead)}</p>
+        </div>
+        <div class="nx-architecture-board reveal">
+          <div class="nx-arch-machine">
+${architectureLayers}
+          </div>
+          <div class="nx-arch-human-link" aria-hidden="true"><i></i><span>${esc(
+            p.architecture.signal
+          )}</span></div>
+          <article class="nx-arch-node nx-arch-v">
+            <span class="nx-arch-key" aria-hidden="true">${esc(p.architecture.human.key)}</span>
+            <div>
+              <p>${esc(p.architecture.human.role)}</p>
+              <h3>${esc(p.architecture.human.title)}</h3>
+              <span>${esc(p.architecture.human.desc)}</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-developer" id="${esc(p.developer.id)}">
+      <div class="shell nx-developer-grid">
+        <div class="nx-developer-copy reveal">
+          <p class="eyebrow">${esc(p.developer.eyebrow)}</p>
+          <h2>${esc(p.developer.title)}</h2>
+          <p class="lead">${esc(p.developer.lead)}</p>
+          <div class="nx-example-row">
+${p.developer.examples.map((item) => `            <span>${esc(item)}</span>`).join('\n')}
+          </div>
+        </div>
+        <div class="nx-vscode reveal">
+          <header><span aria-hidden="true">⌘</span><strong>${esc(p.developer.windowTitle)}</strong></header>
+          <ul>
+${developerFeatures}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-status" id="${esc(p.status.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.status.eyebrow)}</p>
+          <h2>${esc(p.status.title)}</h2>
+          <p class="lead">${esc(p.status.lead)}</p>
+        </div>
+        <div class="nx-status-grid">
+${statusColumn(p.status.current, 'is-current')}
+${statusColumn(p.status.next, 'is-next')}
+        </div>
+        <p class="nx-status-note reveal">${esc(p.status.note)}</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="${esc(p.cta.id)}">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>${esc(p.cta.title)}</h2>
+          <p class="lead">${esc(p.cta.lead)}</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="${esc(
+              mailto(site.brand.emails[0], p.cta.subject)
+            )}">${esc(p.cta.label)}</a>
+            <a class="btn btn-ghost btn-lg" href="${base}${esc(site.locale.path)}">${esc(
+    p.cta.back
+  )}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+${footer()}
+
+  <script src="${base}assets/js/main.js" defer></script>
+</body>
+</html>
+`;
+};
+
 /* ---------------------------------------------------------- diagram ---- */
 
 /** Sơ đồ Strangler Fig, sinh riêng cho mỗi ngôn ngữ từ nhãn trong content. */
@@ -1457,6 +1710,7 @@ const pages = [
   { slug: '', render: page },
   { slug: 'eva/', render: evaPage },
   { slug: 'echelon/', render: echelonPage },
+  { slug: 'nexus/', render: nexusPage },
 ];
 
 for (const locale of locales) {

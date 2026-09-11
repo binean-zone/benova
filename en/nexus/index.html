@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Nexus — Automate Ingenium development and operations</title>
+  <meta name="description" content="Binean Nexus turns DB2, database, policy, COBOL, Git and Ingenium runtime tools into Skills that combine into Flows for CI/CD, environment refresh and support debugging." />
+  <meta name="keywords" content="Binean Nexus, Ingenium DevOps, Ingenium CI/CD, COBOL build, DB2 automation, database refresh, policy copy, VS Code Ingenium, Echelon, Vista" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nexus/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Nexus — Automate Ingenium development and operations" />
+  <meta property="og:description" content="Binean Nexus turns DB2, database, policy, COBOL, Git and Ingenium runtime tools into Skills that combine into Flows for CI/CD, environment refresh and support debugging." />
+  <meta property="og:url" content="https://binean.com/en/nexus/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Nexus — Automate Ingenium development and operations" />
+  <meta name="twitter:description" content="Binean Nexus turns DB2, database, policy, COBOL, Git and Ingenium runtime tools into Skills that combine into Flows for CI/CD, environment refresh and support debugging." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Nexus","applicationCategory":"BusinessApplication","description":"Binean Nexus turns DB2, database, policy, COBOL, Git and Ingenium runtime tools into Skills that combine into Flows for CI/CD, environment refresh and support debugging.","url":"https://binean.com/en/nexus/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>The Nexus toolset has been used on a real Ingenium system; its Agent, Flow and Vista integration architecture is entering a new revamp round.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20an%20Ingenium%20Flow">Discuss your environment</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../en/" aria-label="Binean Nexus">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Nexus</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#flows">Flows</a></li>
+          <li><a href="#nexus-architecture">Architecture</a></li>
+          <li><a href="#developer">Developer</a></li>
+          <li><a href="#status">Status</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../nexus/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/nexus/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20an%20Ingenium%20Flow">Discuss Nexus</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="nx-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell nx-hero-inner">
+        <div class="nx-hero-copy">
+          <a class="ech-back" href="../../en/">← Back to BENOVA</a>
+          <p class="eyebrow reveal">DevOps built for Ingenium</p>
+          <h1 class="nx-title reveal">Turn Ingenium work into repeatable Flows.</h1>
+          <p class="nx-lead reveal">Nexus captures Ingenium operational knowledge in a dedicated toolset. Each tool becomes a Nexus Agent Skill; Echelon combines them into Flows, while Vista brings the right Task and state to developers inside VS Code.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#flows">Explore the Flows</a>
+            <a class="btn btn-ghost" href="#status">See the current status</a>
+          </div>
+        </div>
+
+        <div class="nx-terminal reveal">
+          <div class="nx-terminal-bar">
+            <span aria-hidden="true"><i></i><i></i><i></i></span>
+            <strong>Developer Flow</strong>
+          </div>
+          <p class="nx-terminal-context"><span>›</span> work-item / T02073</p>
+          <ol>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>igit</code>
+              <span>resolve changed source</span>
+            </li>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>icomp</code>
+              <span>compile affected programs</span>
+            </li>
+            <li class="is-running">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>ing</code>
+              <span>restart DEV region</span>
+            </li>
+            <li class="is-queued">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>flow</code>
+              <span>collect test evidence</span>
+            </li>
+          </ol>
+          <p class="nx-terminal-result">One journey · One state · One evidence trail</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section" id="capabilities">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Skill primitives</p>
+          <h2>Small tools, clear boundaries, composed into larger work</h2>
+          <p class="lead">Nexus keeps each operation deterministic and inspectable. The Agent does not need to speak directly to DB2 or Ingenium; it calls a Skill with explicit input, authority and outcome.</p>
+        </div>
+        <div class="nx-capability-grid">
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">DB</span>
+              <div>
+                <h3>DB2, databases and policies</h3>
+                <code>iadm · idb · ipol</code>
+              </div>
+            </header>
+            <p>Create and configure databases with DB admin authority; back up, restore and refresh Ingenium databases; export or import policies across environments.</p>
+            <ul class="feature-list">
+              <li>Separate DBA operations from daily work</li>
+              <li>Keep checks before and after change</li>
+              <li>Support refresh and investigation flows</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">CO</span>
+              <div>
+                <h3>Ingenium and COBOL</h3>
+                <code>ing · icomp</code>
+              </div>
+            </header>
+            <p>Start or stop Ingenium regions, compile projects and process only the source actually affected to shorten the feedback loop.</p>
+            <ul class="feature-list">
+              <li>Parallel and incremental compilation</li>
+              <li>Chain bind, restart and verification</li>
+              <li>Run from the terminal or a Flow</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">GI</span>
+              <div>
+                <h3>Source and work items</h3>
+                <code>igit + icomp</code>
+              </div>
+            </header>
+            <p>Put Git in Ingenium context: work-item branches, golden-point comparison, changed-file discovery and the exact source set passed into compilation.</p>
+            <ul class="feature-list">
+              <li>One context from branch to build</li>
+              <li>Reduce error-prone Git operations</li>
+              <li>Produce explicit CI/CD input</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">NX</span>
+              <div>
+                <h3>Environment and utilities</h3>
+                <code>nexus · dev tools · VS Code</code>
+              </div>
+            </header>
+            <p>Prepare environment configuration, shared utilities and a basic VS Code integration layer so developers can work in their current context.</p>
+            <ul class="feature-list">
+              <li>Configuration by environment</li>
+              <li>One developer entry point</li>
+              <li>Foundation for Vista Tasks in the IDE</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-flow-section" id="flows">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Operational flows</p>
+          <h2>Value appears when the Skills work together</h2>
+          <p class="lead">A CLI removes a few steps. A Flow that connects the right tools, authorities and checkpoints changes how the team operates Ingenium.</p>
+        </div>
+        <div class="nx-flow-grid">
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>01</span>
+              <div>
+                <h3>CI/CD for Ingenium</h3>
+                <p>Move a work item from source changes to a release package with evidence.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Read the branch and golden point</li>
+              <li><span>02</span>Resolve affected source</li>
+              <li><span>03</span>Compile and bind selectively</li>
+              <li><span>04</span>Run checks and collect results</li>
+              <li><span>05</span>Hand off for review or deployment</li>
+            </ol>
+            <p class="nx-flow-outcome">A repeatable pipeline replaces a sequence of tribal commands.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>02</span>
+              <div>
+                <h3>Refresh a low environment</h3>
+                <p>Coordinate the database, Ingenium runtime and post-refresh checks in one journey.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Confirm source and target</li>
+              <li><span>02</span>Stop the affected region</li>
+              <li><span>03</span>Back up, restore or refresh the database</li>
+              <li><span>04</span>Reconfigure and start the region</li>
+              <li><span>05</span>Verify state and hand over</li>
+            </ol>
+            <p class="nx-flow-outcome">Reduce waiting time while preserving the state of every step.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>03</span>
+              <div>
+                <h3>Copy a policy for support and debugging</h3>
+                <p>Bring the right policy into DEV to reproduce an issue within a controlled scope.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Receive policy and source environment</li>
+              <li><span>02</span>Check authority and target data</li>
+              <li><span>03</span>Export the policy</li>
+              <li><span>04</span>Import it into DEV</li>
+              <li><span>05</span>Prepare the region and debug Task</li>
+            </ol>
+            <p class="nx-flow-outcome">Support gets a consistent reproduction environment and evidence for comparison.</p>
+          </article>
+        </div>
+        <p class="section-bridge nx-flow-note reveal">A Flow does more than add up tool features. It holds ordering, conditions, authority, human checkpoints and the ability to continue after an operation fails.</p>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-architecture" id="nexus-architecture">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Inside BENOVA</p>
+          <h2>Echelon orchestrates. Nexus executes. Vista keeps developers in the loop.</h2>
+          <p class="lead">The layers share Tasks and Outcomes while keeping separate responsibilities. Nexus can focus on Ingenium knowledge while each Flow remains observable and controlled from end to end.</p>
+        </div>
+        <div class="nx-architecture-board reveal">
+          <div class="nx-arch-machine">
+            <article class="nx-arch-node nx-arch-e">
+              <span class="nx-arch-key" aria-hidden="true">E</span>
+              <div>
+                <p>Flow authority</p>
+                <h3>Echelon</h3>
+                <span>Keeps the Process, emits Tasks, receives Outcomes and chooses the next step.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+            <article class="nx-arch-node nx-arch-n">
+              <span class="nx-arch-key" aria-hidden="true">N</span>
+              <div>
+                <p>Ingenium executor</p>
+                <h3>Nexus Agent</h3>
+                <span>Selects and invokes a Skill that fits the Task, environment and granted authority.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+            <article class="nx-arch-node nx-arch-s">
+              <span class="nx-arch-key" aria-hidden="true">S</span>
+              <div>
+                <p>Deterministic actions</p>
+                <h3>Nexus Skills</h3>
+                <span>Operate DB2, databases, policies, COBOL, Git and the Ingenium runtime.</span>
+              </div>
+            </article>
+          </div>
+          <div class="nx-arch-human-link" aria-hidden="true"><i></i><span>Task ↓ · Outcome ↑</span></div>
+          <article class="nx-arch-node nx-arch-v">
+            <span class="nx-arch-key" aria-hidden="true">V</span>
+            <div>
+              <p>Human workbench</p>
+              <h3>Vista for VS Code</h3>
+              <span>Shows Tasks, progress, logs and the points where a developer must review or act.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-developer" id="developer">
+      <div class="shell nx-developer-grid">
+        <div class="nx-developer-copy reveal">
+          <p class="eyebrow">Developer experience</p>
+          <h2>A dedicated Flow catalog for development environments</h2>
+          <p class="lead">Vista VS Code Host can ship with Echelon Local — a compact runtime for one developer, using the same contracts as full Echelon while running DEV-focused Flows.</p>
+          <div class="nx-example-row">
+            <span>Build work item</span>
+            <span>Prepare debug policy</span>
+            <span>Reset DEV region</span>
+            <span>Collect test evidence</span>
+          </div>
+        </div>
+        <div class="nx-vscode reveal">
+          <header><span aria-hidden="true">⌘</span><strong>Vista for VS Code · DEV</strong></header>
+          <ul>
+              <li>
+                <span aria-hidden="true">▶</span>
+                <div><strong>Run Flows locally</strong><small>Start, pause, retry and inspect every Task without leaving the IDE.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◎</span>
+                <div><strong>Use the active context</strong><small>A Flow knows the workspace, branch, program or policy the developer is handling.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◇</span>
+                <div><strong>People and machines share one journey</strong><small>Nexus runs Skills; Vista pauses at the right point for developer review or action.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">↗</span>
+                <div><strong>Share server contracts</strong><small>Suitable Flows can move to Echelon server without changing the Task and Outcome model.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-status" id="status">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Now / Next</p>
+          <h2>Keep what has been proven, revamp how the parts work together</h2>
+          <p class="lead">Nexus does not begin with an architecture slide. The tools and VS Code extension already exist; the next round standardizes them around Agents, Skills and Flows.</p>
+        </div>
+        <div class="nx-status-grid">
+          <article class="nx-status-card is-current reveal">
+            <p>NOW · AVAILABLE</p>
+            <h3>The Ingenium tooling foundation</h3>
+            <ul class="feature-list">
+              <li>CLI tools for DB2, databases, policies, runtime, compilation and Git</li>
+              <li>Optimizations built for the Ingenium development loop</li>
+              <li>A basic VS Code extension</li>
+              <li>Experience from a real Ingenium system</li>
+            </ul>
+          </article>
+          <article class="nx-status-card is-next reveal">
+            <p>NEXT · REVAMP</p>
+            <h3>A Flow-driven operating system</h3>
+            <ul class="feature-list">
+              <li>Standardize CLI tools as Nexus Skills</li>
+              <li>Have Nexus Agent execute Tasks from Echelon</li>
+              <li>Move predecessor workflows into Echelon Flows</li>
+              <li>Vista VS Code Host with Echelon Local for DEV</li>
+            </ul>
+          </article>
+        </div>
+        <p class="nx-status-note reveal">There is no single release-date promise. Each Flow will be proven on a real journey before the surface expands.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="nexus-contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Start with one Ingenium Flow that is costing the team time.</h2>
+          <p class="lead">Choose a journey with clear input, an accountable owner and a measurable result — compiling a work item, refreshing a low environment or copying a policy for debugging. Binean will help separate it into Skills, Tasks and the right control points.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20an%20Ingenium%20Flow">Discuss Nexus</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">View BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernizing the Ingenium insurance core one step at a time, without interrupting operations.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="../../en/eva/">EVA</a></li>
+          <li><a href="../../en/nexus/">Nexus</a></li>
+          <li><a href="../../en/#ecosystem">Orbit</a></li>
+          <li><a href="../../en/#ecosystem">Vista</a></li>
+          <li><a href="../../en/#ecosystem">Aice</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Learn">
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="../../en/#problem">The problem</a></li>
+          <li><a href="../../en/#adoption">How you adopt it</a></li>
+          <li><a href="../../en/#benefits">Benefits</a></li>
+          <li><a href="../../en/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Email is currently our only contact channel.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js" defer></script>
+</body>
+</html>

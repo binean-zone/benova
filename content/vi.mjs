@@ -7,10 +7,12 @@
 import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './shared.mjs';
 import echelonPage from './echelon-vi.mjs';
 import evaPage from './eva-vi.mjs';
+import nexusPage from './nexus-vi.mjs';
 
 export default {
   echelonPage,
   evaPage,
+  nexusPage,
 
   locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
 
@@ -169,6 +171,7 @@ export default {
           'Start/stop region và tự động hóa vận hành',
           'Thông tin đăng nhập mã hóa AES-256-GCM, không ghi log thô',
         ],
+        link: { label: 'Khám phá Nexus', href: 'nexus/' },
       },
       {
         key: 'O',
@@ -322,7 +325,7 @@ export default {
         title: 'Sản phẩm',
         links: [
           { label: 'EVA', href: 'eva/' },
-          { label: 'Nexus', href: '#kien-truc' },
+          { label: 'Nexus', href: 'nexus/' },
           { label: 'Orbit', href: '#kien-truc' },
           { label: 'Vista', href: '#kien-truc' },
           { label: 'Aice', href: '#kien-truc' },

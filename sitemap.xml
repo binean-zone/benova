@@ -42,4 +42,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://binean.com/nexus/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://binean.com/en/nexus/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

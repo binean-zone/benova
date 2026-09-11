@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Nexus — Tự động hóa vận hành và phát triển Ingenium</title>
+  <meta name="description" content="Binean Nexus biến các công cụ DB2, database, policy, COBOL, Git và runtime Ingenium thành Skill có thể kết hợp trong Flow cho CI/CD, refresh môi trường và support debug." />
+  <meta name="keywords" content="Binean Nexus, Ingenium DevOps, Ingenium CI/CD, COBOL build, DB2 automation, database refresh, policy copy, VS Code Ingenium, Echelon, Vista" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nexus/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Nexus — Tự động hóa vận hành và phát triển Ingenium" />
+  <meta property="og:description" content="Binean Nexus biến các công cụ DB2, database, policy, COBOL, Git và runtime Ingenium thành Skill có thể kết hợp trong Flow cho CI/CD, refresh môi trường và support debug." />
+  <meta property="og:url" content="https://binean.com/nexus/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Nexus — Tự động hóa vận hành và phát triển Ingenium" />
+  <meta name="twitter:description" content="Binean Nexus biến các công cụ DB2, database, policy, COBOL, Git và runtime Ingenium thành Skill có thể kết hợp trong Flow cho CI/CD, refresh môi trường và support debug." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Nexus","applicationCategory":"BusinessApplication","description":"Binean Nexus biến các công cụ DB2, database, policy, COBOL, Git và runtime Ingenium thành Skill có thể kết hợp trong Flow cho CI/CD, refresh môi trường và support debug.","url":"https://binean.com/nexus/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Bộ công cụ Nexus đã được dùng trên hệ Ingenium thật; kiến trúc Agent, Flow và Vista integration đang bước vào round revamp.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20ve%20Ingenium%20Flow">Trao đổi về môi trường của bạn</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean Nexus">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Nexus</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#nang-luc">Năng lực</a></li>
+          <li><a href="#flow">Flow</a></li>
+          <li><a href="#kien-truc-nexus">Kiến trúc</a></li>
+          <li><a href="#developer">Developer</a></li>
+          <li><a href="#trang-thai">Trạng thái</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../nexus/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/nexus/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20ve%20Ingenium%20Flow">Trao đổi về Nexus</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="nx-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell nx-hero-inner">
+        <div class="nx-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">DevOps chuyên biệt cho Ingenium</p>
+          <h1 class="nx-title reveal">Biến công việc Ingenium thành những Flow có thể lặp lại.</h1>
+          <p class="nx-lead reveal">Nexus gom tri thức vận hành Ingenium vào một bộ công cụ chuyên dụng. Mỗi công cụ trở thành Skill của Nexus Agent; Echelon kết hợp chúng thành Flow, còn Vista đưa đúng Task và trạng thái tới developer ngay trong VS Code.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#flow">Xem các Flow</a>
+            <a class="btn btn-ghost" href="#trang-thai">Xem trạng thái hiện tại</a>
+          </div>
+        </div>
+
+        <div class="nx-terminal reveal">
+          <div class="nx-terminal-bar">
+            <span aria-hidden="true"><i></i><i></i><i></i></span>
+            <strong>Developer Flow</strong>
+          </div>
+          <p class="nx-terminal-context"><span>›</span> work-item / T02073</p>
+          <ol>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>igit</code>
+              <span>xác định source thay đổi</span>
+            </li>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>icomp</code>
+              <span>compile phần bị ảnh hưởng</span>
+            </li>
+            <li class="is-running">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>ing</code>
+              <span>restart DEV region</span>
+            </li>
+            <li class="is-queued">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>flow</code>
+              <span>thu test evidence</span>
+            </li>
+          </ol>
+          <p class="nx-terminal-result">Một hành trình · Một trạng thái · Một dấu vết</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section" id="nang-luc">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Skill primitives</p>
+          <h2>Công cụ nhỏ, ranh giới rõ, ghép được thành việc lớn</h2>
+          <p class="lead">Nexus giữ từng thao tác ở dạng xác định và kiểm tra được. Agent không cần biết cách nói chuyện trực tiếp với DB2 hay Ingenium; nó gọi Skill với đầu vào, quyền hạn và kết quả rõ ràng.</p>
+        </div>
+        <div class="nx-capability-grid">
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">DB</span>
+              <div>
+                <h3>DB2, database và policy</h3>
+                <code>iadm · idb · ipol</code>
+              </div>
+            </header>
+            <p>Tạo và cấu hình database bằng quyền DB admin; backup, restore và refresh database Ingenium; export hoặc import policy giữa các môi trường.</p>
+            <ul class="feature-list">
+              <li>Tách thao tác DBA khỏi thao tác thường ngày</li>
+              <li>Giữ bước kiểm tra trước và sau thay đổi</li>
+              <li>Phù hợp cho flow refresh và support</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">CO</span>
+              <div>
+                <h3>Ingenium và COBOL</h3>
+                <code>ing · icomp</code>
+              </div>
+            </header>
+            <p>Start hoặc stop Ingenium region, biên dịch project và chỉ xử lý phần source thực sự bị ảnh hưởng để rút ngắn vòng phản hồi.</p>
+            <ul class="feature-list">
+              <li>Compile song song và tăng dần</li>
+              <li>Bind, restart và kiểm tra theo chuỗi</li>
+              <li>Dùng được từ terminal hoặc Flow</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">GI</span>
+              <div>
+                <h3>Source và work item</h3>
+                <code>igit + icomp</code>
+              </div>
+            </header>
+            <p>Đặt Git vào đúng ngữ cảnh Ingenium: branch theo work item, so với golden point, tìm file thay đổi và đưa tập source đó sang compile.</p>
+            <ul class="feature-list">
+              <li>Một ngữ cảnh từ branch tới build</li>
+              <li>Giảm thao tác Git dễ sai</li>
+              <li>Tạo đầu vào rõ cho CI/CD</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">NX</span>
+              <div>
+                <h3>Môi trường và tiện ích</h3>
+                <code>nexus · dev tools · VS Code</code>
+              </div>
+            </header>
+            <p>Chuẩn bị cấu hình môi trường, các tiện ích dùng chung và một lớp tích hợp cơ bản trong VS Code để developer làm việc ngay trong ngữ cảnh hiện tại.</p>
+            <ul class="feature-list">
+              <li>Cấu hình theo environment</li>
+              <li>Một điểm vào cho developer</li>
+              <li>Nền để đưa Task của Vista vào IDE</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-flow-section" id="flow">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Operational flows</p>
+          <h2>Giá trị xuất hiện khi các Skill chạy cùng nhau</h2>
+          <p class="lead">Một CLI giúp giảm một vài thao tác. Một Flow nối đúng công cụ, quyền hạn và điểm kiểm tra sẽ thay đổi cả cách đội ngũ vận hành Ingenium.</p>
+        </div>
+        <div class="nx-flow-grid">
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>01</span>
+              <div>
+                <h3>CI/CD cho Ingenium</h3>
+                <p>Đưa work item từ thay đổi source tới một release package có bằng chứng.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Đọc branch và golden point</li>
+              <li><span>02</span>Tìm source bị ảnh hưởng</li>
+              <li><span>03</span>Compile và bind có chọn lọc</li>
+              <li><span>04</span>Chạy kiểm tra, gom log và kết quả</li>
+              <li><span>05</span>Đưa tới bước review hoặc deploy</li>
+            </ol>
+            <p class="nx-flow-outcome">Một pipeline có thể chạy lại thay cho chuỗi lệnh truyền miệng.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>02</span>
+              <div>
+                <h3>Refresh low environment</h3>
+                <p>Phối hợp database, Ingenium runtime và kiểm tra sau refresh trong một hành trình.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Xác nhận nguồn và đích</li>
+              <li><span>02</span>Dừng region liên quan</li>
+              <li><span>03</span>Backup, restore hoặc refresh database</li>
+              <li><span>04</span>Cấu hình lại và khởi động region</li>
+              <li><span>05</span>Kiểm tra trạng thái rồi bàn giao</li>
+            </ol>
+            <p class="nx-flow-outcome">Giảm thời gian chờ và giữ đầy đủ trạng thái của từng bước.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>03</span>
+              <div>
+                <h3>Copy policy để support và debug</h3>
+                <p>Đưa đúng policy tới DEV để tái hiện lỗi trong phạm vi được kiểm soát.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Nhận policy và môi trường nguồn</li>
+              <li><span>02</span>Kiểm tra quyền và dữ liệu đích</li>
+              <li><span>03</span>Export policy</li>
+              <li><span>04</span>Import vào DEV</li>
+              <li><span>05</span>Chuẩn bị region và Task debug</li>
+            </ol>
+            <p class="nx-flow-outcome">Support có môi trường tái hiện nhất quán và một dấu vết để đối chiếu.</p>
+          </article>
+        </div>
+        <p class="section-bridge nx-flow-note reveal">Flow không chỉ cộng chức năng của các tool. Nó giữ thứ tự, điều kiện, quyền hạn, bước chờ người và khả năng tiếp tục khi một thao tác thất bại.</p>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-architecture" id="kien-truc-nexus">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Trong BENOVA</p>
+          <h2>Echelon điều phối. Nexus thực thi. Vista giữ developer trong vòng công việc.</h2>
+          <p class="lead">Các lớp dùng chung Task và Outcome nhưng giữ trách nhiệm riêng. Nhờ vậy Nexus tập trung vào tri thức Ingenium, còn Flow vẫn có thể được quan sát và kiểm soát từ đầu tới cuối.</p>
+        </div>
+        <div class="nx-architecture-board reveal">
+          <div class="nx-arch-machine">
+            <article class="nx-arch-node nx-arch-e">
+              <span class="nx-arch-key" aria-hidden="true">E</span>
+              <div>
+                <p>Flow authority</p>
+                <h3>Echelon</h3>
+                <span>Giữ Process, phát Task, nhận Outcome và quyết định bước kế tiếp.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+            <article class="nx-arch-node nx-arch-n">
+              <span class="nx-arch-key" aria-hidden="true">N</span>
+              <div>
+                <p>Ingenium executor</p>
+                <h3>Nexus Agent</h3>
+                <span>Chọn và gọi Skill phù hợp với Task, environment và quyền được cấp.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><span>Task</span><i></i><span>Outcome</span></div>
+            <article class="nx-arch-node nx-arch-s">
+              <span class="nx-arch-key" aria-hidden="true">S</span>
+              <div>
+                <p>Deterministic actions</p>
+                <h3>Nexus Skills</h3>
+                <span>Thao tác với DB2, database, policy, COBOL, Git và Ingenium runtime.</span>
+              </div>
+            </article>
+          </div>
+          <div class="nx-arch-human-link" aria-hidden="true"><i></i><span>Task ↓ · Outcome ↑</span></div>
+          <article class="nx-arch-node nx-arch-v">
+            <span class="nx-arch-key" aria-hidden="true">V</span>
+            <div>
+              <p>Human workbench</p>
+              <h3>Vista for VS Code</h3>
+              <span>Hiển thị Task, tiến độ, log và điểm cần developer review hoặc hành động.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-developer" id="developer">
+      <div class="shell nx-developer-grid">
+        <div class="nx-developer-copy reveal">
+          <p class="eyebrow">Developer experience</p>
+          <h2>Một catalog Flow riêng cho môi trường phát triển</h2>
+          <p class="lead">Vista VS Code Host có thể đi cùng Echelon Local — runtime gọn cho một developer, dùng cùng contract với Echelon đầy đủ nhưng chạy các Flow thiên về DEV.</p>
+          <div class="nx-example-row">
+            <span>Build work item</span>
+            <span>Prepare debug policy</span>
+            <span>Reset DEV region</span>
+            <span>Collect test evidence</span>
+          </div>
+        </div>
+        <div class="nx-vscode reveal">
+          <header><span aria-hidden="true">⌘</span><strong>Vista for VS Code · DEV</strong></header>
+          <ul>
+              <li>
+                <span aria-hidden="true">▶</span>
+                <div><strong>Chạy Flow tại chỗ</strong><small>Start, pause, retry và theo dõi từng Task mà không rời IDE.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◎</span>
+                <div><strong>Đúng ngữ cảnh đang mở</strong><small>Flow biết workspace, branch, program hoặc policy mà developer đang xử lý.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◇</span>
+                <div><strong>Người và máy cùng một luồng</strong><small>Nexus chạy Skill; Vista dừng đúng chỗ để developer review hoặc quyết định.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">↗</span>
+                <div><strong>Cùng contract với server</strong><small>Flow phù hợp có thể chuyển sang Echelon server mà không đổi mô hình Task và Outcome.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-status" id="trang-thai">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Now / Next</p>
+          <h2>Giữ phần đã chứng minh, revamp cách các phần phối hợp</h2>
+          <p class="lead">Nexus không bắt đầu từ một slide kiến trúc. Bộ công cụ và VS Code extension đã tồn tại; round tiếp theo chuẩn hóa chúng quanh Agent, Skill và Flow.</p>
+        </div>
+        <div class="nx-status-grid">
+          <article class="nx-status-card is-current reveal">
+            <p>NOW · ĐÃ CÓ</p>
+            <h3>Nền công cụ Ingenium</h3>
+            <ul class="feature-list">
+              <li>CLI cho DB2, database, policy, runtime, compile và Git</li>
+              <li>Các tối ưu dành riêng cho vòng phát triển Ingenium</li>
+              <li>VS Code extension cơ bản</li>
+              <li>Kinh nghiệm từ hệ Ingenium thật</li>
+            </ul>
+          </article>
+          <article class="nx-status-card is-next reveal">
+            <p>NEXT · REVAMP</p>
+            <h3>Một hệ vận hành theo Flow</h3>
+            <ul class="feature-list">
+              <li>Chuẩn hóa CLI thành Nexus Skill</li>
+              <li>Nexus Agent thực thi Task từ Echelon</li>
+              <li>Chuyển các workflow tiền thân sang Echelon Flow</li>
+              <li>Vista VS Code Host cùng Echelon Local cho DEV</li>
+            </ul>
+          </article>
+        </div>
+        <p class="nx-status-note reveal">Không cam kết một ngày phát hành chung. Mỗi Flow sẽ được chứng minh trên một hành trình thật trước khi mở rộng.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he-nexus">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Bắt đầu từ một Flow Ingenium đang làm đội ngũ mất thời gian.</h2>
+          <p class="lead">Chọn một hành trình có đầu vào, người chịu trách nhiệm và kết quả đo được — như compile một work item, refresh low environment hoặc copy policy để debug. Binean sẽ cùng bạn tách nó thành Skill, Task và điểm kiểm soát phù hợp.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20ve%20Ingenium%20Flow">Trao đổi về Nexus</a>
+            <a class="btn btn-ghost btn-lg" href="../">Xem BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa core bảo hiểm Ingenium theo từng bước, không ngừng vận hành.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../eva/">EVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../#kien-truc">Orbit</a></li>
+          <li><a href="../#kien-truc">Vista</a></li>
+          <li><a href="../#kien-truc">Aice</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Vấn đề</a></li>
+          <li><a href="../#trien-khai">Cách triển khai</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
