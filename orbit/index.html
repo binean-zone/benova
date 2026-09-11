@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Orbit — Chuyển dần Ingenium từ COBOL sang Rust</title>
+  <meta name="description" content="Binean Orbit biến Ingenium thành hybrid core, cho phép cô lập từng module COBOL, xây lại bằng Rust và chuyển đổi từng bước sau một Web API ổn định." />
+  <meta name="keywords" content="Binean Orbit, Ingenium modernization, COBOL to Rust, hybrid core, Strangler Fig, insurance core API, policy administration, gradual modernization" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/orbit/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/orbit/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/orbit/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/orbit/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Orbit — Chuyển dần Ingenium từ COBOL sang Rust" />
+  <meta property="og:description" content="Binean Orbit biến Ingenium thành hybrid core, cho phép cô lập từng module COBOL, xây lại bằng Rust và chuyển đổi từng bước sau một Web API ổn định." />
+  <meta property="og:url" content="https://binean.com/orbit/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Orbit — Chuyển dần Ingenium từ COBOL sang Rust" />
+  <meta name="twitter:description" content="Binean Orbit biến Ingenium thành hybrid core, cho phép cô lập từng module COBOL, xây lại bằng Rust và chuyển đổi từng bước sau một Web API ổn định." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Orbit","applicationCategory":"BusinessApplication","description":"Binean Orbit biến Ingenium thành hybrid core, cho phép cô lập từng module COBOL, xây lại bằng Rust và chuyển đổi từng bước sau một Web API ổn định.","url":"https://binean.com/orbit/","operatingSystem":"Linux, Kubernetes, Cloud, On-premise","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Tư vấn và POC theo phạm vi"},"publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Orbit đang ở giai đoạn hình thành; Web API Rust và cầu nối COBOL là foundation cho round thiết kế tiếp theo.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Trao%20doi%20ve%20Ingenium%20module">Trao đổi về một module</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean Orbit">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Orbit</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#hybrid">Hybrid core</a></li>
+          <li><a href="#hanh-trinh">Hành trình</a></li>
+          <li><a href="#premium-allocation">Ví dụ</a></li>
+          <li><a href="#orbit-agent">Orbit Agent</a></li>
+          <li><a href="#trang-thai-orbit">Trạng thái</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../orbit/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/orbit/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Trao%20doi%20ve%20Ingenium%20module">Trao đổi về Orbit</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="or-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell or-hero-inner">
+        <div class="or-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">Từng module · Cùng một core · Không big bang</p>
+          <h1 class="or-title reveal">Chuyển Ingenium sang Rust. Từng phần một.</h1>
+          <p class="or-lead reveal">Orbit đặt một Web API ổn định trước Ingenium để COBOL và Rust có thể cùng phục vụ một core. Mỗi module được cô lập, thiết kế lại và chuyển đổi theo mức sẵn sàng của chính nó — trong khi phần còn lại tiếp tục vận hành.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#hanh-trinh">Xem hành trình chuyển đổi</a>
+            <a class="btn btn-ghost" href="#premium-allocation">Xem ví dụ module</a>
+          </div>
+        </div>
+
+        <div class="or-hybrid-visual reveal">
+          <header><span aria-hidden="true">O</span><strong>Orbit Hybrid Core</strong></header>
+          <div class="or-request"><span>Policy request</span><i aria-hidden="true"></i></div>
+          <div class="or-api">Stable Web API</div>
+          <div class="or-route" aria-hidden="true"><i></i><i></i></div>
+          <div class="or-runtime-grid">
+            <div class="is-cobol"><span>01</span><strong>COBOL modules</strong></div>
+            <div class="is-rust"><span>02</span><strong>Rust modules</strong></div>
+          </div>
+          <p>Routing dịch chuyển theo từng module, không theo một ngày cutover chung.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section" id="hybrid">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Hybrid by design</p>
+          <h2>Hệ cũ và hệ mới cùng chạy sau một ranh giới ổn định</h2>
+          <p class="lead">Orbit tạo một mặt tiền chung cho các năng lực xử lý và quản trị hợp đồng. Bên gọi không cần biết module phía sau đang là COBOL hay Rust.</p>
+        </div>
+        <div class="or-hybrid-grid">
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">↔</span>
+            <h3>Một Web API</h3>
+            <p>Kênh số, service và Flow gọi cùng một contract trong suốt hành trình chuyển đổi.</p>
+          </article>
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">◫</span>
+            <h3>Chuyển theo module</h3>
+            <p>Mỗi năng lực nghiệp vụ có boundary và nhịp chuyển đổi riêng, phù hợp với độ phức tạp và rủi ro của nó.</p>
+          </article>
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">↶</span>
+            <h3>Luôn có đường lùi</h3>
+            <p>COBOL tiếp tục phục vụ cho tới khi implementation Rust đã được đối chiếu và đủ tin cậy để nhận routing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-journey" id="hanh-trinh">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Module-by-module</p>
+          <h2>Bốn bước để một phần COBOL trở thành Rust</h2>
+          <p class="lead">Orbit bắt đầu bằng việc tạo ranh giới quanh module hiện có. Việc viết lại chỉ diễn ra sau khi đầu vào, đầu ra và trách nhiệm của module đã rõ.</p>
+        </div>
+        <div class="or-journey-grid">
+          <article class="or-journey-step reveal">
+            <header><span>01</span><code>COBOL + RUST</code></header>
+            <h3>Chạy hybrid</h3>
+            <p>Đặt Orbit trước Ingenium để request có thể đi vào implementation COBOL hoặc Rust sau cùng một API.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>02</span><code>STABLE CONTRACT</code></header>
+            <h3>Cô lập module</h3>
+            <p>Chia core theo năng lực nghiệp vụ, định nghĩa contract và bọc module COBOL hiện tại sau boundary đó.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>03</span><code>VERIFY</code></header>
+            <h3>Thiết kế lại bằng Rust</h3>
+            <p>Xây implementation Rust dùng cùng contract và đối chiếu kết quả với logic đang vận hành.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>04</span><code>RUST</code></header>
+            <h3>Chuyển hẳn</h3>
+            <p>Dịch routing sang Rust khi đủ tin cậy, ổn định trong thực tế rồi ngưng phần COBOL tương ứng.</p>
+          </article>
+        </div>
+        <p class="section-bridge or-journey-note reveal">Một core lớn được hiện đại hóa bằng nhiều quyết định nhỏ có thể kiểm chứng, thay vì một lần thay thế toàn bộ.</p>
+      </div>
+    </section>
+
+    <section class="section or-section or-example" id="premium-allocation">
+      <div class="shell or-example-grid">
+        <div class="or-example-copy reveal">
+          <p class="eyebrow">Ví dụ module đầu tiên</p>
+          <h2>Premium Allocation: một boundary nhỏ nhưng giàu logic nghiệp vụ</h2>
+          <p class="lead">Khi khách hàng đóng tiền, module phân bổ khoản tiền đó theo rule được cấu hình cho sản phẩm.</p>
+          <p>Orbit cô lập logic COBOL hiện tại sau một contract, xây bản Rust tương đương, đối chiếu kết quả rồi chuyển routing khi đủ tin cậy.</p>
+        </div>
+        <div class="or-allocation reveal">
+          <div class="or-allocation-input"><span>Customer payment</span></div>
+          <div class="or-allocation-line" aria-hidden="true"><i></i></div>
+          <div class="or-allocation-engine"><span>O</span><strong>Premium Allocation</strong></div>
+          <div class="or-allocation-line is-split" aria-hidden="true"><i></i></div>
+          <ul>
+              <li>
+                <span aria-hidden="true">S</span>
+                <div><strong>Suspense</strong><small>Giữ tiền khi chưa tới thời điểm phù hợp.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">P</span>
+                <div><strong>Policy account</strong><small>Phân bổ vào tài khoản hợp đồng.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">E</span>
+                <div><strong>Excess</strong><small>Đưa phần vượt điều kiện vào excess.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-agent" id="orbit-agent">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Trong mô hình EVA</p>
+          <h2>Orbit là Agent chuyên về xử lý và quản trị hợp đồng</h2>
+          <p class="lead">Các năng lực của hybrid core được cung cấp thành Skill qua Web API. Echelon có thể giao Task cho Orbit trong một Flow mà không phụ thuộc implementation đang là COBOL hay Rust.</p>
+        </div>
+        <div class="or-agent-chain reveal">
+            <article>
+              <span aria-hidden="true">E</span>
+              <div><strong>Echelon Flow</strong><small>Giao Task nghiệp vụ và giữ hành trình.</small></div>
+            </article>
+            <span class="or-agent-arrow" aria-hidden="true">→</span>
+            <article>
+              <span aria-hidden="true">O</span>
+              <div><strong>Orbit Agent</strong><small>Chọn Skill hợp đồng qua Web API.</small></div>
+            </article>
+            <span class="or-agent-arrow" aria-hidden="true">→</span>
+            <article>
+              <span aria-hidden="true">H</span>
+              <div><strong>Hybrid Core</strong><small>Routing tới module COBOL hoặc Rust.</small></div>
+            </article>
+        </div>
+        <div class="or-skill-row reveal">
+          <strong>Policy skills</strong>
+          <span>Inquiry</span>
+          <span>Validation</span>
+          <span>Processing</span>
+          <span>Administration</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-status" id="trang-thai-orbit">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Foundation / Direction</p>
+          <h2>Orbit đã có điểm nối kỹ thuật; sản phẩm vẫn đang được định hình</h2>
+          <p class="lead">Source hiện tại cho thấy hướng Web API Rust, authentication và giao tiếp với COBOL. Round tiếp theo sẽ biến các mảnh đó thành một kiến trúc migration theo module nhất quán.</p>
+        </div>
+        <div class="or-status-grid">
+          <article class="or-status-card is-foundation reveal">
+            <p>FOUNDATION · ĐÃ CÓ</p>
+            <h3>Cầu nối hybrid ban đầu</h3>
+            <ul class="feature-list">
+              <li>Rust Web API service</li>
+              <li>Authentication và role mapping</li>
+              <li>COBOL IPC và multi-worker dispatcher</li>
+              <li>Khung xử lý policy ban đầu</li>
+            </ul>
+          </article>
+          <article class="or-status-card is-direction reveal">
+            <p>DIRECTION · ĐANG HÌNH THÀNH</p>
+            <h3>Con đường chuyển đổi core</h3>
+            <ul class="feature-list">
+              <li>Contract ổn định cho từng module</li>
+              <li>COBOL và Rust chạy song song</li>
+              <li>Đối chiếu trước khi chuyển routing</li>
+              <li>Orbit Skills cho Echelon Flow</li>
+            </ul>
+          </article>
+        </div>
+        <p class="or-status-note reveal">Orbit chưa được định vị là sản phẩm sẵn sàng để thay thế core. Mỗi module sẽ cần một phạm vi, bằng chứng và tiêu chí chuyển đổi riêng.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he-orbit">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Chọn một module đủ nhỏ để bắt đầu, đủ thật để chứng minh.</h2>
+          <p class="lead">Bắt đầu từ một năng lực có boundary rõ, logic đang vận hành và kết quả có thể đối chiếu. Binean sẽ cùng bạn xác định contract, cách chạy hybrid và tiêu chí chuyển routing phù hợp.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Trao%20doi%20ve%20Ingenium%20module">Trao đổi về một module</a>
+            <a class="btn btn-ghost btn-lg" href="../">Xem BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa core bảo hiểm Ingenium theo từng bước, không ngừng vận hành.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../eva/">EVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../orbit/">Orbit</a></li>
+          <li><a href="../#kien-truc">Vista</a></li>
+          <li><a href="../#kien-truc">Aice</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Vấn đề</a></li>
+          <li><a href="../#trien-khai">Cách triển khai</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Hiện chỉ hỗ trợ liên hệ qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

@@ -56,4 +56,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://binean.com/orbit/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/orbit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/orbit/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://binean.com/en/orbit/</loc>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/orbit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/orbit/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

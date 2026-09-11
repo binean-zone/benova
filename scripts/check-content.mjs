@@ -106,19 +106,24 @@ const pageIds = {
     ['capabilities', 'flows', 'architecture', 'developer', 'status', 'cta']
       .map((section) => c.nexusPage?.[section]?.id)
       .filter(Boolean),
+  orbit: (c) =>
+    ['hybrid', 'journey', 'example', 'agent', 'status', 'cta']
+      .map((section) => c.orbitPage?.[section]?.id)
+      .filter(Boolean),
 };
 
 for (const [code, content] of [
   ['vi', vi],
   ['en', en],
 ]) {
-  const { echelonPage, evaPage, nexusPage, ...home } = content;
+  const { echelonPage, evaPage, nexusPage, orbitPage, ...home } = content;
 
   for (const [page, tree, requireUsed] of [
     ['home', home, true],
     ['echelon', { echelonPage }, false],
     ['eva', { evaPage }, true],
     ['nexus', { nexusPage }, false],
+    ['orbit', { orbitPage }, false],
   ]) {
     const ids = new Set(pageIds[page](content));
     const anchors = [];

@@ -8,11 +8,13 @@ import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './s
 import echelonPage from './echelon-vi.mjs';
 import evaPage from './eva-vi.mjs';
 import nexusPage from './nexus-vi.mjs';
+import orbitPage from './orbit-vi.mjs';
 
 export default {
   echelonPage,
   evaPage,
   nexusPage,
+  orbitPage,
 
   locale: { code: 'vi', label: 'Tiếng Việt', short: 'VI', path: '' },
 
@@ -187,6 +189,7 @@ export default {
           'Truy vấn hợp đồng 24/7, kể cả đang chạy batch job',
           'Chuyển đổi từng luồng, có đường lùi ở mọi bước',
         ],
+        link: { label: 'Khám phá Orbit', href: 'orbit/' },
       },
       {
         key: 'V',
@@ -326,7 +329,7 @@ export default {
         links: [
           { label: 'EVA', href: 'eva/' },
           { label: 'Nexus', href: 'nexus/' },
-          { label: 'Orbit', href: '#kien-truc' },
+          { label: 'Orbit', href: 'orbit/' },
           { label: 'Vista', href: '#kien-truc' },
           { label: 'Aice', href: '#kien-truc' },
         ],

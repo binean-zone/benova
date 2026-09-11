@@ -77,6 +77,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 ├── en/echelon/index.html   # trang Binean Echelon, tiếng Anh (sinh ra)
 ├── nexus/index.html        # trang Binean Nexus, tiếng Việt (sinh ra)
 ├── en/nexus/index.html     # trang Binean Nexus, tiếng Anh (sinh ra)
+├── orbit/index.html        # trang Binean Orbit, tiếng Việt (sinh ra)
+├── en/orbit/index.html     # trang Binean Orbit, tiếng Anh (sinh ra)
 ├── 404.html                # trang lỗi song ngữ (sinh ra)
 ├── sitemap.xml             # sinh cùng lúc, có hreflang cho cả hai bản
 ├── content/
@@ -88,7 +90,9 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 │   ├── echelon-vi.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Việt
 │   ├── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
 │   ├── nexus-vi.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Việt
-│   └── nexus-en.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Anh
+│   ├── nexus-en.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Anh
+│   ├── orbit-vi.mjs        # NGUỒN NỘI DUNG trang Orbit, tiếng Việt
+│   └── orbit-en.mjs        # NGUỒN NỘI DUNG trang Orbit, tiếng Anh
 ├── scripts/
 │   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
 │   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau

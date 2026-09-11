@@ -45,6 +45,7 @@ const detailPage = () => {
   if (pagePath === 'echelon/') return site.echelonPage;
   if (pagePath === 'eva/') return site.evaPage;
   if (pagePath === 'nexus/') return site.nexusPage;
+  if (pagePath === 'orbit/') return site.orbitPage;
   return null;
 };
 
@@ -1582,6 +1583,207 @@ ${footer()}
 `;
 };
 
+/* ----------------------------------------------------------- trang Orbit */
+
+const orbitPage = () => {
+  const p = site.orbitPage;
+
+  const hybridCards = p.hybrid.items
+    .map(
+      (item) => `          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">${esc(item.icon)}</span>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.desc)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const journeySteps = p.journey.steps
+    .map(
+      (step) => `          <article class="or-journey-step reveal">
+            <header><span>${esc(step.num)}</span><code>${esc(step.tag)}</code></header>
+            <h3>${esc(step.title)}</h3>
+            <p>${esc(step.desc)}</p>
+          </article>`
+    )
+    .join('\n');
+
+  const exampleOutputs = p.example.outputs
+    .map(
+      (output) => `              <li>
+                <span aria-hidden="true">${esc(output.key)}</span>
+                <div><strong>${esc(output.title)}</strong><small>${esc(output.desc)}</small></div>
+              </li>`
+    )
+    .join('\n');
+
+  const agentNodes = p.agent.nodes
+    .map(
+      (node, index) => `${
+        index ? '            <span class="or-agent-arrow" aria-hidden="true">→</span>\n' : ''
+      }            <article>
+              <span aria-hidden="true">${esc(node.key)}</span>
+              <div><strong>${esc(node.title)}</strong><small>${esc(node.desc)}</small></div>
+            </article>`
+    )
+    .join('\n');
+
+  const statusColumn = (status, extraClass) => `          <article class="or-status-card ${extraClass} reveal">
+            <p>${esc(status.tag)}</p>
+            <h3>${esc(status.title)}</h3>
+            <ul class="feature-list">
+${status.items.map((item) => `              <li>${esc(item)}</li>`).join('\n')}
+            </ul>
+          </article>`;
+
+  return `<!DOCTYPE html>
+<html lang="${esc(site.locale.code)}" data-theme="dark">
+<head>
+${head()}
+</head>
+<body>
+${notice()}
+${header()}
+
+  <main id="main">
+    <section class="or-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell or-hero-inner">
+        <div class="or-hero-copy">
+          <a class="ech-back" href="${base}${esc(site.locale.path)}">← ${esc(p.hero.back)}</a>
+          <p class="eyebrow reveal">${esc(p.hero.eyebrow)}</p>
+          <h1 class="or-title reveal">${esc(p.hero.title)}</h1>
+          <p class="or-lead reveal">${esc(p.hero.lead)}</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="${esc(p.hero.primaryCta.href)}">${esc(
+    p.hero.primaryCta.label
+  )}</a>
+            <a class="btn btn-ghost" href="${esc(p.hero.secondaryCta.href)}">${esc(
+    p.hero.secondaryCta.label
+  )}</a>
+          </div>
+        </div>
+
+        <div class="or-hybrid-visual reveal">
+          <header><span aria-hidden="true">O</span><strong>${esc(p.hero.visual.label)}</strong></header>
+          <div class="or-request"><span>${esc(p.hero.visual.request)}</span><i aria-hidden="true"></i></div>
+          <div class="or-api">${esc(p.hero.visual.api)}</div>
+          <div class="or-route" aria-hidden="true"><i></i><i></i></div>
+          <div class="or-runtime-grid">
+            <div class="is-cobol"><span>01</span><strong>${esc(p.hero.visual.cobol)}</strong></div>
+            <div class="is-rust"><span>02</span><strong>${esc(p.hero.visual.rust)}</strong></div>
+          </div>
+          <p>${esc(p.hero.visual.caption)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section" id="${esc(p.hybrid.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.hybrid.eyebrow)}</p>
+          <h2>${esc(p.hybrid.title)}</h2>
+          <p class="lead">${esc(p.hybrid.lead)}</p>
+        </div>
+        <div class="or-hybrid-grid">
+${hybridCards}
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-journey" id="${esc(p.journey.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.journey.eyebrow)}</p>
+          <h2>${esc(p.journey.title)}</h2>
+          <p class="lead">${esc(p.journey.lead)}</p>
+        </div>
+        <div class="or-journey-grid">
+${journeySteps}
+        </div>
+        <p class="section-bridge or-journey-note reveal">${esc(p.journey.note)}</p>
+      </div>
+    </section>
+
+    <section class="section or-section or-example" id="${esc(p.example.id)}">
+      <div class="shell or-example-grid">
+        <div class="or-example-copy reveal">
+          <p class="eyebrow">${esc(p.example.eyebrow)}</p>
+          <h2>${esc(p.example.title)}</h2>
+          <p class="lead">${esc(p.example.lead)}</p>
+          <p>${esc(p.example.copy)}</p>
+        </div>
+        <div class="or-allocation reveal">
+          <div class="or-allocation-input"><span>${esc(p.example.input)}</span></div>
+          <div class="or-allocation-line" aria-hidden="true"><i></i></div>
+          <div class="or-allocation-engine"><span>O</span><strong>${esc(p.example.engine)}</strong></div>
+          <div class="or-allocation-line is-split" aria-hidden="true"><i></i></div>
+          <ul>
+${exampleOutputs}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-agent" id="${esc(p.agent.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.agent.eyebrow)}</p>
+          <h2>${esc(p.agent.title)}</h2>
+          <p class="lead">${esc(p.agent.lead)}</p>
+        </div>
+        <div class="or-agent-chain reveal">
+${agentNodes}
+        </div>
+        <div class="or-skill-row reveal">
+          <strong>${esc(p.agent.skillsLabel)}</strong>
+${p.agent.skills.map((skill) => `          <span>${esc(skill)}</span>`).join('\n')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-status" id="${esc(p.status.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.status.eyebrow)}</p>
+          <h2>${esc(p.status.title)}</h2>
+          <p class="lead">${esc(p.status.lead)}</p>
+        </div>
+        <div class="or-status-grid">
+${statusColumn(p.status.foundation, 'is-foundation')}
+${statusColumn(p.status.direction, 'is-direction')}
+        </div>
+        <p class="or-status-note reveal">${esc(p.status.note)}</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="${esc(p.cta.id)}">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>${esc(p.cta.title)}</h2>
+          <p class="lead">${esc(p.cta.lead)}</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="${esc(
+              mailto(site.brand.emails[0], p.cta.subject)
+            )}">${esc(p.cta.label)}</a>
+            <a class="btn btn-ghost btn-lg" href="${base}${esc(site.locale.path)}">${esc(
+    p.cta.back
+  )}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+${footer()}
+
+  <script src="${base}assets/js/main.js" defer></script>
+</body>
+</html>
+`;
+};
+
 /* ---------------------------------------------------------- diagram ---- */
 
 /** Sơ đồ Strangler Fig, sinh riêng cho mỗi ngôn ngữ từ nhãn trong content. */
@@ -1711,6 +1913,7 @@ const pages = [
   { slug: 'eva/', render: evaPage },
   { slug: 'echelon/', render: echelonPage },
   { slug: 'nexus/', render: nexusPage },
+  { slug: 'orbit/', render: orbitPage },
 ];
 
 for (const locale of locales) {

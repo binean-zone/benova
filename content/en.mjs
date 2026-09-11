@@ -8,11 +8,13 @@ import { brandName, emails, mail, planetVisuals, siteUrl, themeColor } from './s
 import echelonPage from './echelon-en.mjs';
 import evaPage from './eva-en.mjs';
 import nexusPage from './nexus-en.mjs';
+import orbitPage from './orbit-en.mjs';
 
 export default {
   echelonPage,
   evaPage,
   nexusPage,
+  orbitPage,
 
   locale: { code: 'en', label: 'English', short: 'EN', path: 'en/' },
 
@@ -188,6 +190,7 @@ export default {
           'Query policies 24/7, even while batch jobs are running',
           'Move one flow at a time, with a way back at every step',
         ],
+        link: { label: 'Explore Orbit', href: 'orbit/' },
       },
       {
         key: 'V',
@@ -326,7 +329,7 @@ export default {
         links: [
           { label: 'EVA', href: 'eva/' },
           { label: 'Nexus', href: 'nexus/' },
-          { label: 'Orbit', href: '#ecosystem' },
+          { label: 'Orbit', href: 'orbit/' },
           { label: 'Vista', href: '#ecosystem' },
           { label: 'Aice', href: '#ecosystem' },
         ],
