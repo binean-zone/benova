@@ -21,6 +21,7 @@
   --accent-ink: #06231d;
   --amber: #ffbe6b;
   --binean: #3481e5;
+  --vista: #60a5fa;
   --shadow: 0 24px 60px -32px rgba(2, 8, 20, 0.9);
   --radius: 16px;
   --radius-lg: 22px;
@@ -46,6 +47,7 @@
   --accent-ink: #ffffff;
   --amber: #b45309;
   --binean: #2563c4;
+  --vista: #2563eb;
   --shadow: 0 20px 50px -34px rgba(10, 25, 47, 0.45);
 }
 
@@ -1733,20 +1735,20 @@ ol {
 .nx-arch-human-link i {
   width: 52px;
   height: 1px;
-  background: linear-gradient(90deg, var(--amber), #fb7185);
+  background: linear-gradient(90deg, var(--amber), var(--vista));
 }
 
 .nx-arch-v {
-  border-color: color-mix(in srgb, #fb7185 38%, var(--border));
+  border-color: color-mix(in srgb, var(--vista) 38%, var(--border));
 }
 
 .nx-arch-v .nx-arch-key {
-  background: color-mix(in srgb, #fb7185 13%, var(--bg));
-  color: #fb7185;
+  background: color-mix(in srgb, var(--vista) 13%, var(--bg));
+  color: var(--vista);
 }
 
 .nx-arch-v p {
-  color: #fb7185;
+  color: var(--vista);
 }
 
 .nx-developer-grid {
@@ -1779,7 +1781,7 @@ ol {
 
 .nx-vscode {
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, #fb7185 32%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--vista) 32%, var(--border));
   border-radius: var(--radius-lg);
   background: var(--bg-raise);
   box-shadow: var(--shadow);
@@ -1792,11 +1794,11 @@ ol {
   min-height: 52px;
   padding: 0 20px;
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, #fb7185 6%, var(--surface));
+  background: color-mix(in srgb, var(--vista) 6%, var(--surface));
 }
 
 .nx-vscode > header > span {
-  color: #fb7185;
+  color: var(--vista);
   font-size: 1.1rem;
 }
 
@@ -1831,8 +1833,8 @@ ol {
   width: 32px;
   height: 32px;
   border-radius: 9px;
-  background: color-mix(in srgb, #fb7185 10%, var(--bg));
-  color: #fb7185;
+  background: color-mix(in srgb, var(--vista) 10%, var(--bg));
+  color: var(--vista);
   font-family: var(--mono);
 }
 
@@ -1913,7 +1915,7 @@ ol {
   .nx-arch-human-link i {
     width: 1px;
     height: 30px;
-    background: linear-gradient(180deg, var(--amber), #fb7185);
+    background: linear-gradient(180deg, var(--amber), var(--vista));
   }
 
   .nx-arch-v {
