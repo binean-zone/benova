@@ -21,7 +21,11 @@
   --accent-ink: #06231d;
   --amber: #ffbe6b;
   --binean: #3481e5;
-  --vista: #60a5fa;
+  /* VISTA identity: hue 250, the hue its own UI uses for `--accent`
+     (oklch(0.66 0.17 250)). The orbit dots are a family of bright satellites on
+     navy, so this is that same hue and chroma lifted to the family's lightness
+     — derived from the token, not picked by eye. */
+  --vista: #73c3ff;
   --shadow: 0 24px 60px -32px rgba(2, 8, 20, 0.9);
   --radius: 16px;
   --radius-lg: 22px;
@@ -47,7 +51,8 @@
   --accent-ink: #ffffff;
   --amber: #b45309;
   --binean: #2563c4;
-  --vista: #2563eb;
+  /* Same hue, the lightness VISTA's own Light accent uses. */
+  --vista: #0058ac;
   --shadow: 0 20px 50px -34px rgba(10, 25, 47, 0.45);
 }
 
