@@ -15,6 +15,6 @@ export const planetVisuals = {
   E: { color: '#ff81c3' },
   N: { color: '#fbbf24' },
   O: { color: '#a78bfa', ring: true },
-  V: { color: '#fb7185' },
+  V: { color: 'var(--vista)' },
   A: { color: '#a3e635' },
 };

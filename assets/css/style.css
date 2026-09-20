@@ -22,11 +22,8 @@
   --amber: #ffbe6b;
   /* Binean dùng đúng màu nền của nút primary (--accent ở theme sáng) cho cả hai theme. */
   --binean: #0d9488;
-  /* VISTA identity: hue 250, the hue its own UI uses for `--accent`
-     (oklch(0.66 0.17 250)). The orbit dots are a family of bright satellites on
-     navy, so this is that same hue and chroma lifted to the family's lightness
-     — derived from the token, not picked by eye. */
-  --vista: #73c3ff;
+  /* VISTA identity: đúng màu accent hue 250 mà UI của VISTA dùng cho `--accent`. */
+  --vista: oklch(0.66 0.17 250);
   --shadow: 0 24px 60px -32px rgba(2, 8, 20, 0.9);
   --radius: 16px;
   --radius-lg: 22px;

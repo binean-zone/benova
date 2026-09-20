@@ -82,7 +82,7 @@ export default {
         key: 'V',
         name: 'Vista',
         role: 'Bàn làm việc cho con người',
-        color: '#fb7185',
+        color: 'var(--vista)',
         desc: 'Trình bày đúng Task, dữ liệu và hành động mà người dùng cần. Vista thu ý định của người dùng nhưng không tự quyết định logic nghiệp vụ.',
         features: ['Task, form và ngữ cảnh trong một nơi', 'Trạng thái xử lý rõ ràng', 'Giao diện thích ứng theo Flow'],
       },

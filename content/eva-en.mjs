@@ -83,7 +83,7 @@ export default {
         key: 'V',
         name: 'Vista',
         role: 'The human workbench',
-        color: '#fb7185',
+        color: 'var(--vista)',
         desc: 'Presents the Task, data and actions a person needs. Vista captures user intent without making business decisions on its own.',
         features: ['Tasks, forms and context in one place', 'Clear processing state', 'An interface shaped by the Flow'],
       },
