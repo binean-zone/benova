@@ -12,7 +12,7 @@ export const themeColor = '#0A192F';
 
 /** Màu và vành của từng hành tinh — thuộc về hình ảnh, không phải ngôn ngữ. */
 export const planetVisuals = {
-  E: { color: '#5eead4' },
+  E: { color: '#ff81c3' },
   N: { color: '#fbbf24' },
   O: { color: '#a78bfa', ring: true },
   V: { color: '#fb7185' },

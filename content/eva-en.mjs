@@ -75,7 +75,7 @@ export default {
         key: 'E',
         name: 'Echelon',
         role: 'Orchestration engine',
-        color: '#5eead4',
+        color: '#ff81c3',
         desc: 'Holds Flow and Process state, emits Tasks, receives Outcomes and decides the next step from one source of authority.',
         features: ['Long-running, versioned processes', 'One Task for a person, service or AI', 'Event-based recovery and inspection'],
       },

@@ -20,9 +20,8 @@
   --accent-soft: rgba(100, 255, 218, 0.12);
   --accent-ink: #06231d;
   --amber: #ffbe6b;
-  /* Binean is the warm centre the cool satellites orbit; blue put it 12 degrees from VISTA's
-     own accent, so the core and one of its products read as the same colour. */
-  --binean: #f263ab;
+  /* Binean dùng đúng màu nền của nút primary (--accent ở theme sáng) cho cả hai theme. */
+  --binean: #0d9488;
   /* VISTA identity: hue 250, the hue its own UI uses for `--accent`
      (oklch(0.66 0.17 250)). The orbit dots are a family of bright satellites on
      navy, so this is that same hue and chroma lifted to the family's lightness
@@ -52,7 +51,7 @@
   --accent-soft: rgba(13, 148, 136, 0.1);
   --accent-ink: #ffffff;
   --amber: #b45309;
-  --binean: #c4207e;
+  --binean: #0d9488;
   /* Same hue, the lightness VISTA's own Light accent uses. */
   --vista: #0058ac;
   --shadow: 0 20px 50px -34px rgba(10, 25, 47, 0.45);
@@ -3198,7 +3197,7 @@ ol {
   inset: -1px;
   z-index: -1;
   border-radius: inherit;
-  background: linear-gradient(125deg, color-mix(in srgb, #5eead4 30%, transparent), transparent 42%, color-mix(in srgb, #a3e635 18%, transparent));
+  background: linear-gradient(125deg, color-mix(in srgb, #ff81c3 30%, transparent), transparent 42%, color-mix(in srgb, #a3e635 18%, transparent));
   filter: blur(26px);
   opacity: 0.72;
 }
