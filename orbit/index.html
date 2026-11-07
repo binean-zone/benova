@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Orbit — Điều phối lộ trình hiện đại hóa backend</title>
+  <meta name="description" content="Orbit hướng đến hiện đại hóa backend với nhiều cổng kết nối tùy biến, giữ cách tích hợp của các ứng dụng hiện có. Sản phẩm đang phát triển." />
+  <meta name="keywords" content="Binean Orbit, NOVA, hiện đại hóa core bảo hiểm, kênh số, mở rộng dịch vụ, chuyển đổi từng bước" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/orbit/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/orbit/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/orbit/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/orbit/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Orbit — Điều phối lộ trình hiện đại hóa backend" />
+  <meta property="og:description" content="Orbit hướng đến hiện đại hóa backend với nhiều cổng kết nối tùy biến, giữ cách tích hợp của các ứng dụng hiện có. Sản phẩm đang phát triển." />
+  <meta property="og:url" content="https://binean.com/orbit/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Orbit — Điều phối lộ trình hiện đại hóa backend" />
+  <meta name="twitter:description" content="Orbit hướng đến hiện đại hóa backend với nhiều cổng kết nối tùy biến, giữ cách tích hợp của các ứng dụng hiện có. Sản phẩm đang phát triển." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Orbit","applicationCategory":"BusinessApplication","description":"Orbit hướng đến hiện đại hóa backend với nhiều cổng kết nối tùy biến, giữ cách tích hợp của các ứng dụng hiện có. Sản phẩm đang phát triển.","url":"https://binean.com/orbit/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Orbit đang phát triển. Nội dung mô tả giá trị hướng tới; phạm vi áp dụng cần được đánh giá và kiểm định.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Danh%20gia%20ket%20noi%20hien%20co">Trao đổi ưu tiên của bạn</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean Orbit">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Orbit</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#hybrid">Giá trị</a></li>
+          <li><a href="#hanh-trinh">Bắt đầu</a></li>
+          <li><a href="#premium-allocation">Tình huống</a></li>
+          <li><a href="#orbit-agent">Khả năng hướng tới</a></li>
+          <li><a href="#trang-thai-orbit">Trạng thái</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../orbit/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/orbit/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Danh%20gia%20ket%20noi%20hien%20co">Đánh giá cùng Orbit</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="or-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell or-hero-inner">
+        <div class="or-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">Đổi mới theo ưu tiên của doanh nghiệp</p>
+          <h1 class="or-title reveal">Mở rộng dịch vụ. Chuyển đổi từng nghiệp vụ.</h1>
+          <p class="or-lead reveal">Orbit được thiết kế với nhiều cổng kết nối tùy biến, giúp các ứng dụng hiện có giữ cách tích hợp quen thuộc trong khi backend được hiện đại hóa từng phần. Các cổng dùng chung lớp điều phối nghiệp vụ; mức tương thích được kiểm chứng theo từng hệ thống.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#lien-he-orbit">Đánh giá một kết nối</a>
+            <a class="btn btn-ghost" href="#premium-allocation">Xem tình huống minh họa</a>
+          </div>
+        </div>
+
+        <div class="or-hybrid-visual reveal">
+          <header><span aria-hidden="true">O</span><strong>Giá trị Orbit hướng tới</strong></header>
+          <div class="or-request"><span>Nhu cầu khách hàng</span><i aria-hidden="true"></i></div>
+          <div class="or-api">Trải nghiệm dịch vụ kết nối</div>
+          <div class="or-route" aria-hidden="true"><i></i><i></i></div>
+          <div class="or-runtime-grid">
+            <div class="is-cobol"><span>01</span><strong>Giá trị core hiện tại</strong></div>
+            <div class="is-rust"><span>02</span><strong>Khả năng mới</strong></div>
+          </div>
+          <p>Mở rộng theo nhu cầu, đánh giá theo từng phạm vi.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section" id="hybrid">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Lợi ích hướng tới</p>
+          <h2>Đổi mới trên nền giá trị nghiệp vụ đã tích lũy.</h2>
+          <p class="lead">Bắt đầu từ dịch vụ cần cải thiện, giữ phần nghiệp vụ còn phù hợp và đánh giá từng phần cần chuyển đổi.</p>
+        </div>
+        <div class="or-hybrid-grid">
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">↔</span>
+            <h3>Giữ cách tích hợp hiện có</h3>
+            <p>Tùy biến cổng tiếp nhận theo cách gọi và dữ liệu của client đang sử dụng, để hạn chế việc chỉnh sửa ứng dụng và các hệ thống liên quan.</p>
+          </article>
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">◫</span>
+            <h3>Chủ động phạm vi đầu tư</h3>
+            <p>Chọn phần nghiệp vụ theo mức độ ưu tiên, giá trị kỳ vọng và khả năng triển khai của doanh nghiệp.</p>
+          </article>
+          <article class="card or-hybrid-card reveal">
+            <span aria-hidden="true">↶</span>
+            <h3>Đánh giá trước quyết định lớn</h3>
+            <p>Kiểm chứng kết quả trong phạm vi đã thống nhất trước khi quyết định mở rộng thay đổi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-journey" id="hanh-trinh">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Bắt đầu cùng Orbit</p>
+          <h2>Chọn một ưu tiên, tạo cơ sở cho bước tiếp theo.</h2>
+          <p class="lead">Chọn một nghiệp vụ có mục tiêu đo được và đối chiếu với hệ thống hiện tại trước khi mở rộng.</p>
+        </div>
+        <div class="or-journey-grid">
+          <article class="or-journey-step reveal">
+            <header><span>01</span><code>PRIORITY</code></header>
+            <h3>Xác định nhu cầu</h3>
+            <p>Chọn khả năng phục vụ khách hàng hoặc nghiệp vụ đang cần cải thiện.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>02</span><code>SCOPE</code></header>
+            <h3>Thống nhất phạm vi</h3>
+            <p>Làm rõ mục tiêu, người phụ trách và giới hạn đầu tư cho đánh giá ban đầu.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>03</span><code>VALUE</code></header>
+            <h3>Đánh giá kết quả</h3>
+            <p>So sánh kết quả nghiệp vụ, thời gian xử lý và công sức vận hành với hiện trạng.</p>
+          </article>
+          <article class="or-journey-step reveal">
+            <header><span>04</span><code>GROWTH</code></header>
+            <h3>Quyết định mở rộng</h3>
+            <p>Chọn phần tiếp theo dựa trên kết quả kiểm chứng, mức đầu tư và điều kiện chuyển đổi.</p>
+          </article>
+        </div>
+        <p class="section-bridge or-journey-note reveal">Tính liên tục phục vụ và phương án khôi phục phải được đánh giá theo từng thay đổi; không mặc định mọi tình huống đều không gián đoạn.</p>
+      </div>
+    </section>
+
+    <section class="section or-section or-example" id="premium-allocation">
+      <div class="shell or-example-grid">
+        <div class="or-example-copy reveal">
+          <p class="eyebrow">Tình huống minh họa</p>
+          <h2>Bắt đầu từ một chức năng tra cứu hợp đồng.</h2>
+          <p class="lead">Ví dụ, doanh nghiệp muốn khách hàng hoặc đội phục vụ tra cứu thông tin hợp đồng thuận tiện hơn trên một kênh số.</p>
+          <p>Đây là tình huống đề xuất để thảo luận, không phải tính năng đã phát hành hay dự án khách hàng đã triển khai.</p>
+        </div>
+        <div class="or-allocation reveal">
+          <div class="or-allocation-input"><span>Nhu cầu phục vụ</span></div>
+          <div class="or-allocation-line" aria-hidden="true"><i></i></div>
+          <div class="or-allocation-engine"><span>O</span><strong>Một phạm vi đánh giá</strong></div>
+          <div class="or-allocation-line is-split" aria-hidden="true"><i></i></div>
+          <ul>
+              <li>
+                <span aria-hidden="true">S</span>
+                <div><strong>Khách hàng</strong><small>Hướng tới tiếp cận thông tin thuận tiện hơn.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">P</span>
+                <div><strong>Đội phục vụ</strong><small>Hướng tới bớt công sức tra cứu và bàn giao.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">E</span>
+                <div><strong>Doanh nghiệp</strong><small>Có cơ sở đánh giá giá trị trước đầu tư tiếp.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-agent" id="orbit-agent">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Khả năng hướng tới</p>
+          <h2>Phục vụ nghiệp vụ theo nhu cầu thực tế.</h2>
+          <p class="lead">Kịch bản điều phối kết nối các bước xử lý cho từng nghiệp vụ. Phạm vi hỗ trợ và kết quả tích hợp được xác nhận khi đánh giá.</p>
+        </div>
+        <div class="or-agent-chain reveal">
+            <article>
+              <span aria-hidden="true">E</span>
+              <div><strong>Nhu cầu kinh doanh</strong><small>Xác định điều cần cải thiện.</small></div>
+            </article>
+            <span class="or-agent-arrow" aria-hidden="true">→</span>
+            <article>
+              <span aria-hidden="true">O</span>
+              <div><strong>Phạm vi phù hợp</strong><small>Chọn khả năng cần đánh giá.</small></div>
+            </article>
+            <span class="or-agent-arrow" aria-hidden="true">→</span>
+            <article>
+              <span aria-hidden="true">H</span>
+              <div><strong>Kết quả mong đợi</strong><small>Đo bằng giá trị cho người dùng.</small></div>
+            </article>
+        </div>
+        <div class="or-skill-row reveal">
+          <strong>Nhóm nhu cầu để trao đổi</strong>
+          <span>Tra cứu thông tin</span>
+          <span>Kiểm tra nghiệp vụ</span>
+          <span>Xử lý yêu cầu</span>
+          <span>Quản trị hợp đồng</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section or-section or-status" id="trang-thai-orbit">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Trạng thái sản phẩm</p>
+          <h2>Runtime đã chạy, tích hợp NOVA đang hoàn thiện.</h2>
+          <p class="lead">Orbit đã có nền tảng chạy được. Giá trị tích hợp trọn vẹn cần tiếp tục được hoàn thiện và kiểm chứng.</p>
+        </div>
+        <div class="or-status-grid">
+          <article class="or-status-card is-foundation reveal">
+            <p>NỀN TẢNG BAN ĐẦU</p>
+            <h3>Cơ sở để tiếp tục phát triển</h3>
+            <ul class="feature-list">
+              <li>Flow engine chạy kịch bản nghiệp vụ</li>
+              <li>Dịch vụ web và bộ tiếp nhận kết nối hiện có</li>
+              <li>Quản lý phiên backend cùng Aster</li>
+              <li>Thiết kế xác thực và token</li>
+            </ul>
+          </article>
+          <article class="or-status-card is-direction reveal">
+            <p>ĐỊNH HƯỚNG</p>
+            <h3>Mở rộng giá trị cho doanh nghiệp</h3>
+            <ul class="feature-list">
+              <li>Tùy biến cổng kết nối theo từng hệ thống</li>
+              <li>Nối màn hình Vista với kịch bản nghiệp vụ</li>
+              <li>Kiểm chứng tương thích và hiệu năng trước khi mở rộng</li>
+              <li>Cùng Vista, Aster và Nexus trong gói NOVA</li>
+            </ul>
+          </article>
+        </div>
+        <p class="or-status-note reveal">Orbit là một phần của gói NOVA đang hoàn thiện, chưa phải bản thay thế core sẵn sàng triển khai. Phạm vi và thời điểm được trao đổi theo yêu cầu.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he-orbit">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Bạn cần giữ những kết nối nào khi đổi mới backend?</h2>
+          <p class="lead">Chia sẻ ứng dụng hiện có, cách tích hợp và nghiệp vụ cần cải thiện. Cùng xác định cổng kết nối phù hợp, mức tương thích cần giữ và cách kiểm chứng.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Orbit%20-%20Danh%20gia%20ket%20noi%20hien%20co">Đề xuất đánh giá một kết nối</a>
+            <a class="btn btn-ghost btn-lg" href="../">Xem BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa backend từng bước, giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên và kết quả đánh giá.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../nova/">NOVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../orbit/">Orbit</a></li>
+          <li><a href="../nova/#architecture">Vista</a></li>
+          <li><a href="../nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Nhu cầu</a></li>
+          <li><a href="../#trien-khai">Bắt đầu</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Kết nối với Binean qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

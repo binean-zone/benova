@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Nexus — Bớt thao tác, thêm hiệu quả cho đội ngũ phát triển</title>
+  <meta name="description" content="Rút ngắn vòng phát triển chương trình backend, chuẩn bị môi trường và hỗ trợ điều tra lỗi với Nexus, bộ công cụ đã được sử dụng trong môi trường thực." />
+  <meta name="keywords" content="Binean Nexus, NOVA, DevOps, biên dịch chương trình backend, refresh môi trường, support, VS Code" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nexus/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Nexus — Bớt thao tác, thêm hiệu quả cho đội ngũ phát triển" />
+  <meta property="og:description" content="Rút ngắn vòng phát triển chương trình backend, chuẩn bị môi trường và hỗ trợ điều tra lỗi với Nexus, bộ công cụ đã được sử dụng trong môi trường thực." />
+  <meta property="og:url" content="https://binean.com/nexus/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Nexus — Bớt thao tác, thêm hiệu quả cho đội ngũ phát triển" />
+  <meta name="twitter:description" content="Rút ngắn vòng phát triển chương trình backend, chuẩn bị môi trường và hỗ trợ điều tra lỗi với Nexus, bộ công cụ đã được sử dụng trong môi trường thực." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Nexus","applicationCategory":"BusinessApplication","description":"Rút ngắn vòng phát triển chương trình backend, chuẩn bị môi trường và hỗ trợ điều tra lỗi với Nexus, bộ công cụ đã được sử dụng trong môi trường thực.","url":"https://binean.com/nexus/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Bộ công cụ Nexus đã được dùng trong môi trường thực. Trải nghiệm quản lý công việc tích hợp đang được phát triển tiếp.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20nhu%20cau">Trao đổi nhu cầu của bạn</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean Nexus">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Nexus</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#nang-luc">Tính năng</a></li>
+          <li><a href="#flow">Ứng dụng</a></li>
+          <li><a href="#kien-truc-nexus">Đội ngũ của bạn</a></li>
+          <li><a href="#developer">Trải nghiệm</a></li>
+          <li><a href="#trang-thai">Trạng thái</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../nexus/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/nexus/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20nhu%20cau">Trao đổi về Nexus</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="nx-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell nx-hero-inner">
+        <div class="nx-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">Công cụ phát triển và vận hành trong gói NOVA</p>
+          <h1 class="nx-title reveal">Bớt việc lặp lại. Thêm thời gian cho nghiệp vụ.</h1>
+          <p class="nx-lead reveal">Nexus hỗ trợ đội phát triển và vận hành chuẩn bị thay đổi trên backend: biên dịch chương trình, làm mới môi trường, quản lý cơ sở dữ liệu và chuẩn bị dữ liệu kiểm thử. Bộ công cụ có tích hợp VS Code cơ bản.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#flow">Xem nhu cầu được hỗ trợ</a>
+            <a class="btn btn-ghost" href="#trang-thai">Xem tính năng hiện có</a>
+          </div>
+        </div>
+
+        <div class="nx-terminal reveal">
+          <div class="nx-terminal-bar">
+            <span aria-hidden="true"><i></i><i></i><i></i></span>
+            <strong>Trải nghiệm hướng tới · minh họa</strong>
+          </div>
+          <p class="nx-terminal-context"><span>›</span> Một thay đổi cho luồng nghiệp vụ</p>
+          <ol>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>01</code>
+              <span>nắm phạm vi cần xử lý</span>
+            </li>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>02</code>
+              <span>chuẩn bị bản build</span>
+            </li>
+            <li class="is-running">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>03</code>
+              <span>kiểm tra trên môi trường DEV</span>
+            </li>
+            <li class="is-queued">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>04</code>
+              <span>sẵn sàng để đội ngũ xem xét</span>
+            </li>
+          </ol>
+          <p class="nx-terminal-result">Ít thao tác tay hơn · Thuận tiện bàn giao hơn</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section" id="nang-luc">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Tính năng chính</p>
+          <h2>Công cụ chuyên biệt cho những việc bạn làm thường xuyên.</h2>
+          <p class="lead">Thay vì ghép nhiều thao tác thủ công, đội ngũ có bộ công cụ phù hợp với công việc phát triển và vận hành hằng ngày.</p>
+        </div>
+        <div class="nx-capability-grid">
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">DB</span>
+              <div>
+                <h3>Chuẩn bị dữ liệu và môi trường</h3>
+                <code>Database · Bản ghi nghiệp vụ</code>
+              </div>
+            </header>
+            <p>Hỗ trợ backup, restore, refresh database và chuyển bản ghi nghiệp vụ giữa các môi trường được phép sử dụng.</p>
+            <ul class="feature-list">
+              <li>Thuận tiện chuẩn bị môi trường kiểm thử</li>
+              <li>Giảm thao tác lặp lại</li>
+              <li>Hỗ trợ nhu cầu support và debug</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">CO</span>
+              <div>
+                <h3>Rút ngắn vòng build chương trình backend</h3>
+                <code>Build · Runtime</code>
+              </div>
+            </header>
+            <p>Biên dịch tăng dần và song song cho chương trình backend (COBOL), tập trung vào phần thay đổi; hỗ trợ quản lý hoạt động của môi trường chạy backend.</p>
+            <ul class="feature-list">
+              <li>Nhận phản hồi build sớm hơn</li>
+              <li>Bớt thao tác khi kiểm tra thay đổi</li>
+              <li>Tập trung thời gian vào xử lý nghiệp vụ</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">GI</span>
+              <div>
+                <h3>Quản lý thay đổi thuận tiện hơn</h3>
+                <code>Source · Work item</code>
+              </div>
+            </header>
+            <p>Đặt thao tác source trong ngữ cảnh công việc để đội ngũ nắm rõ phần thay đổi cần đưa vào build.</p>
+            <ul class="feature-list">
+              <li>Gắn thay đổi với công việc đang xử lý</li>
+              <li>Giảm thao tác dễ nhầm lẫn</li>
+              <li>Thuận tiện rà soát phạm vi bàn giao</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">NX</span>
+              <div>
+                <h3>Làm việc trong công cụ quen thuộc</h3>
+                <code>VS Code</code>
+              </div>
+            </header>
+            <p>Có tích hợp VS Code cơ bản và cấu hình theo môi trường, giúp developer ít phải chuyển qua nhiều nơi khi thực hiện công việc.</p>
+            <ul class="feature-list">
+              <li>Một điểm vào quen thuộc</li>
+              <li>Phân biệt ngữ cảnh môi trường</li>
+              <li>Thuận tiện sử dụng hằng ngày</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-flow-section" id="flow">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Ứng dụng thực tế</p>
+          <h2>Từ tính năng đến công việc được giải quyết.</h2>
+          <p class="lead">Bộ công cụ hiện có phục vụ các nhu cầu dưới đây. Trải nghiệm quản lý trọn hành trình đang được phát triển và cần kiểm định theo môi trường.</p>
+        </div>
+        <div class="nx-flow-grid">
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>01</span>
+              <div>
+                <h3>Chuẩn bị một thay đổi</h3>
+                <p>Giảm công sức từ lúc có thay đổi đến lúc sẵn sàng kiểm tra.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Nắm rõ phạm vi thay đổi</li>
+              <li><span>02</span>Có bản build để đánh giá</li>
+              <li><span>03</span>Thuận tiện bàn giao kết quả</li>
+            </ol>
+            <p class="nx-flow-outcome">Developer dành thêm thời gian cho chất lượng thay đổi thay vì chuỗi thao tác lặp lại.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>02</span>
+              <div>
+                <h3>Làm mới môi trường kiểm thử</h3>
+                <p>Chuẩn bị môi trường phù hợp để đội ngũ bắt đầu công việc.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Xác định môi trường cần sử dụng</li>
+              <li><span>02</span>Chuẩn bị dữ liệu được phép dùng</li>
+              <li><span>03</span>Đánh giá trạng thái trước bàn giao</li>
+            </ol>
+            <p class="nx-flow-outcome">Giảm thời gian chuẩn bị và giúp đội ngũ chủ động hơn trong kế hoạch kiểm thử.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>03</span>
+              <div>
+                <h3>Tái hiện lỗi để hỗ trợ</h3>
+                <p>Đưa dữ liệu kiểm thử cần điều tra đến môi trường phù hợp.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Xác định tình huống cần tái hiện</li>
+              <li><span>02</span>Chuẩn bị dữ liệu kiểm thử trong phạm vi được phép</li>
+              <li><span>03</span>Hỗ trợ developer điều tra nguyên nhân</li>
+            </ol>
+            <p class="nx-flow-outcome">Đội support và developer có cơ sở thuận tiện hơn để phối hợp xử lý sự cố.</p>
+          </article>
+        </div>
+        <p class="section-bridge nx-flow-note reveal">Quyền truy cập, dữ liệu được phép dùng và các bước xác nhận của con người cần được thống nhất trước khi áp dụng.</p>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-architecture" id="kien-truc-nexus">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Giá trị cho đội ngũ</p>
+          <h2>Mỗi vai trò bớt một phần việc thủ công.</h2>
+          <p class="lead">Trong lộ trình hiện đại hóa từng bước, Nexus hỗ trợ đội ngũ chuẩn bị môi trường, kiểm tra thay đổi và bàn giao kết quả trên backend hiện có.</p>
+        </div>
+        <div class="nx-architecture-board reveal">
+          <div class="nx-arch-machine">
+            <article class="nx-arch-node nx-arch-e">
+              <span class="nx-arch-key" aria-hidden="true">E</span>
+              <div>
+                <p>Phản hồi sớm hơn</p>
+                <h3>Đội phát triển</h3>
+                <span>Bớt thời gian chuẩn bị build và môi trường, tập trung vào thay đổi cần thực hiện.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><i></i></div>
+            <article class="nx-arch-node nx-arch-n">
+              <span class="nx-arch-key" aria-hidden="true">N</span>
+              <div>
+                <p>Nhất quán hơn</p>
+                <h3>Đội vận hành</h3>
+                <span>Có công cụ chuyên biệt cho những thao tác thường xuyên trên môi trường chạy backend.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><i></i></div>
+            <article class="nx-arch-node nx-arch-s">
+              <span class="nx-arch-key" aria-hidden="true">S</span>
+              <div>
+                <p>Phối hợp thuận tiện hơn</p>
+                <h3>Đội hỗ trợ</h3>
+                <span>Chuẩn bị tình huống tái hiện lỗi để trao đổi với developer có cơ sở hơn.</span>
+              </div>
+            </article>
+          </div>
+          <div class="nx-arch-human-link" aria-hidden="true"><i></i><span>Phối hợp trong cùng đội ngũ</span></div>
+          <article class="nx-arch-node nx-arch-v">
+            <span class="nx-arch-key" aria-hidden="true">V</span>
+            <div>
+              <p>Chủ động quyết định</p>
+              <h3>Người phụ trách</h3>
+              <span>Xác định phạm vi, quyền sử dụng và các bước xem xét trước thay đổi quan trọng.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-developer" id="developer">
+      <div class="shell nx-developer-grid">
+        <div class="nx-developer-copy reveal">
+          <p class="eyebrow">Trải nghiệm đang phát triển</p>
+          <h2>Hướng tới ít chuyển công cụ, rõ công việc hơn.</h2>
+          <p class="lead">Trên nền VS Code extension hiện có, hướng phát triển tiếp theo là đưa việc cần làm và tiến độ đến gần developer hơn. Các khả năng dưới đây chưa phải trải nghiệm tích hợp đã phát hành.</p>
+          <div class="nx-example-row">
+            <span>Chuẩn bị build</span>
+            <span>Chuẩn bị dữ liệu debug</span>
+            <span>Làm mới môi trường DEV</span>
+            <span>Tập hợp kết quả kiểm tra</span>
+          </div>
+        </div>
+        <div class="nx-vscode reveal">
+          <header><span aria-hidden="true">⌘</span><strong>Trải nghiệm dự kiến trong VS Code</strong></header>
+          <ul>
+              <li>
+                <span aria-hidden="true">▶</span>
+                <div><strong>Bắt đầu việc thường dùng</strong><small>Hướng tới lựa chọn công việc phù hợp ngay trong IDE.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◎</span>
+                <div><strong>Giữ ngữ cảnh làm việc</strong><small>Hướng tới giảm nhập lại thông tin về công việc đang xử lý.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◇</span>
+                <div><strong>Biết khi cần xem xét</strong><small>Hướng tới hiển thị rõ bước cần developer tham gia.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">↗</span>
+                <div><strong>Theo dõi tiến độ</strong><small>Hướng tới bớt chuyển qua nhiều nơi để tìm trạng thái.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-status" id="trang-thai">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Hiện có và tiếp theo</p>
+          <h2>Kinh nghiệm thực tế là điểm xuất phát.</h2>
+          <p class="lead">Phân biệt rõ bộ công cụ đã được sử dụng với trải nghiệm tích hợp đang được hoàn thiện. Nexus là một phần của gói NOVA cùng Orbit, Vista và Aster.</p>
+        </div>
+        <div class="nx-status-grid">
+          <article class="nx-status-card is-current reveal">
+            <p>HIỆN CÓ</p>
+            <h3>Bộ công cụ hiện có</h3>
+            <ul class="feature-list">
+              <li>Công cụ database, bản ghi nghiệp vụ và vận hành môi trường</li>
+              <li>Hỗ trợ build COBOL và quản lý source</li>
+              <li>VS Code extension cơ bản</li>
+              <li>Đã được sử dụng trong môi trường thực</li>
+            </ul>
+          </article>
+          <article class="nx-status-card is-next reveal">
+            <p>ĐANG PHÁT TRIỂN</p>
+            <h3>Trải nghiệm công việc liền mạch</h3>
+            <ul class="feature-list">
+              <li>Kết hợp công cụ thành hành trình công việc</li>
+              <li>Theo dõi trạng thái xử lý tập trung</li>
+              <li>Hoàn thiện trải nghiệm công cụ trong gói NOVA</li>
+              <li>Đưa công việc cần người xem xét vào VS Code</li>
+            </ul>
+          </article>
+        </div>
+        <p class="nx-status-note reveal">Phạm vi và thời điểm sẵn sàng của từng tích hợp sẽ được xác nhận khi đánh giá. Không mặc định toàn bộ hành trình đã hoàn thiện.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he-nexus">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Tác vụ nào quanh môi trường của bạn đang lặp lại quá nhiều?</h2>
+          <p class="lead">Chia sẻ một việc đang tốn thời gian của đội ngũ: build, refresh môi trường hay chuẩn bị dữ liệu để debug. Cùng xác định điểm bắt đầu phù hợp với Nexus.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20nhu%20cau">Trao đổi về Nexus</a>
+            <a class="btn btn-ghost btn-lg" href="../">Xem BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa backend từng bước, giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên và kết quả đánh giá.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../nova/">NOVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../orbit/">Orbit</a></li>
+          <li><a href="../nova/#architecture">Vista</a></li>
+          <li><a href="../nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Nhu cầu</a></li>
+          <li><a href="../#trien-khai">Bắt đầu</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Kết nối với Binean qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

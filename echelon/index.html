@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Echelon — Chia việc cho nhiều tác nhân, kiểm soát từng bước</title>
+  <meta name="description" content="Echelon điều phối đa tác nhân cho những flow cần chia task giữa nhiều agent hoặc có số lượng step lớn. Webservice đã chạy được; kiểm định production đang tiếp tục." />
+  <meta name="keywords" content="Binean Echelon, điều phối đa tác nhân, chia task, xử lý theo từng bước, cân bằng tải, NOVA" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/echelon/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/echelon/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/echelon/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/echelon/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Echelon — Chia việc cho nhiều tác nhân, kiểm soát từng bước" />
+  <meta property="og:description" content="Echelon điều phối đa tác nhân cho những flow cần chia task giữa nhiều agent hoặc có số lượng step lớn. Webservice đã chạy được; kiểm định production đang tiếp tục." />
+  <meta property="og:url" content="https://binean.com/echelon/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Echelon — Chia việc cho nhiều tác nhân, kiểm soát từng bước" />
+  <meta name="twitter:description" content="Echelon điều phối đa tác nhân cho những flow cần chia task giữa nhiều agent hoặc có số lượng step lớn. Webservice đã chạy được; kiểm định production đang tiếp tục." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Echelon","applicationCategory":"BusinessApplication","description":"Echelon điều phối đa tác nhân cho những flow cần chia task giữa nhiều agent hoặc có số lượng step lớn. Webservice đã chạy được; kiểm định production đang tiếp tục.","url":"https://binean.com/echelon/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Echelon là lớp điều phối đa tác nhân cho flow cần chia task giữa nhiều agent hoặc có nhiều step. Webservice đã chạy được; kiểm định production đang tiếp tục.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Trao%20doi%20nhu%20cau">Trao đổi phạm vi đánh giá</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean Echelon">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Echelon</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#model">Tính năng</a></li>
+          <li><a href="#apprenticeship">Phối hợp</a></li>
+          <li><a href="#decisions">Lợi ích</a></li>
+          <li><a href="#fit">Phù hợp với bạn</a></li>
+          <li><a href="#status">Trạng thái</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../echelon/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/echelon/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Trao%20doi%20nhu%20cau">Trao đổi nhu cầu</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="ech-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="shell ech-shell">
+        <a class="ech-back" href="../">← Trang chủ</a>
+        <p class="eyebrow reveal">Binean Echelon</p>
+        <h1 class="ech-title reveal">Chia việc cho nhiều tác nhân. Kiểm soát từng bước.</h1>
+        <p class="ech-lead reveal">Echelon dùng khi một flow cần chia task giữa nhiều agent, hoặc khi số lượng step lớn cần cân bằng tải và xử lý lỗi cho từng step. Đây là một đường bổ sung ngang hàng với các thành phần khác, không nằm giữa Vista và Orbit.</p>
+      </div>
+    </section>
+
+    <section class="section ech-section" id="problem">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Bài toán của đội ngũ</p>
+          <h2>Một bước lỗi không nên làm hỏng cả flow.</h2>
+
+        </div>
+        <p class="ech-para reveal">Khi một flow cần nhiều agent phối hợp hoặc có rất nhiều step, một lỗi hay một điểm chậm có thể làm hỏng cả flow. Echelon theo dõi và xử lý theo từng step để đội ngũ biết chính xác bước nào cần can thiệp.</p>
+        <p class="ech-para reveal">Các thành phần vẫn gọi nhau trực tiếp, như Vista gọi Orbit. Echelon chỉ tham gia khi flow cần chia task hoặc cần kiểm soát từng step, nhờ vậy nó không trở thành điểm nghẽn trên đường gọi mặc định.</p>
+
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="model">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Tính năng chính</p>
+          <h2>Điều phối theo từng bước, khi flow cần.</h2>
+
+        </div>
+
+        <dl class="ech-glossary reveal">
+          <div>
+            <dt>Chia task cho nhiều agent</dt>
+            <dd>Một flow có thể giao từng phần việc cho các agent chuyên biệt thay vì dồn tất cả vào một chỗ xử lý.</dd>
+          </div>
+          <div>
+            <dt>Cân bằng tải theo từng step</dt>
+            <dd>Phân bổ các step đang chờ để nhiều agent cùng tham gia khi khối lượng công việc lớn.</dd>
+          </div>
+          <div>
+            <dt>Xử lý lỗi từng step, không hỏng cả flow</dt>
+            <dd>Theo dõi kết quả ở mức từng step để xác định phần cần xử lý tiếp hoặc cần người can thiệp.</dd>
+          </div>
+          <div>
+            <dt>Agent bên ngoài nhận task và nộp kết quả</dt>
+            <dd>Agent nhận task và gửi kết quả qua HTTP/JSON; trạng thái được lưu bền vững để tra cứu lại khi cần.</dd>
+          </div>
+        </dl>
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="apprenticeship">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Phối hợp hiệu quả</p>
+          <h2>Agent chạy các step. Con người giữ quyết định.</h2>
+          <p class="lead">Mỗi bên có vai trò rõ ràng: agent xử lý phần được giao, con người quyết định khi cần phán đoán nghiệp vụ.</p>
+        </div>
+
+        <dl class="ech-glossary reveal">
+          <div>
+            <dt>Agent</dt>
+            <dd>Chạy các step được giao và nộp kết quả để Echelon ghi nhận trạng thái.</dd>
+          </div>
+          <div>
+            <dt>Con người</dt>
+            <dd>Xử lý ngoại lệ và chịu trách nhiệm cho quyết định cần phán đoán nghiệp vụ.</dd>
+          </div>
+          <div>
+            <dt>AI — dự kiến</dt>
+            <dd>Chưa phải tính năng đã phát hành; kết quả quan trọng cần người xem xét.</dd>
+          </div>
+        </dl>
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="decisions">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Lợi ích cho doanh nghiệp</p>
+          <h2>Dùng khi cần, không bắt mọi lời gọi đi qua.</h2>
+
+        </div>
+
+
+
+        <div class="ech-decisions">
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">01</span>
+            <h3>Chỉ dùng khi cần</h3>
+            <p>Vista vẫn gọi trực tiếp Orbit; Echelon chỉ tham gia khi flow cần chia task hoặc kiểm soát từng step.</p>
+            <p class="ech-cost">Giá trị: đường gọi mặc định đơn giản, không thêm một chặng không cần thiết.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">02</span>
+            <h3>Cân bằng tải khi số step lớn</h3>
+            <p>Phân bổ các step đang chờ cho nhiều agent khi khối lượng công việc tăng.</p>
+            <p class="ech-cost">Giá trị: nhiều agent cùng tham gia một flow khi cần.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">03</span>
+            <h3>Lỗi cục bộ theo step</h3>
+            <p>Một step lỗi được ghi nhận riêng, không làm mất dấu các step khác.</p>
+            <p class="ech-cost">Giá trị: khoanh vùng được phần cần xử lý tiếp hoặc cần người can thiệp.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">04</span>
+            <h3>Phiên bản flow rõ ràng để rà soát khi thay đổi</h3>
+            <p>Phiên bản flow được publish rõ ràng, thuận tiện đối chiếu khi cách làm thay đổi.</p>
+            <p class="ech-cost">Giá trị: có cơ sở rà soát trước khi đưa thay đổi vào sử dụng.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ech-section" id="applications">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Ứng dụng đề xuất</p>
+          <h2>Bắt đầu ở nơi flow có nhiều step hoặc nhiều agent.</h2>
+
+        </div>
+        <p class="ech-para reveal">Flow xử lý số lượng lớn step cần cân bằng tải và theo dõi từng bước là hướng phù hợp để đánh giá Echelon.</p>
+        <p class="ech-para reveal">Flow chia việc giữa các agent chuyên biệt cũng là hướng cần đánh giá. Các ví dụ này là hướng ứng dụng, không phải tham chiếu khách hàng đã triển khai.</p>
+
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="fit">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Phù hợp với bạn</p>
+          <h2>Đánh giá theo nhu cầu và mức độ sẵn sàng.</h2>
+        </div>
+        <div class="ech-fits">
+          <article class="card ech-fit ech-fit-good reveal">
+            <h3>Phù hợp để bắt đầu đánh giá khi</h3>
+            <ul>
+              <li>Flow cần chia task giữa nhiều agent.</li>
+              <li>Số lượng step lớn và cần cân bằng tải.</li>
+              <li>Cần xử lý lỗi theo từng step.</li>
+              <li>Có phạm vi thử và người phụ trách cụ thể.</li>
+            </ul>
+          </article>
+          <article class="card ech-fit ech-fit-bad reveal">
+            <h3>Cần trao đổi thêm nếu</h3>
+            <ul>
+              <li>Luồng đơn giản Vista ↔ Orbit — nên dùng đường gọi trực tiếp.</li>
+              <li>Bạn cần ngay bản production đã hoàn tất kiểm định.</li>
+              <li>Bắt buộc tính sẵn sàng cao nhiều node hoặc đa tổ chức.</li>
+              <li>Cần AI, lập lịch hoặc xử lý quá hạn đã phát hành.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ech-section section-status" id="status">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Trạng thái sản phẩm</p>
+          <h2>Webservice đã chạy được, kiểm định production đang tiếp tục.</h2>
+        </div>
+        <p class="ech-para reveal">Echelon có webservice điều phối đa tác nhân: publish flow/skill, khởi tạo process, gửi event và đọc trạng thái qua HTTP/JSON; agent bên ngoài nhận task và nộp kết quả qua HTTP; trạng thái được lưu bền vững. Phạm vi đầu là một node vận hành; kiểm định production chưa hoàn tất.</p>
+        <p class="ech-para reveal">Echelon không nằm trên đường gọi mặc định: Vista gọi trực tiếp Orbit, còn Echelon tham gia khi flow cần. Nhờ vậy tải của Echelon được giữ ở mức thấp và các lời gọi thường ngày không phải đi thêm một chặng.</p>
+        <p class="ech-para reveal">Lập lịch và xử lý quá hạn chưa được triển khai. Aira còn ở giai đoạn thiết kế. Phạm vi hỗ trợ, bảo mật và vận hành cần được thống nhất cho từng đánh giá.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Flow nào của bạn cần chia việc cho nhiều tác nhân?</h2>
+          <p class="lead">Cùng xác định flow có nhiều step hoặc nhiều agent, chọn phạm vi thử và thống nhất kết quả cần thấy trước khi mở rộng.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Trao%20doi%20nhu%20cau">Trao đổi về Echelon</a>
+            <a class="btn btn-ghost btn-lg" href="../">Về BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa backend từng bước, giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên và kết quả đánh giá.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../nova/">NOVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../orbit/">Orbit</a></li>
+          <li><a href="../nova/#architecture">Vista</a></li>
+          <li><a href="../nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Nhu cầu</a></li>
+          <li><a href="../#trien-khai">Bắt đầu</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Kết nối với Binean qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

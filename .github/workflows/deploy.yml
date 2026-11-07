@@ -1,0 +1,61 @@
+name: Deploy landing page to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  # Kiểm tra build trên nhánh phát triển mà không deploy.
+  pull_request:
+  # Cho phép deploy thủ công từ tab Actions, chọn nhánh nào cũng được.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # npm run build chạy check-content.mjs trước: hai bản ngôn ngữ lệch cấu
+      # trúc là hỏng build ngay, không để lọt ra bản deploy.
+      # Các file HTML commit trong repo chỉ để xem trước, luôn bị ghi đè ở đây,
+      # nên bản deploy không bao giờ cũ so với content/.
+      - name: Build static site
+        run: npm run build
+
+      - name: Check public artifact and links
+        run: node --test scripts/site.test.mjs
+
+      # Chỉ đóng gói các trang và tài nguyên công khai theo danh sách cho phép.
+      - name: Stage public files
+        run: node scripts/stage-public.mjs
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    # Pull request chỉ build để kiểm tra, không đụng tới site đang chạy.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,19 @@
+# Dependencies
+/node_modules
+
+# Misc
+.DS_Store
+.env.local
+.env.*.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Thư mục staging khi deploy
+/_site
+
+# Tài liệu riêng không thuộc repository công khai
+/docs/
+/private/
+

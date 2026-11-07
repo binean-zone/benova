@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Nexus — Less manual effort for development teams</title>
+  <meta name="description" content="Shorten backend program build cycles, prepare environments and support issue investigation with Nexus, a toolset used in real environments." />
+  <meta name="keywords" content="Binean Nexus, NOVA, DevOps, backend build, environment refresh, support, VS Code" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nexus/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Nexus — Less manual effort for development teams" />
+  <meta property="og:description" content="Shorten backend program build cycles, prepare environments and support issue investigation with Nexus, a toolset used in real environments." />
+  <meta property="og:url" content="https://binean.com/en/nexus/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Nexus — Less manual effort for development teams" />
+  <meta name="twitter:description" content="Shorten backend program build cycles, prepare environments and support issue investigation with Nexus, a toolset used in real environments." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Nexus","applicationCategory":"BusinessApplication","description":"Shorten backend program build cycles, prepare environments and support issue investigation with Nexus, a toolset used in real environments.","url":"https://binean.com/en/nexus/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>The Nexus toolset has been used in real environments. The integrated work-management experience is being developed further.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20our%20needs">Discuss your needs</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../en/" aria-label="Binean Nexus">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Nexus</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#capabilities">Features</a></li>
+          <li><a href="#flows">Applications</a></li>
+          <li><a href="#nexus-architecture">Your team</a></li>
+          <li><a href="#developer">Experience</a></li>
+          <li><a href="#status">Status</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../nexus/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/nexus/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20our%20needs">Discuss Nexus</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="nx-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell nx-hero-inner">
+        <div class="nx-hero-copy">
+          <a class="ech-back" href="../../en/">← Back to BENOVA</a>
+          <p class="eyebrow reveal">Development and operations tools within NOVA</p>
+          <h1 class="nx-title reveal">Less repetitive work. More time for business value.</h1>
+          <p class="nx-lead reveal">Nexus helps development and operations teams prepare backend changes: compile programs, refresh environments, manage databases and prepare test data. The toolkit includes basic VS Code integration.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#flows">Explore supported needs</a>
+            <a class="btn btn-ghost" href="#status">See what is available</a>
+          </div>
+        </div>
+
+        <div class="nx-terminal reveal">
+          <div class="nx-terminal-bar">
+            <span aria-hidden="true"><i></i><i></i><i></i></span>
+            <strong>Intended experience · illustration</strong>
+          </div>
+          <p class="nx-terminal-context"><span>›</span> A change to a business flow</p>
+          <ol>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>01</code>
+              <span>understand the work scope</span>
+            </li>
+            <li class="is-done">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>02</code>
+              <span>prepare the build</span>
+            </li>
+            <li class="is-running">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>03</code>
+              <span>check in the DEV environment</span>
+            </li>
+            <li class="is-queued">
+              <span class="nx-terminal-state" aria-hidden="true"></span>
+              <code>04</code>
+              <span>ready for team review</span>
+            </li>
+          </ol>
+          <p class="nx-terminal-result">Less manual effort · More practical handovers</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section" id="capabilities">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Key features</p>
+          <h2>Specialized tools for work you do often.</h2>
+          <p class="lead">Instead of assembling manual steps, give the team a toolset suited to everyday development and operations work.</p>
+        </div>
+        <div class="nx-capability-grid">
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">DB</span>
+              <div>
+                <h3>Prepare data and environments</h3>
+                <code>Database · Business records</code>
+              </div>
+            </header>
+            <p>Support backup, restore, database refresh and business-record transfers between environments approved for use.</p>
+            <ul class="feature-list">
+              <li>Prepare test environments more conveniently</li>
+              <li>Reduce repetitive tasks</li>
+              <li>Support investigation and debugging</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">CO</span>
+              <div>
+                <h3>Shorten backend build cycles</h3>
+                <code>Build · Runtime</code>
+              </div>
+            </header>
+            <p>Incremental and parallel compilation of backend programs (COBOL) focuses on changed work, with tools to manage activity in the backend runtime environment.</p>
+            <ul class="feature-list">
+              <li>Get build feedback sooner</li>
+              <li>Fewer steps when checking changes</li>
+              <li>Focus time on business behavior</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">GI</span>
+              <div>
+                <h3>Make change management more practical</h3>
+                <code>Source · Work item</code>
+              </div>
+            </header>
+            <p>Put source operations in work context so teams understand which changes belong in a build.</p>
+            <ul class="feature-list">
+              <li>Connect changes with the current work</li>
+              <li>Reduce error-prone manual steps</li>
+              <li>Review handover scope more easily</li>
+            </ul>
+          </article>
+          <article class="card nx-capability reveal">
+            <header>
+              <span class="nx-capability-icon" aria-hidden="true">NX</span>
+              <div>
+                <h3>Work in familiar tools</h3>
+                <code>VS Code</code>
+              </div>
+            </header>
+            <p>Basic VS Code integration and environment-based configuration help developers switch between fewer places during everyday work.</p>
+            <ul class="feature-list">
+              <li>A familiar entry point</li>
+              <li>Distinguish environment context</li>
+              <li>More practical daily use</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-flow-section" id="flows">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Practical applications</p>
+          <h2>From individual features to useful work.</h2>
+          <p class="lead">The existing toolset supports the needs below. End-to-end work management is in development and needs qualification for each environment.</p>
+        </div>
+        <div class="nx-flow-grid">
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>01</span>
+              <div>
+                <h3>Prepare a change</h3>
+                <p>Reduce effort between making a change and being ready to check it.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Understand the change scope</li>
+              <li><span>02</span>Prepare a build for evaluation</li>
+              <li><span>03</span>Make results easier to hand over</li>
+            </ol>
+            <p class="nx-flow-outcome">Developers spend more time on change quality instead of repetitive operational steps.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>02</span>
+              <div>
+                <h3>Refresh a test environment</h3>
+                <p>Prepare a suitable environment so the team can start work.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Identify the environment needed</li>
+              <li><span>02</span>Prepare data approved for use</li>
+              <li><span>03</span>Assess status before handover</li>
+            </ol>
+            <p class="nx-flow-outcome">Reduce preparation time and give teams more control of their test plans.</p>
+          </article>
+          <article class="nx-flow-card reveal">
+            <header>
+              <span>03</span>
+              <div>
+                <h3>Reproduce an issue for support</h3>
+                <p>Bring the test data under investigation to a suitable environment.</p>
+              </div>
+            </header>
+            <ol>
+              <li><span>01</span>Identify the case to reproduce</li>
+              <li><span>02</span>Prepare the test data within approved scope</li>
+              <li><span>03</span>Help developers investigate the cause</li>
+            </ol>
+            <p class="nx-flow-outcome">Support and development teams have a more practical basis for resolving incidents together.</p>
+          </article>
+        </div>
+        <p class="section-bridge nx-flow-note reveal">Access rights, permitted data use and human confirmation steps need agreement before adoption.</p>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-architecture" id="nexus-architecture">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Value for your team</p>
+          <h2>Less manual effort for every role.</h2>
+          <p class="lead">On an incremental modernization path, Nexus helps teams prepare environments, check changes and hand over results on the existing backend.</p>
+        </div>
+        <div class="nx-architecture-board reveal">
+          <div class="nx-arch-machine">
+            <article class="nx-arch-node nx-arch-e">
+              <span class="nx-arch-key" aria-hidden="true">E</span>
+              <div>
+                <p>Earlier feedback</p>
+                <h3>Development teams</h3>
+                <span>Spend less time preparing builds and environments, and more on the change that matters.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><i></i></div>
+            <article class="nx-arch-node nx-arch-n">
+              <span class="nx-arch-key" aria-hidden="true">N</span>
+              <div>
+                <p>More consistency</p>
+                <h3>Operations teams</h3>
+                <span>Use specialized tools for common operations in backend runtime environments.</span>
+              </div>
+            </article>
+            <div class="nx-arch-arrow" aria-hidden="true"><i></i></div>
+            <article class="nx-arch-node nx-arch-s">
+              <span class="nx-arch-key" aria-hidden="true">S</span>
+              <div>
+                <p>Better collaboration</p>
+                <h3>Support teams</h3>
+                <span>Prepare reproducible cases to make discussions with developers more productive.</span>
+              </div>
+            </article>
+          </div>
+          <div class="nx-arch-human-link" aria-hidden="true"><i></i><span>Working together as a team</span></div>
+          <article class="nx-arch-node nx-arch-v">
+            <span class="nx-arch-key" aria-hidden="true">V</span>
+            <div>
+              <p>Decisions under your control</p>
+              <h3>The responsible owner</h3>
+              <span>Set scope, usage rights and review steps before consequential changes.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-developer" id="developer">
+      <div class="shell nx-developer-grid">
+        <div class="nx-developer-copy reveal">
+          <p class="eyebrow">Experience in development</p>
+          <h2>Toward fewer tool switches and clearer work.</h2>
+          <p class="lead">Building on the existing VS Code extension, the next direction brings work and progress closer to developers. The capabilities below are not a released integrated experience.</p>
+          <div class="nx-example-row">
+            <span>Prepare a build</span>
+            <span>Prepare debug data</span>
+            <span>Refresh DEV</span>
+            <span>Collect check results</span>
+          </div>
+        </div>
+        <div class="nx-vscode reveal">
+          <header><span aria-hidden="true">⌘</span><strong>Planned experience inside VS Code</strong></header>
+          <ul>
+              <li>
+                <span aria-hidden="true">▶</span>
+                <div><strong>Start common work</strong><small>Aims to make suitable work selectable inside the IDE.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◎</span>
+                <div><strong>Keep working context</strong><small>Aims to reduce repeated entry of information about current work.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">◇</span>
+                <div><strong>See when review is needed</strong><small>Aims to make developer participation points visible.</small></div>
+              </li>
+              <li>
+                <span aria-hidden="true">↗</span>
+                <div><strong>Follow progress</strong><small>Aims to reduce switching between places to find status.</small></div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-status" id="status">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Available and next</p>
+          <h2>Practical experience is the starting point.</h2>
+          <p class="lead">Distinguish the toolset already in use from the integrated experience still being refined. Nexus is one part of the NOVA package alongside Orbit, Vista and Aster.</p>
+        </div>
+        <div class="nx-status-grid">
+          <article class="nx-status-card is-current reveal">
+            <p>AVAILABLE</p>
+            <h3>The current toolkit</h3>
+            <ul class="feature-list">
+              <li>Database, business-record and environment operations tools</li>
+              <li>COBOL build and source management support</li>
+              <li>Basic VS Code extension</li>
+              <li>Used in real environments</li>
+            </ul>
+          </article>
+          <article class="nx-status-card is-next reveal">
+            <p>IN DEVELOPMENT</p>
+            <h3>A connected working experience</h3>
+            <ul class="feature-list">
+              <li>Combine tools into work journeys</li>
+              <li>Centralized processing status</li>
+              <li>Refine the tooling experience within NOVA</li>
+              <li>Bring human-review work into VS Code</li>
+            </ul>
+          </article>
+        </div>
+        <p class="nx-status-note reveal">Scope and readiness for each integration will be confirmed during evaluation. A complete end-to-end journey is not assumed.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="nexus-contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Which task around your environment do you repeat too often?</h2>
+          <p class="lead">Share work that takes too much team time: builds, environment refresh or test data preparation for debugging. Find a practical starting point with Nexus.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Discuss%20our%20needs">Discuss Nexus</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">View BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernize your backend step by step while preserving business value. Expand according to priorities and evaluated results.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Products">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="../../en/nova/">NOVA</a></li>
+          <li><a href="../../en/nexus/">Nexus</a></li>
+          <li><a href="../../en/orbit/">Orbit</a></li>
+          <li><a href="../../en/nova/#architecture">Vista</a></li>
+          <li><a href="../../en/nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Explore">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="../../en/#problem">Your needs</a></li>
+          <li><a href="../../en/#adoption">Get started</a></li>
+          <li><a href="../../en/#benefits">Benefits</a></li>
+          <li><a href="../../en/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Connect with Binean by email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

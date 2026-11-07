@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BENOVA — NOVA: Hiện đại hóa backend từng bước</title>
+  <meta name="description" content="Hiện đại hóa backend từng bước với NOVA: cổng kết nối tùy biến cho ứng dụng hiện có, kết nối backend và đánh giá theo từng nghiệp vụ. Sản phẩm đang hoàn thiện." />
+  <meta name="keywords" content="BENOVA, NOVA, hiện đại hóa backend, Nexus, Orbit, Vista, Aster, Echelon, Aira, Binean" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="BENOVA — NOVA: Hiện đại hóa backend từng bước" />
+  <meta property="og:description" content="Hiện đại hóa backend từng bước với NOVA: cổng kết nối tùy biến cho ứng dụng hiện có, kết nối backend và đánh giá theo từng nghiệp vụ. Sản phẩm đang hoàn thiện." />
+  <meta property="og:url" content="https://binean.com/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BENOVA — NOVA: Hiện đại hóa backend từng bước" />
+  <meta name="twitter:description" content="Hiện đại hóa backend từng bước với NOVA: cổng kết nối tùy biến cho ứng dụng hiện có, kết nối backend và đánh giá theo từng nghiệp vụ. Sản phẩm đang hoàn thiện." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BENOVA","applicationCategory":"BusinessApplication","description":"Hiện đại hóa backend từng bước với NOVA: cổng kết nối tùy biến cho ứng dụng hiện có, kết nối backend và đánh giá theo từng nghiệp vụ. Sản phẩm đang hoàn thiện.","url":"https://binean.com/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body class="home-page">
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>NOVA đang hoàn thiện để phát hành sớm. Trao đổi cùng Binean để xác định phạm vi đánh giá phù hợp.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">Trao đổi phạm vi</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="BENOVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">BENOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#van-de">Bài toán</a></li>
+          <li><a href="#loi-ich">Giá trị</a></li>
+          <li><a href="#kien-truc">Nền tảng</a></li>
+          <li><a href="#trien-khai">Cách bắt đầu</a></li>
+          <li><a href="nova/">Mô hình NOVA</a></li>
+          <li><a href="#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="./"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="en/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#lien-he">Đánh giá cùng NOVA</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">NOVA · Hiện đại hóa hệ thống nghiệp vụ</p>
+          <h1 class="hero-title reveal">
+            <span>Hiện đại hóa backend.</span>
+            <span class="grad">Kết nối theo hệ thống của bạn.</span>
+          </h1>
+          <p class="hero-sub reveal">NOVA hướng đến mở rộng dịch vụ và chuyển đổi từng nghiệp vụ, với cổng kết nối tùy biến để các ứng dụng hiện có giữ cách tích hợp quen thuộc.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#lien-he">Đánh giá một nghiệp vụ</a>
+            <a class="btn btn-ghost" href="#kien-truc">Khám phá nền tảng</a>
+          </div>
+          <p class="hero-note reveal">Bắt đầu với phạm vi cụ thể. Kiểm chứng kết quả nghiệp vụ, hiệu năng và vận hành trước khi mở rộng.</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="orbit-stage">
+            <div class="starfield">
+            <i style="--x:88.71%; --y:63.11%; --s:1.99px; --tw:6.18s; --td:3.94s"></i>
+            <i style="--x:12.67%; --y:58.41%; --s:1.20px; --tw:5.97s; --td:4.51s"></i>
+            <i style="--x:70.50%; --y:98.91%; --s:1.26px; --tw:4.40s; --td:3.26s"></i>
+            <i style="--x:21.29%; --y:17.19%; --s:1.82px; --tw:6.23s; --td:4.31s"></i>
+            <i style="--x:13.15%; --y:42.65%; --s:1.10px; --tw:4.60s; --td:3.81s"></i>
+            <i style="--x:24.48%; --y:64.98%; --s:1.94px; --tw:6.36s; --td:1.11s"></i>
+            <i style="--x:7.85%; --y:52.69%; --s:0.83px; --tw:6.80s; --td:2.41s"></i>
+            <i style="--x:27.61%; --y:9.70%; --s:2.10px; --tw:3.96s; --td:4.42s"></i>
+            <i style="--x:23.54%; --y:0.65%; --s:1.00px; --tw:3.51s; --td:1.87s"></i>
+            <i style="--x:96.36%; --y:44.43%; --s:1.21px; --tw:6.44s; --td:2.05s"></i>
+            <i style="--x:55.90%; --y:54.55%; --s:1.90px; --tw:3.39s; --td:4.37s"></i>
+            <i style="--x:48.76%; --y:1.84%; --s:1.26px; --tw:5.82s; --td:4.19s"></i>
+            <i style="--x:48.03%; --y:58.37%; --s:2.07px; --tw:3.99s; --td:1.99s"></i>
+            <i style="--x:7.02%; --y:46.28%; --s:0.82px; --tw:5.48s; --td:4.08s"></i>
+            <i style="--x:87.45%; --y:25.13%; --s:1.15px; --tw:4.23s; --td:1.42s"></i>
+            <i style="--x:31.40%; --y:50.24%; --s:2.17px; --tw:3.87s; --td:4.72s"></i>
+            <i style="--x:13.82%; --y:40.67%; --s:1.63px; --tw:4.76s; --td:3.68s"></i>
+            <i style="--x:56.74%; --y:13.11%; --s:1.92px; --tw:6.84s; --td:1.93s"></i>
+            <i style="--x:8.85%; --y:96.97%; --s:1.97px; --tw:5.23s; --td:4.29s"></i>
+            <i style="--x:61.88%; --y:4.03%; --s:2.28px; --tw:6.68s; --td:3.57s"></i>
+            <i style="--x:43.75%; --y:83.29%; --s:2.30px; --tw:4.52s; --td:1.88s"></i>
+            <i style="--x:10.21%; --y:40.62%; --s:1.75px; --tw:3.35s; --td:0.58s"></i>
+            <i style="--x:4.73%; --y:65.79%; --s:1.74px; --tw:6.50s; --td:0.94s"></i>
+            <i style="--x:74.42%; --y:56.79%; --s:1.03px; --tw:6.68s; --td:3.09s"></i>
+            <i style="--x:41.09%; --y:41.87%; --s:1.28px; --tw:6.01s; --td:1.47s"></i>
+            <i style="--x:13.73%; --y:49.20%; --s:1.90px; --tw:5.10s; --td:2.24s"></i>
+            <i style="--x:20.43%; --y:37.40%; --s:0.90px; --tw:5.70s; --td:0.92s"></i>
+            <i style="--x:14.92%; --y:52.94%; --s:0.95px; --tw:6.57s; --td:1.80s"></i>
+            <i style="--x:75.81%; --y:19.01%; --s:2.34px; --tw:5.84s; --td:4.98s"></i>
+            <i style="--x:18.89%; --y:3.83%; --s:2.20px; --tw:4.64s; --td:2.66s"></i>
+            <i style="--x:39.46%; --y:63.03%; --s:2.22px; --tw:5.94s; --td:4.46s"></i>
+            <i style="--x:84.84%; --y:25.25%; --s:2.38px; --tw:5.49s; --td:0.09s"></i>
+            <i style="--x:59.78%; --y:85.00%; --s:2.36px; --tw:5.17s; --td:0.35s"></i>
+            <i style="--x:25.85%; --y:92.25%; --s:1.73px; --tw:3.73s; --td:3.24s"></i>
+            <i style="--x:99.93%; --y:47.37%; --s:1.21px; --tw:4.16s; --td:0.12s"></i>
+            <i style="--x:32.32%; --y:82.39%; --s:0.95px; --tw:6.52s; --td:2.33s"></i>
+            <i style="--x:29.06%; --y:15.71%; --s:1.12px; --tw:4.34s; --td:0.87s"></i>
+            <i style="--x:0.58%; --y:76.94%; --s:1.00px; --tw:3.77s; --td:1.95s"></i>
+            <i style="--x:44.23%; --y:88.21%; --s:0.88px; --tw:4.04s; --td:1.18s"></i>
+            <i style="--x:23.02%; --y:81.07%; --s:1.82px; --tw:3.18s; --td:2.40s"></i>
+            <i style="--x:78.99%; --y:68.54%; --s:2.23px; --tw:6.53s; --td:4.86s"></i>
+            <i style="--x:6.31%; --y:37.43%; --s:1.09px; --tw:6.40s; --td:2.23s"></i>
+            </div>
+            <div class="orbit-corona"></div>
+            <div class="orbit-flare"></div>
+            <div class="orbit-scene">
+              <div class="orbit-core">
+                <span class="core-name">B</span>
+              </div>
+              <ul class="orbit-sats">
+            <li
+              class="sat-plane"
+              style="--rf:0.2800; --node:-26deg; --incl:-9deg; --dur:19s; --delay:0.00s; --static-a:0.00deg; --c:#fbbf24; --ps:1.12"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Nexus — Công cụ build và vận hành"
+                    >
+                      <span class="sat-key">N</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.3533; --node:12deg; --incl:6deg; --dur:27s; --delay:-10.31s; --static-a:137.51deg; --c:#a78bfa; --ps:1.24"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body sat-ringed"
+                      title="Orbit — Điều phối yêu cầu và nghiệp vụ"
+                    >
+                      <span class="sat-key">O</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.4267; --node:-7deg; --incl:-3deg; --dur:36s; --delay:-27.50s; --static-a:275.02deg; --c:var(--vista); --ps:0.88"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Vista — Không gian làm việc cho người dùng"
+                    >
+                      <span class="sat-key">V</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.5000; --node:31deg; --incl:11deg; --dur:45s; --delay:-6.57s; --static-a:52.52deg; --c:#2dd4bf; --ps:1"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Aster — Kết nối backend nghiệp vụ"
+                    >
+                      <span class="sat-key">A</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shell hero-principles">
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">01</span>
+          <div><h2>Giữ giá trị hiện có</h2><p>Kế thừa tri thức nghiệp vụ và đầu tư đã tích lũy.</p></div>
+        </div>
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">02</span>
+          <div><h2>Giữ cách kết nối</h2><p>Tùy biến cổng tiếp nhận theo ứng dụng đang sử dụng.</p></div>
+        </div>
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">03</span>
+          <div><h2>Chuyển đổi từng bước</h2><p>Chọn phạm vi và quyết định bằng kết quả kiểm chứng.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-problem" id="van-de">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Nhu cầu của doanh nghiệp</p>
+          <h2>Hệ thống cần tiến lên. Giá trị nghiệp vụ cần được giữ.</h2>
+          <p class="lead">Đổi mới backend liên quan đến cả ứng dụng, dữ liệu và cách đội ngũ vận hành. Điểm bắt đầu là xác định phần cần thay đổi và những kết nối cần bảo toàn.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">01</span>
+            <h3>Giá trị đã tích lũy</h3>
+            <p>Quy tắc nghiệp vụ, dữ liệu và kinh nghiệm vận hành cần tiếp tục phục vụ doanh nghiệp trong quá trình đổi mới.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">02</span>
+            <h3>Ứng dụng đang kết nối</h3>
+            <p>Một thay đổi ở backend có thể kéo theo chỉnh sửa frontend và nhiều hệ thống tích hợp. Phạm vi ảnh hưởng cần được làm rõ.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">03</span>
+            <h3>Hiệu năng cần cải thiện</h3>
+            <p>Thời gian xử lý, khả năng đáp ứng tải và công sức vận hành cần được đo trên những nghiệp vụ đang tạo giá trị.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">04</span>
+            <h3>Chuyển đổi cần kiểm soát</h3>
+            <p>Mỗi thay đổi cần phạm vi, người phụ trách và tiêu chí nghiệm thu để đội ngũ chủ động triển khai và đánh giá.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">NOVA được phát triển cho hướng tiếp cận này: bảo toàn giá trị cần giữ, mở rộng khả năng mới và kiểm chứng từng bước.</p>
+      </div>
+    </section>
+
+    <section class="section section-benefits" id="loi-ich">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Giá trị hướng tới</p>
+          <h2>Đổi mới có trọng tâm. Kết quả có cơ sở.</h2>
+          <p class="lead">Giá trị của NOVA được đánh giá qua khả năng giữ kết nối, khai thác nghiệp vụ và cải thiện cách hệ thống phục vụ doanh nghiệp.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">01</span>
+            <p class="benefit-answers">Đáp ứng: Giá trị đã tích lũy</p>
+            <h3>Kế thừa giá trị nghiệp vụ</h3>
+            <p>Bắt đầu bằng việc khai thác backend hiện có và lựa chọn từng phần cần hiện đại hóa theo ưu tiên kinh doanh.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">02</span>
+            <p class="benefit-answers">Đáp ứng: Ứng dụng đang kết nối</p>
+            <h3>Hạn chế ảnh hưởng tới ứng dụng</h3>
+            <p>Orbit tùy biến cổng tiếp nhận theo client hiện có. Phạm vi có thể giữ nguyên được xác nhận bằng kiểm thử tương thích.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">03</span>
+            <p class="benefit-answers">Đáp ứng: Hiệu năng cần cải thiện</p>
+            <h3>Đầu tư hiệu năng đúng chỗ</h3>
+            <p>Đánh giá thời gian xử lý, khả năng đáp ứng tải và tài nguyên trên cùng workload để xác định mức cải thiện thực tế.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">04</span>
+            <p class="benefit-answers">Đáp ứng: Chuyển đổi cần kiểm soát</p>
+            <h3>Chủ động từng bước chuyển đổi</h3>
+            <p>Chia lộ trình thành các phạm vi có thể kiểm chứng, với kết quả nghiệm thu và điều kiện vận hành rõ ràng.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">Lợi ích được đánh giá theo từng phạm vi. Chi phí, bảo mật, giấy phép và yêu cầu vận hành được thống nhất trước khi triển khai.</p>
+      </div>
+    </section>
+
+    <section class="section section-ecosystem" id="kien-truc">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Nền tảng NOVA</p>
+          <h2>Bốn thành phần. Một lộ trình hiện đại hóa.</h2>
+          <p class="lead">Orbit thích ứng với cách ứng dụng kết nối. Aster kết nối backend tương thích. Vista mang đến giao diện làm việc, còn Nexus hỗ trợ đội ngũ phát triển và vận hành.</p>
+        </div>
+        <h3 class="agent-group-label reveal"><span>Gói NOVA — phát hành sớm</span><small>Nexus · Orbit · Vista · Aster</small></h3>
+        <div class="agent-grid agent-grid-pair">
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">N</span>
+              <div>
+                <h3>Nexus</h3>
+                <p class="agent-role">Công cụ build và vận hành đi kèm</p>
+              </div>
+              <span class="status">Đã dùng trong môi trường thực</span>
+            </header>
+            <p class="agent-desc">Chuẩn bị bản build, môi trường và dữ liệu kiểm thử cho thay đổi trên backend. Các công cụ nền đã được dùng trong môi trường thực; trải nghiệm tích hợp đang được hoàn thiện.</p>
+            <ul class="feature-list">
+              <li>Rút ngắn vòng build chương trình backend</li>
+              <li>Thuận tiện backup, restore và làm mới môi trường</li>
+              <li>Chuyển dữ liệu kiểm thử phục vụ support và debug</li>
+              <li>Làm việc ngay trong VS Code</li>
+            </ul>
+            <a class="agent-more" href="nexus/">Khám phá Nexus →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">O</span>
+              <div>
+                <h3>Orbit</h3>
+                <p class="agent-role">Kết nối ứng dụng · điều phối nghiệp vụ</p>
+              </div>
+              <span class="status">Đang phát triển</span>
+            </header>
+            <p class="agent-desc">Nhiều cổng tiếp nhận có thể tùy biến theo cách gọi và dữ liệu của ứng dụng hiện có, dùng chung lớp điều phối nghiệp vụ. Hướng đến giữ cách tích hợp để hạn chế chỉnh sửa các hệ thống liên quan.</p>
+            <ul class="feature-list">
+              <li>Cổng kết nối tùy biến cho client hiện có</li>
+              <li>Điều phối kịch bản nghiệp vụ dùng chung</li>
+              <li>Xác thực, giới hạn tải và thời gian</li>
+              <li>Không tự phát lại giao dịch không rõ kết quả</li>
+            </ul>
+            <a class="agent-more" href="orbit/">Khám phá Orbit →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p class="agent-role">Không gian làm việc cho người dùng</p>
+              </div>
+              <span class="status">Đang tích hợp với Orbit</span>
+            </header>
+            <p class="agent-desc">Menu, tab, biểu mẫu và bảng trong một trải nghiệm tập trung. Khung ứng dụng đã dùng được; phần đăng nhập và kết nối Orbit đang được tích hợp.</p>
+            <ul class="feature-list">
+              <li>Menu, tab và bảng làm việc</li>
+              <li>Biểu mẫu, bảng và thao tác</li>
+              <li>Định dạng số, tiền, ngày thống nhất</li>
+              <li>Đăng nhập an toàn qua Gateway phía máy chủ</li>
+            </ul>
+            <a class="agent-more" href="nova/#architecture">Xem mô hình NOVA →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">A</span>
+              <div>
+                <h3>Aster</h3>
+                <p class="agent-role">Kết nối backend nghiệp vụ</p>
+              </div>
+              <span class="status">Đã kiểm thử mô phỏng · đang kiểm chứng</span>
+            </header>
+            <p class="agent-desc">Kết nối Orbit với backend tương thích, ánh xạ dữ liệu và quản lý phiên xử lý theo hồ sơ kết nối. Mỗi backend và phạm vi nghiệp vụ cần được kiểm chứng tích hợp.</p>
+            <ul class="feature-list">
+              <li>Ánh xạ dữ liệu hai chiều</li>
+              <li>Quản lý phiên và tiến trình xử lý</li>
+              <li>Dọn phiên khi kết thúc</li>
+              <li>Hồ sơ kết nối theo backend tương thích</li>
+            </ul>
+            <a class="agent-more" href="nova/#components">Xem thành phần →</a>
+          </article>
+        </div>
+        <details class="ecosystem-later">
+          <summary class="agent-group-label is-later"><span>Khả năng mở rộng ở giai đoạn sau</span><small>Echelon · Aira</small></summary>
+          <div class="agent-grid agent-grid-pair">
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">E</span>
+              <div>
+                <h3>Echelon</h3>
+                <p class="agent-role">Điều phối đa tác nhân</p>
+              </div>
+              <span class="status">Giai đoạn sau · đang kiểm định</span>
+            </header>
+            <p class="agent-desc">Điều phối bổ sung cho flow cần nhiều tác nhân hoặc kiểm soát từng bước. Echelon là thành phần ngang hàng và tham gia khi flow cần.</p>
+            <ul class="feature-list">
+              <li>Chia task cho nhiều agent</li>
+              <li>Cân bằng tải theo từng step</li>
+              <li>Xử lý lỗi từng step</li>
+              <li>Chỉ dùng khi flow cần</li>
+            </ul>
+            <a class="agent-more" href="echelon/">Khám phá Echelon →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">Ai</span>
+              <div>
+                <h3>Aira</h3>
+                <p class="agent-role">Hỗ trợ AI cho công việc</p>
+              </div>
+              <span class="status">Giai đoạn sau · đang thiết kế</span>
+            </header>
+            <p class="agent-desc">Hướng hỗ trợ đọc tài liệu, tóm tắt và chuẩn bị nội dung để con người dành thời gian cho đánh giá và quyết định. Chưa phải tính năng đã phát hành.</p>
+            <ul class="feature-list">
+              <li>Dự kiến trích xuất thông tin từ tài liệu</li>
+              <li>Dự kiến phân loại và tóm tắt</li>
+              <li>Dự kiến chuẩn bị bản nháp để người xem xét</li>
+              <li>Con người giữ trách nhiệm quyết định quan trọng</li>
+            </ul>
+
+          </article>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-strategy" id="trien-khai">
+      <div class="shell">
+        <div class="strangler">
+          <div class="strangler-copy reveal">
+            <p class="eyebrow">Cách bắt đầu</p>
+            <h2>Đánh giá một nghiệp vụ trước khi mở rộng.</h2>
+            <p class="lead">Thống nhất điều cần chứng minh, cách đo và điều kiện thực hiện. Kết quả đánh giá là cơ sở để lựa chọn phạm vi đầu tư tiếp theo.</p>
+          </div>
+          <ol class="strangler-steps">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Làm rõ hiện trạng</h3>
+                <p>Chọn nghiệp vụ, backend và những ứng dụng đang kết nối; xác định vấn đề ưu tiên.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Chốt phạm vi đánh giá</h3>
+                <p>Thống nhất mức tương thích cần giữ, dữ liệu kiểm thử, cách đo và tiêu chí nghiệm thu.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Kiểm chứng kết quả</h3>
+                <p>Đối chiếu kết quả nghiệp vụ, hiệu năng và công sức vận hành với hiện trạng trên cùng phạm vi.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Đề xuất bước tiếp theo</h3>
+                <p>Xác định phần có thể triển khai hoặc cần kiểm chứng thêm, cùng điều kiện và mức đầu tư dự kiến.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="diagram reveal">
+          <img
+            src="assets/images/strangler-fig-vi.svg"
+            alt="Lộ trình hợp tác từ nhu cầu doanh nghiệp đến kết quả: chia sẻ nhu cầu, chọn phạm vi, đánh giá và mở rộng."
+            width="1120"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Lộ trình hợp tác: bắt đầu từ ưu tiên của bạn, mở rộng bằng giá trị đã đánh giá.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="lien-he">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Chọn một nghiệp vụ để bắt đầu cùng NOVA.</h2>
+          <p class="lead">Chia sẻ backend đang sử dụng, các ứng dụng cần giữ kết nối và mục tiêu cần đạt. Binean sẽ cùng bạn xây dựng phạm vi đánh giá phù hợp.</p>
+          <p class="assessment-label">Ba nội dung cần làm rõ khi xác định phạm vi</p>
+          <ol class="assessment-outcomes">
+            <li><h3>Phạm vi tương thích</h3><p>Backend, ứng dụng và những kết nối cần giữ.</p></li>
+            <li><h3>Tiêu chí kiểm chứng</h3><p>Kết quả nghiệp vụ, hiệu năng và vận hành.</p></li>
+            <li><h3>Lộ trình tiếp theo</h3><p>Điều kiện triển khai và phạm vi đầu tư dự kiến.</p></li>
+          </ol>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=NOVA%20-%20%C4%90%C3%A1nh%20gi%C3%A1%20m%E1%BB%99t%20nghi%E1%BB%87p%20v%E1%BB%A5&amp;body=Nghi%E1%BB%87p%20v%E1%BB%A5%20c%E1%BA%A7n%20%C4%91%C3%A1nh%20gi%C3%A1%3A%0ABackend%20hi%E1%BB%87n%20c%C3%B3%3A%0A%E1%BB%A8ng%20d%E1%BB%A5ng%20ho%E1%BA%B7c%20h%E1%BB%87%20th%E1%BB%91ng%20c%E1%BA%A7n%20gi%E1%BB%AF%20k%E1%BA%BFt%20n%E1%BB%91i%3A%0AM%E1%BB%A5c%20ti%C3%AAu%20c%E1%BA%A3i%20thi%E1%BB%87n%3A%0ATh%C3%B4ng%20tin%20li%C3%AAn%20h%E1%BB%87%3A">Đề xuất đánh giá một nghiệp vụ</a>
+            <a class="btn btn-ghost btn-lg" href="nova/">Xem mô hình NOVA</a>
+          </div>
+          <p class="hero-note">Trao đổi ban đầu qua email. Phạm vi, mức sẵn sàng và điều kiện đánh giá sẽ được xác nhận trước khi thực hiện.</p>
+          <p class="cta-contact">
+            <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">binean.enova@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa backend từng bước, giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên và kết quả đánh giá.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="nova/">NOVA</a></li>
+          <li><a href="nexus/">Nexus</a></li>
+          <li><a href="orbit/">Orbit</a></li>
+          <li><a href="nova/#architecture">Vista</a></li>
+          <li><a href="nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="#van-de">Nhu cầu</a></li>
+          <li><a href="#trien-khai">Bắt đầu</a></li>
+          <li><a href="#loi-ich">Lợi ích</a></li>
+          <li><a href="#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Kết nối với Binean qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

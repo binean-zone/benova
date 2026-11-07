@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean NOVA — Hiện đại hóa backend theo từng nghiệp vụ</title>
+  <meta name="description" content="NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện." />
+  <meta name="keywords" content="Binean NOVA, Nexus, Orbit, Vista, Aster, điều phối yêu cầu, giao diện làm việc, kết nối backend, gói phát hành sớm" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/nova/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nova/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nova/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nova/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean NOVA — Hiện đại hóa backend theo từng nghiệp vụ" />
+  <meta property="og:description" content="NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện." />
+  <meta property="og:url" content="https://binean.com/nova/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+  <meta property="og:locale" content="vi" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean NOVA — Hiện đại hóa backend theo từng nghiệp vụ" />
+  <meta name="twitter:description" content="NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-vi.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean NOVA","applicationCategory":"BusinessApplication","description":"NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện.","url":"https://binean.com/nova/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body class="model-body">
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>NOVA đang hoàn thiện để phát hành sớm. Mức sẵn sàng của từng thành phần được trình bày ở phần hiện trạng.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Danh%20gia%20mot%20nghiep%20vu">Trao đổi phạm vi</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Binean NOVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean NOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
+        <ul>
+          <li><a href="#architecture">Tổng quan</a></li>
+          <li><a href="#flow">Luồng yêu cầu</a></li>
+          <li><a href="#components">Thành phần</a></li>
+          <li><a href="#status">Hiện trạng</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Chọn ngôn ngữ">
+          <a
+            href="../nova/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+            aria-current="page"
+          >VI</a>
+          <a
+            href="../en/nova/"
+            lang="en"
+            hreflang="en"
+            title="English"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Đổi giao diện sáng/tối"
+          title="Đổi giao diện sáng/tối"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Danh%20gia%20mot%20nghiep%20vu">Đánh giá cùng NOVA</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Mở menu"
+          data-label-open="Mở menu"
+          data-label-close="Đóng menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="model-page">
+    <section class="model-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell">
+        <div class="model-hero-copy">
+          <a class="ech-back" href="../">← Về BENOVA</a>
+          <p class="eyebrow reveal">Gói phát hành sớm: Nexus · Orbit · Vista · Aster</p>
+          <h1 class="model-title reveal">Hiện đại hóa backend theo từng nghiệp vụ.<span>Giữ giá trị hiện có. Mở đường cho thay đổi.</span></h1>
+          <p class="model-lead reveal">NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối, Aster kết nối backend, Nexus hỗ trợ build và vận hành.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#contact">Đánh giá một nghiệp vụ</a>
+            <a class="btn btn-ghost" href="#architecture">Xem mô hình tổng quan</a>
+          </div>
+          <ul class="model-highlights reveal">
+            <li><span aria-hidden="true">✓</span>Giao diện làm việc thống nhất</li>
+            <li><span aria-hidden="true">✓</span>Cổng kết nối theo từng hệ thống</li>
+            <li><span aria-hidden="true">✓</span>Khai thác giá trị backend hiện có</li>
+            <li><span aria-hidden="true">✓</span>Triển khai và đánh giá từng bước</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section" id="architecture">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Mô hình tổng quan</p>
+          <h2>Một đường đi rõ ràng từ người dùng đến backend.</h2>
+          <p class="lead">Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng. Aster xử lý kết nối với backend tương thích. Vista và Nexus bổ sung trải nghiệm làm việc và công cụ vận hành trong lộ trình hiện đại hóa từng bước (Strangler Fig).</p>
+        </div>
+<figure class="model-map reveal">
+    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 772" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
+      <title id="model-map-title-desktop">Sơ đồ mô hình NOVA</title>
+      <desc id="model-map-desc-desktop">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu, Aster kết nối backend nghiệp vụ hiện có. Nexus cung cấp công cụ build và vận hành. Vista kết nối Orbit; Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân, thuộc giai đoạn sau cùng Aira.</desc>
+      <defs>
+        <marker id="model-arrow-desktop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+      <path class="model-map-connection" d="M170 64L170 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M560 64L560 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M340 254L390 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M730 254L780 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M950 392L950 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M560 492L560 528" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+      <g transform="translate(0 0)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">NGƯỜI DÙNG VÀ KÊNH</text>
+        <text class="model-map-title" x="76" y="49">Người dùng nghiệp vụ</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Trình duyệt</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Ứng dụng khác</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Hệ thống tích hợp</text>
+        </g>
+      </g>
+<g transform="translate(0 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">GIAO DIỆN LÀM VIỆC</text>
+        <text class="model-map-title" x="24" y="125">Vista</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Menu, tab và bảng làm việc</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Biểu mẫu, bảng và thao tác</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Đăng nhập an toàn qua Gateway</text>
+        </g>
+      </g>
+<g transform="translate(390 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">ĐIỀU PHỐI</text>
+        <text class="model-map-title" x="24" y="125">Orbit</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Nhiều cổng kết nối tùy biến</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Điều phối nghiệp vụ dùng chung</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Xác thực, giới hạn tải, thời gian</text>
+        </g>
+      </g>
+<g transform="translate(780 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">KẾT NỐI BACKEND</text>
+        <text class="model-map-title" x="24" y="125">Aster</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Kết nối backend theo bản ghi</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Quản lý phiên và tiến trình</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Ánh xạ dữ liệu hai chiều</text>
+        </g>
+      </g>
+<g transform="translate(0 428)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
+        <text class="model-map-title" x="76" y="49">Backend nghiệp vụ lõi</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Chương trình hiện có</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Cơ sở dữ liệu hiện có</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Quyền và quy tắc nghiệp vụ</text>
+        </g>
+      </g>
+<g transform="translate(0 528)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">CÔNG CỤ ĐI KÈM</text>
+        <text class="model-map-title" x="76" y="49">Nexus — build và vận hành</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Biên dịch backend hiện có</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Làm mới môi trường, dữ liệu</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Làm việc trong VS Code</text>
+        </g>
+      </g>
+<g transform="translate(0 628)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="1120" height="144" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">GIAI ĐOẠN SAU · VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN</text><g transform="translate(24 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3-8 4 16 3-8h5"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">ĐIỀU PHỐI ĐA AGENT</text>
+          <text class="model-map-title" x="62" y="50">Echelon</text>
+          <text class="model-map-body" x="62" y="70">Chia task cho nhiều agent · Cân bằng tải, xử lý lỗi từng step</text>
+        </g><g transform="translate(568 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4m-2-2h4"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">HỖ TRỢ AI</text>
+          <text class="model-map-title" x="62" y="50">Aira</text>
+          <text class="model-map-body" x="62" y="70">Đọc, tóm tắt tài liệu · Người duyệt quyết định</text>
+        </g></g>
+    </svg>
+    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1956" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
+      <title id="model-map-title-mobile">Sơ đồ mô hình NOVA</title>
+      <desc id="model-map-desc-mobile">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu, Aster kết nối backend nghiệp vụ hiện có. Nexus cung cấp công cụ build và vận hành. Vista kết nối Orbit; Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân, thuộc giai đoạn sau cùng Aira.</desc>
+      <defs>
+        <marker id="model-arrow-mobile" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+      <path class="model-map-connection" d="M180 186L180 222" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 514L180 550" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 842L180 878" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 1170L180 1206" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 1380L180 1416" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+      <g transform="translate(20 12)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">NGƯỜI DÙNG VÀ KÊNH</text>
+        <text class="model-map-title" x="20" y="86">Người dùng nghiệp vụ</text>
+        <text class="model-map-body" x="20" y="110">Trình duyệt</text>
+<text class="model-map-body" x="20" y="132">Ứng dụng khác</text>
+<text class="model-map-body" x="20" y="154">Hệ thống tích hợp</text>
+      </g>
+<g transform="translate(20 222)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">GIAO DIỆN LÀM VIỆC</text>
+        <text class="model-map-title" x="24" y="125">Vista</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Menu, tab và bảng làm việc</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Biểu mẫu, bảng và thao tác</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Đăng nhập an toàn qua Gateway</text>
+        </g>
+      </g>
+<g transform="translate(20 550)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">ĐIỀU PHỐI</text>
+        <text class="model-map-title" x="24" y="125">Orbit</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Nhiều cổng kết nối tùy biến</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Điều phối nghiệp vụ dùng chung</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Xác thực, giới hạn tải, thời gian</text>
+        </g>
+      </g>
+<g transform="translate(20 878)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">KẾT NỐI BACKEND</text>
+        <text class="model-map-title" x="24" y="125">Aster</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Kết nối backend theo bản ghi</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Quản lý phiên và tiến trình</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Ánh xạ dữ liệu hai chiều</text>
+        </g>
+      </g>
+<g transform="translate(20 1206)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
+        <text class="model-map-title" x="20" y="86">Backend nghiệp vụ lõi</text>
+        <text class="model-map-body" x="20" y="110">Chương trình hiện có</text>
+<text class="model-map-body" x="20" y="132">Cơ sở dữ liệu hiện có</text>
+<text class="model-map-body" x="20" y="154">Quyền và quy tắc nghiệp vụ</text>
+      </g>
+<g transform="translate(20 1416)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">CÔNG CỤ ĐI KÈM</text>
+        <text class="model-map-title" x="20" y="86">Nexus — build và vận hành</text>
+        <text class="model-map-body" x="20" y="110">Biên dịch backend hiện có</text>
+<text class="model-map-body" x="20" y="132">Làm mới môi trường, dữ liệu</text>
+<text class="model-map-body" x="20" y="154">Làm việc trong VS Code</text>
+      </g>
+<g transform="translate(20 1626)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="320" height="318" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">GIAI ĐOẠN SAU</text>
+<text class="model-map-eyebrow" x="24" y="43">VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN</text><g transform="translate(16 54)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="118" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3-8 4 16 3-8h5"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">ĐIỀU PHỐI ĐA AGENT</text>
+          <text class="model-map-title" x="62" y="50">Echelon</text>
+          <text class="model-map-body" x="16" y="76">Chia task cho nhiều agent</text>
+<text class="model-map-body" x="16" y="98">Cân bằng tải, xử lý lỗi từng step</text>
+        </g><g transform="translate(16 184)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="118" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4m-2-2h4"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">HỖ TRỢ AI</text>
+          <text class="model-map-title" x="62" y="50">Aira</text>
+          <text class="model-map-body" x="16" y="76">Đọc, tóm tắt tài liệu</text>
+<text class="model-map-body" x="16" y="98">Người duyệt quyết định</text>
+        </g></g>
+    </svg>
+    <figcaption>Orbit đảm nhận kết nối phía ứng dụng; Aster đảm nhận kết nối phía backend. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.</figcaption>
+  </figure>
+      </div>
+    </section>
+
+    <section class="section model-section" id="flow">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Luồng yêu cầu</p>
+          <h2>Bốn bước của một yêu cầu.</h2>
+          <p class="lead">Một yêu cầu đi qua mô hình như thế nào.</p>
+        </div>
+        <div class="model-capability-grid">
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span><span class="model-card-number" aria-hidden="true">01</span></div>
+            <h3>Người dùng thao tác trên Vista</h3>
+            <p>Chọn chức năng, nhập biểu mẫu hoặc làm việc với bảng; trình duyệt chỉ tương tác với giao diện làm việc.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></svg></span><span class="model-card-number" aria-hidden="true">02</span></div>
+            <h3>Gateway chuyển yêu cầu an toàn</h3>
+            <p>Lớp kết nối phía máy chủ tiếp nhận thao tác từ Vista và chuyển yêu cầu đến Orbit theo cấu hình bảo mật đã thống nhất.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></svg></span><span class="model-card-number" aria-hidden="true">03</span></div>
+            <h3>Orbit xác thực và chạy kịch bản</h3>
+            <p>Kiểm tra token, nhận yêu cầu vào hàng đợi có giới hạn và chạy kịch bản nghiệp vụ tương ứng.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
+            <h3>Aster làm việc với backend</h3>
+            <p>Chuyển dữ liệu sang bản ghi backend hiểu, nhận và kiểm tra kết quả, rồi trả về Vista dưới dạng màn hình hoặc dữ liệu.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-capabilities" id="components">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Thành phần</p>
+          <h2>Mỗi thành phần một trách nhiệm</h2>
+          <p class="lead">Bốn thành phần trong gói, mỗi thành phần giữ một vai trò riêng và có thể thay đổi độc lập.</p>
+        </div>
+        <div class="model-capability-grid">
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span><span class="model-card-number" aria-hidden="true">01</span></div>
+            <h3>Vista — không gian làm việc thống nhất</h3>
+            <p>Menu, tab, bảng và biểu mẫu trong một giao diện làm việc; người dùng chuyển giữa các nghiệp vụ mà không phải học lại cách thao tác.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></svg></span><span class="model-card-number" aria-hidden="true">02</span></div>
+            <h3>Phiên đăng nhập an toàn</h3>
+            <p>Thiết kế giữ thông tin kết nối ở phía máy chủ, tách biệt với giao diện người dùng. Điều kiện xác thực và quản lý phiên được thống nhất khi tích hợp.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></svg></span><span class="model-card-number" aria-hidden="true">03</span></div>
+            <h3>Orbit — cổng kết nối tùy biến</h3>
+            <p>Thích ứng với cách gọi và định dạng dữ liệu của ứng dụng hiện có qua các cổng tiếp nhận tùy biến. Các cổng dùng chung lớp điều phối nghiệp vụ, hướng đến hạn chế chỉnh sửa những hệ thống đang kết nối.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7m0 4v7M12 3v12m0 4v2M19 3v2m0 4v12"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
+            <h3>Điều phối theo kịch bản</h3>
+            <p>Kịch bản điều phối các bước nghiệp vụ, có giới hạn thời gian, hủy và kiểm soát tải. Mỗi thay đổi được kiểm thử với backend và phạm vi sử dụng tương ứng.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">05</span></div>
+            <h3>Aster — kết nối backend nghiệp vụ</h3>
+            <p>Ánh xạ dữ liệu và quản lý phiên xử lý theo hồ sơ kết nối của backend. Phạm vi tương thích được xác nhận bằng kiểm thử tích hợp trên phiên bản và nghiệp vụ cụ thể.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
+            <h3>Nexus — công cụ đi kèm</h3>
+            <p>Biên dịch backend tăng dần và song song; sao lưu, phục hồi, làm mới dữ liệu; chuyển bản ghi sang môi trường kiểm thử; extension VS Code cơ bản.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-performance" id="status">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Giá trị và hiện trạng</p>
+          <h2>Giá trị hướng tới và mức độ hoàn thiện.</h2>
+        </div>
+        <div class="model-performance-grid">
+          <article class="model-performance-card reveal">
+            <span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span>
+            <p class="eyebrow">GIÁ TRỊ</p>
+            <h3>Đổi mới từng phần, bảo toàn giá trị nghiệp vụ</h3>
+            <p>NOVA hướng đến cải thiện trải nghiệm và mở rộng dịch vụ, đồng thời tạo cơ sở chuyển đổi từng nghiệp vụ. Mỗi bước cần kiểm chứng tính đúng đắn, hiệu năng và điều kiện vận hành; backend chịu trách nhiệm về quyền và quy tắc nghiệp vụ.</p>
+            <ul class="feature-list">
+              <li>Thay đổi từng lớp độc lập</li>
+              <li>Tùy biến cổng kết nối để giữ cách tích hợp hiện có</li>
+              <li>Ranh giới rõ giữa trình bày, điều phối và nghiệp vụ</li>
+            </ul>
+          </article>
+          <article class="model-performance-card reveal">
+            <span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h5l3-8 4 16 3-8h5"/></svg></span>
+            <p class="eyebrow">HIỆN TRẠNG</p>
+            <h3>Đang hoàn thiện để phát hành</h3>
+            <p>NOVA đang hoàn thiện tích hợp giữa các thành phần và chưa phải bản sẵn sàng triển khai đại trà.</p>
+            <ul class="feature-list">
+              <li>Orbit: runtime webservice đã chạy; cổng HTTP/JSON chung đang triển khai.</li>
+              <li>Vista: khung ứng dụng đã dùng được; tích hợp đăng nhập và gọi Orbit đang triển khai.</li>
+              <li>Aster: adapter đã qua kiểm thử mô phỏng và review độc lập; kiểm chứng trên hệ thống thật theo từng phạm vi.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="model-note reveal">Phạm vi đánh giá phụ thuộc vào mức sẵn sàng thực tế. Echelon và Aira là các thành phần ngang hàng thuộc giai đoạn sau.</p>
+      </div>
+    </section>
+
+    <section class="section model-section" id="adoption">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Phù hợp khi nào</p>
+          <h2>Bắt đầu từ một nghiệp vụ cụ thể.</h2>
+          <p class="lead">Phù hợp để đánh giá khi doanh nghiệp muốn mở rộng dịch vụ trên backend hiện hữu và chuẩn bị lộ trình chuyển đổi theo từng nghiệp vụ.</p>
+        </div>
+        <div class="model-fit reveal">
+          <div>
+            <p class="eyebrow">PHẠM VI ĐÁNH GIÁ</p>
+            <h3>Chọn một nghiệp vụ để đi hết luồng.</h3>
+            <p>Chọn một chức năng từ giao diện đến backend, cùng công cụ build và vận hành cần thiết. So sánh với hệ thống hiện tại theo tiêu chí đã thống nhất trước khi quyết định bước tiếp theo.</p>
+            <a class="model-text-link" href="#readiness">Câu hỏi triển khai thường gặp <span aria-hidden="true">↗</span></a>
+          </div>
+          <ul>
+            <li><span aria-hidden="true">✓</span>Giao diện làm việc hiện đại, thống nhất cho nhiều nghiệp vụ</li>
+            <li><span aria-hidden="true">✓</span>Giữ cách kết nối của ứng dụng hiện có qua cổng tiếp nhận tùy biến</li>
+            <li><span aria-hidden="true">✓</span>Mở rộng trước, chuyển đổi từng phần theo kết quả kiểm chứng</li>
+            <li><span aria-hidden="true">✓</span>Kiểm soát phiên, thời gian chờ và tải ở một lớp điều phối</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-readiness" id="readiness">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Hỏi đáp triển khai</p>
+          <h2>Những điều cần rõ trước khi triển khai.</h2>
+        </div>
+        <div class="model-faq">
+          <details class="reveal">
+            <summary>Có phải thay toàn bộ backend ngay từ đầu không?</summary>
+            <p>Có thể bắt đầu bằng việc kết nối chương trình và dữ liệu hiện có qua Aster, sau khi kiểm tra tương thích. Định hướng là mở rộng rồi chuyển đổi từng nghiệp vụ khi đủ điều kiện; mỗi thay đổi cần phạm vi và kiểm thử riêng.</p>
+          </details>
+          <details class="reveal">
+            <summary>Vista có thay giao diện hiện tại ngay không?</summary>
+            <p>Không bắt buộc. Có thể bắt đầu với một nhóm chức năng và chạy song song với giao diện hiện tại.</p>
+          </details>
+          <details class="reveal">
+            <summary>Orbit khác gì một API gateway thông thường?</summary>
+            <p>Orbit kết hợp cổng kết nối tùy biến với điều phối nghiệp vụ dùng chung, quản lý phiên, thời gian chờ và tải. Có thể giữ cách gọi và định dạng dữ liệu của client hiện có qua cổng phù hợp; mức tương thích được kiểm chứng trước khi áp dụng.</p>
+          </details>
+          <details class="reveal">
+            <summary>Aster có phải sản phẩm riêng không?</summary>
+            <p>Aster là thành phần kết nối backend trong gói NOVA. Hồ sơ cấu hình mô tả backend tương thích; việc giữ nguyên Orbit và Vista khi đổi backend phụ thuộc vào contract và kết quả kiểm thử. Phạm vi tích hợp được xác nhận trước khi triển khai.</p>
+          </details>
+          <details class="reveal">
+            <summary>Demo có chạy trên hệ thống thật của tôi không?</summary>
+            <p>Demo dùng backend tham chiếu đi kèm để minh họa luồng xử lý, tách khỏi hệ thống đang vận hành của bạn. Đánh giá trên backend thực cần rà soát tương thích, chuẩn bị hồ sơ kết nối và thống nhất phạm vi kiểm thử.</p>
+          </details>
+          <details class="reveal">
+            <summary>Điều gì xảy ra khi giao dịch không rõ kết quả?</summary>
+            <p>Hệ thống dừng và báo rõ, không tự phát lại giao dịch; đội vận hành đối soát theo quy trình. Hết thời gian chờ không có nghĩa giao dịch đã hoàn tác.</p>
+          </details>
+          <details class="reveal">
+            <summary>Cần gì để triển khai?</summary>
+            <p>Backend nghiệp vụ tương thích, máy chủ cho Orbit và Gateway trong mạng nội bộ, cùng tiêu chí nghiệm thu. Phiên bản, bảo mật và năng lực được thống nhất theo từng triển khai; Orbit không mở trực tiếp ra internet.</p>
+          </details>
+          <details class="reveal">
+            <summary>Echelon nằm ở đâu trong mô hình?</summary>
+            <p>Echelon là thành phần ngang hàng, thuộc giai đoạn sau. Vista kết nối Orbit; Echelon bổ sung điều phối khi flow cần chia việc cho nhiều tác nhân, cân bằng tải hoặc xử lý lỗi từng bước.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Xác định phạm vi đánh giá cùng NOVA.</h2>
+          <p class="lead">Chia sẻ một nghiệp vụ cần cải thiện và các kết nối cần giữ. Cùng thống nhất baseline, tiêu chí nghiệm thu và điều kiện cho bước triển khai tiếp theo.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Danh%20gia%20mot%20nghiep%20vu">Đề xuất đánh giá một nghiệp vụ</a>
+            <a class="btn btn-ghost btn-lg" href="../">Khám phá BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Hiện đại hóa backend từng bước, giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên và kết quả đánh giá.</p>
+        <p class="footer-company">
+          <span>Một sản phẩm của</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Sản phẩm">
+        <h2>Sản phẩm</h2>
+        <ul>
+          <li><a href="../nova/">NOVA</a></li>
+          <li><a href="../nexus/">Nexus</a></li>
+          <li><a href="../orbit/">Orbit</a></li>
+          <li><a href="../nova/#architecture">Vista</a></li>
+          <li><a href="../nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Tìm hiểu">
+        <h2>Tìm hiểu</h2>
+        <ul>
+          <li><a href="../#van-de">Nhu cầu</a></li>
+          <li><a href="../#trien-khai">Bắt đầu</a></li>
+          <li><a href="../#loi-ich">Lợi ích</a></li>
+          <li><a href="../#lien-he">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Liên hệ</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Kết nối với Binean qua email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BENOVA — NOVA: Modernize your backend step by step</title>
+  <meta name="description" content="Modernize your backend incrementally with NOVA: customizable gateways for existing applications, backend connectivity and focused business assessments. The product is in development." />
+  <meta name="keywords" content="BENOVA, NOVA, backend modernization, Nexus, Orbit, Vista, Aster, Echelon, Aira, Binean" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="BENOVA — NOVA: Modernize your backend step by step" />
+  <meta property="og:description" content="Modernize your backend incrementally with NOVA: customizable gateways for existing applications, backend connectivity and focused business assessments. The product is in development." />
+  <meta property="og:url" content="https://binean.com/en/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BENOVA — NOVA: Modernize your backend step by step" />
+  <meta name="twitter:description" content="Modernize your backend incrementally with NOVA: customizable gateways for existing applications, backend connectivity and focused business assessments. The product is in development." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BENOVA","applicationCategory":"BusinessApplication","description":"Modernize your backend incrementally with NOVA: customizable gateways for existing applications, backend connectivity and focused business assessments. The product is in development.","url":"https://binean.com/en/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body class="home-page">
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>NOVA is being completed for early release. Discuss a suitable assessment scope with Binean.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">Discuss scope</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="BENOVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">BENOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#problem">Your challenges</a></li>
+          <li><a href="#benefits">Value</a></li>
+          <li><a href="#ecosystem">Platform</a></li>
+          <li><a href="#adoption">Get started</a></li>
+          <li><a href="nova/">NOVA model</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../en/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="#contact">Assess with NOVA</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">NOVA · Business system modernization</p>
+          <h1 class="hero-title reveal">
+            <span>Modernize your backend.</span>
+            <span class="grad">Connect on your terms.</span>
+          </h1>
+          <p class="hero-sub reveal">NOVA aims to expand services and transition one capability at a time, with customizable gateways that let existing applications retain familiar integrations.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#contact">Assess one business capability</a>
+            <a class="btn btn-ghost" href="#ecosystem">Explore the platform</a>
+          </div>
+          <p class="hero-note reveal">Start with a defined scope. Verify business results, performance and operations before expanding.</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="orbit-stage">
+            <div class="starfield">
+            <i style="--x:88.71%; --y:63.11%; --s:1.99px; --tw:6.18s; --td:3.94s"></i>
+            <i style="--x:12.67%; --y:58.41%; --s:1.20px; --tw:5.97s; --td:4.51s"></i>
+            <i style="--x:70.50%; --y:98.91%; --s:1.26px; --tw:4.40s; --td:3.26s"></i>
+            <i style="--x:21.29%; --y:17.19%; --s:1.82px; --tw:6.23s; --td:4.31s"></i>
+            <i style="--x:13.15%; --y:42.65%; --s:1.10px; --tw:4.60s; --td:3.81s"></i>
+            <i style="--x:24.48%; --y:64.98%; --s:1.94px; --tw:6.36s; --td:1.11s"></i>
+            <i style="--x:7.85%; --y:52.69%; --s:0.83px; --tw:6.80s; --td:2.41s"></i>
+            <i style="--x:27.61%; --y:9.70%; --s:2.10px; --tw:3.96s; --td:4.42s"></i>
+            <i style="--x:23.54%; --y:0.65%; --s:1.00px; --tw:3.51s; --td:1.87s"></i>
+            <i style="--x:96.36%; --y:44.43%; --s:1.21px; --tw:6.44s; --td:2.05s"></i>
+            <i style="--x:55.90%; --y:54.55%; --s:1.90px; --tw:3.39s; --td:4.37s"></i>
+            <i style="--x:48.76%; --y:1.84%; --s:1.26px; --tw:5.82s; --td:4.19s"></i>
+            <i style="--x:48.03%; --y:58.37%; --s:2.07px; --tw:3.99s; --td:1.99s"></i>
+            <i style="--x:7.02%; --y:46.28%; --s:0.82px; --tw:5.48s; --td:4.08s"></i>
+            <i style="--x:87.45%; --y:25.13%; --s:1.15px; --tw:4.23s; --td:1.42s"></i>
+            <i style="--x:31.40%; --y:50.24%; --s:2.17px; --tw:3.87s; --td:4.72s"></i>
+            <i style="--x:13.82%; --y:40.67%; --s:1.63px; --tw:4.76s; --td:3.68s"></i>
+            <i style="--x:56.74%; --y:13.11%; --s:1.92px; --tw:6.84s; --td:1.93s"></i>
+            <i style="--x:8.85%; --y:96.97%; --s:1.97px; --tw:5.23s; --td:4.29s"></i>
+            <i style="--x:61.88%; --y:4.03%; --s:2.28px; --tw:6.68s; --td:3.57s"></i>
+            <i style="--x:43.75%; --y:83.29%; --s:2.30px; --tw:4.52s; --td:1.88s"></i>
+            <i style="--x:10.21%; --y:40.62%; --s:1.75px; --tw:3.35s; --td:0.58s"></i>
+            <i style="--x:4.73%; --y:65.79%; --s:1.74px; --tw:6.50s; --td:0.94s"></i>
+            <i style="--x:74.42%; --y:56.79%; --s:1.03px; --tw:6.68s; --td:3.09s"></i>
+            <i style="--x:41.09%; --y:41.87%; --s:1.28px; --tw:6.01s; --td:1.47s"></i>
+            <i style="--x:13.73%; --y:49.20%; --s:1.90px; --tw:5.10s; --td:2.24s"></i>
+            <i style="--x:20.43%; --y:37.40%; --s:0.90px; --tw:5.70s; --td:0.92s"></i>
+            <i style="--x:14.92%; --y:52.94%; --s:0.95px; --tw:6.57s; --td:1.80s"></i>
+            <i style="--x:75.81%; --y:19.01%; --s:2.34px; --tw:5.84s; --td:4.98s"></i>
+            <i style="--x:18.89%; --y:3.83%; --s:2.20px; --tw:4.64s; --td:2.66s"></i>
+            <i style="--x:39.46%; --y:63.03%; --s:2.22px; --tw:5.94s; --td:4.46s"></i>
+            <i style="--x:84.84%; --y:25.25%; --s:2.38px; --tw:5.49s; --td:0.09s"></i>
+            <i style="--x:59.78%; --y:85.00%; --s:2.36px; --tw:5.17s; --td:0.35s"></i>
+            <i style="--x:25.85%; --y:92.25%; --s:1.73px; --tw:3.73s; --td:3.24s"></i>
+            <i style="--x:99.93%; --y:47.37%; --s:1.21px; --tw:4.16s; --td:0.12s"></i>
+            <i style="--x:32.32%; --y:82.39%; --s:0.95px; --tw:6.52s; --td:2.33s"></i>
+            <i style="--x:29.06%; --y:15.71%; --s:1.12px; --tw:4.34s; --td:0.87s"></i>
+            <i style="--x:0.58%; --y:76.94%; --s:1.00px; --tw:3.77s; --td:1.95s"></i>
+            <i style="--x:44.23%; --y:88.21%; --s:0.88px; --tw:4.04s; --td:1.18s"></i>
+            <i style="--x:23.02%; --y:81.07%; --s:1.82px; --tw:3.18s; --td:2.40s"></i>
+            <i style="--x:78.99%; --y:68.54%; --s:2.23px; --tw:6.53s; --td:4.86s"></i>
+            <i style="--x:6.31%; --y:37.43%; --s:1.09px; --tw:6.40s; --td:2.23s"></i>
+            </div>
+            <div class="orbit-corona"></div>
+            <div class="orbit-flare"></div>
+            <div class="orbit-scene">
+              <div class="orbit-core">
+                <span class="core-name">B</span>
+              </div>
+              <ul class="orbit-sats">
+            <li
+              class="sat-plane"
+              style="--rf:0.2800; --node:-26deg; --incl:-9deg; --dur:19s; --delay:0.00s; --static-a:0.00deg; --c:#fbbf24; --ps:1.12"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Nexus — Build and operations tooling"
+                    >
+                      <span class="sat-key">N</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.3533; --node:12deg; --incl:6deg; --dur:27s; --delay:-10.31s; --static-a:137.51deg; --c:#a78bfa; --ps:1.24"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body sat-ringed"
+                      title="Orbit — Coordinate requests and business flows"
+                    >
+                      <span class="sat-key">O</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.4267; --node:-7deg; --incl:-3deg; --dur:36s; --delay:-27.50s; --static-a:275.02deg; --c:var(--vista); --ps:0.88"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Vista — A workspace for users"
+                    >
+                      <span class="sat-key">V</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+            <li
+              class="sat-plane"
+              style="--rf:0.5000; --node:31deg; --incl:11deg; --dur:45s; --delay:-6.57s; --static-a:52.52deg; --c:#2dd4bf; --ps:1"
+            >
+              <span class="sat">
+                <span class="sat-pos">
+                  <span class="sat-chip">
+                    <span
+                      class="sat-body"
+                      title="Aster — Connect the business backend"
+                    >
+                      <span class="sat-key">A</span>
+                    </span>
+                  </span>
+                </span>
+              </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shell hero-principles">
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">01</span>
+          <div><h2>Preserve existing value</h2><p>Build on accumulated business knowledge and investment.</p></div>
+        </div>
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">02</span>
+          <div><h2>Preserve connections</h2><p>Tailor ingress gateways to the applications already in use.</p></div>
+        </div>
+        <div class="hero-principle">
+          <span class="principle-index" aria-hidden="true">03</span>
+          <div><h2>Modernize incrementally</h2><p>Choose each scope and make decisions using verified results.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-problem" id="problem">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Your business needs</p>
+          <h2>Move systems forward. Preserve business value.</h2>
+          <p class="lead">Backend modernization involves applications, data and operational practices. Start by identifying what needs to change and which connections need to remain.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">01</span>
+            <h3>Accumulated business value</h3>
+            <p>Business rules, data and operational knowledge need to keep serving the business throughout modernization.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">02</span>
+            <h3>Connected applications</h3>
+            <p>A backend change can require updates to frontends and integrated systems. Its impact needs to be understood.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">03</span>
+            <h3>Performance priorities</h3>
+            <p>Processing time, capacity under load and operational effort need measurement against the workloads that matter.</p>
+          </article>
+          <article class="card pain-card reveal">
+            <span class="card-icon" aria-hidden="true">04</span>
+            <h3>Controlled transitions</h3>
+            <p>Each change needs a defined scope, accountable owners and acceptance criteria so teams can plan delivery and assess results.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">NOVA is being developed for this approach: preserve the value that matters, introduce new capabilities and verify each step.</p>
+      </div>
+    </section>
+
+    <section class="section section-benefits" id="benefits">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Intended value</p>
+          <h2>Focused change. Evidence for each decision.</h2>
+          <p class="lead">NOVA is evaluated through its ability to preserve connections, build on business capabilities and improve how systems serve the organization.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">01</span>
+            <p class="benefit-answers">Addresses: Accumulated business value</p>
+            <h3>Build on business value</h3>
+            <p>Start by using existing backend capabilities and select each modernization scope according to business priorities.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">02</span>
+            <p class="benefit-answers">Addresses: Connected applications</p>
+            <h3>Limit application impact</h3>
+            <p>Orbit tailors ingress gateways to existing clients. Compatibility testing establishes which integrations can remain unchanged.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">03</span>
+            <p class="benefit-answers">Addresses: Performance priorities</p>
+            <h3>Target performance investment</h3>
+            <p>Measure processing time, capacity under load and resource use against the same workload to establish actual improvement.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <span class="card-icon" aria-hidden="true">04</span>
+            <p class="benefit-answers">Addresses: Controlled transitions</p>
+            <h3>Control each transition</h3>
+            <p>Divide the modernization path into verifiable scopes, with clear acceptance outcomes and operational requirements.</p>
+          </article>
+        </div>
+        <p class="section-bridge reveal">Benefits are evaluated for each scope. Costs, security, licensing and operational requirements are agreed before deployment.</p>
+      </div>
+    </section>
+
+    <section class="section section-ecosystem" id="ecosystem">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">The NOVA platform</p>
+          <h2>Four components. One modernization path.</h2>
+          <p class="lead">Orbit adapts to how applications connect. Aster connects compatible backends. Vista provides the workspace, while Nexus supports development and operations teams.</p>
+        </div>
+        <h3 class="agent-group-label reveal"><span>NOVA package — early release</span><small>Nexus · Orbit · Vista · Aster</small></h3>
+        <div class="agent-grid agent-grid-pair">
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">N</span>
+              <div>
+                <h3>Nexus</h3>
+                <p class="agent-role">Build and operations toolkit included</p>
+              </div>
+              <span class="status">Used in live environments</span>
+            </header>
+            <p class="agent-desc">Prepare builds, environments and test data for backend changes. The underlying tools have been used in live environments; the integrated experience is being completed.</p>
+            <ul class="feature-list">
+              <li>Shorten backend build cycles</li>
+              <li>Simplify backup, restore and environment refresh</li>
+              <li>Move test data for support and debugging</li>
+              <li>Work directly in VS Code</li>
+            </ul>
+            <a class="agent-more" href="nexus/">Explore Nexus →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">O</span>
+              <div>
+                <h3>Orbit</h3>
+                <p class="agent-role">Application connectivity · business orchestration</p>
+              </div>
+              <span class="status">In development</span>
+            </header>
+            <p class="agent-desc">Multiple ingress gateways can be tailored to existing application calls and data, with shared business orchestration. The aim is to preserve integrations and limit changes to connected systems.</p>
+            <ul class="feature-list">
+              <li>Customizable gateways for existing clients</li>
+              <li>Shared business flow orchestration</li>
+              <li>Authentication, load limits and timeouts</li>
+              <li>No automatic retry when the outcome is unclear</li>
+            </ul>
+            <a class="agent-more" href="orbit/">Explore Orbit →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">V</span>
+              <div>
+                <h3>Vista</h3>
+                <p class="agent-role">A workspace for users</p>
+              </div>
+              <span class="status">Integrating with Orbit</span>
+            </header>
+            <p class="agent-desc">Menus, tabs, forms and tables in one focused experience. The application shell is usable; sign-in and Orbit integration are being completed.</p>
+            <ul class="feature-list">
+              <li>Menus, tabs and working tables</li>
+              <li>Forms, tables and actions</li>
+              <li>Consistent number, currency and date formats</li>
+              <li>Secure sign-in through a server-side gateway</li>
+            </ul>
+            <a class="agent-more" href="nova/#architecture">View the NOVA model →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">A</span>
+              <div>
+                <h3>Aster</h3>
+                <p class="agent-role">Connect the business backend</p>
+              </div>
+              <span class="status">Simulation tested · verification ongoing</span>
+            </header>
+            <p class="agent-desc">Connects Orbit to compatible backends, mapping data and managing processing sessions through connection profiles. Each backend and business scope needs integration verification.</p>
+            <ul class="feature-list">
+              <li>Two-way data mapping</li>
+              <li>Session and processing management</li>
+              <li>Session cleanup on completion</li>
+              <li>Connection profiles for compatible backends</li>
+            </ul>
+            <a class="agent-more" href="nova/#components">View the component →</a>
+          </article>
+        </div>
+        <details class="ecosystem-later">
+          <summary class="agent-group-label is-later"><span>Extensions for a later phase</span><small>Echelon · Aira</small></summary>
+          <div class="agent-grid agent-grid-pair">
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">E</span>
+              <div>
+                <h3>Echelon</h3>
+                <p class="agent-role">Multi-agent orchestration</p>
+              </div>
+              <span class="status">Later phase · qualification ongoing</span>
+            </header>
+            <p class="agent-desc">Additional orchestration for flows that need multiple agents or per-step control. Echelon is a peer component and participates when a flow needs it.</p>
+            <ul class="feature-list">
+              <li>Split tasks across multiple agents</li>
+              <li>Balance load per step</li>
+              <li>Handle errors per step</li>
+              <li>Only when a flow needs it</li>
+            </ul>
+            <a class="agent-more" href="echelon/">Explore Echelon →</a>
+          </article>
+          <article class="card agent-card reveal">
+            <header class="agent-head">
+              <span class="agent-key" aria-hidden="true">Ai</span>
+              <div>
+                <h3>Aira</h3>
+                <p class="agent-role">AI assistance for work</p>
+              </div>
+              <span class="status">Later phase · in design</span>
+            </header>
+            <p class="agent-desc">Planned assistance for reading documents, summarizing and preparing content so people can focus on assessment and decisions. Not a shipping feature.</p>
+            <ul class="feature-list">
+              <li>Planned document information extraction</li>
+              <li>Planned classification and summarization</li>
+              <li>Planned drafts for human review</li>
+              <li>People remain accountable for important decisions</li>
+            </ul>
+
+          </article>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-strategy" id="adoption">
+      <div class="shell">
+        <div class="strangler">
+          <div class="strangler-copy reveal">
+            <p class="eyebrow">How to get started</p>
+            <h2>Assess one capability before expanding.</h2>
+            <p class="lead">Agree on what needs to be demonstrated, how to measure it and the conditions for delivery. Assessment results provide a basis for choosing the next investment scope.</p>
+          </div>
+          <ol class="strangler-steps">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Establish the baseline</h3>
+                <p>Choose the capability, backend and connected applications, then identify the priority problem.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Define the assessment</h3>
+                <p>Agree on compatibility requirements, test data, measurement methods and acceptance criteria.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Verify the results</h3>
+                <p>Compare business results, performance and operational effort with the current baseline for the same scope.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Recommend the next step</h3>
+                <p>Identify what can proceed or needs further verification, with requirements and an indicative investment scope.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <figure class="diagram reveal">
+          <img
+            src="../assets/images/strangler-fig-en.svg"
+            alt="The engagement journey from business needs to results: share needs, choose scope, evaluate and expand."
+            width="1120"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Our engagement journey: start with your priority and expand on evaluated value.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Choose one capability to assess with NOVA.</h2>
+          <p class="lead">Share your existing backend, the applications that need to stay connected and your goals. Binean will help define an appropriate assessment scope.</p>
+          <p class="assessment-label">Three areas to clarify when defining scope</p>
+          <ol class="assessment-outcomes">
+            <li><h3>Compatibility scope</h3><p>The backend, applications and connections to preserve.</p></li>
+            <li><h3>Verification criteria</h3><p>Business results, performance and operations.</p></li>
+            <li><h3>The next step</h3><p>Delivery requirements and an indicative investment scope.</p></li>
+          </ol>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=NOVA%20-%20Business%20capability%20assessment&amp;body=Capability%20to%20assess%3A%0AExisting%20backend%3A%0AApplications%20or%20systems%20that%20need%20to%20stay%20connected%3A%0AImprovement%20goals%3A%0AContact%20details%3A">Request a capability assessment</a>
+            <a class="btn btn-ghost btn-lg" href="nova/">View the NOVA model</a>
+          </div>
+          <p class="hero-note">Start the conversation by email. Scope, readiness and assessment conditions will be confirmed before work begins.</p>
+          <p class="cta-contact">
+            <a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Yeu%20cau%20tu%20van">binean.enova@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernize your backend step by step while preserving business value. Expand according to priorities and evaluated results.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Products">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="../en/nova/">NOVA</a></li>
+          <li><a href="../en/nexus/">Nexus</a></li>
+          <li><a href="../en/orbit/">Orbit</a></li>
+          <li><a href="../en/nova/#architecture">Vista</a></li>
+          <li><a href="../en/nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Explore">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="#problem">Your needs</a></li>
+          <li><a href="#adoption">Get started</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Connect with Binean by email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

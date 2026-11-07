@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean Echelon — Split work across agents, keep every step under control</title>
+  <meta name="description" content="Echelon provides multi-agent orchestration for flows that split tasks across agents or involve many steps. The web service runs; production qualification is ongoing." />
+  <meta name="keywords" content="Binean Echelon, multi-agent orchestration, task splitting, per-step handling, load balancing, NOVA" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/echelon/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/echelon/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/echelon/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/echelon/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean Echelon — Split work across agents, keep every step under control" />
+  <meta property="og:description" content="Echelon provides multi-agent orchestration for flows that split tasks across agents or involve many steps. The web service runs; production qualification is ongoing." />
+  <meta property="og:url" content="https://binean.com/en/echelon/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean Echelon — Split work across agents, keep every step under control" />
+  <meta name="twitter:description" content="Echelon provides multi-agent orchestration for flows that split tasks across agents or involve many steps. The web service runs; production qualification is ongoing." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Echelon","applicationCategory":"BusinessApplication","description":"Echelon provides multi-agent orchestration for flows that split tasks across agents or involve many steps. The web service runs; production qualification is ongoing.","url":"https://binean.com/en/echelon/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>Echelon is a multi-agent orchestration layer for flows that split tasks across agents or involve many steps. The web service runs; production qualification is ongoing.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Discuss%20our%20needs">Discuss an evaluation</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../en/" aria-label="Binean Echelon">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean Echelon</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#model">Features</a></li>
+          <li><a href="#apprenticeship">Collaboration</a></li>
+          <li><a href="#decisions">Benefits</a></li>
+          <li><a href="#fit">Is it for you?</a></li>
+          <li><a href="#status">Status</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../echelon/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/echelon/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Discuss%20our%20needs">Discuss your needs</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="ech-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="shell ech-shell">
+        <a class="ech-back" href="../../en/">← Home</a>
+        <p class="eyebrow reveal">Binean Echelon</p>
+        <h1 class="ech-title reveal">Split work across agents. Keep control of every step.</h1>
+        <p class="ech-lead reveal">Use Echelon when a flow needs tasks split across agents, or when a large number of steps needs load balancing and per-step error handling. It is an additional path alongside the other components, not a layer between Vista and Orbit.</p>
+      </div>
+    </section>
+
+    <section class="section ech-section" id="problem">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Your team’s challenge</p>
+          <h2>One failed step should not break the whole flow.</h2>
+
+        </div>
+        <p class="ech-para reveal">When a flow involves several agents or a very large number of steps, one error or one slow point can break the whole flow. Echelon tracks and handles work step by step so the team can see exactly which step needs attention.</p>
+        <p class="ech-para reveal">Components still call each other directly — Vista calls Orbit. Echelon takes part only when a flow needs task splitting or per-step control, so it does not become a bottleneck on the default path.</p>
+
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="model">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Key features</p>
+          <h2>Step-by-step orchestration, when the flow needs it.</h2>
+
+        </div>
+
+        <dl class="ech-glossary reveal">
+          <div>
+            <dt>Split tasks across agents</dt>
+            <dd>A flow can assign parts of the work to specialist agents instead of concentrating everything in one processing path.</dd>
+          </div>
+          <div>
+            <dt>Load balance by step</dt>
+            <dd>Distribute pending steps so more agents can take part when the workload is large.</dd>
+          </div>
+          <div>
+            <dt>Handle errors per step, not the whole flow</dt>
+            <dd>Track results at step level to identify what needs follow-up or human intervention.</dd>
+          </div>
+          <div>
+            <dt>External agents claim tasks and submit results</dt>
+            <dd>Agents claim tasks and submit results over HTTP/JSON; state is stored durably for later inspection.</dd>
+          </div>
+        </dl>
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="apprenticeship">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Effective collaboration</p>
+          <h2>Agents run the steps. People keep the decisions.</h2>
+          <p class="lead">Each role is explicit: agents handle the work assigned to them, and people decide when business judgement is needed.</p>
+        </div>
+
+        <dl class="ech-glossary reveal">
+          <div>
+            <dt>Agents</dt>
+            <dd>Run the steps assigned to them and submit results for Echelon to record.</dd>
+          </div>
+          <div>
+            <dt>People</dt>
+            <dd>Handle exceptions and take responsibility for decisions that need business judgement.</dd>
+          </div>
+          <div>
+            <dt>AI — planned</dt>
+            <dd>Not a shipping capability; important results still need human review.</dd>
+          </div>
+        </dl>
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="decisions">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Business benefits</p>
+          <h2>Use it when needed, not on every call.</h2>
+
+        </div>
+
+
+
+        <div class="ech-decisions">
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">01</span>
+            <h3>Use it only when needed</h3>
+            <p>Vista still calls Orbit directly; Echelon takes part only when a flow needs task splitting or per-step control.</p>
+            <p class="ech-cost">Value: the default path stays simple, with no unnecessary extra hop.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">02</span>
+            <h3>Load balance when steps are many</h3>
+            <p>Distribute pending steps across agents when the workload grows.</p>
+            <p class="ech-cost">Value: more agents can work on the same flow when needed.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">03</span>
+            <h3>Keep failures local to a step</h3>
+            <p>A failed step is recorded on its own, without losing track of the others.</p>
+            <p class="ech-cost">Value: narrow the scope of what needs follow-up or human handling.</p>
+          </article>
+          <article class="card ech-decision reveal">
+            <span class="ech-num" aria-hidden="true">04</span>
+            <h3>Clear flow versions for review on change</h3>
+            <p>Published flow versions are identified clearly for comparison when working practices change.</p>
+            <p class="ech-cost">Value: a basis for review before putting changes into use.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ech-section" id="applications">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Suggested applications</p>
+          <h2>Start where a flow has many steps or many agents.</h2>
+
+        </div>
+        <p class="ech-para reveal">Flows that process a large number of steps and need load balancing and per-step tracking are a suitable direction to evaluate Echelon.</p>
+        <p class="ech-para reveal">Flows that split work across specialist agents are also a direction to evaluate. These examples are intended uses, not deployed customer references.</p>
+
+
+
+      </div>
+    </section>
+
+    <section class="section ech-section" id="fit">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Is it for you?</p>
+          <h2>Evaluate against your needs and readiness.</h2>
+        </div>
+        <div class="ech-fits">
+          <article class="card ech-fit ech-fit-good reveal">
+            <h3>A practical evaluation starts when</h3>
+            <ul>
+              <li>A flow needs tasks split across agents.</li>
+              <li>A large number of steps needs load balancing.</li>
+              <li>Errors need to be handled per step.</li>
+              <li>A specific evaluation scope and owner can be assigned.</li>
+            </ul>
+          </article>
+          <article class="card ech-fit ech-fit-bad reveal">
+            <h3>Discuss further if</h3>
+            <ul>
+              <li>The flow is a simple Vista ↔ Orbit path — use the direct route.</li>
+              <li>You need a fully qualified production release immediately.</li>
+              <li>Multi-node high availability or multi-organization operation is mandatory.</li>
+              <li>You need shipping AI, scheduling or deadline handling.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ech-section section-status" id="status">
+      <div class="shell ech-shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Product status</p>
+          <h2>The web service runs; production qualification continues.</h2>
+        </div>
+        <p class="ech-para reveal">Echelon has a working multi-agent orchestration web service: publish flows and skills, create processes, send events and read state over HTTP/JSON; external agents claim tasks and submit results over HTTP; state is stored durably. Initial scope is a single operating node; production qualification is not complete.</p>
+        <p class="ech-para reveal">Echelon is not on the default call path: Vista calls Orbit directly, and Echelon takes part when a flow needs it. This keeps Echelon’s load low and everyday calls from taking an extra hop.</p>
+        <p class="ech-para reveal">Scheduling and deadline handling are not implemented. Aira remains in design. Support, security and operational scope need agreement for each evaluation.</p>
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Which of your flows needs work split across agents?</h2>
+          <p class="lead">Identify a flow with many steps or several agents, choose an evaluation scope and agree on the results you need to see before expanding.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Echelon%20-%20Discuss%20our%20needs">Discuss Echelon</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">Back to BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernize your backend step by step while preserving business value. Expand according to priorities and evaluated results.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Products">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="../../en/nova/">NOVA</a></li>
+          <li><a href="../../en/nexus/">Nexus</a></li>
+          <li><a href="../../en/orbit/">Orbit</a></li>
+          <li><a href="../../en/nova/#architecture">Vista</a></li>
+          <li><a href="../../en/nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Explore">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="../../en/#problem">Your needs</a></li>
+          <li><a href="../../en/#adoption">Get started</a></li>
+          <li><a href="../../en/#benefits">Benefits</a></li>
+          <li><a href="../../en/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Connect with Binean by email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

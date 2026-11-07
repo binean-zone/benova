@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binean NOVA — Modernize your backend one capability at a time</title>
+  <meta name="description" content="NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development." />
+  <meta name="keywords" content="Binean NOVA, Nexus, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package" />
+  <meta name="theme-color" content="#0A192F" />
+  <link rel="canonical" href="https://binean.com/en/nova/" />
+  <link rel="alternate" hreflang="vi" href="https://binean.com/nova/" />
+  <link rel="alternate" hreflang="en" href="https://binean.com/en/nova/" />
+  <link rel="alternate" hreflang="x-default" href="https://binean.com/nova/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BENOVA" />
+  <meta property="og:title" content="Binean NOVA — Modernize your backend one capability at a time" />
+  <meta property="og:description" content="NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development." />
+  <meta property="og:url" content="https://binean.com/en/nova/" />
+  <meta property="og:image" content="https://binean.com/assets/images/og-benova-en.png" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binean NOVA — Modernize your backend one capability at a time" />
+  <meta name="twitter:description" content="NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development." />
+  <meta name="twitter:image" content="https://binean.com/assets/images/og-benova-en.png" />
+
+  <link rel="icon" href="../../assets/images/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../../assets/images/binean.svg" />
+  <!-- Font tự host: trang không gọi ra máy chủ ngoài nào. Nạp trước hai file
+       chắc chắn cần để chữ không nhảy font giữa chừng. -->
+  <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="../../assets/css/fonts.css?v=39eccc4f5cac" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=0dcbe98452b6" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean NOVA","applicationCategory":"BusinessApplication","description":"NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development.","url":"https://binean.com/en/nova/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
+  <script>
+    // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
+    (function () {
+      var theme = null;
+      try {
+        theme = localStorage.getItem('benova-theme');
+      } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body class="model-body">
+  <div class="site-notice" role="status">
+    <div class="shell notice-inner">
+      <span class="notice-dot" aria-hidden="true"></span>
+      <p>NOVA is being completed for early release. Component readiness is described in the current status section.</p>
+      <a href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Business%20capability%20assessment">Discuss your scope</a>
+    </div>
+  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../en/" aria-label="Binean NOVA">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="logo-dark" src="../../assets/images/binean-dark.svg" alt="" width="60" height="60" />
+          <img class="logo-light" src="../../assets/images/binean.svg" alt="" width="60" height="60" />
+        </span>
+        <span class="brand-name">Binean NOVA</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#architecture">Overview</a></li>
+          <li><a href="#flow">Request flow</a></li>
+          <li><a href="#components">Components</a></li>
+          <li><a href="#status">Status</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Choose language">
+          <a
+            href="../../nova/"
+            lang="vi"
+            hreflang="vi"
+            title="Tiếng Việt"
+          >VI</a>
+          <a
+            href="../../en/nova/"
+            lang="en"
+            hreflang="en"
+            title="English"
+            aria-current="page"
+          >EN</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch between light and dark"
+          title="Switch between light and dark"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <a class="btn btn-primary btn-sm header-cta" href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Business%20capability%20assessment">Assess with NOVA</a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-label-open="Open menu"
+          data-label-close="Close menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="model-page">
+    <section class="model-hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="shell">
+        <div class="model-hero-copy">
+          <a class="ech-back" href="../../en/">← Back to BENOVA</a>
+          <p class="eyebrow reveal">Early release package: Nexus · Orbit · Vista · Aster</p>
+          <h1 class="model-title reveal">Modernize your backend one capability at a time.<span>Preserve existing value. Create room for change.</span></h1>
+          <p class="model-lead reveal">NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, Aster connects the backend, and Nexus supports build and operations.</p>
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary" href="#contact">Assess one business capability</a>
+            <a class="btn btn-ghost" href="#architecture">See the model overview</a>
+          </div>
+          <ul class="model-highlights reveal">
+            <li><span aria-hidden="true">✓</span>One unified workspace</li>
+            <li><span aria-hidden="true">✓</span>Gateways tailored to existing systems</li>
+            <li><span aria-hidden="true">✓</span>Build on existing backend value</li>
+            <li><span aria-hidden="true">✓</span>Adopt and evaluate step by step</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section" id="architecture">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Model overview</p>
+          <h2>A clear path from the user to the backend.</h2>
+          <p class="lead">Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista and Nexus provide the workspace and operations tools for incremental modernization (Strangler Fig).</p>
+        </div>
+<figure class="model-map reveal">
+    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 772" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
+      <title id="model-map-title-desktop">NOVA model diagram</title>
+      <desc id="model-map-desc-desktop">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Nexus provides build and operations tools. Vista connects to Orbit; Echelon adds orchestration for flows needing multiple agents and belongs to a later phase alongside Aira.</desc>
+      <defs>
+        <marker id="model-arrow-desktop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+      <path class="model-map-connection" d="M170 64L170 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M560 64L560 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M340 254L390 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M730 254L780 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M950 392L950 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M560 492L560 528" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+      <g transform="translate(0 0)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">USERS AND CHANNELS</text>
+        <text class="model-map-title" x="76" y="49">Business users</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Web browser</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Other applications</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Integrated systems</text>
+        </g>
+      </g>
+<g transform="translate(0 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">USER WORKSPACE</text>
+        <text class="model-map-title" x="24" y="125">Vista</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Menus, tabs and working views</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Forms, tables and actions</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Secure sign-in through Gateway</text>
+        </g>
+      </g>
+<g transform="translate(390 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">ORCHESTRATION</text>
+        <text class="model-map-title" x="24" y="125">Orbit</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Multiple customizable gateways</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Shared business orchestration</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Auth, timeouts, cancel, load</text>
+        </g>
+      </g>
+<g transform="translate(780 100)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="340" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">BACKEND CONNECTIVITY</text>
+        <text class="model-map-title" x="24" y="125">Aster</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Record-level backend access</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Sessions and process groups</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="292" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Two-way data mapping</text>
+        </g>
+      </g>
+<g transform="translate(0 428)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">BUILD ON EXISTING VALUE</text>
+        <text class="model-map-title" x="76" y="49">Core business backend</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Existing programs</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Existing data stores</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Access and business rules</text>
+        </g>
+      </g>
+<g transform="translate(0 528)" class="model-map-node">
+        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
+        <g transform="translate(16 10)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="76" y="26">SUPPORTING TOOLING</text>
+        <text class="model-map-title" x="76" y="49">Nexus — build and operations</text>
+        <g transform="translate(360 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Incremental backend builds</text>
+        </g>
+<g transform="translate(609 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Environment and data refresh</text>
+        </g>
+<g transform="translate(858 16)">
+          <rect class="model-map-feature" width="237" height="32" rx="9"/>
+          <text class="model-map-body" x="14" y="21">Work inside VS Code</text>
+        </g>
+      </g>
+<g transform="translate(0 628)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="1120" height="144" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">LATER PHASE · STILL PART OF THE OVERALL DESIGN</text><g transform="translate(24 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3-8 4 16 3-8h5"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">MULTI-AGENT</text>
+          <text class="model-map-title" x="62" y="50">Echelon</text>
+          <text class="model-map-body" x="62" y="70">Share tasks across many agents · Balance load, errors per step</text>
+        </g><g transform="translate(568 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4m-2-2h4"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">AI ASSISTANCE</text>
+          <text class="model-map-title" x="62" y="50">Aira</text>
+          <text class="model-map-body" x="62" y="70">Read and summarize documents · A reviewer decides</text>
+        </g></g>
+    </svg>
+    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1956" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
+      <title id="model-map-title-mobile">NOVA model diagram</title>
+      <desc id="model-map-desc-mobile">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Nexus provides build and operations tools. Vista connects to Orbit; Echelon adds orchestration for flows needing multiple agents and belongs to a later phase alongside Aira.</desc>
+      <defs>
+        <marker id="model-arrow-mobile" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
+      </defs>
+      <path class="model-map-connection" d="M180 186L180 222" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 514L180 550" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 842L180 878" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 1170L180 1206" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+<path class="model-map-connection" d="M180 1380L180 1416" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
+      <g transform="translate(20 12)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">USERS AND CHANNELS</text>
+        <text class="model-map-title" x="20" y="86">Business users</text>
+        <text class="model-map-body" x="20" y="110">Web browser</text>
+<text class="model-map-body" x="20" y="132">Other applications</text>
+<text class="model-map-body" x="20" y="154">Integrated systems</text>
+      </g>
+<g transform="translate(20 222)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">USER WORKSPACE</text>
+        <text class="model-map-title" x="24" y="125">Vista</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Menus, tabs and working views</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Forms, tables and actions</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Secure sign-in through Gateway</text>
+        </g>
+      </g>
+<g transform="translate(20 550)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">ORCHESTRATION</text>
+        <text class="model-map-title" x="24" y="125">Orbit</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Multiple customizable gateways</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Shared business orchestration</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Auth, timeouts, cancel, load</text>
+        </g>
+      </g>
+<g transform="translate(20 878)" class="model-map-node is-product">
+        <rect class="model-map-panel" width="320" height="292" rx="22"/>
+        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
+        <g transform="translate(24 24)">
+          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="24" y="94">BACKEND CONNECTIVITY</text>
+        <text class="model-map-title" x="24" y="125">Aster</text>
+        <g transform="translate(24 149)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Record-level backend access</text>
+        </g>
+<g transform="translate(24 193)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Sessions and process groups</text>
+        </g>
+<g transform="translate(24 237)">
+          <rect class="model-map-feature" width="272" height="35" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
+          <text class="model-map-body" x="30" y="22">Two-way data mapping</text>
+        </g>
+      </g>
+<g transform="translate(20 1206)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">BUILD ON EXISTING VALUE</text>
+        <text class="model-map-title" x="20" y="86">Core business backend</text>
+        <text class="model-map-body" x="20" y="110">Existing programs</text>
+<text class="model-map-body" x="20" y="132">Existing data stores</text>
+<text class="model-map-body" x="20" y="154">Access and business rules</text>
+      </g>
+<g transform="translate(20 1416)" class="model-map-node">
+        <rect class="model-map-panel" width="320" height="174" rx="18"/>
+        <g transform="translate(20 18)">
+          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
+          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+        </g>
+        <text class="model-map-eyebrow" x="20" y="66">SUPPORTING TOOLING</text>
+        <text class="model-map-title" x="20" y="86">Nexus — build and operations</text>
+        <text class="model-map-body" x="20" y="110">Incremental backend builds</text>
+<text class="model-map-body" x="20" y="132">Environment and data refresh</text>
+<text class="model-map-body" x="20" y="154">Work inside VS Code</text>
+      </g>
+<g transform="translate(20 1626)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="320" height="318" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">LATER PHASE</text>
+<text class="model-map-eyebrow" x="24" y="43">STILL PART OF THE OVERALL DESIGN</text><g transform="translate(16 54)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="118" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3-8 4 16 3-8h5"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">MULTI-AGENT</text>
+          <text class="model-map-title" x="62" y="50">Echelon</text>
+          <text class="model-map-body" x="16" y="76">Share tasks across many agents</text>
+<text class="model-map-body" x="16" y="98">Balance load, errors per step</text>
+        </g><g transform="translate(16 184)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="118" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4m-2-2h4"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">AI ASSISTANCE</text>
+          <text class="model-map-title" x="62" y="50">Aira</text>
+          <text class="model-map-body" x="16" y="76">Read and summarize documents</text>
+<text class="model-map-body" x="16" y="98">A reviewer decides</text>
+        </g></g>
+    </svg>
+    <figcaption>Orbit handles application-facing connections; Aster handles backend-facing connections. Compatibility and transition scope are verified for each business capability.</figcaption>
+  </figure>
+      </div>
+    </section>
+
+    <section class="section model-section" id="flow">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Request flow</p>
+          <h2>Four steps of a request.</h2>
+          <p class="lead">How a request moves through the model.</p>
+        </div>
+        <div class="model-capability-grid">
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span><span class="model-card-number" aria-hidden="true">01</span></div>
+            <h3>Users act in Vista</h3>
+            <p>Choose a function, fill in forms or work with tables; the browser only interacts with the workspace.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></svg></span><span class="model-card-number" aria-hidden="true">02</span></div>
+            <h3>The Gateway forwards securely</h3>
+            <p>The server-side connection layer receives actions from Vista and forwards requests to Orbit under the agreed security configuration.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></svg></span><span class="model-card-number" aria-hidden="true">03</span></div>
+            <h3>Orbit verifies and runs the flow</h3>
+            <p>Validate the token, accept the request into a bounded queue and run the matching business flow.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
+            <h3>Aster works with the backend</h3>
+            <p>Map data into records the backend understands, receive and validate the result, then return a screen or data to Vista.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-capabilities" id="components">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Components</p>
+          <h2>One responsibility per component</h2>
+          <p class="lead">The package has four components, each with its own role and able to change independently.</p>
+        </div>
+        <div class="model-capability-grid">
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></svg></span><span class="model-card-number" aria-hidden="true">01</span></div>
+            <h3>Vista — one unified workspace</h3>
+            <p>Menus, tabs, tables and forms in one working interface, so users can move between business functions without relearning how to work.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5z"/><rect x="9" y="10" width="6" height="5" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></svg></span><span class="model-card-number" aria-hidden="true">02</span></div>
+            <h3>Secure sign-in sessions</h3>
+            <p>The design keeps connection credentials on the server, separate from the user interface. Authentication and session requirements are agreed during integration.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="5" height="6" rx="1"/><rect x="17" y="2" width="5" height="6" rx="1"/><rect x="17" y="16" width="5" height="6" rx="1"/><path d="M7 12h5V5h5m-5 7v7h5"/></svg></span><span class="model-card-number" aria-hidden="true">03</span></div>
+            <h3>Orbit — customizable connection gateways</h3>
+            <p>Customizable ingress gateways adapt to existing application calls and data formats. They share business orchestration, with the aim of limiting changes to connected systems.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7m0 4v7M12 3v12m0 4v2M19 3v2m0 4v12"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
+            <h3>Coordinated business flows</h3>
+            <p>Flows coordinate business steps with time limits, cancellation and load control. Each change is tested against its backend and intended scope of use.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">05</span></div>
+            <h3>Aster — business backend connectivity</h3>
+            <p>Maps data and manages processing sessions through backend connection profiles. Integration testing establishes compatibility for specific versions and business capabilities.</p>
+          </article>
+          <article class="card model-capability-card reveal">
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
+            <h3>Nexus — built-in tooling</h3>
+            <p>Incremental and parallel backend builds; backup, restore and data refresh; moving records to test environments; and a basic VS Code extension.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-performance" id="status">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Value and status</p>
+          <h2>Intended value and current readiness.</h2>
+        </div>
+        <div class="model-performance-grid">
+          <article class="model-performance-card reveal">
+            <span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span>
+            <p class="eyebrow">VALUE</p>
+            <h3>Modernize incrementally and preserve business value</h3>
+            <p>NOVA aims to improve the user experience and expand services while establishing a path to transition individual capabilities. Each step needs verification of correctness, performance and operational requirements; the backend owns business permissions and rules.</p>
+            <ul class="feature-list">
+              <li>Change each layer independently</li>
+              <li>Customize connection gateways to preserve existing integrations</li>
+              <li>Clear boundaries between presentation, coordination and business logic</li>
+            </ul>
+          </article>
+          <article class="model-performance-card reveal">
+            <span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h5l3-8 4 16 3-8h5"/></svg></span>
+            <p class="eyebrow">CURRENT STATUS</p>
+            <h3>Being completed for release</h3>
+            <p>Integration across NOVA components is being completed. NOVA is not yet a generally deployable release.</p>
+            <ul class="feature-list">
+              <li>Orbit: webservice runtime running; shared HTTP/JSON gateway in progress.</li>
+              <li>Vista: application shell in use; sign-in and Orbit integration in progress.</li>
+              <li>Aster: adapter tested in simulation and independently reviewed; validation on real systems is scoped step by step.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="model-note reveal">Assessment scope depends on actual readiness. Echelon and Aira are peer components in a later phase.</p>
+      </div>
+    </section>
+
+    <section class="section model-section" id="adoption">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">When it fits</p>
+          <h2>Start with one business function.</h2>
+          <p class="lead">Worth evaluating when the business wants to expand services on the existing backend and prepare an incremental modernization path.</p>
+        </div>
+        <div class="model-fit reveal">
+          <div>
+            <p class="eyebrow">ASSESSMENT SCOPE</p>
+            <h3>Choose one business function and take it end to end.</h3>
+            <p>Choose one function from the workspace to the backend, together with the build and operations tools it needs. Compare it with the current system against agreed criteria before choosing the next step.</p>
+            <a class="model-text-link" href="#readiness">Common deployment questions <span aria-hidden="true">↗</span></a>
+          </div>
+          <ul>
+            <li><span aria-hidden="true">✓</span>A modern, consistent workspace across several business functions</li>
+            <li><span aria-hidden="true">✓</span>Preserve existing application connections through customizable gateways</li>
+            <li><span aria-hidden="true">✓</span>Expand first, then transition selected capabilities based on verified results</li>
+            <li><span aria-hidden="true">✓</span>Session, timeout and load control in one coordination layer</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section model-section model-readiness" id="readiness">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Deployment questions</p>
+          <h2>What needs to be clear before deployment.</h2>
+        </div>
+        <div class="model-faq">
+          <details class="reveal">
+            <summary>Do we need to replace the entire backend at the outset?</summary>
+            <p>You can begin by connecting existing programs and data through Aster after checking compatibility. The direction is to expand services, then transition individual capabilities when ready; each change needs its own scope and testing.</p>
+          </details>
+          <details class="reveal">
+            <summary>Does Vista replace the current interface immediately?</summary>
+            <p>Not necessarily. Start with one group of functions and run it alongside the current interface.</p>
+          </details>
+          <details class="reveal">
+            <summary>How is Orbit different from a typical API gateway?</summary>
+            <p>Orbit combines customizable connection gateways with shared business orchestration, session management, timeouts and load control. A suitable gateway can preserve existing client calls and data formats; compatibility is verified before adoption.</p>
+          </details>
+          <details class="reveal">
+            <summary>Is Aster a separate product?</summary>
+            <p>Aster is the backend connectivity component within NOVA. Configuration profiles describe compatible backends; keeping Orbit and Vista unchanged when switching backends depends on the contract and test results. Integration scope is confirmed before deployment.</p>
+          </details>
+          <details class="reveal">
+            <summary>Does the demo run on my real system?</summary>
+            <p>The demo uses the bundled reference backend to illustrate processing separately from your running system. Evaluation on a real backend requires compatibility review, a connection profile and an agreed test scope.</p>
+          </details>
+          <details class="reveal">
+            <summary>What happens when a transaction outcome is unclear?</summary>
+            <p>The system stops and reports clearly; it does not replay the transaction automatically. Operations reconcile through the agreed process. A timeout does not mean the transaction was rolled back.</p>
+          </details>
+          <details class="reveal">
+            <summary>What is needed to deploy?</summary>
+            <p>A compatible business backend, servers for Orbit and the Gateway inside the internal network, and acceptance criteria. Versions, security and capacity are agreed per deployment; Orbit is not exposed directly to the internet.</p>
+          </details>
+          <details class="reveal">
+            <summary>Where does Echelon fit in the model?</summary>
+            <p>Echelon is a peer component in a later phase. Vista connects to Orbit; Echelon adds orchestration when a flow needs task sharing across multiple agents, load balancing or per-step error handling.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="contact">
+      <div class="shell">
+        <div class="cta-box reveal">
+          <h2>Define an assessment scope with NOVA.</h2>
+          <p class="lead">Share a capability to improve and the connections to preserve. Agree on a baseline, acceptance criteria and requirements for the next delivery step.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="mailto:binean.enova@gmail.com?subject=Binean%20NOVA%20-%20Business%20capability%20assessment">Request a capability assessment</a>
+            <a class="btn btn-ghost btn-lg" href="../../en/">Explore BENOVA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">BENOVA</span>
+        <p>Modernize your backend step by step while preserving business value. Expand according to priorities and evaluated results.</p>
+        <p class="footer-company">
+          <span>A product of</span>
+          <img class="logo-dark" src="../../assets/images/binean-full-dark.svg" alt="Binean" width="169" height="65" loading="lazy" />
+          <img class="logo-light" src="../../assets/images/binean-full.svg" alt="Binean" width="169" height="65" loading="lazy" />
+        </p>
+      </div>
+      <nav class="footer-col" aria-label="Products">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="../../en/nova/">NOVA</a></li>
+          <li><a href="../../en/nexus/">Nexus</a></li>
+          <li><a href="../../en/orbit/">Orbit</a></li>
+          <li><a href="../../en/nova/#architecture">Vista</a></li>
+          <li><a href="../../en/nova/#components">Aster</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Explore">
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="../../en/#problem">Your needs</a></li>
+          <li><a href="../../en/#adoption">Get started</a></li>
+          <li><a href="../../en/#benefits">Benefits</a></li>
+          <li><a href="../../en/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:binean.enova@gmail.com?subject=BENOVA%20-%20Lien%20he">binean.enova@gmail.com</a></li>
+        </ul>
+        <p class="footer-contact-note">Connect with Binean by email.</p>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <p>© 2026 BENOVA. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js?v=1d8d527da61e" defer></script>
+</body>
+</html>

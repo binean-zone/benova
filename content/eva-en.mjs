@@ -1,0 +1,118 @@
+export default {
+  seo: {
+    title: 'Binean EVA — Better collaboration, clearer work',
+    description: 'Track work, reduce fragmented handoffs and keep people in important decisions with EVA. AI assistance is being designed.',
+    keywords: 'Binean EVA, work management, team collaboration, business processes, AI assistance, Echelon, Vista, Aira',
+  },
+  brandName: 'Binean EVA',
+  headerCta: 'Discuss your needs',
+  notice: {
+    text: 'Echelon has working orchestration features, and Vista integration with Orbit is ongoing; integrated qualification continues. Aira is planned AI assistance in design, not a released product.',
+    linkLabel: 'Talk with Binean',
+  },
+  nav: [
+    { href: '#problem', label: 'Your needs' },
+    { href: '#model', label: 'Features' },
+    { href: '#value', label: 'Benefits' },
+    { href: '#applications', label: 'Applications' },
+    { href: '#benova', label: 'BENOVA' },
+  ],
+  hero: {
+    back: 'Back to BENOVA',
+    eyebrow: 'Connected work. Teams in control.',
+    title: 'Fewer fragmented handoffs. More time for decisions.',
+    lead: 'EVA helps teams work toward a clear journey across people and systems: see what needs doing, provide information and follow results. Planned AI assistance aims to prepare content, not replace the accountability of the decision-maker.',
+    primaryCta: { label: 'Explore the features', href: '#model' },
+    secondaryCta: { label: 'Choose your use case', href: '#eva-contact' },
+    outcome: 'The intended value',
+    outcomeText: 'Teams know what is waiting, who needs to participate and what comes next.',
+  },
+  problem: {
+    id: 'problem',
+    eyebrow: 'Everyday needs',
+    title: 'One customer request, too many places to track it.',
+    lead: 'Email, spreadsheets and separate applications can scatter work status. When an update or decision is needed, the team spends extra time reconstructing the context.',
+    items: [
+      { icon: '↗', title: 'Handoffs lose context', desc: 'The next person has to ask for information again, while the customer waits longer for a response.' },
+      { icon: '◎', title: 'Waiting points stay hidden', desc: 'Unclear status and ownership allow small blockers to stretch into long delays.' },
+      { icon: '⌁', title: 'Automation is hard to expand', desc: 'Teams need less repetitive work while keeping important review and decision steps.' },
+    ],
+  },
+  model: {
+    id: 'model',
+    eyebrow: 'EVA capabilities',
+    title: 'Track work. Coordinate action. Expand assistance.',
+    lead: 'Echelon, Vista and the planned Aira capability share a goal: help teams complete work with greater clarity and accountability.',
+    pillars: [
+      {
+        key: 'E', name: 'Echelon', role: 'Tracking and coordination', color: '#ff81c3',
+        desc: 'Give processes a status to follow, identify individual tasks and keep changes versioned for review.',
+        features: ['Inspect process and work progress', 'Manage published versions', 'Combine system tasks and human work'],
+      },
+      {
+        key: 'V', name: 'Vista', role: 'A workspace for your team', color: 'var(--vista)',
+        desc: 'Menus, tabs, forms and tables in one focused workspace; the application shell is usable, with sign-in and Orbit integration in progress.',
+        features: ['Menus, tabs and working tables', 'Forms, tables and actions', 'Secure sign-in through a server-side gateway'],
+      },
+      {
+        key: 'A', name: 'Aira', role: 'AI assistance · in design', color: '#a3e635',
+        desc: 'Planned assistance with initial information processing so the responsible person can focus on review, exceptions and decisions.',
+        features: ['Planned extraction and classification', 'Planned summaries and drafts', 'Not released; content needs checking'],
+      },
+    ],
+    flow: {
+      title: 'A working experience that is easier to follow',
+      caption: 'An illustrative journey for the intended use of EVA. Each integration needs qualification before adoption.',
+      steps: [
+        { num: '01', title: 'Understand the request', desc: 'Know what needs to be completed and which information is required.' },
+        { num: '02', title: 'Coordinate the work', desc: 'People and systems carry out the work suited to them.' },
+        { num: '03', title: 'Review the result', desc: 'Check the content and keep a person accountable for the decision.' },
+        { num: '04', title: 'Follow progress', desc: 'See the current state and pending work to coordinate proactively.' },
+      ],
+    },
+  },
+  value: {
+    id: 'value',
+    eyebrow: 'Customer benefits',
+    title: 'Grow automation while keeping control clear.',
+    lead: 'EVA aims to reduce coordination effort so people can spend more time on quality work and customer service.',
+    items: [
+      { icon: '◫', title: 'Less time searching for status', desc: 'View progress and pending work, giving the team a shared basis for discussion.' },
+      { icon: '✓', title: 'Clear decision ownership', desc: 'Include the parts that need people in the working journey instead of hiding them behind automation.' },
+      { icon: '⇄', title: 'Improve around your priorities', desc: 'Start with a process that takes too much effort and expand only when results meet your needs.' },
+      { icon: '⌂', title: 'Evaluate for your environment', desc: 'Agree on data, access and operational conditions. Private deployment is a direction, not a compliance certification.' },
+    ],
+  },
+  applications: {
+    id: 'applications',
+    eyebrow: 'Intended applications',
+    title: 'Start where coordination takes too much effort.',
+    lead: 'The following situations are evaluation directions, not deployed customer references.',
+    items: [
+      { num: '01', title: 'Case intake and review', desc: 'Help owners see required information, pending additions and the next review step.' },
+      { num: '02', title: 'Coordinate operational work', desc: 'Follow requests across people and systems, identifying pending work to support proactive handovers.' },
+      { num: '03', title: 'Support incident handling', desc: 'Bring work context together and keep ownership clear before consequential actions.' },
+    ],
+    note: 'Each scope needs acceptance criteria and appropriate data-use permissions. Steps involving Aira can only be considered when the AI capability is ready.',
+  },
+  benova: {
+    id: 'benova',
+    eyebrow: 'Within the BENOVA ecosystem',
+    title: 'Connect effective teamwork with your business system.',
+    lead: 'BENOVA aims to combine the work-management experience of EVA with the NOVA package. Integration is evaluated by scope, not presented as an already deployed core transformation.',
+    formula: [
+      { name: 'EVA', desc: 'Work coordination and visibility' },
+      { name: 'Nexus + Orbit + Vista + Aster', desc: 'Interface, orchestration and backend connectivity' },
+      { name: 'BENOVA', desc: 'Value for insurance businesses' },
+    ],
+    cta: { label: 'Explore BENOVA', href: '' },
+  },
+  cta: {
+    id: 'eva-contact',
+    title: 'How does your team hand work over today?',
+    lead: 'Share a process that tends to wait or needs tracking across too many places. Choose a scope to evaluate the benefits of EVA together.',
+    label: 'Discuss EVA',
+    subject: 'EVA - Discuss our needs',
+    back: 'View BENOVA',
+  },
+};

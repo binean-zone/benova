@@ -1,0 +1,118 @@
+export default {
+  seo: {
+    title: 'Binean EVA — Đội ngũ phối hợp tốt hơn, công việc rõ ràng hơn',
+    description: 'Theo dõi công việc, giảm bàn giao rời rạc và giữ con người ở quyết định quan trọng cùng EVA. Khả năng hỗ trợ AI đang được thiết kế.',
+    keywords: 'Binean EVA, quản lý công việc, phối hợp đội ngũ, quy trình nghiệp vụ, AI hỗ trợ, Echelon, Vista, Aira',
+  },
+  brandName: 'Binean EVA',
+  headerCta: 'Trao đổi nhu cầu',
+  notice: {
+    text: 'Echelon đã có chức năng điều phối, đang tiếp tục kiểm định; Vista đang tích hợp với Orbit. Aira là hướng hỗ trợ AI đang được thiết kế, chưa phát hành.',
+    linkLabel: 'Trao đổi cùng Binean',
+  },
+  nav: [
+    { href: '#bai-toan', label: 'Nhu cầu' },
+    { href: '#mo-hinh', label: 'Tính năng' },
+    { href: '#gia-tri', label: 'Lợi ích' },
+    { href: '#ung-dung', label: 'Ứng dụng' },
+    { href: '#benova', label: 'BENOVA' },
+  ],
+  hero: {
+    back: 'Về BENOVA',
+    eyebrow: 'Công việc kết nối. Đội ngũ chủ động.',
+    title: 'Bớt bàn giao rời rạc. Thêm thời gian cho quyết định.',
+    lead: 'EVA giúp đội ngũ hướng đến một hành trình làm việc rõ ràng qua con người và hệ thống: xem việc cần làm, cung cấp thông tin và theo dõi kết quả. Khả năng AI dự kiến hỗ trợ chuẩn bị nội dung, không thay thế trách nhiệm của người quyết định.',
+    primaryCta: { label: 'Khám phá tính năng', href: '#mo-hinh' },
+    secondaryCta: { label: 'Chọn bài toán của bạn', href: '#lien-he-eva' },
+    outcome: 'Giá trị hướng tới',
+    outcomeText: 'Đội ngũ biết việc gì đang chờ, ai cần tham gia và đâu là bước tiếp theo.',
+  },
+  problem: {
+    id: 'bai-toan',
+    eyebrow: 'Nhu cầu thực tế',
+    title: 'Một yêu cầu của khách hàng, nhiều nơi phải theo dõi.',
+    lead: 'Email, bảng tính và các ứng dụng riêng lẻ có thể khiến trạng thái công việc bị phân tán. Khi cần cập nhật hoặc ra quyết định, đội ngũ phải dành thêm thời gian thu thập lại bối cảnh.',
+    items: [
+      { icon: '↗', title: 'Bàn giao thiếu bối cảnh', desc: 'Người tiếp nhận phải hỏi lại thông tin, khách hàng phải chờ lâu hơn để nhận phản hồi.' },
+      { icon: '◎', title: 'Khó thấy điểm đang chờ', desc: 'Không rõ việc đang nằm ở đâu và ai cần hành động khiến những vướng mắc nhỏ kéo dài.' },
+      { icon: '⌁', title: 'Khó mở rộng tự động hóa', desc: 'Đội ngũ cần giảm việc lặp lại nhưng vẫn giữ những bước xem xét và quyết định quan trọng.' },
+    ],
+  },
+  model: {
+    id: 'mo-hinh',
+    eyebrow: 'Khả năng của EVA',
+    title: 'Theo dõi công việc. Phối hợp xử lý. Mở rộng hỗ trợ.',
+    lead: 'Echelon, Vista và hướng phát triển Aira cùng phục vụ một mục tiêu: giúp đội ngũ hoàn thành công việc rõ ràng và có trách nhiệm hơn.',
+    pillars: [
+      {
+        key: 'E', name: 'Echelon', role: 'Theo dõi và điều phối', color: '#ff81c3',
+        desc: 'Giúp quy trình có trạng thái để theo dõi, từng công việc được nhận diện và thay đổi có phiên bản để rà soát.',
+        features: ['Xem tiến độ quy trình và công việc', 'Quản lý phiên bản đã công bố', 'Kết hợp công việc hệ thống và con người'],
+      },
+      {
+        key: 'V', name: 'Vista', role: 'Bàn làm việc cho đội ngũ', color: 'var(--vista)',
+        desc: 'Menu, tab, biểu mẫu và bảng trong một không gian làm việc tập trung; khung ứng dụng đã dùng được, đang tích hợp đăng nhập và gọi Orbit.',
+        features: ['Menu, tab và bảng làm việc', 'Biểu mẫu, bảng và thao tác', 'Đăng nhập an toàn qua Gateway phía máy chủ'],
+      },
+      {
+        key: 'A', name: 'Aira', role: 'AI hỗ trợ · đang thiết kế', color: '#a3e635',
+        desc: 'Hướng hỗ trợ xử lý thông tin ban đầu để người phụ trách tập trung vào xem xét, xử lý ngoại lệ và quyết định.',
+        features: ['Dự kiến trích xuất và phân loại thông tin', 'Dự kiến tóm tắt và chuẩn bị bản nháp', 'Chưa phát hành; nội dung cần được kiểm tra'],
+      },
+    ],
+    flow: {
+      title: 'Một trải nghiệm làm việc dễ theo dõi hơn',
+      caption: 'Hành trình minh họa cho mục tiêu sử dụng EVA. Phạm vi cụ thể được kiểm định cùng từng tích hợp trước khi áp dụng.',
+      steps: [
+        { num: '01', title: 'Nắm yêu cầu', desc: 'Biết công việc cần hoàn thành và thông tin cần có.' },
+        { num: '02', title: 'Phối hợp xử lý', desc: 'Người phụ trách và hệ thống thực hiện phần việc phù hợp.' },
+        { num: '03', title: 'Xem xét kết quả', desc: 'Kiểm tra nội dung và giữ người chịu trách nhiệm cho quyết định.' },
+        { num: '04', title: 'Theo dõi tiến độ', desc: 'Nắm trạng thái và công việc còn chờ để chủ động phối hợp.' },
+      ],
+    },
+  },
+  value: {
+    id: 'gia-tri',
+    eyebrow: 'Lợi ích khách hàng',
+    title: 'Tự động hóa tăng dần, quyền kiểm soát vẫn rõ ràng.',
+    lead: 'EVA hướng đến giảm công sức phối hợp để con người dành thêm thời gian cho chất lượng xử lý và phục vụ khách hàng.',
+    items: [
+      { icon: '◫', title: 'Bớt thời gian tìm trạng thái', desc: 'Xem tiến độ và công việc đang chờ, có cơ sở thông tin chung khi trao đổi trong đội ngũ.' },
+      { icon: '✓', title: 'Rõ trách nhiệm quyết định', desc: 'Những phần cần con người được đưa vào hành trình xử lý, không bị che khuất bởi tự động hóa.' },
+      { icon: '⇄', title: 'Cải thiện theo ưu tiên', desc: 'Bắt đầu từ một quy trình đang tốn công sức và chỉ mở rộng khi kết quả đáp ứng nhu cầu.' },
+      { icon: '⌂', title: 'Đánh giá theo môi trường của bạn', desc: 'Thống nhất điều kiện dữ liệu, quyền truy cập và vận hành phù hợp. Triển khai riêng là định hướng, không phải chứng nhận tuân thủ.' },
+    ],
+  },
+  applications: {
+    id: 'ung-dung',
+    eyebrow: 'Hướng ứng dụng',
+    title: 'Bắt đầu ở nơi đội ngũ đang mất nhiều công sức phối hợp.',
+    lead: 'Các tình huống dưới đây là hướng đánh giá, không phải minh chứng khách hàng đã triển khai.',
+    items: [
+      { num: '01', title: 'Tiếp nhận và xem xét hồ sơ', desc: 'Giúp người phụ trách nắm thông tin cần có, phần đang chờ bổ sung và bước cần xem xét tiếp theo.' },
+      { num: '02', title: 'Phối hợp công việc vận hành', desc: 'Theo dõi yêu cầu qua nhiều người và hệ thống, nhận biết phần việc đang chờ để chủ động bàn giao.' },
+      { num: '03', title: 'Hỗ trợ xử lý sự cố', desc: 'Tập hợp bối cảnh công việc và giữ rõ người có trách nhiệm xem xét trước hành động quan trọng.' },
+    ],
+    note: 'Mỗi phạm vi cần tiêu chí nghiệm thu và quyền sử dụng dữ liệu phù hợp. Các bước có Aira chỉ được xem xét khi khả năng AI đã sẵn sàng.',
+  },
+  benova: {
+    id: 'benova',
+    eyebrow: 'Trong hệ sinh thái BENOVA',
+    title: 'Kết nối cách làm việc nhóm hiệu quả với hệ thống nghiệp vụ của bạn.',
+    lead: 'BENOVA hướng đến kết hợp trải nghiệm quản lý công việc của EVA với gói NOVA. Việc tích hợp được đánh giá theo từng phạm vi, chưa phải một dự án chuyển đổi core đã triển khai.',
+    formula: [
+      { name: 'EVA', desc: 'Phối hợp và theo dõi công việc' },
+      { name: 'Nexus + Orbit + Vista + Aster', desc: 'Giao diện, điều phối và kết nối backend' },
+      { name: 'BENOVA', desc: 'Giá trị cho doanh nghiệp bảo hiểm' },
+    ],
+    cta: { label: 'Khám phá BENOVA', href: '' },
+  },
+  cta: {
+    id: 'lien-he-eva',
+    title: 'Đội ngũ của bạn đang bàn giao công việc như thế nào?',
+    lead: 'Chia sẻ một quy trình hay bị chờ hoặc phải theo dõi qua nhiều nơi. Cùng chọn phạm vi để đánh giá lợi ích của EVA.',
+    label: 'Trao đổi về EVA',
+    subject: 'EVA - Trao doi nhu cau',
+    back: 'Xem BENOVA',
+  },
+};

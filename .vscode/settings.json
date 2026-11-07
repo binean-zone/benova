@@ -1,0 +1,15 @@
+{
+    "terminal.integrated.env.windows": {
+        "CARGO_HTTP_CHECK_REVOKE": "false"
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "chat.tools.terminal.autoApprove": {
+        "Set-Content": true,
+        "Get-Item": true,
+        "ForEach-Object": true,
+        "/^npm install$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
