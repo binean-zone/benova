@@ -58,7 +58,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'Công cụ build và vận hành', ...planetVisuals.N },
       { key: 'O', name: 'Orbit', desc: 'Điều phối yêu cầu và nghiệp vụ', ...planetVisuals.O },
       { key: 'V', name: 'Vista', desc: 'Không gian làm việc cho người dùng', ...planetVisuals.V },
-      { key: 'A', name: 'Aster', desc: 'Backend demo', ...planetVisuals.A },
+      { key: 'A', name: 'Aira', desc: 'Hỗ trợ AI cho công việc', ...planetVisuals.Ai },
       { key: 'E', name: 'Echelon', desc: 'Điều phối đa tác nhân', ...planetVisuals.E },
     ],
   },

@@ -58,7 +58,7 @@ export default {
       { key: 'N', name: 'Nexus', desc: 'Build and operations tooling', ...planetVisuals.N },
       { key: 'O', name: 'Orbit', desc: 'Coordinate requests and business flows', ...planetVisuals.O },
       { key: 'V', name: 'Vista', desc: 'A workspace for users', ...planetVisuals.V },
-      { key: 'A', name: 'Aster', desc: 'Demonstration backend', ...planetVisuals.A },
+      { key: 'A', name: 'Aira', desc: 'AI assistance for work', ...planetVisuals.Ai },
       { key: 'E', name: 'Echelon', desc: 'Multi-agent orchestration', ...planetVisuals.E },
     ],
   },
