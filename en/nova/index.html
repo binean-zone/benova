@@ -30,7 +30,7 @@
        chắc chắn cần để chữ không nhảy font giữa chừng. -->
   <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/css/fonts.css?v=39eccc4f5cac" />
-  <link rel="stylesheet" href="../../assets/css/style.css?v=75ee656fa3bf" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=261ab3a596f6" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean NOVA","applicationCategory":"BusinessApplication","description":"NOVA aims to expand services and modernize backends incrementally, combining a workspace, request orchestration and a demonstration backend. The early-release package is in development.","url":"https://binean.com/en/nova/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
   <script>
     // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
@@ -130,7 +130,7 @@
           <a class="ech-back" href="../../en/">← Back to BENOVA</a>
           <p class="eyebrow reveal">Early release package: Orbit · Vista · Aster</p>
           <h1 class="model-title reveal">Modernize your backend one capability at a time.<span>Preserve existing value. Create room for change.</span></h1>
-          <p class="model-lead reveal">NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests and works directly with your existing backend, and Aster is a demonstration backend whose implementation is being planned. Nexus, the build and operations toolkit, joins in a later phase.</p>
+          <p class="model-lead reveal">NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests and is designed to work with many different existing systems, and Aster is an independent demonstration backend that does not use a running system; its implementation is being planned. Nexus, the build and operations toolkit, joins in a later phase.</p>
           <div class="hero-actions reveal">
             <a class="btn btn-primary" href="#contact">Assess one business capability</a>
             <a class="btn btn-ghost" href="#architecture">See the model overview</a>
@@ -150,19 +150,19 @@
         <div class="section-head reveal">
           <p class="eyebrow">Model overview</p>
           <h2>A clear path from the user to the backend.</h2>
-          <p class="lead">Orbit adapts how application requests are received and works directly with the existing backend. Vista provides the workspace for incremental modernization (Strangler Fig). Aster is an independent demonstration backend. Nexus build and operations tools belong to a later phase.</p>
+          <p class="lead">Orbit adapts how application requests are received and is designed to work with many different existing systems. Vista provides the workspace for incremental modernization (Strangler Fig). Aster is an independent demonstration backend that does not use a running system. Nexus build and operations tools belong to a later phase.</p>
         </div>
 <figure class="model-map reveal">
-    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 728" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
+    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 864" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
       <title id="model-map-title-desktop">NOVA model diagram</title>
-      <desc id="model-map-desc-desktop">The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works directly with the existing business backend. Aster is an independent demonstration backend whose implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
+      <desc id="model-map-desc-desktop">The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works with many different existing systems. Aster is an independent demonstration backend that does not use a running system; its implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
       <defs>
         <marker id="model-arrow-desktop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
-      <path class="model-map-connection" d="M170 64L170 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M560 64L560 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M340 254L390 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M560 392L560 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+      <path class="model-map-connection" d="M365 64L365 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M755 64L755 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M535 254L585 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M755 392L755 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
       <g transform="translate(0 0)" class="model-map-node">
         <rect class="model-map-panel" width="1120" height="64" rx="18"/>
         <g transform="translate(16 10)">
@@ -184,7 +184,7 @@
           <text class="model-map-body" x="14" y="21">Integrated systems</text>
         </g>
       </g>
-<g transform="translate(0 100)" class="model-map-node is-product">
+<g transform="translate(195 100)" class="model-map-node is-product">
         <rect class="model-map-panel" width="340" height="292" rx="22"/>
         <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
         <g transform="translate(24 24)">
@@ -209,7 +209,7 @@
           <text class="model-map-body" x="30" y="22">Secure sign-in through Gateway</text>
         </g>
       </g>
-<g transform="translate(390 100)" class="model-map-node is-product">
+<g transform="translate(585 100)" class="model-map-node is-product">
         <rect class="model-map-panel" width="340" height="292" rx="22"/>
         <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
         <g transform="translate(24 24)">
@@ -234,53 +234,32 @@
           <text class="model-map-body" x="30" y="22">Auth, timeouts, cancel, load</text>
         </g>
       </g>
-<g transform="translate(780 100)" class="model-map-node is-product">
-        <rect class="model-map-panel" width="340" height="292" rx="22"/>
-        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
-        <g transform="translate(24 24)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="24" y="94">DEMONSTRATION BACKEND</text>
-        <text class="model-map-title" x="24" y="125">Aster</text>
-        <g transform="translate(24 149)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">An independent demo backend</text>
-        </g>
-<g transform="translate(24 193)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Separate from running systems</text>
-        </g>
-<g transform="translate(24 237)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Implementation being planned</text>
-        </g>
-      </g>
-<g transform="translate(0 428)" class="model-map-node">
-        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
-        <g transform="translate(16 10)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="76" y="26">BUILD ON EXISTING VALUE</text>
-        <text class="model-map-title" x="76" y="49">Core business backend</text>
-        <g transform="translate(360 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Existing programs</text>
-        </g>
-<g transform="translate(609 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Existing data stores</text>
-        </g>
-<g transform="translate(858 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Access and business rules</text>
-        </g>
-      </g>
-<g transform="translate(0 528)" class="model-map-node is-later-box">
+<g transform="translate(0 428)" class="model-map-node is-tier-box">
+        <rect class="model-map-tier-box" width="1120" height="200" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">BACKENDS ORBIT WORKS WITH</text><g transform="translate(24 44)" class="model-map-node">
+          <rect class="model-map-panel" width="528" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BUILD ON EXISTING VALUE</text>
+          <text class="model-map-title" x="62" y="50">Existing backend</text>
+          <text class="model-map-body" x="16" y="76">Existing programs</text>
+<text class="model-map-body" x="16" y="98">Existing data stores</text>
+<text class="model-map-body" x="16" y="120">Access and business rules</text>
+        </g><g transform="translate(568 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">INDEPENDENT DEMO BACKEND</text>
+          <text class="model-map-title" x="62" y="50">Aster</text>
+          <text class="model-map-body" x="16" y="76">Runs apart from live systems</text>
+<text class="model-map-body" x="16" y="98">Used for demonstrations</text>
+<text class="model-map-body" x="16" y="120">Implementation being planned</text>
+        </g></g>
+<g transform="translate(0 664)" class="model-map-node is-later-box">
         <rect class="model-map-later-box" width="1120" height="200" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">LATER PHASE · STILL PART OF THE OVERALL DESIGN</text><g transform="translate(24 44)" class="model-map-node is-later">
           <rect class="model-map-panel" width="346" height="140" rx="16"/>
@@ -315,9 +294,9 @@
 <text class="model-map-body" x="16" y="98">A reviewer decides</text>
         </g></g>
     </svg>
-    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1898" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
+    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1742" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
       <title id="model-map-title-mobile">NOVA model diagram</title>
-      <desc id="model-map-desc-mobile">The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works directly with the existing business backend. Aster is an independent demonstration backend whose implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
+      <desc id="model-map-desc-mobile">The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works with many different existing systems. Aster is an independent demonstration backend that does not use a running system; its implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
       <defs>
         <marker id="model-arrow-mobile" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
@@ -386,44 +365,32 @@
           <text class="model-map-body" x="30" y="22">Auth, timeouts, cancel, load</text>
         </g>
       </g>
-<g transform="translate(20 878)" class="model-map-node">
-        <rect class="model-map-panel" width="320" height="174" rx="18"/>
-        <g transform="translate(20 18)">
-          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="20" y="66">BUILD ON EXISTING VALUE</text>
-        <text class="model-map-title" x="20" y="86">Core business backend</text>
-        <text class="model-map-body" x="20" y="110">Existing programs</text>
-<text class="model-map-body" x="20" y="132">Existing data stores</text>
-<text class="model-map-body" x="20" y="154">Access and business rules</text>
-      </g>
-<g transform="translate(20 1088)" class="model-map-node is-product">
-        <rect class="model-map-panel" width="320" height="292" rx="22"/>
-        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
-        <g transform="translate(24 24)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="24" y="94">DEMONSTRATION BACKEND</text>
-        <text class="model-map-title" x="24" y="125">Aster</text>
-        <g transform="translate(24 149)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">An independent demo backend</text>
-        </g>
-<g transform="translate(24 193)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Separate from running systems</text>
-        </g>
-<g transform="translate(24 237)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Implementation being planned</text>
-        </g>
-      </g>
-<g transform="translate(20 1416)" class="model-map-node is-later-box">
+<g transform="translate(20 878)" class="model-map-node is-tier-box">
+        <rect class="model-map-tier-box" width="320" height="346" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">BACKENDS ORBIT WORKS WITH</text><g transform="translate(16 38)" class="model-map-node">
+          <rect class="model-map-panel" width="288" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BUILD ON EXISTING VALUE</text>
+          <text class="model-map-title" x="62" y="50">Existing backend</text>
+          <text class="model-map-body" x="16" y="76">Existing programs</text>
+<text class="model-map-body" x="16" y="98">Existing data stores</text>
+<text class="model-map-body" x="16" y="120">Access and business rules</text>
+        </g><g transform="translate(16 190)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">INDEPENDENT DEMO BACKEND</text>
+          <text class="model-map-title" x="62" y="50">Aster</text>
+          <text class="model-map-body" x="16" y="76">Runs apart from live systems</text>
+<text class="model-map-body" x="16" y="98">Used for demonstrations</text>
+<text class="model-map-body" x="16" y="120">Implementation being planned</text>
+        </g></g>
+<g transform="translate(20 1260)" class="model-map-node is-later-box">
         <rect class="model-map-later-box" width="320" height="470" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">LATER PHASE</text>
 <text class="model-map-eyebrow" x="24" y="43">STILL PART OF THE OVERALL DESIGN</text><g transform="translate(16 54)" class="model-map-node is-later">
@@ -459,7 +426,7 @@
 <text class="model-map-body" x="16" y="98">A reviewer decides</text>
         </g></g>
     </svg>
-    <figcaption>Orbit handles application-facing connections and works with the existing backend; Aster is a demonstration backend, separate from running systems. Compatibility and transition scope are verified for each business capability.</figcaption>
+    <figcaption>Orbit handles application-facing connections and works with many different existing systems; in demos, Aster runs independently so live systems are not used. Compatibility and transition scope are verified for each business capability.</figcaption>
   </figure>
       </div>
     </section>
@@ -489,8 +456,8 @@
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
-            <h3>The backend handles the work</h3>
-            <p>Orbit passes the request to the existing business backend, receives and checks the result, then returns a screen or data to Vista.</p>
+            <h3>The existing backend handles the work</h3>
+            <p>Orbit passes the request to the existing backend (or to Aster in demos), receives and checks the result, then returns a screen or data to Vista.</p>
           </article>
         </div>
       </div>
@@ -526,8 +493,8 @@
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">05</span></div>
-            <h3>Aster — demonstration backend</h3>
-            <p>An independent demonstration backend that shows the working flow, separate from running systems. Aster is being planned for implementation.</p>
+            <h3>Aster — independent demo backend</h3>
+            <p>An independent demonstration backend that lets the working flow be shown without using a running system. Aster is being planned for implementation.</p>
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7m0 4v7M12 3v12m0 4v2M19 3v2m0 4v12"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
@@ -617,7 +584,7 @@
           </details>
           <details class="reveal">
             <summary>What is Aster?</summary>
-            <p>Aster is the demonstration backend within NOVA. It is an independent item whose implementation is being planned. It is not a component that connects to the business backend; having Orbit work with a real backend needs compatibility review and an agreed test scope before deployment.</p>
+            <p>Orbit is designed to work with many different existing systems. A live system cannot always be used for demonstrations, so Aster was created as an independent demonstration backend. Aster is a separate item within NOVA and its implementation is being planned; having Orbit work with a real backend needs compatibility review and an agreed test scope before deployment.</p>
           </details>
           <details class="reveal">
             <summary>Does the demo run on my real system?</summary>

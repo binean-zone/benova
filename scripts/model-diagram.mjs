@@ -22,8 +22,9 @@ export const modelIcon = (name) => {
 
 /**
  * Sơ đồ tổng quan NOVA. Dữ liệu `d`:
- *   users, backend               — dải ngang (eyebrow, title, lines)
- *   vista, orbit, aster          — ba thành phần chính (eyebrow, title, lines)
+ *   users                        — dải ngang (eyebrow, title, lines)
+ *   vista, orbit                 — hai thành phần chính (eyebrow, title, lines)
+ *   tier: { label }, legacy, aster — tầng backend: backend hiện có và Aster (backend demo độc lập)
  *   later: { label, nexus, echelon, aira } — giai đoạn sau, vẽ nét đứt
  */
 export function modelDiagram(d, esc) {
@@ -96,33 +97,34 @@ export function modelDiagram(d, esc) {
     const connector = (x1, y1, x2, y2) =>
       links.push(`<path class="model-map-connection" d="M${x1} ${y1}L${x2} ${y2}" marker-start="url(#model-arrow-${suffix})" marker-end="url(#model-arrow-${suffix})"/>`);
 
-    /* Giai đoạn sau: khung nét đứt chứa Nexus, Echelon và Aira. */
-    const later = (y) => {
-      const items = [d.later.nexus, d.later.echelon, d.later.aira];
-      const ic = ['code', 'activity', 'spark'];
-      const maxLines = Math.max(...items.map((n) => n.lines.length));
-      // Desktop: ba ô cùng chiều cao; mobile: mỗi ô theo số dòng của nó.
+    /* Khung nhóm: nhãn ở trên, các nút xếp bên trong. Mỗi nút là { n, ic, cls }.
+       - later: khung nét đứt của giai đoạn sau (Nexus, Echelon, Aira).
+       - tier:  khung liền của tầng backend mà Orbit làm việc cùng; Aster là nút nét đứt
+                vì là backend demo độc lập, không dùng hệ thống đang vận hành. */
+    const group = (y, label, items, boxClass, rectClass) => {
+      const maxLines = Math.max(...items.map(({ n }) => n.lines.length));
+      // Desktop: các ô cùng chiều cao; mobile: mỗi ô theo số dòng của nó.
       const nodeH = (n) => 74 + (mobile ? n.lines.length : maxLines) * 22;
-      const inner = mobile ? items.reduce((s, n) => s + nodeH(n) + 12, 0) : nodeH(items[0]) + 12;
+      const inner = mobile ? items.reduce((sum, { n }) => sum + nodeH(n) + 12, 0) : nodeH(items[0].n) + 12;
       // Nhãn dài được tách theo dấu "·" thành nhiều dòng trên mobile để không tràn khung.
-      const labelLines = mobile ? d.later.label.split(' · ') : [d.later.label];
+      const labelLines = mobile ? label.split(' · ') : [label];
       const headerH = mobile ? 14 + labelLines.length * 16 + 8 : 44;
       const total = headerH + inner + 4;
       const x0 = mobile ? 20 : 0;
       const w0 = mobile ? 320 : W;
-      let out = `<g transform="translate(${x0} ${y})" class="model-map-node is-later-box">
-        <rect class="model-map-later-box" width="${w0}" height="${total}" rx="22"/>
+      let out = `<g transform="translate(${x0} ${y})" class="model-map-node ${boxClass}">
+        <rect class="${rectClass}" width="${w0}" height="${total}" rx="22"/>
         ${labelLines.map((line, i) => `<text class="model-map-eyebrow" x="24" y="${27 + i * 16}">${esc(line)}</text>`).join('\n')}`;
       let cy = headerH;
-      items.forEach((n, i) => {
+      items.forEach(({ n, ic, cls }, i) => {
         const nw = mobile ? w0 - 32 : Math.floor((w0 - 48 - 16 * (items.length - 1)) / items.length);
         const nx = mobile ? 16 : 24 + i * (nw + 16);
         const h = nodeH(n);
-        out += `<g transform="translate(${nx} ${cy})" class="model-map-node is-later">
+        out += `<g transform="translate(${nx} ${cy})" class="model-map-node${cls ? ` ${cls}` : ''}">
           <rect class="model-map-panel" width="${nw}" height="${h}" rx="16"/>
           <g transform="translate(14 14) scale(.82)">
             <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[ic[i]]}</g>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[ic]}</g>
           </g>
           <text class="model-map-eyebrow" x="62" y="28">${esc(n.eyebrow)}</text>
           <text class="model-map-title" x="62" y="50">${esc(n.title)}</text>
@@ -135,22 +137,35 @@ export function modelDiagram(d, esc) {
       return total;
     };
 
+    const tier = (y) =>
+      group(y, d.tier.label, [
+        { n: d.legacy, ic: 'core', cls: '' },
+        { n: d.aster, ic: 'application', cls: 'is-later' },
+      ], 'is-tier-box', 'model-map-tier-box');
+
+    const later = (y) =>
+      group(y, d.later.label, [
+        { n: d.later.nexus, ic: 'code', cls: 'is-later' },
+        { n: d.later.echelon, ic: 'activity', cls: 'is-later' },
+        { n: d.later.aira, ic: 'spark', cls: 'is-later' },
+      ], 'is-later-box', 'model-map-later-box');
+
     if (!mobile) {
       let y = band('users', 0, 'user');
-      const rowB = y + LINK + 0;
+      const rowB = y + LINK;
       const productH = 292;
-      const xs = [0, COL + GAP, 2 * (COL + GAP)];
+      // Hai thành phần chính nằm giữa hàng; Orbit nối xuống tầng backend.
+      const xs = [(W - (2 * COL + GAP)) / 2, (W - (2 * COL + GAP)) / 2 + COL + GAP];
       connector(xs[0] + COL / 2, y, xs[0] + COL / 2, rowB);
       connector(xs[1] + COL / 2, y, xs[1] + COL / 2, rowB);
       product('vista', xs[0], rowB, COL, productH, 'vista');
       product('orbit', xs[1], rowB, COL, productH, 'routing');
-      product('aster', xs[2], rowB, COL, productH, 'application');
       const mid = rowB + 154;
       connector(xs[0] + COL, mid, xs[1], mid);
       y = rowB + productH;
       connector(xs[1] + COL / 2, y, xs[1] + COL / 2, y + LINK);
       y += LINK;
-      y += band('backend', y, 'core');
+      y += tier(y);
       y += LINK;
       y += later(y);
       height = y;
@@ -166,9 +181,7 @@ export function modelDiagram(d, esc) {
       connector(180, y, 180, y + LINK); y += LINK;
       chain('orbit', 'routing');
       connector(180, y, 180, y + LINK); y += LINK;
-      y += band('backend', y, 'core');
-      y += LINK;
-      chain('aster', 'application');
+      y += tier(y);
       y += LINK;
       y += later(y);
       height = y + 12;

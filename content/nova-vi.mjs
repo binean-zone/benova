@@ -22,7 +22,7 @@ export default {
     eyebrow: 'Gói phát hành sớm: Orbit · Vista · Aster',
     title: 'Hiện đại hóa backend theo từng nghiệp vụ.',
     emphasis: 'Giữ giá trị hiện có. Mở đường cho thay đổi.',
-    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối và làm việc trực tiếp với backend hiện có, Aster là backend demo đang lên kế hoạch triển khai. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
+    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối và được thiết kế để làm việc với nhiều hệ thống backend khác nhau, Aster là backend demo độc lập, không dùng hệ thống đang vận hành và đang lên kế hoạch triển khai. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
     primaryCta: { label: 'Đánh giá một nghiệp vụ', href: '#contact' },
     secondaryCta: { label: 'Xem mô hình tổng quan', href: '#architecture' },
     highlights: [
@@ -36,19 +36,22 @@ export default {
     id: 'architecture',
     eyebrow: 'Mô hình tổng quan',
     title: 'Một đường đi rõ ràng từ người dùng đến backend.',
-    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng và làm việc trực tiếp với backend hiện có. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Aster là backend demo độc lập. Công cụ build và vận hành Nexus thuộc giai đoạn sau.',
+    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng và được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Aster là backend demo độc lập, không dùng hệ thống đang vận hành. Công cụ build và vận hành Nexus thuộc giai đoạn sau.',
     diagram: {
       label: 'Sơ đồ mô hình NOVA',
-      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc trực tiếp với backend nghiệp vụ hiện có. Aster là backend demo độc lập, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.',
-      caption: 'Orbit đảm nhận kết nối phía ứng dụng và làm việc với backend hiện có; Aster là backend demo, tách khỏi hệ thống đang vận hành. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.',
+      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc với nhiều hệ thống backend khác nhau. Aster là backend demo độc lập, không dùng hệ thống đang vận hành, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.',
+      caption: 'Orbit đảm nhận kết nối phía ứng dụng và làm việc với nhiều hệ thống backend khác nhau; khi trình diễn, Aster chạy độc lập để không phải dùng hệ thống đang vận hành. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.',
       users: {
         eyebrow: 'NGƯỜI DÙNG VÀ KÊNH',
         title: 'Người dùng nghiệp vụ',
         lines: ['Trình duyệt', 'Ứng dụng khác', 'Hệ thống tích hợp'],
       },
-      backend: {
+      tier: {
+        label: 'BACKEND MÀ ORBIT LÀM VIỆC CÙNG',
+      },
+      legacy: {
         eyebrow: 'GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC',
-        title: 'Backend nghiệp vụ lõi',
+        title: 'Backend hiện có',
         lines: ['Chương trình hiện có', 'Cơ sở dữ liệu hiện có', 'Quyền và quy tắc nghiệp vụ'],
       },
       vista: {
@@ -62,9 +65,9 @@ export default {
         lines: ['Nhiều cổng kết nối tùy biến', 'Điều phối nghiệp vụ dùng chung', 'Xác thực, giới hạn tải, thời gian'],
       },
       aster: {
-        eyebrow: 'BACKEND DEMO',
+        eyebrow: 'BACKEND DEMO ĐỘC LẬP',
         title: 'Aster',
-        lines: ['Backend demo độc lập', 'Tách khỏi hệ thống đang vận hành', 'Đang lên kế hoạch triển khai'],
+        lines: ['Chạy tách khỏi hệ thống thật', 'Dùng để trình diễn', 'Đang lên kế hoạch triển khai'],
       },
       later: {
         label: 'GIAI ĐOẠN SAU · VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN',
@@ -109,8 +112,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Backend xử lý nghiệp vụ',
-        desc: 'Orbit chuyển yêu cầu đến backend nghiệp vụ hiện có, nhận và kiểm tra kết quả rồi trả màn hình hoặc dữ liệu về Vista.',
+        title: 'Backend hiện có xử lý nghiệp vụ',
+        desc: 'Orbit chuyển yêu cầu đến backend hiện có (hoặc Aster khi trình diễn), nhận và kiểm tra kết quả rồi trả màn hình hoặc dữ liệu về Vista.',
       },
     ],
   },
@@ -142,8 +145,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster — backend demo',
-        desc: 'Backend demo độc lập để minh họa luồng làm việc, tách khỏi hệ thống đang vận hành. Aster đang được lên kế hoạch triển khai.',
+        title: 'Aster — backend demo độc lập',
+        desc: 'Backend demo độc lập, minh họa luồng làm việc mà không cần dùng hệ thống đang vận hành. Aster đang được lên kế hoạch triển khai.',
       },
       {
         icon: 'control',
@@ -213,7 +216,7 @@ export default {
       },
       {
         question: 'Aster là gì?',
-        answer: 'Aster là backend demo trong gói NOVA, là hạng mục độc lập và đang được lên kế hoạch triển khai. Aster không phải thành phần kết nối với backend nghiệp vụ; việc Orbit làm việc với backend thực cần rà soát tương thích và thống nhất phạm vi kiểm thử trước khi triển khai.',
+        answer: 'Orbit được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Không phải lúc nào cũng có thể dùng hệ thống đang vận hành để trình diễn, nên Aster được tạo ra như một backend demo độc lập. Aster là hạng mục riêng trong gói NOVA và đang được lên kế hoạch triển khai; việc Orbit làm việc với một backend thật cần rà soát tương thích và thống nhất phạm vi kiểm thử trước khi triển khai.',
       },
       {
         question: 'Demo có chạy trên hệ thống thật của tôi không?',

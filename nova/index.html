@@ -31,7 +31,7 @@
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
   <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=75ee656fa3bf" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=261ab3a596f6" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean NOVA","applicationCategory":"BusinessApplication","description":"NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện làm việc, điều phối yêu cầu và backend demo. Gói phát hành sớm đang hoàn thiện.","url":"https://binean.com/nova/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
   <script>
     // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
@@ -131,7 +131,7 @@
           <a class="ech-back" href="../">← Về BENOVA</a>
           <p class="eyebrow reveal">Gói phát hành sớm: Orbit · Vista · Aster</p>
           <h1 class="model-title reveal">Hiện đại hóa backend theo từng nghiệp vụ.<span>Giữ giá trị hiện có. Mở đường cho thay đổi.</span></h1>
-          <p class="model-lead reveal">NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối và làm việc trực tiếp với backend hiện có, Aster là backend demo đang lên kế hoạch triển khai. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.</p>
+          <p class="model-lead reveal">NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối và được thiết kế để làm việc với nhiều hệ thống backend khác nhau, Aster là backend demo độc lập, không dùng hệ thống đang vận hành và đang lên kế hoạch triển khai. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.</p>
           <div class="hero-actions reveal">
             <a class="btn btn-primary" href="#contact">Đánh giá một nghiệp vụ</a>
             <a class="btn btn-ghost" href="#architecture">Xem mô hình tổng quan</a>
@@ -151,19 +151,19 @@
         <div class="section-head reveal">
           <p class="eyebrow">Mô hình tổng quan</p>
           <h2>Một đường đi rõ ràng từ người dùng đến backend.</h2>
-          <p class="lead">Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng và làm việc trực tiếp với backend hiện có. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Aster là backend demo độc lập. Công cụ build và vận hành Nexus thuộc giai đoạn sau.</p>
+          <p class="lead">Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng và được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Aster là backend demo độc lập, không dùng hệ thống đang vận hành. Công cụ build và vận hành Nexus thuộc giai đoạn sau.</p>
         </div>
 <figure class="model-map reveal">
-    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 728" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
+    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 864" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
       <title id="model-map-title-desktop">Sơ đồ mô hình NOVA</title>
-      <desc id="model-map-desc-desktop">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc trực tiếp với backend nghiệp vụ hiện có. Aster là backend demo độc lập, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.</desc>
+      <desc id="model-map-desc-desktop">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc với nhiều hệ thống backend khác nhau. Aster là backend demo độc lập, không dùng hệ thống đang vận hành, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.</desc>
       <defs>
         <marker id="model-arrow-desktop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
-      <path class="model-map-connection" d="M170 64L170 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M560 64L560 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M340 254L390 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M560 392L560 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+      <path class="model-map-connection" d="M365 64L365 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M755 64L755 100" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M535 254L585 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
+<path class="model-map-connection" d="M755 392L755 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
       <g transform="translate(0 0)" class="model-map-node">
         <rect class="model-map-panel" width="1120" height="64" rx="18"/>
         <g transform="translate(16 10)">
@@ -185,7 +185,7 @@
           <text class="model-map-body" x="14" y="21">Hệ thống tích hợp</text>
         </g>
       </g>
-<g transform="translate(0 100)" class="model-map-node is-product">
+<g transform="translate(195 100)" class="model-map-node is-product">
         <rect class="model-map-panel" width="340" height="292" rx="22"/>
         <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
         <g transform="translate(24 24)">
@@ -210,7 +210,7 @@
           <text class="model-map-body" x="30" y="22">Đăng nhập an toàn qua Gateway</text>
         </g>
       </g>
-<g transform="translate(390 100)" class="model-map-node is-product">
+<g transform="translate(585 100)" class="model-map-node is-product">
         <rect class="model-map-panel" width="340" height="292" rx="22"/>
         <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
         <g transform="translate(24 24)">
@@ -235,53 +235,32 @@
           <text class="model-map-body" x="30" y="22">Xác thực, giới hạn tải, thời gian</text>
         </g>
       </g>
-<g transform="translate(780 100)" class="model-map-node is-product">
-        <rect class="model-map-panel" width="340" height="292" rx="22"/>
-        <rect class="model-map-inset" x="6" y="6" width="328" height="280" rx="17"/>
-        <g transform="translate(24 24)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="24" y="94">BACKEND DEMO</text>
-        <text class="model-map-title" x="24" y="125">Aster</text>
-        <g transform="translate(24 149)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Backend demo độc lập</text>
-        </g>
-<g transform="translate(24 193)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Tách khỏi hệ thống đang vận hành</text>
-        </g>
-<g transform="translate(24 237)">
-          <rect class="model-map-feature" width="292" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Đang lên kế hoạch triển khai</text>
-        </g>
-      </g>
-<g transform="translate(0 428)" class="model-map-node">
-        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
-        <g transform="translate(16 10)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="76" y="26">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
-        <text class="model-map-title" x="76" y="49">Backend nghiệp vụ lõi</text>
-        <g transform="translate(360 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Chương trình hiện có</text>
-        </g>
-<g transform="translate(609 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Cơ sở dữ liệu hiện có</text>
-        </g>
-<g transform="translate(858 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Quyền và quy tắc nghiệp vụ</text>
-        </g>
-      </g>
-<g transform="translate(0 528)" class="model-map-node is-later-box">
+<g transform="translate(0 428)" class="model-map-node is-tier-box">
+        <rect class="model-map-tier-box" width="1120" height="200" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">BACKEND MÀ ORBIT LÀM VIỆC CÙNG</text><g transform="translate(24 44)" class="model-map-node">
+          <rect class="model-map-panel" width="528" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
+          <text class="model-map-title" x="62" y="50">Backend hiện có</text>
+          <text class="model-map-body" x="16" y="76">Chương trình hiện có</text>
+<text class="model-map-body" x="16" y="98">Cơ sở dữ liệu hiện có</text>
+<text class="model-map-body" x="16" y="120">Quyền và quy tắc nghiệp vụ</text>
+        </g><g transform="translate(568 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="528" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BACKEND DEMO ĐỘC LẬP</text>
+          <text class="model-map-title" x="62" y="50">Aster</text>
+          <text class="model-map-body" x="16" y="76">Chạy tách khỏi hệ thống thật</text>
+<text class="model-map-body" x="16" y="98">Dùng để trình diễn</text>
+<text class="model-map-body" x="16" y="120">Đang lên kế hoạch triển khai</text>
+        </g></g>
+<g transform="translate(0 664)" class="model-map-node is-later-box">
         <rect class="model-map-later-box" width="1120" height="200" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">GIAI ĐOẠN SAU · VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN</text><g transform="translate(24 44)" class="model-map-node is-later">
           <rect class="model-map-panel" width="346" height="140" rx="16"/>
@@ -316,9 +295,9 @@
 <text class="model-map-body" x="16" y="98">Người duyệt quyết định</text>
         </g></g>
     </svg>
-    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1898" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
+    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1742" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
       <title id="model-map-title-mobile">Sơ đồ mô hình NOVA</title>
-      <desc id="model-map-desc-mobile">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc trực tiếp với backend nghiệp vụ hiện có. Aster là backend demo độc lập, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.</desc>
+      <desc id="model-map-desc-mobile">Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc với nhiều hệ thống backend khác nhau. Aster là backend demo độc lập, không dùng hệ thống đang vận hành, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.</desc>
       <defs>
         <marker id="model-arrow-mobile" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
@@ -387,44 +366,32 @@
           <text class="model-map-body" x="30" y="22">Xác thực, giới hạn tải, thời gian</text>
         </g>
       </g>
-<g transform="translate(20 878)" class="model-map-node">
-        <rect class="model-map-panel" width="320" height="174" rx="18"/>
-        <g transform="translate(20 18)">
-          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="20" y="66">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
-        <text class="model-map-title" x="20" y="86">Backend nghiệp vụ lõi</text>
-        <text class="model-map-body" x="20" y="110">Chương trình hiện có</text>
-<text class="model-map-body" x="20" y="132">Cơ sở dữ liệu hiện có</text>
-<text class="model-map-body" x="20" y="154">Quyền và quy tắc nghiệp vụ</text>
-      </g>
-<g transform="translate(20 1088)" class="model-map-node is-product">
-        <rect class="model-map-panel" width="320" height="292" rx="22"/>
-        <rect class="model-map-inset" x="6" y="6" width="308" height="280" rx="17"/>
-        <g transform="translate(24 24)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="24" y="94">BACKEND DEMO</text>
-        <text class="model-map-title" x="24" y="125">Aster</text>
-        <g transform="translate(24 149)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Backend demo độc lập</text>
-        </g>
-<g transform="translate(24 193)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Tách khỏi hệ thống đang vận hành</text>
-        </g>
-<g transform="translate(24 237)">
-          <rect class="model-map-feature" width="272" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">Đang lên kế hoạch triển khai</text>
-        </g>
-      </g>
-<g transform="translate(20 1416)" class="model-map-node is-later-box">
+<g transform="translate(20 878)" class="model-map-node is-tier-box">
+        <rect class="model-map-tier-box" width="320" height="346" rx="22"/>
+        <text class="model-map-eyebrow" x="24" y="27">BACKEND MÀ ORBIT LÀM VIỆC CÙNG</text><g transform="translate(16 38)" class="model-map-node">
+          <rect class="model-map-panel" width="288" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC</text>
+          <text class="model-map-title" x="62" y="50">Backend hiện có</text>
+          <text class="model-map-body" x="16" y="76">Chương trình hiện có</text>
+<text class="model-map-body" x="16" y="98">Cơ sở dữ liệu hiện có</text>
+<text class="model-map-body" x="16" y="120">Quyền và quy tắc nghiệp vụ</text>
+        </g><g transform="translate(16 190)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="15" rx="3"/><path d="M8 22h8m-4-4v4M2 8h20m-15-2h.01M10 6h.01"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BACKEND DEMO ĐỘC LẬP</text>
+          <text class="model-map-title" x="62" y="50">Aster</text>
+          <text class="model-map-body" x="16" y="76">Chạy tách khỏi hệ thống thật</text>
+<text class="model-map-body" x="16" y="98">Dùng để trình diễn</text>
+<text class="model-map-body" x="16" y="120">Đang lên kế hoạch triển khai</text>
+        </g></g>
+<g transform="translate(20 1260)" class="model-map-node is-later-box">
         <rect class="model-map-later-box" width="320" height="470" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">GIAI ĐOẠN SAU</text>
 <text class="model-map-eyebrow" x="24" y="43">VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN</text><g transform="translate(16 54)" class="model-map-node is-later">
@@ -460,7 +427,7 @@
 <text class="model-map-body" x="16" y="98">Người duyệt quyết định</text>
         </g></g>
     </svg>
-    <figcaption>Orbit đảm nhận kết nối phía ứng dụng và làm việc với backend hiện có; Aster là backend demo, tách khỏi hệ thống đang vận hành. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.</figcaption>
+    <figcaption>Orbit đảm nhận kết nối phía ứng dụng và làm việc với nhiều hệ thống backend khác nhau; khi trình diễn, Aster chạy độc lập để không phải dùng hệ thống đang vận hành. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.</figcaption>
   </figure>
       </div>
     </section>
@@ -490,8 +457,8 @@
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">04</span></div>
-            <h3>Backend xử lý nghiệp vụ</h3>
-            <p>Orbit chuyển yêu cầu đến backend nghiệp vụ hiện có, nhận và kiểm tra kết quả rồi trả màn hình hoặc dữ liệu về Vista.</p>
+            <h3>Backend hiện có xử lý nghiệp vụ</h3>
+            <p>Orbit chuyển yêu cầu đến backend hiện có (hoặc Aster khi trình diễn), nhận và kiểm tra kết quả rồi trả màn hình hoặc dữ liệu về Vista.</p>
           </article>
         </div>
       </div>
@@ -527,8 +494,8 @@
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 13 4-4m-6 7-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg></span><span class="model-card-number" aria-hidden="true">05</span></div>
-            <h3>Aster — backend demo</h3>
-            <p>Backend demo độc lập để minh họa luồng làm việc, tách khỏi hệ thống đang vận hành. Aster đang được lên kế hoạch triển khai.</p>
+            <h3>Aster — backend demo độc lập</h3>
+            <p>Backend demo độc lập, minh họa luồng làm việc mà không cần dùng hệ thống đang vận hành. Aster đang được lên kế hoạch triển khai.</p>
           </article>
           <article class="card model-capability-card reveal">
             <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7m0 4v7M12 3v12m0 4v2M19 3v2m0 4v12"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
@@ -618,7 +585,7 @@
           </details>
           <details class="reveal">
             <summary>Aster là gì?</summary>
-            <p>Aster là backend demo trong gói NOVA, là hạng mục độc lập và đang được lên kế hoạch triển khai. Aster không phải thành phần kết nối với backend nghiệp vụ; việc Orbit làm việc với backend thực cần rà soát tương thích và thống nhất phạm vi kiểm thử trước khi triển khai.</p>
+            <p>Orbit được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Không phải lúc nào cũng có thể dùng hệ thống đang vận hành để trình diễn, nên Aster được tạo ra như một backend demo độc lập. Aster là hạng mục riêng trong gói NOVA và đang được lên kế hoạch triển khai; việc Orbit làm việc với một backend thật cần rà soát tương thích và thống nhất phạm vi kiểm thử trước khi triển khai.</p>
           </details>
           <details class="reveal">
             <summary>Demo có chạy trên hệ thống thật của tôi không?</summary>

@@ -22,7 +22,7 @@ export default {
     eyebrow: 'Early release package: Orbit · Vista · Aster',
     title: 'Modernize your backend one capability at a time.',
     emphasis: 'Preserve existing value. Create room for change.',
-    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests and works directly with your existing backend, and Aster is a demonstration backend whose implementation is being planned. Nexus, the build and operations toolkit, joins in a later phase.',
+    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests and is designed to work with many different existing systems, and Aster is an independent demonstration backend that does not use a running system; its implementation is being planned. Nexus, the build and operations toolkit, joins in a later phase.',
     primaryCta: { label: 'Assess one business capability', href: '#contact' },
     secondaryCta: { label: 'See the model overview', href: '#architecture' },
     highlights: [
@@ -36,19 +36,22 @@ export default {
     id: 'architecture',
     eyebrow: 'Model overview',
     title: 'A clear path from the user to the backend.',
-    lead: 'Orbit adapts how application requests are received and works directly with the existing backend. Vista provides the workspace for incremental modernization (Strangler Fig). Aster is an independent demonstration backend. Nexus build and operations tools belong to a later phase.',
+    lead: 'Orbit adapts how application requests are received and is designed to work with many different existing systems. Vista provides the workspace for incremental modernization (Strangler Fig). Aster is an independent demonstration backend that does not use a running system. Nexus build and operations tools belong to a later phase.',
     diagram: {
       label: 'NOVA model diagram',
-      description: 'The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works directly with the existing business backend. Aster is an independent demonstration backend whose implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.',
-      caption: 'Orbit handles application-facing connections and works with the existing backend; Aster is a demonstration backend, separate from running systems. Compatibility and transition scope are verified for each business capability.',
+      description: 'The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works with many different existing systems. Aster is an independent demonstration backend that does not use a running system; its implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.',
+      caption: 'Orbit handles application-facing connections and works with many different existing systems; in demos, Aster runs independently so live systems are not used. Compatibility and transition scope are verified for each business capability.',
       users: {
         eyebrow: 'USERS AND CHANNELS',
         title: 'Business users',
         lines: ['Web browser', 'Other applications', 'Integrated systems'],
       },
-      backend: {
+      tier: {
+        label: 'BACKENDS ORBIT WORKS WITH',
+      },
+      legacy: {
         eyebrow: 'BUILD ON EXISTING VALUE',
-        title: 'Core business backend',
+        title: 'Existing backend',
         lines: ['Existing programs', 'Existing data stores', 'Access and business rules'],
       },
       vista: {
@@ -62,9 +65,9 @@ export default {
         lines: ['Multiple customizable gateways', 'Shared business orchestration', 'Auth, timeouts, cancel, load'],
       },
       aster: {
-        eyebrow: 'DEMONSTRATION BACKEND',
+        eyebrow: 'INDEPENDENT DEMO BACKEND',
         title: 'Aster',
-        lines: ['An independent demo backend', 'Separate from running systems', 'Implementation being planned'],
+        lines: ['Runs apart from live systems', 'Used for demonstrations', 'Implementation being planned'],
       },
       later: {
         label: 'LATER PHASE · STILL PART OF THE OVERALL DESIGN',
@@ -109,8 +112,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'The backend handles the work',
-        desc: 'Orbit passes the request to the existing business backend, receives and checks the result, then returns a screen or data to Vista.',
+        title: 'The existing backend handles the work',
+        desc: 'Orbit passes the request to the existing backend (or to Aster in demos), receives and checks the result, then returns a screen or data to Vista.',
       },
     ],
   },
@@ -142,8 +145,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster — demonstration backend',
-        desc: 'An independent demonstration backend that shows the working flow, separate from running systems. Aster is being planned for implementation.',
+        title: 'Aster — independent demo backend',
+        desc: 'An independent demonstration backend that lets the working flow be shown without using a running system. Aster is being planned for implementation.',
       },
       {
         icon: 'control',
@@ -213,7 +216,7 @@ export default {
       },
       {
         question: 'What is Aster?',
-        answer: 'Aster is the demonstration backend within NOVA. It is an independent item whose implementation is being planned. It is not a component that connects to the business backend; having Orbit work with a real backend needs compatibility review and an agreed test scope before deployment.',
+        answer: 'Orbit is designed to work with many different existing systems. A live system cannot always be used for demonstrations, so Aster was created as an independent demonstration backend. Aster is a separate item within NOVA and its implementation is being planned; having Orbit work with a real backend needs compatibility review and an agreed test scope before deployment.',
       },
       {
         question: 'Does the demo run on my real system?',

@@ -32,6 +32,8 @@ Chỉ build mà không chạy server:
 npm run build        # kiểm tra song ngữ rồi sinh trang chủ, các trang sản phẩm và sitemap.xml
 npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
 npm run test:site    # build rồi kiểm 10 trang, liên kết và gói deploy thực tế
+npm run hooks        # bật hook chặn commit/push (một lần mỗi bản clone)
+npm run check:safety # quét từ ngữ không được công khai trong file đang track
 npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
 npm run social       # tạo lại hai ảnh chia sẻ từ headline; cần Chrome cục bộ
 ```
@@ -50,7 +52,7 @@ python3 -m http.server 4173     # rồi mở http://localhost:4173
 
 Trang `nova/` giới thiệu mô hình gói phát hành sớm. Nội dung ở `content/nova-vi.mjs` và `content/nova-en.mjs`
 (khoá `modelPage` trong `vi.mjs`/`en.mjs`); sơ đồ tổng quan inline SVG do
-`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → backend hiện có; Aster là backend demo độc lập; Nexus,
+`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → tầng backend hiện có, với Aster là backend demo độc lập (không dùng hệ thống đang vận hành); Nexus,
 Echelon và Aira vẽ nét đứt cùng nhau ở khung "giai đoạn sau". Desktop và mobile có
 bố cục riêng, nhãn VI/EN, màu theo theme và mô tả cho trình đọc màn hình.
 
@@ -58,9 +60,12 @@ Quy tắc nội dung:
 
 - **NOVA = Orbit + Vista + Aster.** Chữ "B" giữa hệ sao trang chủ là Binean.
 - Không nêu tên sản phẩm, hệ thống hay thương hiệu của bên thứ ba trong nội dung công khai.
-  `site.test.mjs` kiểm danh sách từ cấm trên mọi trang, metadata và sơ đồ.
+  `scripts/check-public-safety.mjs` chặn các từ này trên toàn bộ file được track và trên artifact
+  deploy; `site.test.mjs` quét lại artifact lần cuối. Danh sách mẫu được mã hoá trong script để bản
+  thân guard không công khai tên cần chặn; thêm từ riêng vào `private/forbidden-terms.txt` (đã
+  gitignore) hoặc biến `BENOVA_SAFETY_EXTRA_TERMS`.
 - Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster là backend demo
-  độc lập, đang lên kế hoạch triển khai; NOVA chưa phải bản triển khai đại trà. Không thêm số liệu,
+  độc lập, không dùng hệ thống đang vận hành, đang lên kế hoạch triển khai; NOVA chưa phải bản triển khai đại trà. Không thêm số liệu,
   khách hàng hay lời chứng thực. Không hứa tự phát lại giao dịch hay vận hành không gián đoạn.
 - Strangler Fig là hướng phát triển: mở rộng dịch vụ trên backend hiện có rồi chuyển đổi từng
   năng lực khi đủ điều kiện. Không mô tả cutover tự động hoặc thay backend bằng đổi cấu hình
@@ -76,13 +81,52 @@ build, môi trường và vận hành đã dùng độc lập trong môi trườ
 (`nexus-*.mjs`). Trang `nexus/` có mục "Vị trí trong lộ trình" (`placement`) nói rõ điều này; không mô tả Nexus
 như thành phần của gói phát hành sớm.
 
+### Chặn commit/push chứa nội dung không được công khai
+
+Repository public nên mọi file được track — không chỉ trang deploy — đều có thể bị đọc. Bật hook
+một lần cho mỗi bản clone:
+
+```bash
+npm run hooks
+```
+
+Lệnh này đặt `core.hooksPath=.githooks`. Ba hook:
+
+- `pre-commit` — chỉ quét **dòng được thêm** trong diff đang staged, chặn cả cụm mô tả
+  legacy/stand-in. Không quét lại toàn repo hay toàn file.
+- `commit-msg` — quét commit message, chặn cả cụm mô tả legacy/stand-in.
+- `pre-push` — chỉ quét commit message và dòng thêm của các commit sắp push, chặn cả cụm
+  mô tả legacy/stand-in.
+
+Skill `publish-safety` (`.agents/skills/publish-safety/SKILL.md`) hướng dẫn agent chạy đúng quy
+trình trước commit/push; hook là chốt bắt buộc, không phụ thuộc việc agent có nhớ hay không.
+
+Chạy tay khi cần:
+
+```bash
+git diff --cached --stat                              # xem diff trước
+node scripts/check-public-safety.mjs --diff --strict  # chỉ dòng thêm trong index
+node scripts/check-public-safety.mjs --range origin/main..HEAD --strict
+npm run check:safety          # quét toàn bộ file đang track trong worktree
+npm run check:safety:strict   # như trên, chặn cả cụm legacy/stand-in
+node scripts/check-public-safety.mjs --history  # toàn bộ lịch sử, chỉ khi cần
+```
+
+Thứ tự để giảm tải: `--diff` cho pre-commit → `--pre-push` / `--range` cho push → `--all` hoặc
+`--all --history` chỉ khi rà soát toàn bộ/định kỳ.
+
+CI quét range của push/PR bằng `--range`; khi chạy tay `workflow_dispatch` mới quét toàn bộ
+`--all --history --strict`. Có vi phạm là dừng deploy. Hook có thể bị bỏ qua bằng `--no-verify`,
+nên CI là chốt cuối. Không thêm tên thật vào script dưới dạng plaintext: danh sách mẫu đã mã hoá,
+từ riêng đặt trong `private/forbidden-terms.txt` hoặc `BENOVA_SAFETY_EXTRA_TERMS`.
+
 ### Nguyên tắc nội dung công khai
 
 - Trang chủ dẫn từ bài toán → giá trị → nền tảng → cách đánh giá → liên hệ. Hero tập trung
   ba thành phần NOVA; Echelon và Aira nằm trong mục mở rộng thu gọn ở giai đoạn sau.
-- Orbit tùy biến kết nối phía ứng dụng và làm việc trực tiếp với backend hiện có. Aster là backend demo độc lập
-  (không phải thành phần kết nối), đang lên kế hoạch triển khai; không mô tả Aster như connector hay như
-  thành phần đã kiểm chứng.
+- Orbit tùy biến kết nối phía ứng dụng và được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Aster là
+  backend demo độc lập, không dùng hệ thống đang vận hành, đang lên kế
+  hoạch triển khai; không mô tả Aster như connector hay như thành phần đã kiểm chứng. Không nêu khách hàng cụ thể.
   CTA ưu tiên đề xuất đánh giá một nghiệp vụ, với phạm vi tương thích, tiêu chí kiểm chứng
   và lộ trình tiếp theo; điều kiện pilot được thống nhất riêng.
 - Viết theo thứ tự: nhu cầu khách hàng → tính năng → lợi ích → cách đánh giá.
@@ -108,7 +152,7 @@ Những gì không đổi theo ngôn ngữ — email, URL, màu các hành tinh 
 **`content/shared.mjs`** để hai bản không trôi dạt khỏi nhau. Quy trình:
 
 1. Sửa file ngôn ngữ tương ứng (sửa thẳng trên giao diện web của GitHub cũng được)
-2. Push lên `main`
+2. Push lên `main` — hook `pre-commit`, `commit-msg` và `pre-push` tự chặn nếu có từ không được công khai
 
 Hết. **GitHub tự build**: workflow chạy `npm run build`, sinh lại `index.html` và
 `sitemap.xml` rồi deploy. Bạn không cần cài Node hay chạy lệnh gì ở máy.
@@ -158,10 +202,12 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 │   ├── orbit-en.mjs        # NGUỒN NỘI DUNG trang Orbit, tiếng Anh
 │   ├── nova-vi.mjs         # NGUỒN NỘI DUNG trang NOVA, tiếng Việt
 │   └── nova-en.mjs         # NGUỒN NỘI DUNG trang NOVA, tiếng Anh
+├── .githooks/              # pre-commit, commit-msg, pre-push (bật bằng npm run hooks)
 ├── scripts/
 │   ├── build.mjs           # generator: content → HTML + SVG sơ đồ + sitemap
 │   ├── model-diagram.mjs   # sơ đồ tổng quan NOVA (inline SVG)
 │   ├── check-content.mjs   # chặn hai bản ngôn ngữ trôi dạt khỏi nhau
+│   ├── check-public-safety.mjs # chặn từ ngữ không được công khai
 │   ├── stage-public.mjs    # đóng gói các trang và tài nguyên được phép deploy
 │   ├── site.test.mjs       # kiểm trang, liên kết, nội dung và artifact deploy
 │   ├── fetch-fonts.mjs     # tải font về tự host (chạy tay)
@@ -170,7 +216,7 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 ├── assets/
 │   ├── css/style.css       # toàn bộ style, dark-first + theme sáng
 │   ├── css/fonts.css       # sinh bởi fetch-fonts.mjs
-│   ├── fonts/              # Inter tự host, woff2 biến thiên
+│   ├── fonts/              # Inter tự host, woff2 biến thiên + OFL.txt
 │   ├── js/main.js          # theme, menu, reveal khi cuộn, scrollspy
 │   └── images/             # logo, favicon, sơ đồ, ảnh Open Graph
 ├── CNAME                   # binean.com
@@ -194,8 +240,10 @@ Domain: [binean.com](https://binean.com) (file `CNAME`). DNS đã trỏ sẵn:
 | Pull request | ✅ | ❌ (chỉ kiểm tra) |
 | Chạy tay ở tab Actions → *Run workflow* | ✅ | ✅ |
 
-Các bước: `npm run build` → `node --test scripts/site.test.mjs` →
-`node scripts/stage-public.mjs` → deploy bằng `actions/deploy-pages`.
+Các bước: kiểm tra publish safety theo range của push/PR (`--range ... --strict`, hoặc
+`--all --history --strict` khi chạy tay) → `npm run build` →
+`node --test scripts/site.test.mjs` → `node scripts/stage-public.mjs` → deploy bằng
+`actions/deploy-pages`.
 Script staging đóng gói trang chủ, trang 404, sitemap, robots, CNAME, `.nojekyll`,
 `assets/` và các trang được phát hành dưới `nova/`, `echelon/`, `nexus/`, `orbit/` cùng bản tiếng Anh
 vào `_site/`. Cây `en/` được copy theo từng trang cho phép, không copy toàn bộ để tránh lọt trang
@@ -233,7 +281,8 @@ Cần bật một lần trong repo:
   đặt `overflow`, `filter` hay `opacity` lên bất kỳ lớp nào trong cảnh — ba thuộc tính
   đó ép lớp về phẳng và làm hỏng phép sắp xếp chiều sâu.
 - **Không request ra ngoài.** Font Inter tự host trong `assets/fonts/`, sinh bởi
-  `npm run fonts`. Trang không gọi tới máy chủ nào ngoài chính nó. Chữ mono dùng font
+  `npm run fonts`. Inter phát hành theo SIL OFL 1.1; văn bản giấy phép ở
+  `assets/fonts/OFL.txt` và được deploy cùng font. Trang không gọi tới máy chủ nào ngoài chính nó. Chữ mono dùng font
   hệ thống: webfont mono từng tốn 31 KB cho vỏn vẹn bốn số thứ tự và năm badge chữ cái
   mỗi trang.
 - **Cân nặng.** Trang tiếng Việt khoảng 78 KB sau gzip, tiếng Anh khoảng 68 KB. Ảnh
