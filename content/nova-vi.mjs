@@ -1,8 +1,8 @@
 export default {
   seo: {
     title: 'Binean NOVA — Hiện đại hóa backend theo từng nghiệp vụ',
-    description: 'NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện.',
-    keywords: 'Binean NOVA, Orbit, Vista, Aster, điều phối yêu cầu, giao diện làm việc, kết nối backend, gói phát hành sớm',
+    description: 'NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện làm việc, điều phối yêu cầu và backend demo. Gói phát hành sớm đang hoàn thiện.',
+    keywords: 'Binean NOVA, Orbit, Vista, Aster, điều phối yêu cầu, giao diện làm việc, backend demo, gói phát hành sớm',
   },
   brandName: 'Binean NOVA',
   headerCta: 'Đánh giá cùng NOVA',
@@ -22,7 +22,7 @@ export default {
     eyebrow: 'Gói phát hành sớm: Orbit · Vista · Aster',
     title: 'Hiện đại hóa backend theo từng nghiệp vụ.',
     emphasis: 'Giữ giá trị hiện có. Mở đường cho thay đổi.',
-    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối, Aster kết nối backend. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
+    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối và làm việc trực tiếp với backend hiện có, Aster là backend demo đang lên kế hoạch triển khai. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
     primaryCta: { label: 'Đánh giá một nghiệp vụ', href: '#contact' },
     secondaryCta: { label: 'Xem mô hình tổng quan', href: '#architecture' },
     highlights: [
@@ -36,11 +36,11 @@ export default {
     id: 'architecture',
     eyebrow: 'Mô hình tổng quan',
     title: 'Một đường đi rõ ràng từ người dùng đến backend.',
-    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng. Aster xử lý kết nối với backend tương thích. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Công cụ build và vận hành Nexus thuộc giai đoạn sau.',
+    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng và làm việc trực tiếp với backend hiện có. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Aster là backend demo độc lập. Công cụ build và vận hành Nexus thuộc giai đoạn sau.',
     diagram: {
       label: 'Sơ đồ mô hình NOVA',
-      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu, Aster kết nối backend nghiệp vụ hiện có. Vista kết nối Orbit. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.',
-      caption: 'Orbit đảm nhận kết nối phía ứng dụng; Aster đảm nhận kết nối phía backend. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.',
+      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu và làm việc trực tiếp với backend nghiệp vụ hiện có. Aster là backend demo độc lập, đang lên kế hoạch triển khai. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.',
+      caption: 'Orbit đảm nhận kết nối phía ứng dụng và làm việc với backend hiện có; Aster là backend demo, tách khỏi hệ thống đang vận hành. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.',
       users: {
         eyebrow: 'NGƯỜI DÙNG VÀ KÊNH',
         title: 'Người dùng nghiệp vụ',
@@ -62,9 +62,9 @@ export default {
         lines: ['Nhiều cổng kết nối tùy biến', 'Điều phối nghiệp vụ dùng chung', 'Xác thực, giới hạn tải, thời gian'],
       },
       aster: {
-        eyebrow: 'KẾT NỐI BACKEND',
+        eyebrow: 'BACKEND DEMO',
         title: 'Aster',
-        lines: ['Kết nối backend theo bản ghi', 'Quản lý phiên và tiến trình', 'Ánh xạ dữ liệu hai chiều'],
+        lines: ['Backend demo độc lập', 'Tách khỏi hệ thống đang vận hành', 'Đang lên kế hoạch triển khai'],
       },
       later: {
         label: 'GIAI ĐOẠN SAU · VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN',
@@ -109,8 +109,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster làm việc với backend',
-        desc: 'Chuyển dữ liệu sang bản ghi backend hiểu, nhận và kiểm tra kết quả, rồi trả về Vista dưới dạng màn hình hoặc dữ liệu.',
+        title: 'Backend xử lý nghiệp vụ',
+        desc: 'Orbit chuyển yêu cầu đến backend nghiệp vụ hiện có, nhận và kiểm tra kết quả rồi trả màn hình hoặc dữ liệu về Vista.',
       },
     ],
   },
@@ -142,13 +142,13 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster — kết nối backend nghiệp vụ',
-        desc: 'Ánh xạ dữ liệu và quản lý phiên xử lý theo hồ sơ kết nối của backend. Phạm vi tương thích được xác nhận bằng kiểm thử tích hợp trên phiên bản và nghiệp vụ cụ thể.',
+        title: 'Aster — backend demo',
+        desc: 'Backend demo độc lập để minh họa luồng làm việc, tách khỏi hệ thống đang vận hành. Aster đang được lên kế hoạch triển khai.',
       },
       {
         icon: 'control',
-        title: 'Ánh xạ dữ liệu hai chiều và phiên xử lý',
-        desc: 'Dữ liệu được ánh xạ sang bản ghi backend hiểu và ngược lại. Phiên xử lý được theo dõi và dọn khi kết thúc.',
+        title: 'Minh họa tách khỏi hệ thống thật',
+        desc: 'Giúp trình bày luồng từ Vista qua Orbit mà không chạm vào hệ thống đang vận hành. Đánh giá trên backend thực vẫn cần rà soát tương thích và phạm vi kiểm thử đã thống nhất.',
       },
     ],
   },
@@ -173,7 +173,7 @@ export default {
       points: [
         'Orbit: runtime webservice đã chạy; cổng HTTP/JSON chung đang triển khai.',
         'Vista: khung ứng dụng đã dùng được; tích hợp đăng nhập và gọi Orbit đang triển khai.',
-        'Aster: adapter đã qua kiểm thử mô phỏng và review độc lập; kiểm chứng trên hệ thống thật theo từng phạm vi.',
+        'Aster: backend demo độc lập, đang lên kế hoạch triển khai.',
       ],
     },
     note: 'Phạm vi đánh giá phụ thuộc vào mức sẵn sàng thực tế. Nexus, Echelon và Aira là các thành phần ngang hàng thuộc giai đoạn sau.',
@@ -201,7 +201,7 @@ export default {
     items: [
       {
         question: 'Có phải thay toàn bộ backend ngay từ đầu không?',
-        answer: 'Có thể bắt đầu bằng việc kết nối chương trình và dữ liệu hiện có qua Aster, sau khi kiểm tra tương thích. Định hướng là mở rộng rồi chuyển đổi từng nghiệp vụ khi đủ điều kiện; mỗi thay đổi cần phạm vi và kiểm thử riêng.',
+        answer: 'Có thể bắt đầu bằng việc để Orbit làm việc với chương trình và dữ liệu hiện có, sau khi kiểm tra tương thích. Định hướng là mở rộng rồi chuyển đổi từng nghiệp vụ khi đủ điều kiện; mỗi thay đổi cần phạm vi và kiểm thử riêng.',
       },
       {
         question: 'Vista có thay giao diện hiện tại ngay không?',
@@ -212,12 +212,12 @@ export default {
         answer: 'Orbit kết hợp cổng kết nối tùy biến với điều phối nghiệp vụ dùng chung, quản lý phiên, thời gian chờ và tải. Có thể giữ cách gọi và định dạng dữ liệu của client hiện có qua cổng phù hợp; mức tương thích được kiểm chứng trước khi áp dụng.',
       },
       {
-        question: 'Aster có phải sản phẩm riêng không?',
-        answer: 'Aster là thành phần kết nối backend trong gói NOVA. Hồ sơ cấu hình mô tả backend tương thích; việc giữ nguyên Orbit và Vista khi đổi backend phụ thuộc vào contract và kết quả kiểm thử. Phạm vi tích hợp được xác nhận trước khi triển khai.',
+        question: 'Aster là gì?',
+        answer: 'Aster là backend demo trong gói NOVA, là hạng mục độc lập và đang được lên kế hoạch triển khai. Aster không phải thành phần kết nối với backend nghiệp vụ; việc Orbit làm việc với backend thực cần rà soát tương thích và thống nhất phạm vi kiểm thử trước khi triển khai.',
       },
       {
         question: 'Demo có chạy trên hệ thống thật của tôi không?',
-        answer: 'Demo dùng backend tham chiếu đi kèm để minh họa luồng xử lý, tách khỏi hệ thống đang vận hành của bạn. Đánh giá trên backend thực cần rà soát tương thích, chuẩn bị hồ sơ kết nối và thống nhất phạm vi kiểm thử.',
+        answer: 'Demo dự kiến dùng backend demo (Aster) để minh họa luồng xử lý, tách khỏi hệ thống đang vận hành của bạn. Đánh giá trên backend thực cần rà soát tương thích, chuẩn bị hồ sơ kết nối và thống nhất phạm vi kiểm thử.',
       },
       {
         question: 'Điều gì xảy ra khi giao dịch không rõ kết quả?',

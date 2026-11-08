@@ -50,7 +50,7 @@ python3 -m http.server 4173     # rồi mở http://localhost:4173
 
 Trang `nova/` giới thiệu mô hình gói phát hành sớm. Nội dung ở `content/nova-vi.mjs` và `content/nova-en.mjs`
 (khoá `modelPage` trong `vi.mjs`/`en.mjs`); sơ đồ tổng quan inline SVG do
-`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → Aster → backend; Nexus,
+`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → backend hiện có; Aster là backend demo độc lập; Nexus,
 Echelon và Aira vẽ nét đứt cùng nhau ở khung "giai đoạn sau". Desktop và mobile có
 bố cục riêng, nhãn VI/EN, màu theo theme và mô tả cho trình đọc màn hình.
 
@@ -59,8 +59,8 @@ Quy tắc nội dung:
 - **NOVA = Orbit + Vista + Aster.** Chữ "B" giữa hệ sao trang chủ là Binean.
 - Không nêu tên sản phẩm, hệ thống hay thương hiệu của bên thứ ba trong nội dung công khai.
   `site.test.mjs` kiểm danh sách từ cấm trên mọi trang, metadata và sơ đồ.
-- Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster đã kiểm thử
-  mô phỏng và đang kiểm chứng; NOVA chưa phải bản triển khai đại trà. Không thêm số liệu,
+- Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster là backend demo
+  độc lập, đang lên kế hoạch triển khai; NOVA chưa phải bản triển khai đại trà. Không thêm số liệu,
   khách hàng hay lời chứng thực. Không hứa tự phát lại giao dịch hay vận hành không gián đoạn.
 - Strangler Fig là hướng phát triển: mở rộng dịch vụ trên backend hiện có rồi chuyển đổi từng
   năng lực khi đủ điều kiện. Không mô tả cutover tự động hoặc thay backend bằng đổi cấu hình
@@ -80,7 +80,9 @@ như thành phần của gói phát hành sớm.
 
 - Trang chủ dẫn từ bài toán → giá trị → nền tảng → cách đánh giá → liên hệ. Hero tập trung
   ba thành phần NOVA; Echelon và Aira nằm trong mục mở rộng thu gọn ở giai đoạn sau.
-- Phân biệt Orbit (tùy biến kết nối phía ứng dụng) với Aster (kết nối backend tương thích).
+- Orbit tùy biến kết nối phía ứng dụng và làm việc trực tiếp với backend hiện có. Aster là backend demo độc lập
+  (không phải thành phần kết nối), đang lên kế hoạch triển khai; không mô tả Aster như connector hay như
+  thành phần đã kiểm chứng.
   CTA ưu tiên đề xuất đánh giá một nghiệp vụ, với phạm vi tương thích, tiêu chí kiểm chứng
   và lộ trình tiếp theo; điều kiện pilot được thống nhất riêng.
 - Viết theo thứ tự: nhu cầu khách hàng → tính năng → lợi ích → cách đánh giá.

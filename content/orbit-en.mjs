@@ -92,7 +92,7 @@ export default {
     foundation: {
       tag: 'INITIAL FOUNDATION',
       title: 'A basis for further development',
-      items: ['A flow engine that runs business scenarios', 'Web services and an adapter for existing connections', 'Backend session management with Aster', 'Authentication and token design'],
+      items: ['A flow engine that runs business scenarios', 'Web services and an adapter for existing connections', 'Backend session management', 'Authentication and token design'],
     },
     direction: {
       tag: 'DIRECTION',

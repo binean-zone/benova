@@ -43,7 +43,7 @@ export default {
     title: 'Nexus đi sau gói NOVA phát hành sớm.',
     lead: 'Gói phát hành sớm tập trung vào Orbit, Vista và Aster. Nexus là bộ công cụ đã chạy độc lập, dự kiến tham gia NOVA ở giai đoạn sau.',
     stages: [
-      { tag: 'PHÁT HÀNH SỚM', title: 'Orbit · Vista · Aster', desc: 'Kết nối ứng dụng, giao diện làm việc và kết nối backend. Đây là phạm vi đánh giá đầu tiên.', state: 'current' },
+      { tag: 'PHÁT HÀNH SỚM', title: 'Orbit · Vista · Aster', desc: 'Cổng kết nối ứng dụng, giao diện làm việc và backend demo. Đây là phạm vi đánh giá đầu tiên.', state: 'current' },
       { tag: 'HIỆN CÓ ĐỘC LẬP', title: 'Bộ công cụ Nexus', desc: 'Công cụ build, môi trường và dữ liệu kiểm thử đã được dùng trong môi trường thực, nằm ngoài gói phát hành sớm.', state: 'standalone' },
       { tag: 'GIAI ĐOẠN SAU', title: 'Nexus trong NOVA', desc: 'Công cụ được kết hợp thành hành trình công việc, có tiến độ và điểm xem xét ngay trong VS Code. Phạm vi và thời điểm được xác nhận khi đánh giá.', state: 'later' },
     ],

@@ -143,12 +143,11 @@ export function modelDiagram(d, esc) {
       connector(xs[1] + COL / 2, y, xs[1] + COL / 2, rowB);
       product('vista', xs[0], rowB, COL, productH, 'layout');
       product('orbit', xs[1], rowB, COL, productH, 'routing');
-      product('aster', xs[2], rowB, COL, productH, 'link');
+      product('aster', xs[2], rowB, COL, productH, 'application');
       const mid = rowB + 154;
       connector(xs[0] + COL, mid, xs[1], mid);
-      connector(xs[1] + COL, mid, xs[2], mid);
       y = rowB + productH;
-      connector(xs[2] + COL / 2, y, xs[2] + COL / 2, y + LINK);
+      connector(xs[1] + COL / 2, y, xs[1] + COL / 2, y + LINK);
       y += LINK;
       y += band('backend', y, 'core');
       y += LINK;
@@ -166,9 +165,9 @@ export function modelDiagram(d, esc) {
       connector(180, y, 180, y + LINK); y += LINK;
       chain('orbit', 'routing');
       connector(180, y, 180, y + LINK); y += LINK;
-      chain('aster', 'link');
-      connector(180, y, 180, y + LINK); y += LINK;
       y += band('backend', y, 'core');
+      y += LINK;
+      chain('aster', 'application');
       y += LINK;
       y += later(y);
       height = y + 12;

@@ -43,7 +43,7 @@ export default {
     title: 'Nexus comes after the early-release NOVA package.',
     lead: 'The early-release package focuses on Orbit, Vista and Aster. Nexus is a toolset that already works on its own and is intended to join NOVA in a later phase.',
     stages: [
-      { tag: 'EARLY RELEASE', title: 'Orbit · Vista · Aster', desc: 'Application connectivity, the user workspace and backend connectivity. This is the first scope to evaluate.', state: 'current' },
+      { tag: 'EARLY RELEASE', title: 'Orbit · Vista · Aster', desc: 'Application gateways, the user workspace and a demonstration backend. This is the first scope to evaluate.', state: 'current' },
       { tag: 'AVAILABLE ON ITS OWN', title: 'The Nexus toolkit', desc: 'Build, environment and test-data tools already used in real environments, outside the early-release package.', state: 'standalone' },
       { tag: 'LATER PHASE', title: 'Nexus inside NOVA', desc: 'Tools combined into work journeys, with progress and review points inside VS Code. Scope and timing are confirmed during evaluation.', state: 'later' },
     ],

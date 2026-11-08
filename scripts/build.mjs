@@ -248,6 +248,9 @@ const hero = () => {
      Thêm hay bớt thành tố chỉ cần sửa content/site.mjs. */
   const R_INNER = 0.28;
   const R_OUTER = 0.5;
+  // Khoảng cách giữa các quỹ đạo cố định theo bố cục bốn hành tinh đầu (N, O, V, A):
+  // thêm hành tinh thì mở rộng ra ngoài, không dồn lại làm đổi đường đi của các hành tinh cũ.
+  const BASE_ORBITS = 4;
 
   // Hành tinh to nhỏ chênh nhau rõ rệt; Echelon là bộ khung nên to nhất.
   const SCALES = [1.12, 1.24, 0.88, 1, 0.8, 0.94];
@@ -259,7 +262,7 @@ const hero = () => {
   const INCLINATIONS = [-9, 6, -3, 11, -6, 8];
 
   const orbits = sats.map((sat, i) => {
-    const t = sats.length > 1 ? i / (sats.length - 1) : 0;
+    const t = i / (BASE_ORBITS - 1);
     const radius = R_INNER + (R_OUTER - R_INNER) * t;
     // Chu kỳ theo định luật Kepler 3: T tỉ lệ với r mũ 1.5. Quỹ đạo ngoài chậm
     // hơn hẳn quỹ đạo trong chứ không chỉ chậm hơn một chút.

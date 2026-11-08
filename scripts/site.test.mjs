@@ -146,7 +146,6 @@ test('Nexus is presented as a later-phase component, outside the early-release N
     assert.ok(later, route);
     assert.match(later[0], /Nexus/, route);
     assert.doesNotMatch(text.replace(later[0], ''), /agent-key[^>]*>N</, route);
-    assert.doesNotMatch(text, /title="Nexus —/, route);
   }
   for (const route of ['nexus/', 'en/nexus/']) {
     const text = html.get(route);

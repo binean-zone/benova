@@ -1,8 +1,8 @@
 export default {
   seo: {
     title: 'Binean NOVA — Modernize your backend one capability at a time',
-    description: 'NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development.',
-    keywords: 'Binean NOVA, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package',
+    description: 'NOVA aims to expand services and modernize backends incrementally, combining a workspace, request orchestration and a demonstration backend. The early-release package is in development.',
+    keywords: 'Binean NOVA, Orbit, Vista, Aster, request orchestration, workspace, demonstration backend, early release package',
   },
   brandName: 'Binean NOVA',
   headerCta: 'Assess with NOVA',
@@ -22,7 +22,7 @@ export default {
     eyebrow: 'Early release package: Orbit · Vista · Aster',
     title: 'Modernize your backend one capability at a time.',
     emphasis: 'Preserve existing value. Create room for change.',
-    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, and Aster connects the backend. Nexus, the build and operations toolkit, joins in a later phase.',
+    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests and works directly with your existing backend, and Aster is a demonstration backend whose implementation is being planned. Nexus, the build and operations toolkit, joins in a later phase.',
     primaryCta: { label: 'Assess one business capability', href: '#contact' },
     secondaryCta: { label: 'See the model overview', href: '#architecture' },
     highlights: [
@@ -36,11 +36,11 @@ export default {
     id: 'architecture',
     eyebrow: 'Model overview',
     title: 'A clear path from the user to the backend.',
-    lead: 'Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista provides the workspace for incremental modernization (Strangler Fig). Nexus build and operations tools belong to a later phase.',
+    lead: 'Orbit adapts how application requests are received and works directly with the existing backend. Vista provides the workspace for incremental modernization (Strangler Fig). Aster is an independent demonstration backend. Nexus build and operations tools belong to a later phase.',
     diagram: {
       label: 'NOVA model diagram',
-      description: 'The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Vista connects to Orbit. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.',
-      caption: 'Orbit handles application-facing connections; Aster handles backend-facing connections. Compatibility and transition scope are verified for each business capability.',
+      description: 'The NOVA integration model in development: Vista provides the workspace, and Orbit coordinates requests and works directly with the existing business backend. Aster is an independent demonstration backend whose implementation is being planned. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.',
+      caption: 'Orbit handles application-facing connections and works with the existing backend; Aster is a demonstration backend, separate from running systems. Compatibility and transition scope are verified for each business capability.',
       users: {
         eyebrow: 'USERS AND CHANNELS',
         title: 'Business users',
@@ -62,9 +62,9 @@ export default {
         lines: ['Multiple customizable gateways', 'Shared business orchestration', 'Auth, timeouts, cancel, load'],
       },
       aster: {
-        eyebrow: 'BACKEND CONNECTIVITY',
+        eyebrow: 'DEMONSTRATION BACKEND',
         title: 'Aster',
-        lines: ['Record-level backend access', 'Sessions and process groups', 'Two-way data mapping'],
+        lines: ['An independent demo backend', 'Separate from running systems', 'Implementation being planned'],
       },
       later: {
         label: 'LATER PHASE · STILL PART OF THE OVERALL DESIGN',
@@ -109,8 +109,8 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster works with the backend',
-        desc: 'Map data into records the backend understands, receive and validate the result, then return a screen or data to Vista.',
+        title: 'The backend handles the work',
+        desc: 'Orbit passes the request to the existing business backend, receives and checks the result, then returns a screen or data to Vista.',
       },
     ],
   },
@@ -142,13 +142,13 @@ export default {
       },
       {
         icon: 'link',
-        title: 'Aster — business backend connectivity',
-        desc: 'Maps data and manages processing sessions through backend connection profiles. Integration testing establishes compatibility for specific versions and business capabilities.',
+        title: 'Aster — demonstration backend',
+        desc: 'An independent demonstration backend that shows the working flow, separate from running systems. Aster is being planned for implementation.',
       },
       {
         icon: 'control',
-        title: 'Two-way data mapping and sessions',
-        desc: 'Data is mapped into the records the backend understands and back again. Processing sessions are tracked and cleaned up when they finish.',
+        title: 'Demonstrations apart from live systems',
+        desc: 'Lets the flow from Vista through Orbit be shown without touching a running system. Evaluation on a real backend still needs compatibility review and an agreed test scope.',
       },
     ],
   },
@@ -173,7 +173,7 @@ export default {
       points: [
         'Orbit: webservice runtime running; shared HTTP/JSON gateway in progress.',
         'Vista: application shell in use; sign-in and Orbit integration in progress.',
-        'Aster: adapter tested in simulation and independently reviewed; validation on real systems is scoped step by step.',
+        'Aster: an independent demonstration backend; implementation is being planned.',
       ],
     },
     note: 'Assessment scope depends on actual readiness. Nexus, Echelon and Aira are peer components in a later phase.',
@@ -201,7 +201,7 @@ export default {
     items: [
       {
         question: 'Do we need to replace the entire backend at the outset?',
-        answer: 'You can begin by connecting existing programs and data through Aster after checking compatibility. The direction is to expand services, then transition individual capabilities when ready; each change needs its own scope and testing.',
+        answer: 'You can begin by letting Orbit work with existing programs and data after checking compatibility. The direction is to expand services, then transition individual capabilities when ready; each change needs its own scope and testing.',
       },
       {
         question: 'Does Vista replace the current interface immediately?',
@@ -212,12 +212,12 @@ export default {
         answer: 'Orbit combines customizable connection gateways with shared business orchestration, session management, timeouts and load control. A suitable gateway can preserve existing client calls and data formats; compatibility is verified before adoption.',
       },
       {
-        question: 'Is Aster a separate product?',
-        answer: 'Aster is the backend connectivity component within NOVA. Configuration profiles describe compatible backends; keeping Orbit and Vista unchanged when switching backends depends on the contract and test results. Integration scope is confirmed before deployment.',
+        question: 'What is Aster?',
+        answer: 'Aster is the demonstration backend within NOVA. It is an independent item whose implementation is being planned. It is not a component that connects to the business backend; having Orbit work with a real backend needs compatibility review and an agreed test scope before deployment.',
       },
       {
         question: 'Does the demo run on my real system?',
-        answer: 'The demo uses the bundled reference backend to illustrate processing separately from your running system. Evaluation on a real backend requires compatibility review, a connection profile and an agreed test scope.',
+        answer: 'The demo is intended to use a demonstration backend (Aster) to illustrate processing separately from your running system. Evaluation on a real backend requires compatibility review, a connection profile and an agreed test scope.',
       },
       {
         question: 'What happens when a transaction outcome is unclear?',

@@ -92,7 +92,7 @@ export default {
     foundation: {
       tag: 'NỀN TẢNG BAN ĐẦU',
       title: 'Cơ sở để tiếp tục phát triển',
-      items: ['Flow engine chạy kịch bản nghiệp vụ', 'Dịch vụ web và bộ tiếp nhận kết nối hiện có', 'Quản lý phiên backend cùng Aster', 'Thiết kế xác thực và token'],
+      items: ['Flow engine chạy kịch bản nghiệp vụ', 'Dịch vụ web và bộ tiếp nhận kết nối hiện có', 'Quản lý phiên backend', 'Thiết kế xác thực và token'],
     },
     direction: {
       tag: 'ĐỊNH HƯỚNG',
