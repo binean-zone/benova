@@ -16,7 +16,8 @@
  * Danh sách mẫu được mã hoá base64 ngay trong file này để bản thân guard không
  * công khai những tên mà nó cần chặn. Có thể bổ sung từ riêng mà không đưa vào
  * repo bằng `private/forbidden-terms.txt` (đã gitignore) hoặc biến môi trường
- * `BENOVA_SAFETY_EXTRA_TERMS` (phân tách bằng dấu phẩy).
+ * `BENOVA_SAFETY_EXTRA_TERMS` (phân tách bằng dấu phẩy). Term phụ khớp theo
+ * ranh giới từ sau khi bỏ dấu + lowercase, không khớp substring.
  *
  * Mặc định chỉ chặn nhóm vendor/emulator/reverse-engineering. Cụm mô tả
  * "legacy stand-in" chỉ cảnh báo; dùng `--strict` để biến chúng thành lỗi.
@@ -97,7 +98,18 @@ if (process.env.BENOVA_SAFETY_EXTRA_TERMS) {
   }
 }
 
-const compiledExtra = extraTerms.map((term) => ({ term, folded: fold(term) }));
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/* Term phụ khớp theo ranh giới từ để acronym ngắn (vd. ING, SIR) không khớp
+   nhầm bên trong từ khác (using, desire). Term bắt đầu/kết thúc bằng ký tự
+   không phải chữ-số thì không thêm \b ở phía đó. */
+const wordPattern = (value) =>
+  `${/^\w/.test(value) ? '\\b' : ''}${escapeRegExp(value)}${/\w$/.test(value) ? '\\b' : ''}`;
+
+const compiledExtra = extraTerms.map((term) => ({
+  term,
+  re: new RegExp(wordPattern(fold(term)), 'u'),
+}));
 
 const addFinding = (findings, finding) => {
   const key = `${finding.kind}\0${finding.file}\0${finding.line}\0${finding.label}\0${finding.term || ''}`;
@@ -118,8 +130,8 @@ const scanLine = (line, file, lineNumber, findings) => {
     if (match) addFinding(findings, { kind: 'review', file, line: lineNumber, label, term: match[0] });
   }
   const folded = fold(text);
-  for (const { term, folded: needle } of compiledExtra) {
-    if (folded.includes(needle)) {
+  for (const { term, re } of compiledExtra) {
+    if (re.test(folded)) {
       addFinding(findings, { kind: 'block', file, line: lineNumber, label: 'configured term', term });
     }
   }
@@ -135,8 +147,9 @@ const scanName = (path, findings) => {
     const match = re.exec(path.normalize('NFC'));
     if (match) addFinding(findings, { kind: 'block', file: path, line: 0, label, term: match[0] });
   }
-  for (const { term, folded: needle } of compiledExtra) {
-    if (fold(path).includes(needle)) {
+  const foldedPath = fold(path);
+  for (const { term, re } of compiledExtra) {
+    if (re.test(foldedPath)) {
       addFinding(findings, { kind: 'block', file: path, line: 0, label: 'configured term', term });
     }
   }
