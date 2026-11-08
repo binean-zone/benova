@@ -55,7 +55,6 @@ export default {
     ],
     core: { key: 'B' },
     satellites: [
-      { key: 'N', name: 'Nexus', desc: 'Công cụ build và vận hành', ...planetVisuals.N },
       { key: 'O', name: 'Orbit', desc: 'Điều phối yêu cầu và nghiệp vụ', ...planetVisuals.O },
       { key: 'V', name: 'Vista', desc: 'Không gian làm việc cho người dùng', ...planetVisuals.V },
       { key: 'A', name: 'Aster', desc: 'Kết nối backend nghiệp vụ', ...planetVisuals.A },
@@ -77,20 +76,13 @@ export default {
   ecosystem: {
     id: 'kien-truc',
     eyebrow: 'Nền tảng NOVA',
-    title: 'Bốn thành phần. Một lộ trình hiện đại hóa.',
-    lead: 'Orbit thích ứng với cách ứng dụng kết nối. Aster kết nối backend tương thích. Vista mang đến giao diện làm việc, còn Nexus hỗ trợ đội ngũ phát triển và vận hành.',
+    title: 'Ba thành phần. Một lộ trình hiện đại hóa.',
+    lead: 'Orbit thích ứng với cách ứng dụng kết nối. Aster kết nối backend tương thích. Vista mang đến giao diện làm việc. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
     novaLabel: 'Gói NOVA — phát hành sớm',
-    novaNote: 'Nexus · Orbit · Vista · Aster',
+    novaNote: 'Orbit · Vista · Aster',
     laterLabel: 'Khả năng mở rộng ở giai đoạn sau',
-    laterNote: 'Echelon · Aira',
+    laterNote: 'Nexus · Echelon · Aira',
     agents: [
-      {
-        key: 'N', name: 'Nexus', role: 'Công cụ build và vận hành đi kèm',
-        status: 'Đã dùng trong môi trường thực', icon: '🛠️',
-        desc: 'Chuẩn bị bản build, môi trường và dữ liệu kiểm thử cho thay đổi trên backend. Các công cụ nền đã được dùng trong môi trường thực; trải nghiệm tích hợp đang được hoàn thiện.',
-        features: ['Rút ngắn vòng build chương trình backend', 'Thuận tiện backup, restore và làm mới môi trường', 'Chuyển dữ liệu kiểm thử phục vụ support và debug', 'Làm việc ngay trong VS Code'],
-        link: { label: 'Khám phá Nexus', href: 'nexus/' },
-      },
       {
         key: 'O', name: 'Orbit', role: 'Kết nối ứng dụng · điều phối nghiệp vụ',
         status: 'Đang phát triển', icon: '🛰️',
@@ -114,6 +106,13 @@ export default {
       },
     ],
     later: [
+      {
+        key: 'N', name: 'Nexus', role: 'Công cụ build và vận hành',
+        status: 'Giai đoạn sau · đã dùng độc lập', icon: '🛠️',
+        desc: 'Chuẩn bị bản build, môi trường và dữ liệu kiểm thử cho thay đổi trên backend. Các công cụ nền đã được dùng trong môi trường thực; trải nghiệm tích hợp vào NOVA thuộc giai đoạn sau.',
+        features: ['Rút ngắn vòng build chương trình backend', 'Thuận tiện backup, restore và làm mới môi trường', 'Chuyển dữ liệu kiểm thử phục vụ support và debug', 'Làm việc ngay trong VS Code'],
+        link: { label: 'Khám phá Nexus', href: 'nexus/' },
+      },
       {
         key: 'E', name: 'Echelon', role: 'Điều phối đa tác nhân',
         status: 'Giai đoạn sau · đang kiểm định', icon: '🧠',

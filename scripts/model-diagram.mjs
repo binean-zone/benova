@@ -21,9 +21,9 @@ export const modelIcon = (name) => {
 
 /**
  * Sơ đồ tổng quan NOVA. Dữ liệu `d`:
- *   users, backend, tools        — dải ngang (eyebrow, title, lines)
+ *   users, backend               — dải ngang (eyebrow, title, lines)
  *   vista, orbit, aster          — ba thành phần chính (eyebrow, title, lines)
- *   later: { label, echelon, aira } — giai đoạn sau, vẽ nét đứt
+ *   later: { label, nexus, echelon, aira } — giai đoạn sau, vẽ nét đứt
  */
 export function modelDiagram(d, esc) {
   const W = 1120;
@@ -95,11 +95,13 @@ export function modelDiagram(d, esc) {
     const connector = (x1, y1, x2, y2) =>
       links.push(`<path class="model-map-connection" d="M${x1} ${y1}L${x2} ${y2}" marker-start="url(#model-arrow-${suffix})" marker-end="url(#model-arrow-${suffix})"/>`);
 
-    /* Giai đoạn sau: khung nét đứt chứa Echelon và Aira. */
+    /* Giai đoạn sau: khung nét đứt chứa Nexus, Echelon và Aira. */
     const later = (y) => {
-      const items = [d.later.echelon, d.later.aira];
-      const ic = ['activity', 'spark'];
-      const nodeH = (n) => (mobile ? 74 + n.lines.length * 22 : 84);
+      const items = [d.later.nexus, d.later.echelon, d.later.aira];
+      const ic = ['code', 'activity', 'spark'];
+      const maxLines = Math.max(...items.map((n) => n.lines.length));
+      // Desktop: ba ô cùng chiều cao; mobile: mỗi ô theo số dòng của nó.
+      const nodeH = (n) => 74 + (mobile ? n.lines.length : maxLines) * 22;
       const inner = mobile ? items.reduce((s, n) => s + nodeH(n) + 12, 0) : nodeH(items[0]) + 12;
       // Nhãn dài được tách theo dấu "·" thành nhiều dòng trên mobile để không tràn khung.
       const labelLines = mobile ? d.later.label.split(' · ') : [d.later.label];
@@ -112,7 +114,7 @@ export function modelDiagram(d, esc) {
         ${labelLines.map((line, i) => `<text class="model-map-eyebrow" x="24" y="${27 + i * 16}">${esc(line)}</text>`).join('\n')}`;
       let cy = headerH;
       items.forEach((n, i) => {
-        const nw = mobile ? w0 - 32 : Math.floor((w0 - 48 - 16) / 2);
+        const nw = mobile ? w0 - 32 : Math.floor((w0 - 48 - 16 * (items.length - 1)) / items.length);
         const nx = mobile ? 16 : 24 + i * (nw + 16);
         const h = nodeH(n);
         out += `<g transform="translate(${nx} ${cy})" class="model-map-node is-later">
@@ -123,9 +125,7 @@ export function modelDiagram(d, esc) {
           </g>
           <text class="model-map-eyebrow" x="62" y="28">${esc(n.eyebrow)}</text>
           <text class="model-map-title" x="62" y="50">${esc(n.title)}</text>
-          ${mobile
-            ? n.lines.map((line, j) => `<text class="model-map-body" x="16" y="${76 + j * 22}">${esc(line)}</text>`).join('\n')
-            : `<text class="model-map-body" x="62" y="70">${esc(n.lines.join(' · '))}</text>`}
+          ${n.lines.map((line, j) => `<text class="model-map-body" x="16" y="${76 + j * 22}">${esc(line)}</text>`).join('\n')}
         </g>`;
         if (mobile) cy += h + 12;
       });
@@ -151,9 +151,6 @@ export function modelDiagram(d, esc) {
       connector(xs[2] + COL / 2, y, xs[2] + COL / 2, y + LINK);
       y += LINK;
       y += band('backend', y, 'core');
-      connector(W / 2, y, W / 2, y + LINK);
-      y += LINK;
-      y += band('tools', y, 'code');
       y += LINK;
       y += later(y);
       height = y;
@@ -172,8 +169,6 @@ export function modelDiagram(d, esc) {
       chain('aster', 'link');
       connector(180, y, 180, y + LINK); y += LINK;
       y += band('backend', y, 'core');
-      connector(180, y, 180, y + LINK); y += LINK;
-      y += band('tools', y, 'code');
       y += LINK;
       y += later(y);
       height = y + 12;

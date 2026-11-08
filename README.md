@@ -1,7 +1,7 @@
 # BENOVA — Landing page
 
-Site giới thiệu **BENOVA** và gói phát hành sớm **NOVA** (Nexus · Orbit · Vista · Aster),
-hướng đến hiện đại hóa backend từng bước theo Strangler Fig. Echelon và Aira thuộc giai đoạn sau.
+Site giới thiệu **BENOVA** và gói phát hành sớm **NOVA** (Orbit · Vista · Aster),
+hướng đến hiện đại hóa backend từng bước theo Strangler Fig. Nexus, Echelon và Aira thuộc giai đoạn sau.
 Trang hoàn toàn tĩnh, không framework runtime, triển khai trên GitHub Pages.
 
 Tài liệu nội bộ được lưu riêng ngoài repository công khai.
@@ -50,13 +50,13 @@ python3 -m http.server 4173     # rồi mở http://localhost:4173
 
 Trang `nova/` giới thiệu mô hình gói phát hành sớm. Nội dung ở `content/nova-vi.mjs` và `content/nova-en.mjs`
 (khoá `modelPage` trong `vi.mjs`/`en.mjs`); sơ đồ tổng quan inline SVG do
-`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → Aster → backend, Nexus là
-dải công cụ đi kèm, Echelon và Aira vẽ nét đứt ở khung "giai đoạn sau". Desktop và mobile có
+`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → Aster → backend; Nexus,
+Echelon và Aira vẽ nét đứt cùng nhau ở khung "giai đoạn sau". Desktop và mobile có
 bố cục riêng, nhãn VI/EN, màu theo theme và mô tả cho trình đọc màn hình.
 
 Quy tắc nội dung:
 
-- **NOVA = Nexus + Orbit + Vista + Aster.** Chữ "B" giữa hệ sao trang chủ là Binean.
+- **NOVA = Orbit + Vista + Aster.** Chữ "B" giữa hệ sao trang chủ là Binean.
 - Không nêu tên sản phẩm, hệ thống hay thương hiệu của bên thứ ba trong nội dung công khai.
   `site.test.mjs` kiểm danh sách từ cấm trên mọi trang, metadata và sơ đồ.
 - Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster đã kiểm thử
@@ -66,17 +66,20 @@ Quy tắc nội dung:
   năng lực khi đủ điều kiện. Không mô tả cutover tự động hoặc thay backend bằng đổi cấu hình
   như khả năng đã sẵn sàng. Hiệu năng cần được đo trên cùng nghiệp vụ và điều kiện triển khai.
 - Không đưa chi tiết triển khai nội bộ (tên crate, wire, bộ đệm) vào nội dung.
-- Echelon là thành phần ngang hàng với Nexus, Orbit, Vista, Aster (không phải trung tâm): Vista
+- Echelon là thành phần ngang hàng với Orbit, Vista, Aster và Nexus (không phải trung tâm): Vista
   gọi trực tiếp Orbit, Echelon chỉ là một đường khác, dùng khi flow cần chia task giữa nhiều
   agent hoặc nhiều step cần cân bằng tải và xử lý lỗi từng step. Về thời điểm phát hành,
   Echelon và Aira thuộc "giai đoạn sau" (`ecosystem.later`) và vẽ nét đứt ở sơ đồ.
 
-Nexus được định vị là bộ công cụ build, môi trường và vận hành đi kèm NOVA (`nexus-*.mjs`).
+Nexus thuộc "giai đoạn sau" (`ecosystem.later`) cùng Echelon và Aira, không nằm trong gói phát hành sớm. Đó là bộ công cụ
+build, môi trường và vận hành đã dùng độc lập trong môi trường thực, dự kiến tích hợp vào NOVA ở giai đoạn sau
+(`nexus-*.mjs`). Trang `nexus/` có mục "Vị trí trong lộ trình" (`placement`) nói rõ điều này; không mô tả Nexus
+như thành phần của gói phát hành sớm.
 
 ### Nguyên tắc nội dung công khai
 
 - Trang chủ dẫn từ bài toán → giá trị → nền tảng → cách đánh giá → liên hệ. Hero tập trung
-  bốn thành phần NOVA; Echelon và Aira nằm trong mục mở rộng thu gọn ở giai đoạn sau.
+  ba thành phần NOVA; Echelon và Aira nằm trong mục mở rộng thu gọn ở giai đoạn sau.
 - Phân biệt Orbit (tùy biến kết nối phía ứng dụng) với Aster (kết nối backend tương thích).
   CTA ưu tiên đề xuất đánh giá một nghiệp vụ, với phạm vi tương thích, tiêu chí kiểm chứng
   và lộ trình tiếp theo; điều kiện pilot được thống nhất riêng.

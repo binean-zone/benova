@@ -97,7 +97,7 @@ export default {
     direction: {
       tag: 'DIRECTION',
       title: 'Expand value for the business',
-      items: ['Customize connection gateways for each system', 'Connect Vista screens with business flows', 'Verify compatibility and performance before expanding', 'Alongside Vista, Aster and Nexus in NOVA'],
+      items: ['Customize connection gateways for each system', 'Connect Vista screens with business flows', 'Verify compatibility and performance before expanding', 'Alongside Vista and Aster in NOVA'],
     },
     note: 'Orbit is part of the NOVA package under development and is not a ready-to-deploy replacement for the core. Scope and timing are discussed per requirement.',
   },

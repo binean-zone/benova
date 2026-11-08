@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Binean NOVA — Modernize your backend one capability at a time</title>
   <meta name="description" content="NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development." />
-  <meta name="keywords" content="Binean NOVA, Nexus, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package" />
+  <meta name="keywords" content="Binean NOVA, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package" />
   <meta name="theme-color" content="#0A192F" />
   <link rel="canonical" href="https://binean.com/en/nova/" />
   <link rel="alternate" hreflang="vi" href="https://binean.com/nova/" />
@@ -30,7 +30,7 @@
        chắc chắn cần để chữ không nhảy font giữa chừng. -->
   <link rel="preload" as="font" type="font/woff2" href="../../assets/fonts/inter-latin.woff2" crossorigin />
   <link rel="stylesheet" href="../../assets/css/fonts.css?v=39eccc4f5cac" />
-  <link rel="stylesheet" href="../../assets/css/style.css?v=0dcbe98452b6" />
+  <link rel="stylesheet" href="../../assets/css/style.css?v=75ee656fa3bf" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean NOVA","applicationCategory":"BusinessApplication","description":"NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development.","url":"https://binean.com/en/nova/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
   <script>
     // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
@@ -128,9 +128,9 @@
       <div class="shell">
         <div class="model-hero-copy">
           <a class="ech-back" href="../../en/">← Back to BENOVA</a>
-          <p class="eyebrow reveal">Early release package: Nexus · Orbit · Vista · Aster</p>
+          <p class="eyebrow reveal">Early release package: Orbit · Vista · Aster</p>
           <h1 class="model-title reveal">Modernize your backend one capability at a time.<span>Preserve existing value. Create room for change.</span></h1>
-          <p class="model-lead reveal">NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, Aster connects the backend, and Nexus supports build and operations.</p>
+          <p class="model-lead reveal">NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, and Aster connects the backend. Nexus, the build and operations toolkit, joins in a later phase.</p>
           <div class="hero-actions reveal">
             <a class="btn btn-primary" href="#contact">Assess one business capability</a>
             <a class="btn btn-ghost" href="#architecture">See the model overview</a>
@@ -150,12 +150,12 @@
         <div class="section-head reveal">
           <p class="eyebrow">Model overview</p>
           <h2>A clear path from the user to the backend.</h2>
-          <p class="lead">Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista and Nexus provide the workspace and operations tools for incremental modernization (Strangler Fig).</p>
+          <p class="lead">Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista provides the workspace for incremental modernization (Strangler Fig). Nexus build and operations tools belong to a later phase.</p>
         </div>
 <figure class="model-map reveal">
-    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 772" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
+    <svg class="model-map-svg is-desktop" viewBox="0 0 1120 728" role="img" aria-labelledby="model-map-title-desktop model-map-desc-desktop">
       <title id="model-map-title-desktop">NOVA model diagram</title>
-      <desc id="model-map-desc-desktop">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Nexus provides build and operations tools. Vista connects to Orbit; Echelon adds orchestration for flows needing multiple agents and belongs to a later phase alongside Aira.</desc>
+      <desc id="model-map-desc-desktop">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Vista connects to Orbit. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
       <defs>
         <marker id="model-arrow-desktop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
@@ -164,7 +164,6 @@
 <path class="model-map-connection" d="M340 254L390 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
 <path class="model-map-connection" d="M730 254L780 254" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
 <path class="model-map-connection" d="M950 392L950 428" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
-<path class="model-map-connection" d="M560 492L560 528" marker-start="url(#model-arrow-desktop)" marker-end="url(#model-arrow-desktop)"/>
       <g transform="translate(0 0)" class="model-map-node">
         <rect class="model-map-panel" width="1120" height="64" rx="18"/>
         <g transform="translate(16 10)">
@@ -282,52 +281,44 @@
           <text class="model-map-body" x="14" y="21">Access and business rules</text>
         </g>
       </g>
-<g transform="translate(0 528)" class="model-map-node">
-        <rect class="model-map-panel" width="1120" height="64" rx="18"/>
-        <g transform="translate(16 10)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="76" y="26">SUPPORTING TOOLING</text>
-        <text class="model-map-title" x="76" y="49">Nexus — build and operations</text>
-        <g transform="translate(360 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Incremental backend builds</text>
-        </g>
-<g transform="translate(609 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Environment and data refresh</text>
-        </g>
-<g transform="translate(858 16)">
-          <rect class="model-map-feature" width="237" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">Work inside VS Code</text>
-        </g>
-      </g>
-<g transform="translate(0 628)" class="model-map-node is-later-box">
-        <rect class="model-map-later-box" width="1120" height="144" rx="22"/>
+<g transform="translate(0 528)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="1120" height="200" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">LATER PHASE · STILL PART OF THE OVERALL DESIGN</text><g transform="translate(24 44)" class="model-map-node is-later">
-          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <rect class="model-map-panel" width="346" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BUILD AND OPERATIONS</text>
+          <text class="model-map-title" x="62" y="50">Nexus</text>
+          <text class="model-map-body" x="16" y="76">Incremental backend builds</text>
+<text class="model-map-body" x="16" y="98">Environment and data refresh</text>
+<text class="model-map-body" x="16" y="120">Work inside VS Code</text>
+        </g><g transform="translate(386 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="346" height="140" rx="16"/>
           <g transform="translate(14 14) scale(.82)">
             <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
             <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l3-8 4 16 3-8h5"/></g>
           </g>
           <text class="model-map-eyebrow" x="62" y="28">MULTI-AGENT</text>
           <text class="model-map-title" x="62" y="50">Echelon</text>
-          <text class="model-map-body" x="62" y="70">Share tasks across many agents · Balance load, errors per step</text>
-        </g><g transform="translate(568 44)" class="model-map-node is-later">
-          <rect class="model-map-panel" width="528" height="84" rx="16"/>
+          <text class="model-map-body" x="16" y="76">Share tasks across many agents</text>
+<text class="model-map-body" x="16" y="98">Balance load, errors per step</text>
+        </g><g transform="translate(748 44)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="346" height="140" rx="16"/>
           <g transform="translate(14 14) scale(.82)">
             <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
             <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16v4m-2-2h4"/></g>
           </g>
           <text class="model-map-eyebrow" x="62" y="28">AI ASSISTANCE</text>
           <text class="model-map-title" x="62" y="50">Aira</text>
-          <text class="model-map-body" x="62" y="70">Read and summarize documents · A reviewer decides</text>
+          <text class="model-map-body" x="16" y="76">Read and summarize documents</text>
+<text class="model-map-body" x="16" y="98">A reviewer decides</text>
         </g></g>
     </svg>
-    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1956" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
+    <svg class="model-map-svg is-mobile" viewBox="0 0 360 1898" role="img" aria-labelledby="model-map-title-mobile model-map-desc-mobile">
       <title id="model-map-title-mobile">NOVA model diagram</title>
-      <desc id="model-map-desc-mobile">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Nexus provides build and operations tools. Vista connects to Orbit; Echelon adds orchestration for flows needing multiple agents and belongs to a later phase alongside Aira.</desc>
+      <desc id="model-map-desc-mobile">The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Vista connects to Orbit. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.</desc>
       <defs>
         <marker id="model-arrow-mobile" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
       </defs>
@@ -335,7 +326,6 @@
 <path class="model-map-connection" d="M180 514L180 550" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
 <path class="model-map-connection" d="M180 842L180 878" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
 <path class="model-map-connection" d="M180 1170L180 1206" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
-<path class="model-map-connection" d="M180 1380L180 1416" marker-start="url(#model-arrow-mobile)" marker-end="url(#model-arrow-mobile)"/>
       <g transform="translate(20 12)" class="model-map-node">
         <rect class="model-map-panel" width="320" height="174" rx="18"/>
         <g transform="translate(20 18)">
@@ -435,22 +425,21 @@
 <text class="model-map-body" x="20" y="132">Existing data stores</text>
 <text class="model-map-body" x="20" y="154">Access and business rules</text>
       </g>
-<g transform="translate(20 1416)" class="model-map-node">
-        <rect class="model-map-panel" width="320" height="174" rx="18"/>
-        <g transform="translate(20 18)">
-          <rect class="model-map-icon-bg" width="36" height="36" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
-        </g>
-        <text class="model-map-eyebrow" x="20" y="66">SUPPORTING TOOLING</text>
-        <text class="model-map-title" x="20" y="86">Nexus — build and operations</text>
-        <text class="model-map-body" x="20" y="110">Incremental backend builds</text>
-<text class="model-map-body" x="20" y="132">Environment and data refresh</text>
-<text class="model-map-body" x="20" y="154">Work inside VS Code</text>
-      </g>
-<g transform="translate(20 1626)" class="model-map-node is-later-box">
-        <rect class="model-map-later-box" width="320" height="318" rx="22"/>
+<g transform="translate(20 1416)" class="model-map-node is-later-box">
+        <rect class="model-map-later-box" width="320" height="470" rx="22"/>
         <text class="model-map-eyebrow" x="24" y="27">LATER PHASE</text>
 <text class="model-map-eyebrow" x="24" y="43">STILL PART OF THE OVERALL DESIGN</text><g transform="translate(16 54)" class="model-map-node is-later">
+          <rect class="model-map-panel" width="288" height="140" rx="16"/>
+          <g transform="translate(14 14) scale(.82)">
+            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
+            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></g>
+          </g>
+          <text class="model-map-eyebrow" x="62" y="28">BUILD AND OPERATIONS</text>
+          <text class="model-map-title" x="62" y="50">Nexus</text>
+          <text class="model-map-body" x="16" y="76">Incremental backend builds</text>
+<text class="model-map-body" x="16" y="98">Environment and data refresh</text>
+<text class="model-map-body" x="16" y="120">Work inside VS Code</text>
+        </g><g transform="translate(16 206)" class="model-map-node is-later">
           <rect class="model-map-panel" width="288" height="118" rx="16"/>
           <g transform="translate(14 14) scale(.82)">
             <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
@@ -460,7 +449,7 @@
           <text class="model-map-title" x="62" y="50">Echelon</text>
           <text class="model-map-body" x="16" y="76">Share tasks across many agents</text>
 <text class="model-map-body" x="16" y="98">Balance load, errors per step</text>
-        </g><g transform="translate(16 184)" class="model-map-node is-later">
+        </g><g transform="translate(16 336)" class="model-map-node is-later">
           <rect class="model-map-panel" width="288" height="118" rx="16"/>
           <g transform="translate(14 14) scale(.82)">
             <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
@@ -514,7 +503,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Components</p>
           <h2>One responsibility per component</h2>
-          <p class="lead">The package has four components, each with its own role and able to change independently.</p>
+          <p class="lead">The early-release package has three components, each with its own role and able to change independently.</p>
         </div>
         <div class="model-capability-grid">
           <article class="card model-capability-card reveal">
@@ -543,9 +532,9 @@
             <p>Maps data and manages processing sessions through backend connection profiles. Integration testing establishes compatibility for specific versions and business capabilities.</p>
           </article>
           <article class="card model-capability-card reveal">
-            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
-            <h3>Nexus — built-in tooling</h3>
-            <p>Incremental and parallel backend builds; backup, restore and data refresh; moving records to test environments; and a basic VS Code extension.</p>
+            <div class="model-capability-top"><span class="model-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7m0 4v7M12 3v12m0 4v2M19 3v2m0 4v12"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="17" r="2"/><circle cx="19" cy="7" r="2"/></svg></span><span class="model-card-number" aria-hidden="true">06</span></div>
+            <h3>Two-way data mapping and sessions</h3>
+            <p>Data is mapped into the records the backend understands and back again. Processing sessions are tracked and cleaned up when they finish.</p>
           </article>
         </div>
       </div>
@@ -581,7 +570,7 @@
             </ul>
           </article>
         </div>
-        <p class="model-note reveal">Assessment scope depends on actual readiness. Echelon and Aira are peer components in a later phase.</p>
+        <p class="model-note reveal">Assessment scope depends on actual readiness. Nexus, Echelon and Aira are peer components in a later phase.</p>
       </div>
     </section>
 
@@ -596,7 +585,7 @@
           <div>
             <p class="eyebrow">ASSESSMENT SCOPE</p>
             <h3>Choose one business function and take it end to end.</h3>
-            <p>Choose one function from the workspace to the backend, together with the build and operations tools it needs. Compare it with the current system against agreed criteria before choosing the next step.</p>
+            <p>Choose one function from the workspace to the backend. Compare it with the current system against agreed criteria before choosing the next step.</p>
             <a class="model-text-link" href="#readiness">Common deployment questions <span aria-hidden="true">↗</span></a>
           </div>
           <ul>
@@ -643,6 +632,10 @@
           <details class="reveal">
             <summary>What is needed to deploy?</summary>
             <p>A compatible business backend, servers for Orbit and the Gateway inside the internal network, and acceptance criteria. Versions, security and capacity are agreed per deployment; Orbit is not exposed directly to the internet.</p>
+          </details>
+          <details class="reveal">
+            <summary>Where does Nexus fit in the model?</summary>
+            <p>Nexus is a later-phase component. Its build, environment and test-data tools have been used in real environments on their own, and the integrated NOVA experience belongs to a later phase. Evaluating the early-release package does not depend on it.</p>
           </details>
           <details class="reveal">
             <summary>Where does Echelon fit in the model?</summary>

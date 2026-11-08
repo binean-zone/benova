@@ -31,7 +31,7 @@
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-vietnamese.woff2" crossorigin />
   <link rel="stylesheet" href="../assets/css/fonts.css?v=39eccc4f5cac" />
-  <link rel="stylesheet" href="../assets/css/style.css?v=0dcbe98452b6" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=75ee656fa3bf" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Binean Nexus","applicationCategory":"BusinessApplication","description":"Rút ngắn vòng phát triển chương trình backend, chuẩn bị môi trường và hỗ trợ điều tra lỗi với Nexus, bộ công cụ đã được sử dụng trong môi trường thực.","url":"https://binean.com/nexus/","publisher":{"@type":"Organization","name":"BENOVA","email":"binean.enova@gmail.com"}}</script>
   <script>
     // Áp dụng theme trước khi paint để tránh nhấp nháy màu.
@@ -49,7 +49,7 @@
   <div class="site-notice" role="status">
     <div class="shell notice-inner">
       <span class="notice-dot" aria-hidden="true"></span>
-      <p>Bộ công cụ Nexus đã được dùng trong môi trường thực. Trải nghiệm quản lý công việc tích hợp đang được phát triển tiếp.</p>
+      <p>Nexus tham gia NOVA ở giai đoạn sau. Bộ công cụ đã được dùng trong môi trường thực; trải nghiệm quản lý công việc tích hợp thuộc giai đoạn sau.</p>
       <a href="mailto:binean.enova@gmail.com?subject=Binean%20Nexus%20-%20Trao%20doi%20nhu%20cau">Trao đổi nhu cầu của bạn</a>
     </div>
   </div>
@@ -66,6 +66,7 @@
 
       <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
         <ul>
+          <li><a href="#giai-doan">Vị trí</a></li>
           <li><a href="#nang-luc">Tính năng</a></li>
           <li><a href="#flow">Ứng dụng</a></li>
           <li><a href="#kien-truc-nexus">Đội ngũ của bạn</a></li>
@@ -129,7 +130,7 @@
       <div class="shell nx-hero-inner">
         <div class="nx-hero-copy">
           <a class="ech-back" href="../">← Về BENOVA</a>
-          <p class="eyebrow reveal">Công cụ phát triển và vận hành trong gói NOVA</p>
+          <p class="eyebrow reveal">Giai đoạn sau của NOVA · Công cụ phát triển và vận hành</p>
           <h1 class="nx-title reveal">Bớt việc lặp lại. Thêm thời gian cho nghiệp vụ.</h1>
           <p class="nx-lead reveal">Nexus hỗ trợ đội phát triển và vận hành chuẩn bị thay đổi trên backend: biên dịch chương trình, làm mới môi trường, quản lý cơ sở dữ liệu và chuẩn bị dữ liệu kiểm thử. Bộ công cụ có tích hợp VS Code cơ bản.</p>
           <div class="hero-actions reveal">
@@ -168,6 +169,34 @@
           </ol>
           <p class="nx-terminal-result">Ít thao tác tay hơn · Thuận tiện bàn giao hơn</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-placement" id="giai-doan">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">Vị trí trong lộ trình</p>
+          <h2>Nexus đi sau gói NOVA phát hành sớm.</h2>
+          <p class="lead">Gói phát hành sớm tập trung vào Orbit, Vista và Aster. Nexus là bộ công cụ đã chạy độc lập, dự kiến tham gia NOVA ở giai đoạn sau.</p>
+        </div>
+        <ol class="nx-phase-track">
+          <li class="nx-phase is-current reveal">
+            <p class="nx-phase-tag">PHÁT HÀNH SỚM</p>
+            <h3>Orbit · Vista · Aster</h3>
+            <p class="nx-phase-desc">Kết nối ứng dụng, giao diện làm việc và kết nối backend. Đây là phạm vi đánh giá đầu tiên.</p>
+          </li>
+          <li class="nx-phase is-standalone reveal">
+            <p class="nx-phase-tag">HIỆN CÓ ĐỘC LẬP</p>
+            <h3>Bộ công cụ Nexus</h3>
+            <p class="nx-phase-desc">Công cụ build, môi trường và dữ liệu kiểm thử đã được dùng trong môi trường thực, nằm ngoài gói phát hành sớm.</p>
+          </li>
+          <li class="nx-phase is-later reveal">
+            <p class="nx-phase-tag">GIAI ĐOẠN SAU</p>
+            <h3>Nexus trong NOVA</h3>
+            <p class="nx-phase-desc">Công cụ được kết hợp thành hành trình công việc, có tiến độ và điểm xem xét ngay trong VS Code. Phạm vi và thời điểm được xác nhận khi đánh giá.</p>
+          </li>
+        </ol>
+        <p class="nx-status-note reveal">Phạm vi đánh giá gói phát hành sớm xoay quanh Orbit, Vista và Aster; nhu cầu về build và môi trường có thể trao đổi riêng.</p>
       </div>
     </section>
 
@@ -392,7 +421,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Hiện có và tiếp theo</p>
           <h2>Kinh nghiệm thực tế là điểm xuất phát.</h2>
-          <p class="lead">Phân biệt rõ bộ công cụ đã được sử dụng với trải nghiệm tích hợp đang được hoàn thiện. Nexus là một phần của gói NOVA cùng Orbit, Vista và Aster.</p>
+          <p class="lead">Phân biệt rõ bộ công cụ đã được sử dụng với trải nghiệm tích hợp đang được hoàn thiện. Nexus là thành phần giai đoạn sau của NOVA, ngang hàng với Echelon và Aira.</p>
         </div>
         <div class="nx-status-grid">
           <article class="nx-status-card is-current reveal">
@@ -406,12 +435,12 @@
             </ul>
           </article>
           <article class="nx-status-card is-next reveal">
-            <p>ĐANG PHÁT TRIỂN</p>
+            <p>GIAI ĐOẠN SAU</p>
             <h3>Trải nghiệm công việc liền mạch</h3>
             <ul class="feature-list">
               <li>Kết hợp công cụ thành hành trình công việc</li>
               <li>Theo dõi trạng thái xử lý tập trung</li>
-              <li>Hoàn thiện trải nghiệm công cụ trong gói NOVA</li>
+              <li>Tích hợp trải nghiệm công cụ vào NOVA ở giai đoạn sau</li>
               <li>Đưa công việc cần người xem xét vào VS Code</li>
             </ul>
           </article>

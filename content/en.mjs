@@ -55,7 +55,6 @@ export default {
     ],
     core: { key: 'B' },
     satellites: [
-      { key: 'N', name: 'Nexus', desc: 'Build and operations tooling', ...planetVisuals.N },
       { key: 'O', name: 'Orbit', desc: 'Coordinate requests and business flows', ...planetVisuals.O },
       { key: 'V', name: 'Vista', desc: 'A workspace for users', ...planetVisuals.V },
       { key: 'A', name: 'Aster', desc: 'Connect the business backend', ...planetVisuals.A },
@@ -77,20 +76,13 @@ export default {
   ecosystem: {
     id: 'ecosystem',
     eyebrow: 'The NOVA platform',
-    title: 'Four components. One modernization path.',
-    lead: 'Orbit adapts to how applications connect. Aster connects compatible backends. Vista provides the workspace, while Nexus supports development and operations teams.',
+    title: 'Three components. One modernization path.',
+    lead: 'Orbit adapts to how applications connect. Aster connects compatible backends. Vista provides the workspace. Nexus, the build and operations toolkit, joins in a later phase.',
     novaLabel: 'NOVA package — early release',
-    novaNote: 'Nexus · Orbit · Vista · Aster',
+    novaNote: 'Orbit · Vista · Aster',
     laterLabel: 'Extensions for a later phase',
-    laterNote: 'Echelon · Aira',
+    laterNote: 'Nexus · Echelon · Aira',
     agents: [
-      {
-        key: 'N', name: 'Nexus', role: 'Build and operations toolkit included',
-        status: 'Used in live environments', icon: '🛠️',
-        desc: 'Prepare builds, environments and test data for backend changes. The underlying tools have been used in live environments; the integrated experience is being completed.',
-        features: ['Shorten backend build cycles', 'Simplify backup, restore and environment refresh', 'Move test data for support and debugging', 'Work directly in VS Code'],
-        link: { label: 'Explore Nexus', href: 'nexus/' },
-      },
       {
         key: 'O', name: 'Orbit', role: 'Application connectivity · business orchestration',
         status: 'In development', icon: '🛰️',
@@ -114,6 +106,13 @@ export default {
       },
     ],
     later: [
+      {
+        key: 'N', name: 'Nexus', role: 'Build and operations toolkit',
+        status: 'Later phase · used on its own', icon: '🛠️',
+        desc: 'Prepare builds, environments and test data for backend changes. The underlying tools have been used in live environments; the integrated NOVA experience belongs to a later phase.',
+        features: ['Shorten backend build cycles', 'Simplify backup, restore and environment refresh', 'Move test data for support and debugging', 'Work directly in VS Code'],
+        link: { label: 'Explore Nexus', href: 'nexus/' },
+      },
       {
         key: 'E', name: 'Echelon', role: 'Multi-agent orchestration',
         status: 'Later phase · qualification ongoing', icon: '🧠',

@@ -2,7 +2,7 @@ export default {
   seo: {
     title: 'Binean NOVA — Hiện đại hóa backend theo từng nghiệp vụ',
     description: 'NOVA hướng đến mở rộng dịch vụ và chuyển đổi backend từng bước, kết hợp giao diện, điều phối, kết nối backend và công cụ phát triển. Gói phát hành sớm đang hoàn thiện.',
-    keywords: 'Binean NOVA, Nexus, Orbit, Vista, Aster, điều phối yêu cầu, giao diện làm việc, kết nối backend, gói phát hành sớm',
+    keywords: 'Binean NOVA, Orbit, Vista, Aster, điều phối yêu cầu, giao diện làm việc, kết nối backend, gói phát hành sớm',
   },
   brandName: 'Binean NOVA',
   headerCta: 'Đánh giá cùng NOVA',
@@ -19,10 +19,10 @@ export default {
   ],
   hero: {
     back: 'Về BENOVA',
-    eyebrow: 'Gói phát hành sớm: Nexus · Orbit · Vista · Aster',
+    eyebrow: 'Gói phát hành sớm: Orbit · Vista · Aster',
     title: 'Hiện đại hóa backend theo từng nghiệp vụ.',
     emphasis: 'Giữ giá trị hiện có. Mở đường cho thay đổi.',
-    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối, Aster kết nối backend, Nexus hỗ trợ build và vận hành.',
+    lead: 'NOVA hướng đến mở rộng dịch vụ trên backend hiện có, rồi chuyển đổi từng năng lực khi đủ điều kiện. Vista phục vụ người dùng, Orbit điều phối, Aster kết nối backend. Nexus, bộ công cụ build và vận hành, tham gia ở giai đoạn sau.',
     primaryCta: { label: 'Đánh giá một nghiệp vụ', href: '#contact' },
     secondaryCta: { label: 'Xem mô hình tổng quan', href: '#architecture' },
     highlights: [
@@ -36,10 +36,10 @@ export default {
     id: 'architecture',
     eyebrow: 'Mô hình tổng quan',
     title: 'Một đường đi rõ ràng từ người dùng đến backend.',
-    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng. Aster xử lý kết nối với backend tương thích. Vista và Nexus bổ sung trải nghiệm làm việc và công cụ vận hành trong lộ trình hiện đại hóa từng bước (Strangler Fig).',
+    lead: 'Orbit tùy biến cách tiếp nhận yêu cầu từ ứng dụng. Aster xử lý kết nối với backend tương thích. Vista bổ sung trải nghiệm làm việc trong lộ trình hiện đại hóa từng bước (Strangler Fig). Công cụ build và vận hành Nexus thuộc giai đoạn sau.',
     diagram: {
       label: 'Sơ đồ mô hình NOVA',
-      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu, Aster kết nối backend nghiệp vụ hiện có. Nexus cung cấp công cụ build và vận hành. Vista kết nối Orbit; Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân, thuộc giai đoạn sau cùng Aira.',
+      description: 'Mô hình gói NOVA đang hoàn thiện: Vista là giao diện làm việc, Orbit điều phối yêu cầu, Aster kết nối backend nghiệp vụ hiện có. Vista kết nối Orbit. Nexus, Echelon và Aira nằm trong khung nét đứt của giai đoạn sau: Nexus mang công cụ build và vận hành, Echelon là đường điều phối bổ sung cho flow cần nhiều tác nhân.',
       caption: 'Orbit đảm nhận kết nối phía ứng dụng; Aster đảm nhận kết nối phía backend. Mức tương thích và phạm vi chuyển đổi được kiểm chứng theo từng nghiệp vụ.',
       users: {
         eyebrow: 'NGƯỜI DÙNG VÀ KÊNH',
@@ -50,11 +50,6 @@ export default {
         eyebrow: 'GIÁ TRỊ ĐANG ĐƯỢC KHAI THÁC',
         title: 'Backend nghiệp vụ lõi',
         lines: ['Chương trình hiện có', 'Cơ sở dữ liệu hiện có', 'Quyền và quy tắc nghiệp vụ'],
-      },
-      tools: {
-        eyebrow: 'CÔNG CỤ ĐI KÈM',
-        title: 'Nexus — build và vận hành',
-        lines: ['Biên dịch backend hiện có', 'Làm mới môi trường, dữ liệu', 'Làm việc trong VS Code'],
       },
       vista: {
         eyebrow: 'GIAO DIỆN LÀM VIỆC',
@@ -73,6 +68,11 @@ export default {
       },
       later: {
         label: 'GIAI ĐOẠN SAU · VẪN NẰM TRONG THIẾT KẾ TỔNG QUAN',
+        nexus: {
+          eyebrow: 'BUILD VÀ VẬN HÀNH',
+          title: 'Nexus',
+          lines: ['Biên dịch backend hiện có', 'Làm mới môi trường, dữ liệu', 'Làm việc trong VS Code'],
+        },
         echelon: {
           eyebrow: 'ĐIỀU PHỐI ĐA AGENT',
           title: 'Echelon',
@@ -118,7 +118,7 @@ export default {
     id: 'components',
     eyebrow: 'Thành phần',
     title: 'Mỗi thành phần một trách nhiệm',
-    lead: 'Bốn thành phần trong gói, mỗi thành phần giữ một vai trò riêng và có thể thay đổi độc lập.',
+    lead: 'Ba thành phần trong gói phát hành sớm, mỗi thành phần giữ một vai trò riêng và có thể thay đổi độc lập.',
     items: [
       {
         icon: 'layout',
@@ -146,9 +146,9 @@ export default {
         desc: 'Ánh xạ dữ liệu và quản lý phiên xử lý theo hồ sơ kết nối của backend. Phạm vi tương thích được xác nhận bằng kiểm thử tích hợp trên phiên bản và nghiệp vụ cụ thể.',
       },
       {
-        icon: 'code',
-        title: 'Nexus — công cụ đi kèm',
-        desc: 'Biên dịch backend tăng dần và song song; sao lưu, phục hồi, làm mới dữ liệu; chuyển bản ghi sang môi trường kiểm thử; extension VS Code cơ bản.',
+        icon: 'control',
+        title: 'Ánh xạ dữ liệu hai chiều và phiên xử lý',
+        desc: 'Dữ liệu được ánh xạ sang bản ghi backend hiểu và ngược lại. Phiên xử lý được theo dõi và dọn khi kết thúc.',
       },
     ],
   },
@@ -176,7 +176,7 @@ export default {
         'Aster: adapter đã qua kiểm thử mô phỏng và review độc lập; kiểm chứng trên hệ thống thật theo từng phạm vi.',
       ],
     },
-    note: 'Phạm vi đánh giá phụ thuộc vào mức sẵn sàng thực tế. Echelon và Aira là các thành phần ngang hàng thuộc giai đoạn sau.',
+    note: 'Phạm vi đánh giá phụ thuộc vào mức sẵn sàng thực tế. Nexus, Echelon và Aira là các thành phần ngang hàng thuộc giai đoạn sau.',
   },
   adoption: {
     id: 'adoption',
@@ -191,7 +191,7 @@ export default {
     ],
     fitLabel: 'PHẠM VI ĐÁNH GIÁ',
     fitTitle: 'Chọn một nghiệp vụ để đi hết luồng.',
-    fitDesc: 'Chọn một chức năng từ giao diện đến backend, cùng công cụ build và vận hành cần thiết. So sánh với hệ thống hiện tại theo tiêu chí đã thống nhất trước khi quyết định bước tiếp theo.',
+    fitDesc: 'Chọn một chức năng từ giao diện đến backend. So sánh với hệ thống hiện tại theo tiêu chí đã thống nhất trước khi quyết định bước tiếp theo.',
     faqLink: { label: 'Câu hỏi triển khai thường gặp', href: '#readiness' },
   },
   readiness: {
@@ -226,6 +226,10 @@ export default {
       {
         question: 'Cần gì để triển khai?',
         answer: 'Backend nghiệp vụ tương thích, máy chủ cho Orbit và Gateway trong mạng nội bộ, cùng tiêu chí nghiệm thu. Phiên bản, bảo mật và năng lực được thống nhất theo từng triển khai; Orbit không mở trực tiếp ra internet.',
+      },
+      {
+        question: 'Nexus nằm ở đâu trong mô hình?',
+        answer: 'Nexus là thành phần thuộc giai đoạn sau. Các công cụ build, môi trường và dữ liệu kiểm thử đã được dùng độc lập trong môi trường thực; trải nghiệm tích hợp vào NOVA thuộc giai đoạn sau. Việc đánh giá gói phát hành sớm không phụ thuộc vào Nexus.',
       },
       {
         question: 'Echelon nằm ở đâu trong mô hình?',

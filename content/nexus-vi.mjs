@@ -7,10 +7,11 @@ export default {
   brandName: 'Binean Nexus',
   headerCta: 'Trao đổi về Nexus',
   notice: {
-    text: 'Bộ công cụ Nexus đã được dùng trong môi trường thực. Trải nghiệm quản lý công việc tích hợp đang được phát triển tiếp.',
+    text: 'Nexus tham gia NOVA ở giai đoạn sau. Bộ công cụ đã được dùng trong môi trường thực; trải nghiệm quản lý công việc tích hợp thuộc giai đoạn sau.',
     linkLabel: 'Trao đổi nhu cầu của bạn',
   },
   nav: [
+    { href: '#giai-doan', label: 'Vị trí' },
     { href: '#nang-luc', label: 'Tính năng' },
     { href: '#flow', label: 'Ứng dụng' },
     { href: '#kien-truc-nexus', label: 'Đội ngũ của bạn' },
@@ -19,7 +20,7 @@ export default {
   ],
   hero: {
     back: 'Về BENOVA',
-    eyebrow: 'Công cụ phát triển và vận hành trong gói NOVA',
+    eyebrow: 'Giai đoạn sau của NOVA · Công cụ phát triển và vận hành',
     title: 'Bớt việc lặp lại. Thêm thời gian cho nghiệp vụ.',
     lead: 'Nexus hỗ trợ đội phát triển và vận hành chuẩn bị thay đổi trên backend: biên dịch chương trình, làm mới môi trường, quản lý cơ sở dữ liệu và chuẩn bị dữ liệu kiểm thử. Bộ công cụ có tích hợp VS Code cơ bản.',
     primaryCta: { label: 'Xem nhu cầu được hỗ trợ', href: '#flow' },
@@ -35,6 +36,18 @@ export default {
       ],
       result: 'Ít thao tác tay hơn · Thuận tiện bàn giao hơn',
     },
+  },
+  placement: {
+    id: 'giai-doan',
+    eyebrow: 'Vị trí trong lộ trình',
+    title: 'Nexus đi sau gói NOVA phát hành sớm.',
+    lead: 'Gói phát hành sớm tập trung vào Orbit, Vista và Aster. Nexus là bộ công cụ đã chạy độc lập, dự kiến tham gia NOVA ở giai đoạn sau.',
+    stages: [
+      { tag: 'PHÁT HÀNH SỚM', title: 'Orbit · Vista · Aster', desc: 'Kết nối ứng dụng, giao diện làm việc và kết nối backend. Đây là phạm vi đánh giá đầu tiên.', state: 'current' },
+      { tag: 'HIỆN CÓ ĐỘC LẬP', title: 'Bộ công cụ Nexus', desc: 'Công cụ build, môi trường và dữ liệu kiểm thử đã được dùng trong môi trường thực, nằm ngoài gói phát hành sớm.', state: 'standalone' },
+      { tag: 'GIAI ĐOẠN SAU', title: 'Nexus trong NOVA', desc: 'Công cụ được kết hợp thành hành trình công việc, có tiến độ và điểm xem xét ngay trong VS Code. Phạm vi và thời điểm được xác nhận khi đánh giá.', state: 'later' },
+    ],
+    note: 'Phạm vi đánh giá gói phát hành sớm xoay quanh Orbit, Vista và Aster; nhu cầu về build và môi trường có thể trao đổi riêng.',
   },
   capabilities: {
     id: 'nang-luc',
@@ -91,9 +104,9 @@ export default {
     id: 'trang-thai',
     eyebrow: 'Hiện có và tiếp theo',
     title: 'Kinh nghiệm thực tế là điểm xuất phát.',
-    lead: 'Phân biệt rõ bộ công cụ đã được sử dụng với trải nghiệm tích hợp đang được hoàn thiện. Nexus là một phần của gói NOVA cùng Orbit, Vista và Aster.',
+    lead: 'Phân biệt rõ bộ công cụ đã được sử dụng với trải nghiệm tích hợp đang được hoàn thiện. Nexus là thành phần giai đoạn sau của NOVA, ngang hàng với Echelon và Aira.',
     current: { tag: 'HIỆN CÓ', title: 'Bộ công cụ hiện có', items: ['Công cụ database, bản ghi nghiệp vụ và vận hành môi trường', 'Hỗ trợ build COBOL và quản lý source', 'VS Code extension cơ bản', 'Đã được sử dụng trong môi trường thực'] },
-    next: { tag: 'ĐANG PHÁT TRIỂN', title: 'Trải nghiệm công việc liền mạch', items: ['Kết hợp công cụ thành hành trình công việc', 'Theo dõi trạng thái xử lý tập trung', 'Hoàn thiện trải nghiệm công cụ trong gói NOVA', 'Đưa công việc cần người xem xét vào VS Code'] },
+    next: { tag: 'GIAI ĐOẠN SAU', title: 'Trải nghiệm công việc liền mạch', items: ['Kết hợp công cụ thành hành trình công việc', 'Theo dõi trạng thái xử lý tập trung', 'Tích hợp trải nghiệm công cụ vào NOVA ở giai đoạn sau', 'Đưa công việc cần người xem xét vào VS Code'] },
     note: 'Phạm vi và thời điểm sẵn sàng của từng tích hợp sẽ được xác nhận khi đánh giá. Không mặc định toàn bộ hành trình đã hoàn thiện.',
   },
   cta: {

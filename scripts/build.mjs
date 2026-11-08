@@ -474,12 +474,12 @@ const ecosystem = () => {
           <p class="lead">${esc(e.lead)}</p>
         </div>
         <h3 class="agent-group-label reveal"><span>${esc(e.novaLabel)}</span><small>${esc(e.novaNote)}</small></h3>
-        <div class="agent-grid agent-grid-pair">
+        <div class="agent-grid">
 ${list(e.agents, (agent) => agentCard(agent, false))}
         </div>
         <details class="ecosystem-later">
           <summary class="agent-group-label is-later"><span>${esc(e.laterLabel)}</span><small>${esc(e.laterNote)}</small></summary>
-          <div class="agent-grid agent-grid-pair">
+          <div class="agent-grid">
 ${list(e.later, (agent) => agentCard(agent, false))}
           </div>
         </details>
@@ -1098,6 +1098,16 @@ ${flow.steps
     )
     .join('\n');
 
+  const placementStages = p.placement.stages
+    .map(
+      (stage) => `          <li class="nx-phase is-${esc(stage.state)} reveal">
+            <p class="nx-phase-tag">${esc(stage.tag)}</p>
+            <h3>${esc(stage.title)}</h3>
+            <p class="nx-phase-desc">${esc(stage.desc)}</p>
+          </li>`
+    )
+    .join('\n');
+
   const statusColumn = (status, extraClass) => `          <article class="nx-status-card ${extraClass} reveal">
             <p>${esc(status.tag)}</p>
             <h3>${esc(status.title)}</h3>
@@ -1146,6 +1156,20 @@ ${terminalSteps}
           </ol>
           <p class="nx-terminal-result">${esc(p.hero.terminal.result)}</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section nx-section nx-placement" id="${esc(p.placement.id)}">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="eyebrow">${esc(p.placement.eyebrow)}</p>
+          <h2>${esc(p.placement.title)}</h2>
+          <p class="lead">${esc(p.placement.lead)}</p>
+        </div>
+        <ol class="nx-phase-track">
+${placementStages}
+        </ol>
+        <p class="nx-status-note reveal">${esc(p.placement.note)}</p>
       </div>
     </section>
 

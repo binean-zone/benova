@@ -58,7 +58,7 @@ footer span:last-child { color: #64ffda; }
     <p>${escapeHtml(description)}</p>
     <p class="status">${code === 'vi' ? 'Gói phát hành sớm · đang hoàn thiện' : 'Early-release package · in development'}</p>
   </main>
-  <footer><span>NOVA · Nexus · Orbit · Vista · Aster</span><span>binean.com</span></footer>
+  <footer><span>NOVA · Orbit · Vista · Aster</span><span>binean.com</span></footer>
 </body>
 </html>`;
     const input = join(temporary, `${code}.html`);

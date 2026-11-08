@@ -102,7 +102,7 @@ const pageIds = {
       .map((section) => c.evaPage?.[section]?.id)
       .filter(Boolean),
   nexus: (c) =>
-    ['capabilities', 'flows', 'architecture', 'developer', 'status', 'cta']
+    ['placement', 'capabilities', 'flows', 'architecture', 'developer', 'status', 'cta']
       .map((section) => c.nexusPage?.[section]?.id)
       .filter(Boolean),
   orbit: (c) =>

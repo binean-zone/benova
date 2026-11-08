@@ -2,7 +2,7 @@ export default {
   seo: {
     title: 'Binean NOVA — Modernize your backend one capability at a time',
     description: 'NOVA aims to expand services and modernize backends incrementally, combining a workspace, orchestration, backend connectivity and development tools. The early-release package is in development.',
-    keywords: 'Binean NOVA, Nexus, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package',
+    keywords: 'Binean NOVA, Orbit, Vista, Aster, request orchestration, workspace, backend connectivity, early release package',
   },
   brandName: 'Binean NOVA',
   headerCta: 'Assess with NOVA',
@@ -19,10 +19,10 @@ export default {
   ],
   hero: {
     back: 'Back to BENOVA',
-    eyebrow: 'Early release package: Nexus · Orbit · Vista · Aster',
+    eyebrow: 'Early release package: Orbit · Vista · Aster',
     title: 'Modernize your backend one capability at a time.',
     emphasis: 'Preserve existing value. Create room for change.',
-    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, Aster connects the backend, and Nexus supports build and operations.',
+    lead: 'NOVA aims to expand services on your existing backend, then transition individual capabilities when ready. Vista serves users, Orbit coordinates requests, and Aster connects the backend. Nexus, the build and operations toolkit, joins in a later phase.',
     primaryCta: { label: 'Assess one business capability', href: '#contact' },
     secondaryCta: { label: 'See the model overview', href: '#architecture' },
     highlights: [
@@ -36,10 +36,10 @@ export default {
     id: 'architecture',
     eyebrow: 'Model overview',
     title: 'A clear path from the user to the backend.',
-    lead: 'Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista and Nexus provide the workspace and operations tools for incremental modernization (Strangler Fig).',
+    lead: 'Orbit adapts how application requests are received. Aster handles connections to compatible backends. Vista provides the workspace for incremental modernization (Strangler Fig). Nexus build and operations tools belong to a later phase.',
     diagram: {
       label: 'NOVA model diagram',
-      description: 'The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Nexus provides build and operations tools. Vista connects to Orbit; Echelon adds orchestration for flows needing multiple agents and belongs to a later phase alongside Aira.',
+      description: 'The NOVA integration model in development: Vista provides the workspace, Orbit coordinates requests, and Aster connects the existing business backend. Vista connects to Orbit. Nexus, Echelon and Aira sit in a dashed later-phase frame: Nexus brings build and operations tools, and Echelon adds orchestration for flows needing multiple agents.',
       caption: 'Orbit handles application-facing connections; Aster handles backend-facing connections. Compatibility and transition scope are verified for each business capability.',
       users: {
         eyebrow: 'USERS AND CHANNELS',
@@ -50,11 +50,6 @@ export default {
         eyebrow: 'BUILD ON EXISTING VALUE',
         title: 'Core business backend',
         lines: ['Existing programs', 'Existing data stores', 'Access and business rules'],
-      },
-      tools: {
-        eyebrow: 'SUPPORTING TOOLING',
-        title: 'Nexus — build and operations',
-        lines: ['Incremental backend builds', 'Environment and data refresh', 'Work inside VS Code'],
       },
       vista: {
         eyebrow: 'USER WORKSPACE',
@@ -73,6 +68,11 @@ export default {
       },
       later: {
         label: 'LATER PHASE · STILL PART OF THE OVERALL DESIGN',
+        nexus: {
+          eyebrow: 'BUILD AND OPERATIONS',
+          title: 'Nexus',
+          lines: ['Incremental backend builds', 'Environment and data refresh', 'Work inside VS Code'],
+        },
         echelon: {
           eyebrow: 'MULTI-AGENT',
           title: 'Echelon',
@@ -118,7 +118,7 @@ export default {
     id: 'components',
     eyebrow: 'Components',
     title: 'One responsibility per component',
-    lead: 'The package has four components, each with its own role and able to change independently.',
+    lead: 'The early-release package has three components, each with its own role and able to change independently.',
     items: [
       {
         icon: 'layout',
@@ -146,9 +146,9 @@ export default {
         desc: 'Maps data and manages processing sessions through backend connection profiles. Integration testing establishes compatibility for specific versions and business capabilities.',
       },
       {
-        icon: 'code',
-        title: 'Nexus — built-in tooling',
-        desc: 'Incremental and parallel backend builds; backup, restore and data refresh; moving records to test environments; and a basic VS Code extension.',
+        icon: 'control',
+        title: 'Two-way data mapping and sessions',
+        desc: 'Data is mapped into the records the backend understands and back again. Processing sessions are tracked and cleaned up when they finish.',
       },
     ],
   },
@@ -176,7 +176,7 @@ export default {
         'Aster: adapter tested in simulation and independently reviewed; validation on real systems is scoped step by step.',
       ],
     },
-    note: 'Assessment scope depends on actual readiness. Echelon and Aira are peer components in a later phase.',
+    note: 'Assessment scope depends on actual readiness. Nexus, Echelon and Aira are peer components in a later phase.',
   },
   adoption: {
     id: 'adoption',
@@ -191,7 +191,7 @@ export default {
     ],
     fitLabel: 'ASSESSMENT SCOPE',
     fitTitle: 'Choose one business function and take it end to end.',
-    fitDesc: 'Choose one function from the workspace to the backend, together with the build and operations tools it needs. Compare it with the current system against agreed criteria before choosing the next step.',
+    fitDesc: 'Choose one function from the workspace to the backend. Compare it with the current system against agreed criteria before choosing the next step.',
     faqLink: { label: 'Common deployment questions', href: '#readiness' },
   },
   readiness: {
@@ -226,6 +226,10 @@ export default {
       {
         question: 'What is needed to deploy?',
         answer: 'A compatible business backend, servers for Orbit and the Gateway inside the internal network, and acceptance criteria. Versions, security and capacity are agreed per deployment; Orbit is not exposed directly to the internet.',
+      },
+      {
+        question: 'Where does Nexus fit in the model?',
+        answer: 'Nexus is a later-phase component. Its build, environment and test-data tools have been used in real environments on their own, and the integrated NOVA experience belongs to a later phase. Evaluating the early-release package does not depend on it.',
       },
       {
         question: 'Where does Echelon fit in the model?',

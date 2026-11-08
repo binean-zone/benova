@@ -104,7 +104,7 @@ test('NOVA colors use the same theme-dependent accents as the home page', () => 
   assert.match(css, /\.model-map-title\s*\{[^}]*fill:\s*var\(--text-strong\);/);
 });
 
-test('NOVA page has accessible responsive diagrams, four flow steps, six components and seven FAQ items', () => {
+test('NOVA page has accessible responsive diagrams, four flow steps, six components and eight FAQ items', () => {
   for (const route of ['nova/', 'en/nova/']) {
     const text = html.get(route);
     for (const layout of ['desktop', 'mobile']) {
@@ -113,7 +113,7 @@ test('NOVA page has accessible responsive diagrams, four flow steps, six compone
       assert.match(text, new RegExp(`<desc id="model-map-desc-${layout}">[^<]+</desc>`), route);
     }
     assert.equal((text.match(/class="card model-capability-card reveal"/g) || []).length, 10, route);
-    assert.equal((text.match(/<details class="reveal">/g) || []).length, 8, route);
+    assert.equal((text.match(/<details class="reveal">/g) || []).length, 9, route);
     const ids = [...text.matchAll(/\bid="([^"]+)"/g)].map(([, id]) => id);
     assert.equal(new Set(ids).size, ids.length, `${route}: duplicate SVG or section ID`);
     for (const anchor of ['architecture', 'flow', 'components', 'status', 'adoption', 'readiness', 'contact']) {
@@ -136,6 +136,22 @@ test('NOVA states its status honestly and keeps Echelon and Aira in a later phas
     const text = html.get(route);
     assert.match(text, /agent-group-label is-later/, route);
     assert.match(text, /nova\//, route);
+  }
+});
+
+test('Nexus is presented as a later-phase component, outside the early-release NOVA package', () => {
+  for (const route of ['', 'en/']) {
+    const text = html.get(route);
+    const later = text.match(/<details class="ecosystem-later">[\s\S]*?<\/details>/);
+    assert.ok(later, route);
+    assert.match(later[0], /Nexus/, route);
+    assert.doesNotMatch(text.replace(later[0], ''), /agent-key[^>]*>N</, route);
+    assert.doesNotMatch(text, /title="Nexus —/, route);
+  }
+  for (const route of ['nexus/', 'en/nexus/']) {
+    const text = html.get(route);
+    assert.match(text, /class="nx-phase is-later/, route);
+    assert.match(text, /class="nx-phase is-current/, route);
   }
 });
 

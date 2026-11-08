@@ -7,10 +7,11 @@ export default {
   brandName: 'Binean Nexus',
   headerCta: 'Discuss Nexus',
   notice: {
-    text: 'The Nexus toolset has been used in real environments. The integrated work-management experience is being developed further.',
+    text: 'Nexus joins NOVA in a later phase. The toolset has been used in real environments; the integrated work-management experience belongs to a later phase.',
     linkLabel: 'Discuss your needs',
   },
   nav: [
+    { href: '#placement', label: 'Where it fits' },
     { href: '#capabilities', label: 'Features' },
     { href: '#flows', label: 'Applications' },
     { href: '#nexus-architecture', label: 'Your team' },
@@ -19,7 +20,7 @@ export default {
   ],
   hero: {
     back: 'Back to BENOVA',
-    eyebrow: 'Development and operations tools within NOVA',
+    eyebrow: 'Later phase of NOVA · Development and operations tools',
     title: 'Less repetitive work. More time for business value.',
     lead: 'Nexus helps development and operations teams prepare backend changes: compile programs, refresh environments, manage databases and prepare test data. The toolkit includes basic VS Code integration.',
     primaryCta: { label: 'Explore supported needs', href: '#flows' },
@@ -35,6 +36,18 @@ export default {
       ],
       result: 'Less manual effort · More practical handovers',
     },
+  },
+  placement: {
+    id: 'placement',
+    eyebrow: 'Where it fits',
+    title: 'Nexus comes after the early-release NOVA package.',
+    lead: 'The early-release package focuses on Orbit, Vista and Aster. Nexus is a toolset that already works on its own and is intended to join NOVA in a later phase.',
+    stages: [
+      { tag: 'EARLY RELEASE', title: 'Orbit · Vista · Aster', desc: 'Application connectivity, the user workspace and backend connectivity. This is the first scope to evaluate.', state: 'current' },
+      { tag: 'AVAILABLE ON ITS OWN', title: 'The Nexus toolkit', desc: 'Build, environment and test-data tools already used in real environments, outside the early-release package.', state: 'standalone' },
+      { tag: 'LATER PHASE', title: 'Nexus inside NOVA', desc: 'Tools combined into work journeys, with progress and review points inside VS Code. Scope and timing are confirmed during evaluation.', state: 'later' },
+    ],
+    note: 'The early-release assessment is scoped around Orbit, Vista and Aster; build and environment needs can be discussed separately.',
   },
   capabilities: {
     id: 'capabilities',
@@ -91,9 +104,9 @@ export default {
     id: 'status',
     eyebrow: 'Available and next',
     title: 'Practical experience is the starting point.',
-    lead: 'Distinguish the toolset already in use from the integrated experience still being refined. Nexus is one part of the NOVA package alongside Orbit, Vista and Aster.',
+    lead: 'Distinguish the toolset already in use from the integrated experience still being refined. Nexus is a later-phase component of NOVA, alongside Echelon and Aira.',
     current: { tag: 'AVAILABLE', title: 'The current toolkit', items: ['Database, business-record and environment operations tools', 'COBOL build and source management support', 'Basic VS Code extension', 'Used in real environments'] },
-    next: { tag: 'IN DEVELOPMENT', title: 'A connected working experience', items: ['Combine tools into work journeys', 'Centralized processing status', 'Refine the tooling experience within NOVA', 'Bring human-review work into VS Code'] },
+    next: { tag: 'LATER PHASE', title: 'A connected working experience', items: ['Combine tools into work journeys', 'Centralized processing status', 'Integrate the tooling experience into NOVA in a later phase', 'Bring human-review work into VS Code'] },
     note: 'Scope and readiness for each integration will be confirmed during evaluation. A complete end-to-end journey is not assumed.',
   },
   cta: {

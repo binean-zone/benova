@@ -97,7 +97,7 @@ export default {
     direction: {
       tag: 'ĐỊNH HƯỚNG',
       title: 'Mở rộng giá trị cho doanh nghiệp',
-      items: ['Tùy biến cổng kết nối theo từng hệ thống', 'Nối màn hình Vista với kịch bản nghiệp vụ', 'Kiểm chứng tương thích và hiệu năng trước khi mở rộng', 'Cùng Vista, Aster và Nexus trong gói NOVA'],
+      items: ['Tùy biến cổng kết nối theo từng hệ thống', 'Nối màn hình Vista với kịch bản nghiệp vụ', 'Kiểm chứng tương thích và hiệu năng trước khi mở rộng', 'Cùng Vista và Aster trong gói NOVA'],
     },
     note: 'Orbit là một phần của gói NOVA đang hoàn thiện, chưa phải bản thay thế core sẵn sàng triển khai. Phạm vi và thời điểm được trao đổi theo yêu cầu.',
   },
