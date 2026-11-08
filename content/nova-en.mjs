@@ -93,7 +93,7 @@ export default {
     lead: 'How a request moves through the model.',
     items: [
       {
-        icon: 'layout',
+        icon: 'vista',
         title: 'Users act in Vista',
         desc: 'Choose a function, fill in forms or work with tables; the browser only interacts with the workspace.',
       },
@@ -121,7 +121,7 @@ export default {
     lead: 'The early-release package has three components, each with its own role and able to change independently.',
     items: [
       {
-        icon: 'layout',
+        icon: 'vista',
         title: 'Vista — one unified workspace',
         desc: 'Menus, tabs, tables and forms in one working interface, so users can move between business functions without relearning how to work.',
       },

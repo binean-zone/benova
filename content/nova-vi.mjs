@@ -93,7 +93,7 @@ export default {
     lead: 'Một yêu cầu đi qua mô hình như thế nào.',
     items: [
       {
-        icon: 'layout',
+        icon: 'vista',
         title: 'Người dùng thao tác trên Vista',
         desc: 'Chọn chức năng, nhập biểu mẫu hoặc làm việc với bảng; trình duyệt chỉ tương tác với giao diện làm việc.',
       },
@@ -121,7 +121,7 @@ export default {
     lead: 'Ba thành phần trong gói phát hành sớm, mỗi thành phần giữ một vai trò riêng và có thể thay đổi độc lập.',
     items: [
       {
-        icon: 'layout',
+        icon: 'vista',
         title: 'Vista — không gian làm việc thống nhất',
         desc: 'Menu, tab, bảng và biểu mẫu trong một giao diện làm việc; người dùng chuyển giữa các nghiệp vụ mà không phải học lại cách thao tác.',
       },
