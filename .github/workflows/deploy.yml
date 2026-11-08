@@ -23,10 +23,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Cần đủ lịch sử để tính range của push/PR; không quét lại toàn bộ.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # Chốt cuối vì hook có thể bị bỏ qua bằng --no-verify. Chỉ quét range của
+      # push/PR để giảm tải; chạy tay mới quét toàn bộ lịch sử.
+      - name: Check publish safety
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            range="origin/${{ github.base_ref }}..HEAD"
+          elif [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            range="${{ github.event.before }}..${{ github.sha }}"
+          else
+            range=""
+          fi
+          if [ -z "$range" ]; then
+            node scripts/check-public-safety.mjs --all --history --strict
+          else
+            node scripts/check-public-safety.mjs --range "$range" --strict
+          fi
 
       # npm run build chạy check-content.mjs trước: hai bản ngôn ngữ lệch cấu
       # trúc là hỏng build ngay, không để lọt ra bản deploy.

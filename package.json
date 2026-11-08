@@ -5,8 +5,11 @@
   "description": "BENOVA — gói NOVA (Orbit, Vista, Aster) và hệ sinh thái Echelon, Aira",
   "type": "module",
   "scripts": {
-    "build": "node scripts/check-content.mjs && node scripts/build.mjs",
+    "build": "node scripts/check-public-safety.mjs --all && node scripts/check-content.mjs && node scripts/build.mjs",
     "check": "node scripts/check-content.mjs",
+    "check:safety": "node scripts/check-public-safety.mjs --all",
+    "check:safety:strict": "node scripts/check-public-safety.mjs --all --strict",
+    "hooks": "git config core.hooksPath .githooks",
     "test:site": "npm run build && node --test scripts/site.test.mjs",
     "fonts": "node scripts/fetch-fonts.mjs",
     "social": "node scripts/render-social-cards.mjs",

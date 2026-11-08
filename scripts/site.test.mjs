@@ -4,6 +4,7 @@ import { after, before, test } from 'node:test';
 import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { extname, join } from 'node:path';
+import { scanDirectoryForBlockedTerms } from './check-public-safety.mjs';
 import { stagePublic } from './stage-public.mjs';
 
 const temporary = mkdtempSync(join(tmpdir(), 'benova-site-'));
@@ -152,6 +153,15 @@ test('Nexus is presented as a later-phase component, outside the early-release N
     assert.match(text, /class="nx-phase is-later/, route);
     assert.match(text, /class="nx-phase is-current/, route);
   }
+});
+
+test('the deploy artifact contains no blocked vendor or copyright-risk terms', () => {
+  const findings = scanDirectoryForBlockedTerms(output);
+  assert.deepEqual(
+    findings,
+    [],
+    findings.map(({ file, line, label }) => `${file}:${line} ${label}`).join('\n')
+  );
 });
 
 test('source, internal documentation and release tooling are not deployed', () => {

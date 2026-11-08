@@ -61,10 +61,11 @@ override ngay ở invocation để giảm reasoning token. Không coi context `[
 Chạy từ repository root, prompt qua stdin bằng heredoc quoted để giữ nguyên `$`, backtick và newline:
 
 ```bash
-CLAUDE_CODE_EFFORT_LEVEL=low deepseek -p \
+deepseek -p \
   --model deepseek-flash --effort low --output-format json \
-  --no-session-persistence --permission-mode bypassPermissions \
-  --tools 'Read,Glob,Grep,Edit,Write,Bash' <<'PROMPT'
+  --no-session-persistence --permission-mode acceptEdits \
+  --tools 'Read,Glob,Grep,Edit,Write,Bash' \
+  --allowedTools 'Read,Glob,Grep,Edit,Write,Bash' <<'PROMPT'
 <prompt của bước hẹp, kèm package và path cần đọc>
 PROMPT
 ```
@@ -74,8 +75,9 @@ không được cấp. Không truyền lịch sử của session cha, toàn bộ
 
 ### Quyền và tools
 
-Người dùng đã cấp `--permission-mode bypassPermissions` cho worker; không hỏi lại. Chế độ này bỏ
-hàng rào quyền, nên giới hạn thật là `--tools` theo vai trò và scope trong prompt:
+Mặc định dùng `--permission-mode acceptEdits` với `--tools` và `--allowedTools` đầy đủ theo vai
+trò; scope trong prompt là biên giới thật. Host chặn flag `--permission-mode bypassPermissions`
+cho session con, nên chỉ flag đó bị cấm; không dùng lại.
 
 - Implement/fix: `Read,Glob,Grep,Edit,Write,Bash`.
 - Review/validation: `Read,Glob,Grep,Bash`, không `Edit`/`Write`; reviewer chỉ đọc trước verdict.
@@ -97,8 +99,9 @@ blocker thật, báo đúng thứ cần có.
 ```bash
 deepseek -p \
   --model deepseek-flash --effort low --output-format json \
-  --no-session-persistence --permission-mode bypassPermissions \
-  --tools 'Read,Glob,Grep,Bash' <<'PROMPT'
+  --no-session-persistence --permission-mode acceptEdits \
+  --tools 'Read,Glob,Grep,Bash' \
+  --allowedTools 'Read,Glob,Grep,Bash' <<'PROMPT'
 Chạy đúng các lệnh gate dưới đây trong repository root, theo thứ tự, không sửa file:
 git diff --check
 python3 tools/check_docs.py
@@ -125,7 +128,7 @@ Markdown phải chạy lại sau mỗi lần sửa; không thay gate bằng nh�
 
 - Không thay planning, approval, chọn tier hoặc closure; không tự review code mình viết.
 - Không đổi model/provider khi lỗi auth hoặc quota, không bịa CLI/API/model ID, không sửa wrapper.
-- `--permission-mode bypassPermissions` bỏ hàng rào quyền; `--tools` và scope trong prompt là giới
-  hạn thật.
+- `--permission-mode acceptEdits` là default; `--tools`/`--allowedTools` và scope trong prompt là
+  giới hạn thật. Chỉ `--permission-mode bypassPermissions` bị cấm.
 - Không push, không sửa repository sibling, không đọc credential, không lưu secret.
 - Prompt terse tham chiếu (không bắt buộc): `.agents/prompts/deepseek-terse.md`.
