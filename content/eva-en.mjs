@@ -99,10 +99,10 @@ export default {
     id: 'benova',
     eyebrow: 'Within the BENOVA ecosystem',
     title: 'Connect effective teamwork with your business system.',
-    lead: 'BENOVA aims to combine the work-management experience of EVA with the NOVA package. Integration is evaluated by scope, not presented as an already deployed core transformation.',
+    lead: 'BENOVA aims to combine the work-management experience of EVA with the NOVA model. Integration is evaluated by scope, not presented as an already deployed core transformation.',
     formula: [
       { name: 'EVA', desc: 'Work coordination and visibility' },
-      { name: 'Nexus + Orbit + Vista + Aster', desc: 'Interface, orchestration and backend connectivity' },
+      { name: 'Nexus + Orbit + Vista + Add-ons', desc: 'The four solution families of the NOVA model' },
       { name: 'BENOVA', desc: 'Value for insurance businesses' },
     ],
     cta: { label: 'Explore BENOVA', href: '' },

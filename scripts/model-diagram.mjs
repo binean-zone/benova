@@ -21,179 +21,103 @@ export const modelIcon = (name) => {
 };
 
 /**
- * Sơ đồ tổng quan NOVA. Dữ liệu `d`:
- *   users                        — dải ngang (eyebrow, title, lines)
- *   vista, orbit                 — hai thành phần chính (eyebrow, title, lines)
- *   tier: { label }, legacy, aster — tầng backend: backend hiện có và Aster (backend demo độc lập)
- *   later: { label, nexus, echelon, aira } — giai đoạn sau, vẽ nét đứt
+ * Sơ đồ tổng quan NOVA: bốn nhóm giải pháp N/O/V/A với Orbit–Vista là trục
+ * trung tâm. Dữ liệu `d`:
+ *   label, description, caption — nhãn và mô tả cho trình đọc màn hình
+ *   axisLabel                   — nhãn trục trung tâm, đặt trên Orbit và Vista
+ *   families.nexus              — { eyebrow, title, lines }
+ *   families.orbit              — như trên, kèm nested { eyebrow, title, lines } cho Aster
+ *   families.vista              — { eyebrow, title, lines }
+ *   families.addons             — như trên, kèm nested cho Astra
+ * Sơ đồ chỉ mô tả vai trò và quan hệ khái niệm; không mô tả triển khai,
+ * endpoint hay topology vận hành.
  */
 export function modelDiagram(d, esc) {
   const W = 1120;
-  const COL = 340;
-  const GAP = 50;
-  const LINK = 36;
+  const PANEL_W = 256;
+  const GAP = 32;
+  const PANEL_H = 346;
+  const panelX = (index) => index * (PANEL_W + GAP);
+
+  const icon = (name, x, y, size = 44) => `<g transform="translate(${x} ${y})">
+          <rect class="model-map-icon-bg" width="${size}" height="${size}" rx="13"/>
+          <g transform="translate(${Math.round(size * 0.23)} ${Math.round(size * 0.23)}) scale(${size / 44})" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</g>
+        </g>`;
+
+  const familyPanel = (key, x, y, w, emphasis, mobile) => {
+    const n = d.families[key];
+    const pad = mobile ? 16 : 20;
+    const iconSize = mobile ? 36 : 44;
+    const eyebrowY = mobile ? 76 : 94;
+    const titleY = mobile ? 104 : 126;
+    const lineStart = mobile ? 132 : 158;
+    const lineStep = mobile ? 40 : 40;
+    const pillH = 32;
+    const nested = n.nested;
+    const naturalHeight = lineStart + n.lines.length * lineStep + (nested ? 82 : 0) + pad;
+    const height = mobile ? naturalHeight : Math.max(naturalHeight, PANEL_H);
+    const nestedY = height - 78 - pad;
+    const panelClass = `model-map-node${emphasis ? ' is-product' : ''}`;
+
+    const lines = n.lines
+      .map(
+        (line, i) => `<g transform="translate(${pad} ${lineStart + i * lineStep})">
+          <rect class="model-map-feature" width="${w - pad * 2}" height="${pillH}" rx="9"/>
+          <circle class="model-map-dot" cx="16" cy="${pillH / 2}" r="3"/>
+          <text class="model-map-body" x="30" y="${pillH / 2 + 5}">${esc(line)}</text>
+        </g>`
+      )
+      .join('\n');
+
+    const nestedBox = nested
+      ? `<g transform="translate(${pad} ${nestedY})" class="model-map-node is-later">
+          <rect class="model-map-panel" width="${w - pad * 2}" height="78" rx="14"/>
+          <text class="model-map-eyebrow" x="12" y="22">${esc(nested.eyebrow)}</text>
+          <text class="model-map-title" x="12" y="45">${esc(nested.title)}</text>
+          ${nested.lines.map((line, i) => `<text class="model-map-body" x="12" y="${63 + i * 16}">${esc(line)}</text>`).join('\n')}
+        </g>`
+      : '';
+
+    return `<g transform="translate(${x} ${y})" class="${panelClass}">
+        <rect class="model-map-panel" width="${w}" height="${height}" rx="22"/>
+${emphasis ? `        <rect class="model-map-inset" x="6" y="6" width="${w - 12}" height="${height - 12}" rx="17"/>\n` : ''}        ${icon(key === 'nexus' ? 'code' : key === 'orbit' ? 'routing' : key === 'vista' ? 'vista' : 'spark', pad, pad, iconSize)}
+        <text class="model-map-eyebrow" x="${pad}" y="${eyebrowY}">${esc(n.eyebrow)}</text>
+        <text class="model-map-title" x="${pad}" y="${titleY}">${esc(n.title)}</text>
+        ${lines}
+${nestedBox ? `${nestedBox}\n` : ''}      </g>`;
+  };
 
   const graphic = (mobile) => {
     const suffix = mobile ? 'mobile' : 'desktop';
     const width = mobile ? 360 : W;
     const nodes = [];
-    const links = [];
     let height = 0;
 
-    const icon = (name, x, y) => `<g transform="translate(${x} ${y})">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</g>
-        </g>`;
-
-    /* Thành phần chính: icon, nhãn, tên và ba dòng tính năng. */
-    const product = (key, x, y, w, h, ic) => {
-      const n = d[key];
-      nodes.push(`<g transform="translate(${x} ${y})" class="model-map-node is-product">
-        <rect class="model-map-panel" width="${w}" height="${h}" rx="22"/>
-        <rect class="model-map-inset" x="6" y="6" width="${w - 12}" height="${h - 12}" rx="17"/>
-        ${icon(ic, 24, 24)}
-        <text class="model-map-eyebrow" x="24" y="94">${esc(n.eyebrow)}</text>
-        <text class="model-map-title" x="24" y="125">${esc(n.title)}</text>
-        ${n.lines.map((line, i) => `<g transform="translate(24 ${149 + i * 44})">
-          <rect class="model-map-feature" width="${w - 48}" height="35" rx="9"/>
-          <circle class="model-map-dot" cx="16" cy="17.5" r="3"/>
-          <text class="model-map-body" x="30" y="22">${esc(line)}</text>
-        </g>`).join('\n')}
-      </g>`);
-    };
-
-    /* Dải ngang: desktop xếp các dòng thành viên nang bên phải, mobile xếp dọc. */
-    const band = (key, y, ic, cls = '') => {
-      const n = d[key];
-      if (mobile) {
-        const h = 108 + n.lines.length * 22;
-        nodes.push(`<g transform="translate(20 ${y})" class="model-map-node${cls}">
-        <rect class="model-map-panel" width="320" height="${h}" rx="18"/>
-        ${icon(ic, 20, 18).replace('width="44" height="44"', 'width="36" height="36"')}
-        <text class="model-map-eyebrow" x="20" y="${72 - 6}">${esc(n.eyebrow)}</text>
-        <text class="model-map-title" x="20" y="${72 + 14}">${esc(n.title)}</text>
-        ${n.lines.map((line, i) => `<text class="model-map-body" x="20" y="${72 + 38 + i * 22}">${esc(line)}</text>`).join('\n')}
-      </g>`);
-        return h;
-      }
-      const h = 64;
-      const pillW = Math.floor((W - 360 - 24 - 12 * (n.lines.length - 1)) / n.lines.length);
-      nodes.push(`<g transform="translate(0 ${y})" class="model-map-node${cls}">
-        <rect class="model-map-panel" width="${W}" height="${h}" rx="18"/>
-        <g transform="translate(16 10)">
-          <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-          <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[ic]}</g>
-        </g>
-        <text class="model-map-eyebrow" x="76" y="26">${esc(n.eyebrow)}</text>
-        <text class="model-map-title" x="76" y="49">${esc(n.title)}</text>
-        ${n.lines.map((line, i) => `<g transform="translate(${360 + i * (pillW + 12)} 16)">
-          <rect class="model-map-feature" width="${pillW}" height="32" rx="9"/>
-          <text class="model-map-body" x="14" y="21">${esc(line)}</text>
-        </g>`).join('\n')}
-      </g>`);
-      return h;
-    };
-
-    const connector = (x1, y1, x2, y2) =>
-      links.push(`<path class="model-map-connection" d="M${x1} ${y1}L${x2} ${y2}" marker-start="url(#model-arrow-${suffix})" marker-end="url(#model-arrow-${suffix})"/>`);
-
-    /* Khung nhóm: nhãn ở trên, các nút xếp bên trong. Mỗi nút là { n, ic, cls }.
-       - later: khung nét đứt của giai đoạn sau (Nexus, Echelon, Aira).
-       - tier:  khung liền của tầng backend mà Orbit làm việc cùng; Aster là nút nét đứt
-                vì là backend demo độc lập, không dùng hệ thống đang vận hành. */
-    const group = (y, label, items, boxClass, rectClass) => {
-      const maxLines = Math.max(...items.map(({ n }) => n.lines.length));
-      // Desktop: các ô cùng chiều cao; mobile: mỗi ô theo số dòng của nó.
-      const nodeH = (n) => 74 + (mobile ? n.lines.length : maxLines) * 22;
-      const inner = mobile ? items.reduce((sum, { n }) => sum + nodeH(n) + 12, 0) : nodeH(items[0].n) + 12;
-      // Nhãn dài được tách theo dấu "·" thành nhiều dòng trên mobile để không tràn khung.
-      const labelLines = mobile ? label.split(' · ') : [label];
-      const headerH = mobile ? 14 + labelLines.length * 16 + 8 : 44;
-      const total = headerH + inner + 4;
-      const x0 = mobile ? 20 : 0;
-      const w0 = mobile ? 320 : W;
-      let out = `<g transform="translate(${x0} ${y})" class="model-map-node ${boxClass}">
-        <rect class="${rectClass}" width="${w0}" height="${total}" rx="22"/>
-        ${labelLines.map((line, i) => `<text class="model-map-eyebrow" x="24" y="${27 + i * 16}">${esc(line)}</text>`).join('\n')}`;
-      let cy = headerH;
-      items.forEach(({ n, ic, cls }, i) => {
-        const nw = mobile ? w0 - 32 : Math.floor((w0 - 48 - 16 * (items.length - 1)) / items.length);
-        const nx = mobile ? 16 : 24 + i * (nw + 16);
-        const h = nodeH(n);
-        out += `<g transform="translate(${nx} ${cy})" class="model-map-node${cls ? ` ${cls}` : ''}">
-          <rect class="model-map-panel" width="${nw}" height="${h}" rx="16"/>
-          <g transform="translate(14 14) scale(.82)">
-            <rect class="model-map-icon-bg" width="44" height="44" rx="13"/>
-            <g transform="translate(10 10)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[ic]}</g>
-          </g>
-          <text class="model-map-eyebrow" x="62" y="28">${esc(n.eyebrow)}</text>
-          <text class="model-map-title" x="62" y="50">${esc(n.title)}</text>
-          ${n.lines.map((line, j) => `<text class="model-map-body" x="16" y="${76 + j * 22}">${esc(line)}</text>`).join('\n')}
-        </g>`;
-        if (mobile) cy += h + 12;
-      });
-      out += '</g>';
-      nodes.push(out);
-      return total;
-    };
-
-    const tier = (y) =>
-      group(y, d.tier.label, [
-        { n: d.legacy, ic: 'core', cls: '' },
-        { n: d.aster, ic: 'application', cls: 'is-later' },
-      ], 'is-tier-box', 'model-map-tier-box');
-
-    const later = (y) =>
-      group(y, d.later.label, [
-        { n: d.later.nexus, ic: 'code', cls: 'is-later' },
-        { n: d.later.echelon, ic: 'activity', cls: 'is-later' },
-        { n: d.later.aira, ic: 'spark', cls: 'is-later' },
-      ], 'is-later-box', 'model-map-later-box');
-
     if (!mobile) {
-      let y = band('users', 0, 'user');
-      const rowB = y + LINK;
-      const productH = 292;
-      // Hai thành phần chính nằm giữa hàng; Orbit nối xuống tầng backend.
-      const xs = [(W - (2 * COL + GAP)) / 2, (W - (2 * COL + GAP)) / 2 + COL + GAP];
-      connector(xs[0] + COL / 2, y, xs[0] + COL / 2, rowB);
-      connector(xs[1] + COL / 2, y, xs[1] + COL / 2, rowB);
-      product('vista', xs[0], rowB, COL, productH, 'vista');
-      product('orbit', xs[1], rowB, COL, productH, 'routing');
-      const mid = rowB + 154;
-      connector(xs[0] + COL, mid, xs[1], mid);
-      y = rowB + productH;
-      connector(xs[1] + COL / 2, y, xs[1] + COL / 2, y + LINK);
-      y += LINK;
-      y += tier(y);
-      y += LINK;
-      y += later(y);
-      height = y;
+      const panelY = 54;
+      nodes.push(`<g class="model-map-node"><rect class="model-map-axis-band" x="${panelX(1)}" y="0" width="${PANEL_W * 2 + GAP}" height="34" rx="17"/>
+        <text class="model-map-axis-label" x="${panelX(1) + (PANEL_W * 2 + GAP) / 2}" y="22" text-anchor="middle">${esc(d.axisLabel)}</text></g>`);
+      for (const [index, key] of ['nexus', 'orbit', 'vista', 'addons'].entries()) {
+        nodes.push(
+          familyPanel(key, panelX(index), panelY, PANEL_W, key === 'orbit' || key === 'vista', false)
+        );
+      }
+      height = panelY + PANEL_H;
     } else {
-      let y = 12;
-      const chain = (key, ic) => {
-        product(key, 20, y, 320, 292, ic);
-        y += 292;
-      };
-      y += band('users', y, 'user');
-      connector(180, y, 180, y + LINK); y += LINK;
-      chain('vista', 'vista');
-      connector(180, y, 180, y + LINK); y += LINK;
-      chain('orbit', 'routing');
-      connector(180, y, 180, y + LINK); y += LINK;
-      y += tier(y);
-      y += LINK;
-      y += later(y);
-      height = y + 12;
+      let y = 8;
+      for (const key of ['nexus', 'orbit', 'vista', 'addons']) {
+        const panel = familyPanel(key, 20, y, 320, key === 'orbit' || key === 'vista', true);
+        nodes.push(panel);
+        const lines = d.families[key].lines.length;
+        const nested = d.families[key].nested ? 78 + 4 : 0;
+        y += 132 + lines * 40 + nested + 16 + 16;
+      }
+      height = y;
     }
 
     return `<svg class="model-map-svg is-${suffix}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="model-map-title-${suffix} model-map-desc-${suffix}">
       <title id="model-map-title-${suffix}">${esc(d.label)}</title>
       <desc id="model-map-desc-${suffix}">${esc(d.description)}</desc>
-      <defs>
-        <marker id="model-arrow-${suffix}" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="m2 2 4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker>
-      </defs>
-      ${links.join('\n')}
       ${nodes.join('\n')}
     </svg>`;
   };

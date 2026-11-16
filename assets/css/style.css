@@ -24,8 +24,6 @@
   --binean: #0d9488;
   /* VISTA identity: đúng màu accent hue 250 mà UI của VISTA dùng cho `--accent`. */
   --vista: oklch(0.66 0.17 250);
-  /* Echelon identity: màu hành tinh E, dùng cho hai lớp vỏ điều phối ở sơ đồ Echelon. */
-  --echelon: #ff81c3;
   --shadow: 0 24px 60px -32px rgba(2, 8, 20, 0.9);
   --radius: 16px;
   --radius-lg: 22px;
@@ -915,9 +913,13 @@ ol {
   gap: 22px;
 }
 
-.echelon-card {
-  grid-column: span 3;
-  padding: clamp(26px, 3vw, 36px);
+/* Orbit và Vista là trục trung tâm: hai thẻ rộng hơn và nổi bật hơn. */
+.agent-grid-core {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.agent-card.is-core {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
   background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 7%, var(--surface)), var(--surface) 62%);
 }
 
@@ -1214,10 +1216,6 @@ ol {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .echelon-card {
-    grid-column: span 2;
-  }
-
   .sub-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1274,14 +1272,11 @@ ol {
 
   .pain-grid,
   .agent-grid,
+  .agent-grid-core,
   .benefit-grid,
   .sub-grid,
   .footer-inner {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .echelon-card {
-    grid-column: span 1;
   }
 
   .btn {
@@ -2339,260 +2334,7 @@ ol {
   margin-bottom: 1.6rem;
 }
 
-/* -------------------------------------------- 15. sơ đồ Echelon (E) ---- */
-
-.echelon-diagram {
-  margin: 0 0 28px;
-  padding: 20px 18px 4px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-alt);
-}
-
-.echelon-diagram svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  shape-rendering: geometricPrecision;
-  text-rendering: optimizeLegibility;
-}
-
-/* Màn hình hẹp: thà cuộn ngang còn hơn co chữ xuống mức không đọc nổi. Chỉ
-   phần hình mới cuộn — caption nằm ngoài vùng cuộn nên không bị kéo dài theo. */
-@media (max-width: 900px) {
-  .echelon-diagram-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .echelon-diagram svg {
-    min-width: 700px;
-  }
-}
-
-.echelon-diagram figcaption {
-  margin: 14px 4px 16px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.6;
-  text-align: center;
-}
-
-/* Hai lớp điều phối trừu tượng bao quanh vùng não. */
-.nd-shell {
-  fill: color-mix(in srgb, var(--echelon) 70%, transparent);
-  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
-  stroke-width: 1.4;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  opacity: 0.9;
-}
-
-.nd-arm {
-  fill: var(--text);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-/* Hai vùng não bên trong dùng cùng ngôn ngữ panel bo góc. */
-.nd-lobe rect,
-.nd-lobe path {
-  fill: var(--bg-raise);
-  stroke: color-mix(in srgb, var(--accent) 55%, transparent);
-  stroke-width: 1.4;
-}
-
-.nd-lobe text {
-  fill: var(--text-strong);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-}
-
-/* đốt sống — nền lắng để các nút Agent nổi lên */
-.nd-seg {
-  fill: color-mix(in srgb, var(--accent) 55%, var(--bg-raise));
-  stroke: color-mix(in srgb, var(--accent) 38%, transparent);
-  stroke-width: 0.6;
-  opacity: 0.92;
-  animation: nd-pulse 3.8s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.22s);
-}
-
-/* Đốt của mỗi Agent lấy đúng màu chip nhưng nhạt bớt; đặc hiệu cao để không bị đè. */
-.nd-seg.nd-agent-seg {
-  fill: color-mix(in srgb, var(--c) 45%, var(--bg-raise));
-  stroke: color-mix(in srgb, var(--c) 36%, transparent);
-}
-
-.nd-seg.nd-shell-seg {
-  fill: color-mix(in srgb, var(--accent) 34%, var(--bg-raise));
-  stroke: color-mix(in srgb, var(--accent) 26%, transparent);
-}
-
-.nd-seg.nd-cervical {
-  fill: color-mix(in srgb, #ffffff 84%, #8a98a8);
-  stroke: color-mix(in srgb, #ffffff 48%, #8a98a8);
-}
-
-.nd-seg.nd-terminal {
-  fill: color-mix(in srgb, var(--accent) 30%, var(--bg-raise));
-}
-
-@keyframes nd-pulse {
-  0%,
-  100% {
-    opacity: 0.92;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.nd-spine {
-  fill: var(--muted);
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.22em;
-}
-
-.nd-cord {
-  fill: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  opacity: 0.75;
-}
-
-/* dây thần kinh: nét đứt chạy từ ô xuống spine như tín hiệu truyền về */
-.nd-wire {
-  fill: none;
-  stroke: var(--c);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 7 11;
-  opacity: 0.75;
-  animation: nd-signal 2.6s linear infinite;
-  animation-delay: calc(var(--i) * -0.6s);
-}
-
-@keyframes nd-signal {
-  to {
-    stroke-dashoffset: -36;
-  }
-}
-
-.nd-port {
-  fill: var(--c);
-}
-
-/* ô N, O, V, A trôi nhẹ quanh chỗ của nó */
-.nd-chip {
-  animation: nd-float 6s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -1.3s);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.nd-chip circle {
-  fill: var(--c);
-  stroke: color-mix(in srgb, #ffffff 22%, var(--c));
-  stroke-width: 1;
-}
-
-.nd-key {
-  fill: color-mix(in srgb, #06101f 82%, var(--c));
-  font-size: 26px;
-  font-weight: 800;
-}
-
-.nd-future-node {
-  animation: nd-future-float var(--fd) ease-in-out infinite;
-  animation-delay: var(--fdelay);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.nd-future-node circle {
-  fill: color-mix(in srgb, #91a0af 34%, var(--bg-raise));
-  stroke: color-mix(in srgb, #91a0af 42%, transparent);
-  stroke-width: 1;
-  opacity: 0.34;
-  stroke-dasharray: 3 5;
-}
-
-.nd-future-wire {
-  fill: none;
-  stroke: #718096;
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  stroke-dasharray: 3 7;
-  opacity: 0.32;
-  animation: nd-future-signal 3.8s linear infinite;
-  animation-delay: calc(var(--i) * -0.55s);
-}
-
-@keyframes nd-future-signal {
-  to {
-    stroke-dashoffset: -20;
-  }
-}
-
-@keyframes nd-future-float {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  23% {
-    transform: translate(3px, -4px) scale(1.02);
-  }
-  47% {
-    transform: translate(-4px, -1px) scale(0.99);
-  }
-  71% {
-    transform: translate(2px, 4px) scale(1.01);
-  }
-}
-
-@keyframes nd-float {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    transform: translate(8px, -10px);
-  }
-  66% {
-    transform: translate(-8px, 10px);
-  }
-}
-
-@media (max-width: 620px) {
-  /* Màn hẹp: badge dài của Echelon tràn khỏi thẻ, đưa lên dòng riêng như thẻ agent. */
-  .echelon-card .agent-head {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    row-gap: 12px;
-  }
-
-  .echelon-card .status {
-    grid-row: 1;
-    grid-column: 1 / -1;
-    justify-self: start;
-    margin-left: 0;
-    white-space: normal;
-  }
-
-  .echelon-diagram {
-    padding: 12px 10px 2px;
-  }
-
-  .echelon-diagram figcaption {
-    font-size: 0.8rem;
-  }
-}
-
-/* ------------------------------------------ 16. trang Binean Echelon --- */
+/* ---------------------------- 16. trang sản phẩm chưa phát hành ------- */
 
 /* Trang bài viết nên hẹp hơn trang chủ: dòng chữ dài quá 75 ký tự là mắt bắt
    đầu trượt dòng. */
@@ -2692,8 +2434,8 @@ ol {
   font-size: 0.98rem;
 }
 
-/* Nhãn trạng thái cạnh một khái niệm: có trong kiến trúc, chưa có trong V1.
-   Cần thiết vì sơ đồ Echelon ở trang chủ vẽ cả những phần chưa dựng. */
+/* Nhãn trạng thái cạnh một khái niệm: có trong mô hình, chưa có trong bản phát hành.
+   Cần thiết cho các trang sản phẩm chưa phát hành. */
 .ech-tag {
   display: inline-block;
   margin-left: 6px;
@@ -3170,16 +2912,6 @@ ol {
 
 .section-status {
   background: var(--bg-alt);
-}
-
-/* link từ thẻ Echelon ở trang chủ sang trang này */
-.echelon-more {
-  margin: 0 0 26px;
-}
-
-.echelon-more a {
-  font-weight: 600;
-  font-size: 0.94rem;
 }
 
 @media (max-width: 980px) {
@@ -3996,6 +3728,19 @@ ol {
   stroke-width: 1.6;
 }
 
+/* Dải nhãn trục trung tâm nằm trên hai nhóm Orbit và Vista. */
+.model-map-axis-band {
+  fill: var(--accent-soft);
+  stroke: var(--model-accent);
+  stroke-width: 1;
+}
+
+.model-map-axis-label {
+  fill: var(--model-accent);
+  font: 700 11px var(--font);
+  letter-spacing: 0.08em;
+}
+
 .model-map-inset,
 .model-map-icon-bg {
   fill: var(--accent-soft);
@@ -4785,36 +4530,6 @@ ol {
   letter-spacing: 0.08em;
 }
 
-.ecosystem-later {
-  margin-top: 32px;
-  border-top: 1px solid var(--border);
-}
-
-.ecosystem-later > summary {
-  margin: 0;
-  padding: 24px 0;
-  cursor: pointer;
-  list-style: none;
-}
-
-.ecosystem-later > summary::-webkit-details-marker {
-  display: none;
-}
-
-.ecosystem-later > summary::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  margin: 0 4px 4px auto;
-  border-right: 2px solid var(--muted);
-  border-bottom: 2px solid var(--muted);
-  transform: rotate(45deg);
-}
-
-.ecosystem-later[open] > summary::after {
-  transform: rotate(225deg);
-}
-
 .assessment-label {
   margin: 0 0 16px;
   color: var(--muted);
@@ -4895,11 +4610,11 @@ ol {
   font-weight: 500;
 }
 
-.agent-group-label.is-later span {
+.agent-group-label.is-supporting span {
   color: var(--muted);
 }
 
-/* ---- Sơ đồ NOVA: khung giai đoạn sau (Nexus, Echelon, Aira) ---- */
+/* ---- Sơ đồ NOVA: khung nét đứt cho hạng mục trình diễn và định hướng ---- */
 .model-map-later-box {
   fill: none;
   stroke: var(--border);

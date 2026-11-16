@@ -1,8 +1,8 @@
 export default {
   seo: {
-    title: 'Binean Orbit — Orchestrate incremental backend modernization',
-    description: 'Orbit aims to modernize backends with multiple customizable gateways that preserve existing application integrations. The product is in development.',
-    keywords: 'Binean Orbit, NOVA, insurance core modernization, digital channels, service expansion, gradual transformation',
+    title: 'Binean Orbit — Connect and coordinate business capabilities',
+    description: 'Orbit connects business capabilities from the existing core, coordinates processing flows and opens modern ways to use them with limited deep changes. The product is in development.',
+    keywords: 'Binean Orbit, NOVA, insurance core modernization, business flow coordination, modern integration, gradual transformation',
   },
   brandName: 'Binean Orbit',
   headerCta: 'Assess with Orbit',
@@ -19,9 +19,9 @@ export default {
   ],
   hero: {
     back: 'Back to BENOVA',
-    eyebrow: 'Innovate around your business priorities',
+    eyebrow: 'The central axis of NOVA · Connect and coordinate business capabilities',
     title: 'Expand services. Transition one capability at a time.',
-    lead: 'Orbit is designed for multiple customizable connection gateways, helping existing applications retain familiar integrations as the backend is modernized incrementally. The gateways share business orchestration; compatibility is verified for each system.',
+    lead: 'Orbit connects business capabilities from existing systems, coordinates processing flows and opens modern ways to use them with limited deep changes to the core. Existing applications retain familiar integrations; compatibility is assessed for each system.',
     primaryCta: { label: 'Assess an existing connection', href: '#orbit-contact' },
     secondaryCta: { label: 'See an illustrative example', href: '#premium-allocation' },
     visual: {
@@ -52,7 +52,7 @@ export default {
     steps: [
       { num: '01', title: 'Identify the need', desc: 'Choose a customer service or business capability that needs improvement.', tag: 'PRIORITY' },
       { num: '02', title: 'Agree on scope', desc: 'Clarify goals, ownership and investment limits for the initial evaluation.', tag: 'SCOPE' },
-      { num: '03', title: 'Evaluate the results', desc: 'Compare business results, processing time and operational effort with the current baseline.', tag: 'VALUE' },
+      { num: '03', title: 'Evaluate the results', desc: 'Compare business results, processing time and operational effort with the current state.', tag: 'VALUE' },
       { num: '04', title: 'Decide how to expand', desc: 'Choose the next scope based on verified results, investment and transition requirements.', tag: 'GROWTH' },
     ],
     note: 'Service continuity and recovery need assessment for each change. Uninterrupted service is not assumed in every situation.',
@@ -87,19 +87,19 @@ export default {
   status: {
     id: 'orbit-status',
     eyebrow: 'Product status',
-    title: 'The runtime is running; NOVA integration is in progress.',
-    lead: 'Orbit has a working foundation. Its end-to-end value still needs development and verification.',
+    title: 'The processing foundation is running; NOVA integration is in progress.',
+    lead: 'Orbit has a working processing foundation. Its end-to-end value still needs development and verification.',
     foundation: {
       tag: 'INITIAL FOUNDATION',
       title: 'A basis for further development',
-      items: ['A flow engine that runs business scenarios', 'Web services and an adapter for existing connections', 'Backend session management', 'Authentication and token design'],
+      items: ['Sample business flows running', 'A foundation for connecting existing systems', 'Session management', 'Authentication and permission design'],
     },
     direction: {
       tag: 'DIRECTION',
       title: 'Expand value for the business',
-      items: ['Customize connection gateways for each system', 'Connect Vista screens with business flows', 'Verify compatibility and performance before expanding', 'Alongside Vista and Aster in NOVA'],
+      items: ['Customize connection gateways for each system', 'Connect Vista screens with business flows', 'Verify compatibility and performance before expanding', 'Forms the central axis of NOVA together with Vista'],
     },
-    note: 'Orbit is part of the NOVA package under development and is not a ready-to-deploy replacement for the core. Scope and timing are discussed per requirement.',
+    note: 'Orbit belongs to the central axis of NOVA under development and is not a ready-to-deploy replacement for the core. The Aster demonstration software ships with the Orbit family to show a flow without using a running system.',
   },
   cta: {
     id: 'orbit-contact',

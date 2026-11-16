@@ -99,10 +99,10 @@ export default {
     id: 'benova',
     eyebrow: 'Trong hệ sinh thái BENOVA',
     title: 'Kết nối cách làm việc nhóm hiệu quả với hệ thống nghiệp vụ của bạn.',
-    lead: 'BENOVA hướng đến kết hợp trải nghiệm quản lý công việc của EVA với gói NOVA. Việc tích hợp được đánh giá theo từng phạm vi, chưa phải một dự án chuyển đổi core đã triển khai.',
+    lead: 'BENOVA hướng đến kết hợp trải nghiệm quản lý công việc của EVA với mô hình NOVA. Việc tích hợp được đánh giá theo từng phạm vi, chưa phải một dự án chuyển đổi hệ thống lõi đã triển khai.',
     formula: [
       { name: 'EVA', desc: 'Phối hợp và theo dõi công việc' },
-      { name: 'Nexus + Orbit + Vista + Aster', desc: 'Giao diện, điều phối và kết nối backend' },
+      { name: 'Nexus + Orbit + Vista + Add-ons', desc: 'Bốn nhóm giải pháp của mô hình NOVA' },
       { name: 'BENOVA', desc: 'Giá trị cho doanh nghiệp bảo hiểm' },
     ],
     cta: { label: 'Khám phá BENOVA', href: '' },

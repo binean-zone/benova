@@ -19,8 +19,8 @@ try {
   for (const site of [vi, en]) {
     const code = site.locale.code;
     const description = code === 'vi'
-      ? 'Giữ giá trị nghiệp vụ. Mở rộng theo ưu tiên.'
-      : 'Preserve business value. Expand around your priorities.';
+      ? 'Bốn nhóm giải pháp. Trọng tâm Orbit–Vista.'
+      : 'Four solution families. Orbit–Vista focus.';
     const html = `<!DOCTYPE html>
 <html lang="${code}">
 <meta charset="utf-8">
@@ -56,9 +56,9 @@ footer span:last-child { color: #64ffda; }
   <main>
     <h1>${escapeHtml(site.hero.headline[0])}<span>${escapeHtml(site.hero.headline[1])}</span></h1>
     <p>${escapeHtml(description)}</p>
-    <p class="status">${code === 'vi' ? 'Gói phát hành sớm · đang hoàn thiện' : 'Early-release package · in development'}</p>
+    <p class="status">${code === 'vi' ? 'Orbit–Vista · đang hoàn thiện' : 'Orbit–Vista · in development'}</p>
   </main>
-  <footer><span>NOVA · Orbit · Vista · Aster</span><span>binean.com</span></footer>
+  <footer><span>NOVA · Nexus · Orbit · Vista · Add-ons</span><span>binean.com</span></footer>
 </body>
 </html>`;
     const input = join(temporary, `${code}.html`);

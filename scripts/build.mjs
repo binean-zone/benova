@@ -252,8 +252,8 @@ const hero = () => {
   // thêm hành tinh thì mở rộng ra ngoài, không dồn lại làm đổi đường đi của các hành tinh cũ.
   const BASE_ORBITS = 4;
 
-  // Hành tinh to nhỏ chênh nhau rõ rệt; Echelon là bộ khung nên to nhất.
-  const SCALES = [1.12, 1.24, 0.88, 1, 0.8, 0.94];
+  // Hành tinh to nhỏ chênh nhau rõ rệt; Orbit và Vista lớn hơn vì là trục trung tâm.
+  const SCALES = [1, 1.2, 1.14, 0.94, 0.8, 0.94];
   // Chu kỳ quỹ đạo trong cùng, tính bằng giây.
   const BASE_PERIOD = 19;
   // Mặt phẳng quỹ đạo: mỗi hành tinh một hướng nút lên và một độ nghiêng riêng,
@@ -447,7 +447,7 @@ ${list(
 /* -------------------------------------------------------- ecosystem ---- */
 
 
-const agentCard = (agent, wide) => `          <article class="card agent-card${wide ? ' agent-card-wide' : ''} reveal">
+const agentCard = (agent, wide) => `          <article class="card agent-card${wide ? ' agent-card-wide' : ''}${agent.emphasis ? ' is-core' : ''} reveal">
             <header class="agent-head">
               <span class="agent-key" aria-hidden="true">${esc(agent.key)}</span>
               <div>
@@ -476,16 +476,14 @@ const ecosystem = () => {
           <h2>${esc(e.title)}</h2>
           <p class="lead">${esc(e.lead)}</p>
         </div>
-        <h3 class="agent-group-label reveal"><span>${esc(e.novaLabel)}</span><small>${esc(e.novaNote)}</small></h3>
-        <div class="agent-grid">
-${list(e.agents, (agent) => agentCard(agent, false))}
+        <h3 class="agent-group-label reveal"><span>${esc(e.coreLabel)}</span><small>${esc(e.coreNote)}</small></h3>
+        <div class="agent-grid agent-grid-core">
+${list(e.core, (agent) => agentCard(agent, false))}
         </div>
-        <details class="ecosystem-later">
-          <summary class="agent-group-label is-later"><span>${esc(e.laterLabel)}</span><small>${esc(e.laterNote)}</small></summary>
-          <div class="agent-grid">
-${list(e.later, (agent) => agentCard(agent, false))}
-          </div>
-        </details>
+        <h3 class="agent-group-label is-supporting reveal"><span>${esc(e.supportLabel)}</span><small>${esc(e.supportNote)}</small></h3>
+        <div class="agent-grid">
+${list(e.supporting, (agent) => agentCard(agent, false))}
+        </div>
       </div>
     </section>`;
 };
@@ -1503,8 +1501,8 @@ const modelPage = () => {
           </article>`
     )
     .join('\n');
-  const capabilities = cards(p.capabilities.items);
-  const flow = cards(p.flow.items);
+  const families = cards(p.families.items);
+  const axis = cards(p.axis.items);
 
   return `<!DOCTYPE html>
 <html lang="${esc(site.locale.code)}" data-theme="dark">
@@ -1551,28 +1549,28 @@ ${modelDiagram(p.architecture.diagram, esc)}
       </div>
     </section>
 
-    <section class="section model-section" id="${esc(p.flow.id)}">
+    <section class="section model-section" id="${esc(p.axis.id)}">
       <div class="shell">
         <div class="section-head reveal">
-          <p class="eyebrow">${esc(p.flow.eyebrow)}</p>
-          <h2>${esc(p.flow.title)}</h2>
-          <p class="lead">${esc(p.flow.lead)}</p>
+          <p class="eyebrow">${esc(p.axis.eyebrow)}</p>
+          <h2>${esc(p.axis.title)}</h2>
+          <p class="lead">${esc(p.axis.lead)}</p>
         </div>
         <div class="model-capability-grid">
-${flow}
+${axis}
         </div>
       </div>
     </section>
 
-    <section class="section model-section model-capabilities" id="${esc(p.capabilities.id)}">
+    <section class="section model-section model-capabilities" id="${esc(p.families.id)}">
       <div class="shell">
         <div class="section-head reveal">
-          <p class="eyebrow">${esc(p.capabilities.eyebrow)}</p>
-          <h2>${esc(p.capabilities.title)}</h2>
-          <p class="lead">${esc(p.capabilities.lead)}</p>
+          <p class="eyebrow">${esc(p.families.eyebrow)}</p>
+          <h2>${esc(p.families.title)}</h2>
+          <p class="lead">${esc(p.families.lead)}</p>
         </div>
         <div class="model-capability-grid">
-${capabilities}
+${families}
         </div>
       </div>
     </section>
@@ -1787,7 +1785,6 @@ ${[first, ...rest].map(block).join('\n')}
 const pages = [
   { slug: '', render: page },
   { slug: 'nova/', render: modelPage },
-  { slug: 'echelon/', render: echelonPage },
   { slug: 'nexus/', render: nexusPage },
   { slug: 'orbit/', render: orbitPage },
 ];

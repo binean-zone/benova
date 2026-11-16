@@ -1,8 +1,8 @@
 export default {
   seo: {
-    title: 'Binean Orbit — Điều phối lộ trình hiện đại hóa backend',
-    description: 'Orbit hướng đến hiện đại hóa backend với nhiều cổng kết nối tùy biến, giữ cách tích hợp của các ứng dụng hiện có. Sản phẩm đang phát triển.',
-    keywords: 'Binean Orbit, NOVA, hiện đại hóa core bảo hiểm, kênh số, mở rộng dịch vụ, chuyển đổi từng bước',
+    title: 'Binean Orbit — Kết nối và điều phối năng lực nghiệp vụ',
+    description: 'Orbit kết nối năng lực nghiệp vụ từ hệ thống lõi hiện hữu, điều phối luồng xử lý và mở cách sử dụng hiện đại với ít thay đổi sâu trong lõi. Sản phẩm đang phát triển.',
+    keywords: 'Binean Orbit, NOVA, hiện đại hóa hệ thống lõi bảo hiểm, điều phối nghiệp vụ, kết nối hiện đại, chuyển đổi từng bước',
   },
   brandName: 'Binean Orbit',
   headerCta: 'Đánh giá cùng Orbit',
@@ -19,16 +19,16 @@ export default {
   ],
   hero: {
     back: 'Về BENOVA',
-    eyebrow: 'Đổi mới theo ưu tiên của doanh nghiệp',
+    eyebrow: 'Trục trung tâm của NOVA · Kết nối và điều phối năng lực nghiệp vụ',
     title: 'Mở rộng dịch vụ. Chuyển đổi từng nghiệp vụ.',
-    lead: 'Orbit được thiết kế với nhiều cổng kết nối tùy biến, giúp các ứng dụng hiện có giữ cách tích hợp quen thuộc trong khi backend được hiện đại hóa từng phần. Các cổng dùng chung lớp điều phối nghiệp vụ; mức tương thích được kiểm chứng theo từng hệ thống.',
+    lead: 'Orbit kết nối năng lực nghiệp vụ từ hệ thống hiện hữu, điều phối luồng xử lý và mở cách sử dụng hiện đại với ít thay đổi sâu trong lõi. Các ứng dụng hiện có giữ cách tích hợp quen thuộc; mức tương thích được đánh giá theo từng hệ thống.',
     primaryCta: { label: 'Đánh giá một kết nối', href: '#lien-he-orbit' },
     secondaryCta: { label: 'Xem tình huống minh họa', href: '#premium-allocation' },
     visual: {
       label: 'Giá trị Orbit hướng tới',
       api: 'Trải nghiệm dịch vụ kết nối',
       request: 'Nhu cầu khách hàng',
-      cobol: 'Giá trị core hiện tại',
+      cobol: 'Giá trị lõi hiện tại',
       rust: 'Khả năng mới',
       caption: 'Mở rộng theo nhu cầu, đánh giá theo từng phạm vi.',
     },
@@ -87,19 +87,19 @@ export default {
   status: {
     id: 'trang-thai-orbit',
     eyebrow: 'Trạng thái sản phẩm',
-    title: 'Runtime đã chạy, tích hợp NOVA đang hoàn thiện.',
-    lead: 'Orbit đã có nền tảng chạy được. Giá trị tích hợp trọn vẹn cần tiếp tục được hoàn thiện và kiểm chứng.',
+    title: 'Nền tảng xử lý đã chạy, tích hợp NOVA đang hoàn thiện.',
+    lead: 'Orbit đã có nền tảng xử lý vận hành được. Giá trị tích hợp trọn vẹn cần tiếp tục được hoàn thiện và kiểm chứng.',
     foundation: {
       tag: 'NỀN TẢNG BAN ĐẦU',
       title: 'Cơ sở để tiếp tục phát triển',
-      items: ['Flow engine chạy kịch bản nghiệp vụ', 'Dịch vụ web và bộ tiếp nhận kết nối hiện có', 'Quản lý phiên backend', 'Thiết kế xác thực và token'],
+      items: ['Các luồng nghiệp vụ mẫu đã vận hành', 'Nền tảng kết nối với hệ thống hiện có', 'Quản lý phiên làm việc', 'Thiết kế xác thực và phân quyền'],
     },
     direction: {
       tag: 'ĐỊNH HƯỚNG',
       title: 'Mở rộng giá trị cho doanh nghiệp',
-      items: ['Tùy biến cổng kết nối theo từng hệ thống', 'Nối màn hình Vista với kịch bản nghiệp vụ', 'Kiểm chứng tương thích và hiệu năng trước khi mở rộng', 'Cùng Vista và Aster trong gói NOVA'],
+      items: ['Tùy biến cổng kết nối theo từng hệ thống', 'Nối màn hình Vista với kịch bản nghiệp vụ', 'Kiểm chứng tương thích và hiệu năng trước khi mở rộng', 'Cùng Vista tạo thành trục trung tâm của NOVA'],
     },
-    note: 'Orbit là một phần của gói NOVA đang hoàn thiện, chưa phải bản thay thế core sẵn sàng triển khai. Phạm vi và thời điểm được trao đổi theo yêu cầu.',
+    note: 'Orbit thuộc trục trung tâm của NOVA đang hoàn thiện, chưa phải bản thay thế hệ thống lõi sẵn sàng triển khai. Phần mềm trình diễn Aster đi kèm nhóm Orbit giúp trình diễn luồng mà không cần dùng hệ thống đang vận hành.',
   },
   cta: {
     id: 'lien-he-orbit',

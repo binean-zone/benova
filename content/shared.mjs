@@ -10,12 +10,11 @@ export const brandName = 'BENOVA';
 export const siteUrl = 'https://binean.com/';
 export const themeColor = '#0A192F';
 
-/** Màu và vành của từng hành tinh — thuộc về hình ảnh, không phải ngôn ngữ. */
+/** Màu và vành của từng hành tinh — thuộc về hình ảnh, không phải ngôn ngữ.
+    Bốn hành tinh N/O/V/A tương ứng bốn nhóm giải pháp của mô hình NOVA. */
 export const planetVisuals = {
-  E: { color: '#ff81c3' },
   N: { color: '#fbbf24' },
   O: { color: '#a78bfa', ring: true },
   V: { color: 'var(--vista)' },
   A: { color: '#2dd4bf' },
-  Ai: { color: '#a3e635' },
 };

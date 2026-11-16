@@ -2,7 +2,7 @@
   "name": "benova",
   "version": "1.0.0",
   "private": true,
-  "description": "BENOVA — gói NOVA (Orbit, Vista, Aster) và hệ sinh thái Echelon, Aira",
+  "description": "BENOVA — mô hình NOVA gồm bốn nhóm giải pháp Nexus, Orbit, Vista và Add-ons",
   "type": "module",
   "scripts": {
     "build": "node scripts/check-public-safety.mjs --all && node scripts/check-content.mjs && node scripts/build.mjs",

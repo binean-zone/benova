@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const publicEntries = [
   'index.html', '404.html', 'sitemap.xml', 'robots.txt', 'CNAME', '.nojekyll',
-  'assets', 'nova', 'echelon', 'nexus', 'orbit',
-  'en/index.html', 'en/nova', 'en/echelon', 'en/nexus', 'en/orbit',
+  'assets', 'nova', 'nexus', 'orbit',
+  'en/index.html', 'en/nova', 'en/nexus', 'en/orbit',
 ];
 
 export function stagePublic(destination) {

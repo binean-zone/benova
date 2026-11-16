@@ -110,7 +110,7 @@ const pageIds = {
       .map((section) => c.orbitPage?.[section]?.id)
       .filter(Boolean),
   model: (c) =>
-    ['architecture', 'flow', 'capabilities', 'value', 'adoption', 'readiness', 'cta']
+    ['architecture', 'axis', 'families', 'value', 'adoption', 'readiness', 'cta']
       .map((section) => c.modelPage?.[section]?.id)
       .filter(Boolean),
 };

@@ -36,9 +36,9 @@
   <path d="M326 282 C 560 300, 720 320, 1010 336 L1010 262 C 720 258, 560 288, 326 282 Z" fill="url(#modern)"/>
 
   <text class="lbl" x="470" y="196">Existing value</text>
-  <text class="small" x="470" y="216">accumulated business knowledge and experience</text>
+  <text class="small" x="470" y="216">business logic and data already in service</text>
   <text class="lbl" x="700" y="316" text-anchor="middle">New possibilities</text>
-  <text class="small" x="700" y="336" text-anchor="middle">performance · productivity · experience</text>
+  <text class="small" x="700" y="336" text-anchor="middle">integration · experience · operations</text>
 
   <rect class="box" x="1024" y="150" width="80" height="110" rx="14"/>
   <text class="tag" x="1064" y="200" text-anchor="middle">LASTING</text>
@@ -47,7 +47,7 @@
   <path d="M326 384 H1080" stroke="rgba(136,173,214,.35)" stroke-width="1.5"/>
   <path d="M1072 379 l10 5 -10 5 z" fill="rgba(136,173,214,.6)"/>
   <g>
-    <circle cx="380" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="380" y="368" text-anchor="middle">01 Baseline</text>
+    <circle cx="380" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="380" y="368" text-anchor="middle">01 Current state</text>
     <circle cx="600" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="600" y="368" text-anchor="middle">02 Scope</text>
     <circle cx="820" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="820" y="368" text-anchor="middle">03 Verify</text>
     <circle cx="1020" cy="384" r="4" fill="#FFBE6B"/><text class="phase" x="1020" y="368" text-anchor="middle">04 Roadmap</text>

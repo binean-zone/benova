@@ -29,20 +29,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://binean.com/echelon/</loc>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/echelon/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/echelon/" />
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://binean.com/en/echelon/</loc>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/echelon/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/echelon/" />
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://binean.com/nexus/</loc>
     <xhtml:link rel="alternate" hreflang="vi" href="https://binean.com/nexus/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://binean.com/en/nexus/" />

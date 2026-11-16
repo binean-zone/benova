@@ -36,9 +36,9 @@
   <path d="M326 282 C 560 300, 720 320, 1010 336 L1010 262 C 720 258, 560 288, 326 282 Z" fill="url(#modern)"/>
 
   <text class="lbl" x="470" y="196">Giá trị hiện có</text>
-  <text class="small" x="470" y="216">nghiệp vụ và kinh nghiệm đã tích lũy</text>
+  <text class="small" x="470" y="216">nghiệp vụ và dữ liệu đã tích lũy</text>
   <text class="lbl" x="700" y="316" text-anchor="middle">Khả năng mới</text>
-  <text class="small" x="700" y="336" text-anchor="middle">hiệu năng · năng suất · trải nghiệm</text>
+  <text class="small" x="700" y="336" text-anchor="middle">kết nối · trải nghiệm · vận hành</text>
 
   <rect class="box" x="1024" y="150" width="80" height="110" rx="14"/>
   <text class="tag" x="1064" y="200" text-anchor="middle">GIÁ TRỊ</text>

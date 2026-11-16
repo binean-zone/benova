@@ -1,11 +1,11 @@
 # BENOVA — Landing page
 
-Site giới thiệu **BENOVA** và gói phát hành sớm **NOVA** (Orbit · Vista · Aster),
-hướng đến hiện đại hóa backend từng bước theo Strangler Fig. Nexus, Echelon và Aira thuộc giai đoạn sau.
-Trang hoàn toàn tĩnh, không framework runtime, triển khai trên GitHub Pages.
+Site giới thiệu **BENOVA** và mô hình **NOVA** gồm bốn nhóm giải pháp — Nexus, Orbit, Vista và Add-ons —
+hướng đến hiện đại hóa hệ thống lõi bảo hiểm từng bước. Orbit–Vista là trục trung tâm và trọng tâm
+triển khai đầu tiên. Trang hoàn toàn tĩnh, không framework phía trình duyệt, triển khai trên GitHub Pages.
 
 Tài liệu nội bộ được lưu riêng ngoài repository công khai.
-Trang EVA chưa phát hành: giữ nguồn nội dung và renderer, không sinh trang hoặc đưa vào gói deploy.
+Trang EVA và Echelon chưa phát hành: giữ nguồn nội dung và renderer, không sinh trang hoặc đưa vào gói deploy.
 
 **Kiến trúc:** `content/vi.mjs` + `content/en.mjs` và nội dung các trang con →
 `scripts/build.mjs` (generator) → HTML tĩnh đã commit + `assets/`.
@@ -31,7 +31,7 @@ Chỉ build mà không chạy server:
 ```bash
 npm run build        # kiểm tra song ngữ rồi sinh trang chủ, các trang sản phẩm và sitemap.xml
 npm run check        # chỉ kiểm hai bản ngôn ngữ có khớp cấu trúc không
-npm run test:site    # build rồi kiểm 10 trang, liên kết và gói deploy thực tế
+npm run test:site    # build rồi kiểm 8 trang, liên kết và gói deploy thực tế
 npm run hooks        # bật hook chặn commit/push (một lần mỗi bản clone)
 npm run check:safety # quét từ ngữ không được công khai trong file đang track
 npm run fonts        # tải lại font tự host — chỉ chạy khi đổi font, cần mạng
@@ -48,38 +48,47 @@ python3 -m http.server 4173     # rồi mở http://localhost:4173
 
 ## Cập nhật nội dung
 
-### Trang NOVA (mô hình gói phát hành sớm)
+### Trang NOVA (mô hình bốn nhóm giải pháp)
 
-Trang `nova/` giới thiệu mô hình gói phát hành sớm. Nội dung ở `content/nova-vi.mjs` và `content/nova-en.mjs`
+Trang `nova/` giới thiệu mô hình NOVA. Nội dung ở `content/nova-vi.mjs` và `content/nova-en.mjs`
 (khoá `modelPage` trong `vi.mjs`/`en.mjs`); sơ đồ tổng quan inline SVG do
-`scripts/model-diagram.mjs` dựng: người dùng → Vista → Orbit → tầng backend hiện có, với Aster là backend demo độc lập (không dùng hệ thống đang vận hành); Nexus,
-Echelon và Aira vẽ nét đứt cùng nhau ở khung "giai đoạn sau". Desktop và mobile có
-bố cục riêng, nhãn VI/EN, màu theo theme và mô tả cho trình đọc màn hình.
+`scripts/model-diagram.mjs` dựng: bốn nhóm N/O/V/A, Orbit–Vista là trục trung tâm, Aster nằm trong
+nhóm Orbit, Astra là định hướng dài hạn trong Add-ons. Desktop và mobile có bố cục riêng, nhãn VI/EN,
+màu theo theme và mô tả cho trình đọc màn hình. Sơ đồ chỉ mô tả vai trò và quan hệ khái niệm, không
+mô tả triển khai, endpoint hay topology vận hành.
 
 Quy tắc nội dung:
 
-- **NOVA = Orbit + Vista + Aster.** Chữ "B" giữa hệ sao trang chủ là Binean.
+- **NOVA gồm bốn nhóm giải pháp:** Nexus (phát triển và vận hành), Orbit (kết nối và điều phối),
+  Vista (không gian làm việc), Add-ons (năng lực bổ sung và định hướng dài hạn). Chữ "B" giữa hệ sao
+  trang chủ là Binean.
+- **Aster** là phần mềm trình diễn trong nhóm Orbit. **Astra** là định hướng hệ thống lõi thế hệ mới
+  trong Add-ons; không mô tả Astra, AIRAS hay AIRA là năng lực đã phát hành. Aster và Astra không
+  đặt cạnh nhau trong cùng một đoạn.
+- **Nexus** là thành viên của mô hình. Phạm vi định hướng gồm DevOps, tác vụ batch và vận hành
+  hằng ngày; công cụ hiện có tập trung vào build và quản trị dùng chung. Không mô tả Nexus như bộ
+  lịch chạy, bộ triển khai hoàn chỉnh hoặc nơi tiếp nhận workflow/scheduling.
+- **Echelon chưa phát hành:** giữ nguồn nội dung, không sinh trang, không liên kết, không có trong
+  sitemap hay gói deploy. Trang không được đưa vào build cho tới khi có quyết định mới.
 - Không nêu tên sản phẩm, hệ thống hay thương hiệu của bên thứ ba trong nội dung công khai.
   `scripts/check-public-safety.mjs` chặn các từ này trên toàn bộ file được track và trên artifact
   deploy; `site.test.mjs` quét lại artifact lần cuối. Danh sách mẫu được mã hoá trong script để bản
   thân guard không công khai tên cần chặn; thêm từ riêng vào `private/forbidden-terms.txt` (đã
   gitignore) hoặc biến `BENOVA_SAFETY_EXTRA_TERMS`.
-- Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster là backend demo
-  độc lập, không dùng hệ thống đang vận hành, đang lên kế hoạch triển khai; NOVA chưa phải bản triển khai đại trà. Không thêm số liệu,
-  khách hàng hay lời chứng thực. Không hứa tự phát lại giao dịch hay vận hành không gián đoạn.
-- Strangler Fig là hướng phát triển: mở rộng dịch vụ trên backend hiện có rồi chuyển đổi từng
-  năng lực khi đủ điều kiện. Không mô tả cutover tự động hoặc thay backend bằng đổi cấu hình
+- Mô tả hiện trạng trung thực: Orbit đang phát triển, Vista đang tích hợp, Aster là phần mềm trình diễn
+  trong nhóm Orbit, không dùng hệ thống đang vận hành; mức sẵn sàng của Nexus và Add-ons được nêu
+  riêng. Mức sẵn sàng của từng giải pháp được nêu một lần ở mục hiện trạng. Không thêm số liệu, khách hàng hay lời chứng thực.
+  Không hứa tự phát lại giao dịch hay vận hành không gián đoạn.
+- Strangler Fig là hướng phát triển: mở rộng dịch vụ trên hệ thống hiện có rồi chuyển đổi từng
+  năng lực khi đủ điều kiện. Không mô tả cutover tự động hoặc thay hệ thống lõi bằng đổi cấu hình
   như khả năng đã sẵn sàng. Hiệu năng cần được đo trên cùng nghiệp vụ và điều kiện triển khai.
-- Không đưa chi tiết triển khai nội bộ (tên crate, wire, bộ đệm) vào nội dung.
-- Echelon là thành phần ngang hàng với Orbit, Vista, Aster và Nexus (không phải trung tâm): Vista
-  gọi trực tiếp Orbit, Echelon chỉ là một đường khác, dùng khi flow cần chia task giữa nhiều
-  agent hoặc nhiều step cần cân bằng tải và xử lý lỗi từng step. Về thời điểm phát hành,
-  Echelon và Aira thuộc "giai đoạn sau" (`ecosystem.later`) và vẽ nét đứt ở sơ đồ.
+- Không đưa chi tiết triển khai nội bộ (tên thành phần, wire, bộ đệm) vào nội dung.
+- Thứ tự triển khai của mô hình tách khỏi mức sẵn sàng của từng nhóm/công cụ; mỗi trang chỉ có một
+  mục hiện trạng ngắn thay vì cảnh báo lặp lại ở từng thẻ.
 
-Nexus thuộc "giai đoạn sau" (`ecosystem.later`) cùng Echelon và Aira, không nằm trong gói phát hành sớm. Đó là bộ công cụ
-build, môi trường và vận hành đã dùng độc lập trong môi trường thực, dự kiến tích hợp vào NOVA ở giai đoạn sau
-(`nexus-*.mjs`). Trang `nexus/` có mục "Vị trí trong lộ trình" (`placement`) nói rõ điều này; không mô tả Nexus
-như thành phần của gói phát hành sớm.
+Trang `nexus/` có mục "Vị trí trong mô hình NOVA" (`placement`) nói rõ Nexus là thành viên của mô hình,
+với công cụ hiện có tập trung vào build và quản trị dùng chung; phạm vi DevOps, batch và vận hành
+hằng ngày là định hướng.
 
 ### Chặn commit/push chứa nội dung không được công khai
 
@@ -122,13 +131,13 @@ từ riêng đặt trong `private/forbidden-terms.txt` hoặc `BENOVA_SAFETY_EXT
 
 ### Nguyên tắc nội dung công khai
 
-- Trang chủ dẫn từ bài toán → giá trị → nền tảng → cách đánh giá → liên hệ. Hero tập trung
-  ba thành phần NOVA; Echelon và Aira nằm trong mục mở rộng thu gọn ở giai đoạn sau.
-- Orbit tùy biến kết nối phía ứng dụng và được thiết kế để làm việc với nhiều hệ thống backend khác nhau. Aster là
-  backend demo độc lập, không dùng hệ thống đang vận hành, đang lên kế
-  hoạch triển khai; không mô tả Aster như connector hay như thành phần đã kiểm chứng. Không nêu khách hàng cụ thể.
-  CTA ưu tiên đề xuất đánh giá một nghiệp vụ, với phạm vi tương thích, tiêu chí kiểm chứng
-  và lộ trình tiếp theo; điều kiện pilot được thống nhất riêng.
+- Trang chủ dẫn từ bài toán → giá trị → bốn nhóm giải pháp → cách đánh giá → liên hệ. Hero và
+  hệ sao dùng N/O/V/A; Orbit–Vista là trọng tâm, không mô tả một gói chỉ gồm một vài thành phần.
+- Orbit kết nối năng lực từ hệ thống hiện hữu và được thiết kế để làm việc với nhiều hệ thống khác nhau;
+  mức tương thích được đánh giá theo từng hệ thống. Aster là phần mềm trình diễn trong nhóm Orbit,
+  không dùng hệ thống đang vận hành; không mô tả Aster như connector hoặc thành phần đã kiểm chứng.
+  Không nêu khách hàng cụ thể. CTA ưu tiên đề xuất đánh giá một nghiệp vụ bảo hiểm, với phạm vi
+  tương thích, tiêu chí kiểm chứng và lộ trình tiếp theo; điều kiện pilot được thống nhất riêng.
 - Viết theo thứ tự: nhu cầu khách hàng → tính năng → lợi ích → cách đánh giá.
 - Giữ trạng thái sản phẩm rõ ràng: đã sử dụng, đã kiểm thử, đang kiểm định,
   đang phát triển hoặc đang thiết kế. Không biến định hướng thành tính năng đã có.
@@ -178,10 +187,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 /
 ├── index.html              # trang chủ tiếng Việt (sinh ra, đừng sửa tay)
 ├── en/index.html           # trang chủ tiếng Anh (sinh ra)
-├── nova/index.html         # trang NOVA (mô hình gói), tiếng Việt (sinh ra)
-├── en/nova/index.html      # trang NOVA (mô hình gói), tiếng Anh (sinh ra)
-├── echelon/index.html      # trang Binean Echelon, tiếng Việt (sinh ra)
-├── en/echelon/index.html   # trang Binean Echelon, tiếng Anh (sinh ra)
+├── nova/index.html         # trang NOVA (mô hình bốn nhóm), tiếng Việt (sinh ra)
+├── en/nova/index.html      # trang NOVA (mô hình bốn nhóm), tiếng Anh (sinh ra)
 ├── nexus/index.html        # trang Binean Nexus, tiếng Việt (sinh ra)
 ├── en/nexus/index.html     # trang Binean Nexus, tiếng Anh (sinh ra)
 ├── orbit/index.html        # trang Binean Orbit, tiếng Việt (sinh ra)
@@ -194,8 +201,8 @@ lại. Thêm một mục vào `nav` là menu và scrollspy tự có mục đó. 
 │   ├── en.mjs              # NGUỒN NỘI DUNG trang chủ, tiếng Anh
 │   ├── eva-vi.mjs          # nội dung EVA chưa phát hành, tiếng Việt
 │   ├── eva-en.mjs          # nội dung EVA chưa phát hành, tiếng Anh
-│   ├── echelon-vi.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Việt
-│   ├── echelon-en.mjs      # NGUỒN NỘI DUNG trang Echelon, tiếng Anh
+│   ├── echelon-vi.mjs      # nội dung Echelon chưa phát hành, tiếng Việt
+│   ├── echelon-en.mjs      # nội dung Echelon chưa phát hành, tiếng Anh
 │   ├── nexus-vi.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Việt
 │   ├── nexus-en.mjs        # NGUỒN NỘI DUNG trang Nexus, tiếng Anh
 │   ├── orbit-vi.mjs        # NGUỒN NỘI DUNG trang Orbit, tiếng Việt
@@ -245,14 +252,15 @@ Các bước: kiểm tra publish safety theo range của push/PR (`--range ... -
 `node --test scripts/site.test.mjs` → `node scripts/stage-public.mjs` → deploy bằng
 `actions/deploy-pages`.
 Script staging đóng gói trang chủ, trang 404, sitemap, robots, CNAME, `.nojekyll`,
-`assets/` và các trang được phát hành dưới `nova/`, `echelon/`, `nexus/`, `orbit/` cùng bản tiếng Anh
+`assets/` và các trang được phát hành dưới `nova/`, `nexus/`, `orbit/` cùng bản tiếng Anh
 vào `_site/`. Cây `en/` được copy theo từng trang cho phép, không copy toàn bộ để tránh lọt trang
 chưa phát hành còn sót. Thư mục đích phải rỗng để tránh lẫn file từ lần chạy trước.
-`eva/`, `en/eva/`, `docs/`, `content/` và `scripts/` **không** được publish.
+`eva/`, `en/eva/`, `echelon/`, `en/echelon/`, `docs/`, `content/` và `scripts/` **không** được publish.
 
-Test dựng artifact bằng chính hàm staging dùng khi deploy, kiểm đủ 10 trang,
+Test dựng artifact bằng chính hàm staging dùng khi deploy, kiểm đủ 8 trang,
 link nội bộ, anchor, tài nguyên, URL song ngữ và sitemap. Nhờ đó lỗi sinh trang
 nhưng quên copy thư mục (như `/nova/`) sẽ làm CI thất bại trước khi deploy.
+Test cũng xác nhận EVA và Echelon không xuất hiện trong artifact, sitemap hoặc CSS công khai.
 Khi thêm trang mới, cập nhật generator, danh sách staging và các route trong test.
 
 Cần bật một lần trong repo:
